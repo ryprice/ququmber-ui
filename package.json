@@ -11,10 +11,12 @@
     "babel-preset-stage-2": "^6.22.0",
     "node-sass": "^4.7.2",
     "tslint": "^4.4.2",
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "webpack": "^3.5.5",
+    "copy-webpack-plugin": "^4.2.3"
   },
   "scripts": {
-    "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path sass sass/index.sass dist/ququmber-ui.css",
+    "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path sass sass/index.sass dist/ququmber-ui.css && cp package.json lib/ququmber-ui/package.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

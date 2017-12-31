@@ -14,8 +14,7 @@
     "paths": {
       "*": [
         "./*",
-        "node_modules/@types/*",
-        "../ququmber-api-js/lib/*"
+        "node_modules/@types/*"
       ]
     }
   },
