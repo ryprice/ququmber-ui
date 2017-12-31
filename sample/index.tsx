@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as ReactDnd from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
 
 import UIColorSelector from 'ququmber-ui/controls/UIColorSelector';
 import UIEditableText from 'ququmber-ui/controls/UIEditableText';
@@ -8,6 +9,8 @@ import UITag from 'ququmber-ui/controls/UITag';
 import UIMultiInput from 'ququmber-ui/controls/UIMultiInput';
 import UIToggle from 'ququmber-ui/controls/UIToggle';
 import UITextInput from 'ququmber-ui/controls/UITextInput';
+
+import FuzzyTimeButton from 'ququmber-ui/fuzzyTime/FuzzyTimeButton';
 
 class RootComponent extends React.Component<{}, RootComponentState> {
   constructor(props: {}) {
@@ -50,6 +53,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
       <UITextInput
         placeholder="Your name here"
       />
+      <FuzzyTimeButton />
     </div>;
   }
 }
@@ -62,4 +66,5 @@ interface RootComponentState {
 console.log(UIColorSelector);
 const el = document.createElement('div');
 document.querySelector('body').appendChild(el);
-ReactDOM.render(<RootComponent />, el);
+const DndRootComponent = ReactDnd.DragDropContext(HTML5Backend)(RootComponent);
+ReactDOM.render(<DndRootComponent />, el);

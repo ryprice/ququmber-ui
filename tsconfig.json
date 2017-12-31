@@ -10,13 +10,7 @@
     "noEmit": false,
     "jsx": "react",
     "baseUrl": ".",
-    "rootDir": ".",
-    "paths": {
-      "*": [
-        "./*",
-        "node_modules/@types/*"
-      ]
-    }
+    "rootDir": "."
   },
   "include": [
     "ququmber-ui/**/*.ts",

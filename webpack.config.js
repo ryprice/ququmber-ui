@@ -14,10 +14,9 @@ module.exports = {
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
-    modules: [
-      path.resolve('.'),
-      path.resolve('node_modules')
-    ]
+    alias: {
+      'ququmber-ui': path.resolve('../ququmber-ui/lib/ququmber-ui')
+    }
   },
 
   devtool: 'source-map',

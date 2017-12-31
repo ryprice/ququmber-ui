@@ -1,0 +1,64 @@
+@import ../../tokens
+
+.FuzzyTimeSelectUnit
+  box-sizing: border-box
+  float: left
+  font-size: 12px
+  text-transform: uppercase
+  font-weight: bold
+  position: relative
+  border-color: #bbb
+  overflow: hidden
+
+  p
+    margin: 1px
+    position: absolute
+    z-index: 1
+
+  &:hover:not(.placeholder),
+  &.droppingTask
+    background-color: $color-selected
+    cursor: pointer
+
+  &.selected
+    background-color: $color-selected
+
+  .unfold
+    position: absolute
+    top: 50%
+    left: 50%
+    display: none
+    z-index: 10
+
+  .unfold i
+    position: relative
+    top: -25px
+    left: -25px
+    font-size: 50px
+    color: #aaa
+
+  &.today p
+    color: #aa0000
+
+  &.day
+    width: 14.28%
+    height: 26px
+
+    &:last-child
+      border-right: 0px
+
+    &.notChild
+      visibility: hidden
+
+  &.month, &.year
+    height: 30px
+    clear: none
+    float: left
+    width: 25%
+    overflow: hidden
+
+.hiddenChildren .FuzzyTimeSelectUnit
+  opacity: .4
+
+.hiddenChildren .week
+  height: 22px
