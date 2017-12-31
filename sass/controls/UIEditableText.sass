@@ -1,12 +1,11 @@
 @import ../tokens
 
 .uiEditableText
-  font-size: 18px
+  @extend .uiAbstractInput
+
   border: 0
   outline: 0
-  font-size: 20px
   flex-grow: 1
-  padding: 4px 0px
 
   &:hover, &:focus
     background: $color-offwhite
