@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": false,
+    "target": "es5",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "jsx": "react",
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {
+      "*": [
+        "./*",
+        "node_modules/@types/*",
+        "../ququmber-api-js/lib/*"
+      ]
+    }
+  },
+  "include": [
+    "ququmber-ui/**/*.ts",
+    "ququmber-ui/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

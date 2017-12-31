@@ -1,0 +1,26 @@
+.uiMultiInput
+    border: 1px $color-controlborder solid
+    position: relative
+    overflow: auto
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+
+    .uiTag
+        flex-shrink: 0
+        flex-grow: 0
+        float: none
+
+    input.uiInput[type="text"]
+        border: 0px
+        padding: 7px 5px
+        background: transparent
+        outline: 0
+        flex-grow: 1
+        width: 40px
+        display: flex
+        flex-shrink: 1
+
+.uiDropdown.uiMultiInput
+    min-width: 300px
+    display: block

@@ -1,0 +1,46 @@
+.uiColorSelector
+    .colorSample
+        outline: 1px solid $color-controlborder
+        width: 17px
+        height: 17px
+        background: transparent
+        text-align: center
+        float: left
+        cursor: pointer
+        margin-right: 7px
+
+    .uiDropdown
+        width: 188px
+
+        ol
+            overflow: auto
+
+            li
+                text-align: left
+                float: left
+                overflow: auto
+
+            .colorSample
+                margin: 7px
+
+        .customArea
+            background: $color-offwhite
+            border-top: 1px solid $color-controlborder
+            padding: 7px
+            display: flex
+            width: 100%
+            box-sizing: border-box
+
+            .colorSample, button
+                flex-grow: 0
+                flex-shrink: 0
+                position: relative
+
+            .colorSample
+                top: 3px
+
+            input
+                flex-grow: 1
+                flex-shrink: 1
+                min-width: 0
+                margin-right: 7px
