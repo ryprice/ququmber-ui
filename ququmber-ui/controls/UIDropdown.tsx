@@ -51,3 +51,5 @@ export interface UIDropdownProps extends React.Props<UIDropdown> {
     open?: boolean;
     onClose?: (e: MouseEvent) => void;
 }
+
+export default UIDropdown;

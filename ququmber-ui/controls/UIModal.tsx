@@ -14,3 +14,5 @@ export class UIModal extends React.Component<UIModalProps, {}> {
 export interface UIModalProps extends React.Props<UIModal> {
     onClose?: () => void;
 }
+
+export default UIModal;

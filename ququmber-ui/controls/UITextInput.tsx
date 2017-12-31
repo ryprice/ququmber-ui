@@ -48,3 +48,5 @@ export interface UITextInputProps extends React.Props<HTMLInputElement> {
     defaultValue?: string;
     disabled?: boolean;
 }
+
+export default UITextInput;

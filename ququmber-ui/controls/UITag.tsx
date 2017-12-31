@@ -9,7 +9,7 @@ export class UITag extends React.Component<UITagProps, {}> {
         return <div className={`uiTag ${color && isDarkColor(color) ? 'darkText' : 'lightText'}`} style={style}>
             {name}
             {canRemove !== false &&
-                <button className="remove" onClick={onRemoved}>
+                <button className="remove" onClick={onRemoved ? onRemoved : () => {}}>
                     <span className="octicon octicon-x" />
                 </button>
             }
@@ -19,7 +19,9 @@ export class UITag extends React.Component<UITagProps, {}> {
 
 export interface UITagProps extends React.Props<UITag> {
     name: string;
-    onRemoved: () => void;
+    onRemoved?: () => void;
     color?: string;
     canRemove?: boolean;
 }
+
+export default UITag;

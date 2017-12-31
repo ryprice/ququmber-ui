@@ -29,3 +29,5 @@ export interface UISelectProps extends React.Props<UISelect> {
     onSelect?: (key: string) => void;
     options: {[key: string]: string};
 }
+
+export default UISelect;

@@ -89,3 +89,5 @@ export interface UIColorSelectorState {
     open: boolean;
     custom: string;
 }
+
+export default UIColorSelector;

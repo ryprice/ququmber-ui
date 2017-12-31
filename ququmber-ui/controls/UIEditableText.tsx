@@ -75,3 +75,5 @@ export interface UIEditableTextProps extends React.Props<HTMLInputElement> {
 export interface UIEditableTextState {
     value?: string;
 }
+
+export default UIEditableText;

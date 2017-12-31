@@ -6,7 +6,7 @@ import TetherComponent from "react-tether";
 import {UISelectDropdown} from "ququmber-ui/controls/UISelectDropdown";
 import {UITag} from "ququmber-ui/controls/UITag";
 
-export default class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInputState> {
+export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInputState> {
 
     private tagsInput: HTMLInputElement;
     private updateDropdownDebounced: () => void;
@@ -184,3 +184,5 @@ const sortByCanRemoveComparator = (a: Option, b: Option) => {
     }
     return 0;
 };
+
+export default UIMultiInput;

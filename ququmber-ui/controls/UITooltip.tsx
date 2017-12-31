@@ -1,7 +1,7 @@
 import * as React from "react";
 import TetherComponent from "react-tether";
 
-export default class UITooltip extends React.Component<UITooltipProps, {}> {
+export class UITooltip extends React.Component<UITooltipProps, {}> {
 
     public static defaultProps = {
         width: 200,
@@ -27,3 +27,5 @@ export interface UITooltipProps {
     open?: boolean;
     attachment?: string;
 }
+
+export default UITooltip;

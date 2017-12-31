@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export default class UIToggle extends React.Component<UIToggleProps, {}> {
+export class UIToggle extends React.Component<UIToggleProps, {}> {
 
     inputEl: HTMLInputElement;
 
@@ -32,3 +32,5 @@ export interface UIToggleProps extends React.Props<HTMLInputElement> {
   onClick?: (event: any) => void;
   onMouseOut?: (event: any) => void;
 }
+
+export default UIToggle;

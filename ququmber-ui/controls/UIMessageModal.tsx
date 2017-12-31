@@ -31,3 +31,5 @@ export interface UIMessageModalProps extends React.Props<UIMessageModal> {
     onCancel: () => void;
     onConfirm: () => void;
 }
+
+export default UIMessageModal;

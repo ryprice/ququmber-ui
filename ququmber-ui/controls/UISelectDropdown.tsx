@@ -39,3 +39,5 @@ export interface UISelectDropdownProps extends React.Props<UISelectDropdownProps
     open?: boolean;
     hoverIndex?: number;
 }
+
+export default UISelectDropdown;

@@ -67,3 +67,5 @@ export interface UIIndeterminateCheckboxProps extends React.Props<UIIndeterminat
 export interface UIIndeterminateCheckboxState {
     open: boolean;
 }
+
+export default UIIndeterminateCheckbox;
