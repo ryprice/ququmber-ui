@@ -50,6 +50,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
             <li
                 onClick={() => this.onColorChanged(color)}
                 className={color === this.props.value ? 'selected' : ''}
+                key={color}
             >
                 <div className="colorSample" style={{background: `#${color}`}} />
             </li>

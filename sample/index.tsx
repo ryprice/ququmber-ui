@@ -10,6 +10,8 @@ import UIMultiInput from 'ququmber-ui/controls/UIMultiInput';
 import UIToggle from 'ququmber-ui/controls/UIToggle';
 import UITextInput from 'ququmber-ui/controls/UITextInput';
 
+import TaskFilterLink from 'ququmber-ui/tasks/TaskFilterLink';
+
 import FuzzyTimeButton from 'ququmber-ui/fuzzyTime/FuzzyTimeButton';
 
 class RootComponent extends React.Component<{}, RootComponentState> {
@@ -54,6 +56,12 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         placeholder="Your name here"
       />
       <FuzzyTimeButton />
+      <TaskFilterLink
+        href="http://google.com"
+        onClick={() => alert('clicked list')}
+        onDropTasks={(taskIds: number[]) => alert('tasks dropped')}>
+        {"List of tasks"}
+      </TaskFilterLink>
     </div>;
   }
 }
@@ -62,8 +70,6 @@ interface RootComponentState {
   toggleValue: boolean;
 }
 
-
-console.log(UIColorSelector);
 const el = document.createElement('div');
 document.querySelector('body').appendChild(el);
 const DndRootComponent = ReactDnd.DragDropContext(HTML5Backend)(RootComponent);
