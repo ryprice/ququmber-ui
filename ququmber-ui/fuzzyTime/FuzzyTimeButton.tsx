@@ -33,23 +33,24 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
     }
 
     render() {
+        const {multiselect, range, className, style, value} = this.props;
         let name;
-        if (this.props.multiselect && this.props.range) {
-            name = formatRelativeRangeShortName(this.props.range);
-        } else if (this.props.value) {
-            name = formatRelativeShortName(this.props.value);
+        if (multiselect && range) {
+            name = formatRelativeRangeShortName(range);
+        } else if (value) {
+            name = formatRelativeShortName(value);
         }
+        const computedClassName = `FuzzyTimeButton ${className ? className : ""}`;
 
-        const className = `FuzzyTimeButton ${this.props.className ? this.props.className : ""}`;
-
-        return <TetherComponent className={className} attachment="top left" targetAttachment="bottom left">
+        return <TetherComponent className={computedClassName} attachment="top left" targetAttachment="bottom left">
             <button
                 type="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="true"
-                className={className}
+                className={computedClassName}
                 onClick={() => this.dropdownToggleClick()}
+                style={style}
             >
                 <span className="octicon octicon-calendar calendar-icon" />
                 <span className="name"><span>{name || "None"}</span></span>
@@ -57,11 +58,11 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
             </button>
             <UIDropdown open={this.state.opened} onClose={()=>this.dropdownToggleClick()}>
                 <FuzzyTimeSelect
-                    selected={this.props.value}
+                    selected={value}
                     onTimeSelected={this.onTimeSelected.bind(this)}
-                    multiselect={this.props.multiselect}
+                    multiselect={multiselect}
                     onRangeSelected={this.onRangeSelected.bind(this)}
-                    range={this.props.range}
+                    range={range}
                 />
             </UIDropdown>
         </TetherComponent>;
@@ -75,6 +76,7 @@ export interface FuzzyTimeButtonProps {
     onRangeChange?: (range: FuzzyTimeRange) => void;
     className?: string;
     multiselect?: boolean;
+    style?: object;
 }
 
 export interface FuzzyTimeButtonState {

@@ -3,8 +3,9 @@ import * as ReactDnd from "react-dnd";
 
 class PrivateTaskFilterLink extends React.Component<TaskFilterLinkProps, {}>  {
   onClick(event: React.MouseEvent<HTMLElement>) {
-    if (!(event.ctrlKey || event.metaKey)) {
-      this.props.onClick();
+    const {onClick, href} = this.props;
+    if (!(event.ctrlKey || event.metaKey) || !href) {
+      onClick();
       event.preventDefault();
     }
   }
@@ -13,6 +14,7 @@ class PrivateTaskFilterLink extends React.Component<TaskFilterLinkProps, {}>  {
     const {children, href, connectDropTarget} = this.props;
     return connectDropTarget(
       <a
+        className="TaskFilterLink"
         href={href}
         onClick={this.onClick.bind(this)}>
         {children ? children : ''}
@@ -40,7 +42,7 @@ const dropTargetSpec: ReactDnd.DropTargetSpec<TaskFilterLinkProps> = {
     }
   },
   canDrop: (props: TaskFilterLinkProps, monitor: ReactDnd.DropTargetMonitor) => {
-    return monitor.getItemType() === "TASK";
+    return props.onDropTasks && monitor.getItemType() === "TASK";
   }
 };
 
