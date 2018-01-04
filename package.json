@@ -13,10 +13,11 @@
     "tslint": "^4.4.2",
     "typescript": "^2.6.2",
     "webpack": "^3.5.5",
-    "copy-webpack-plugin": "^4.2.3"
+    "copy-webpack-plugin": "^4.2.3",
+    "file-system": "^2.2.2"
   },
   "scripts": {
-    "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path sass sass/index.sass dist/ququmber-ui.css && cp package.json lib/ququmber-ui/package.json",
+    "build": "tsc -d --declarationDir lib --outDir lib --jsx react || node-sass --include-path sass sass/index.sass dist/ququmber-ui.css || node tools/copy-package.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
