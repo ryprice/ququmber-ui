@@ -15,7 +15,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
-      'ququmber-ui': path.resolve('../ququmber-ui/lib/ququmber-ui')
+      'ququmber-ui': path.resolve('lib')
     }
   },
 
@@ -32,7 +32,10 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: 'dist/ququmber-ui.css', to: './ququmber-ui.css' }
+      {
+        from: path.resolve('dist/ququmber-ui.css'),
+        to: path.resolve('sample/ququmber-ui.css')
+      }
     ])
   ]
 };

@@ -17,7 +17,7 @@
     "file-system": "^2.2.2"
   },
   "scripts": {
-    "build": "tsc -d --declarationDir lib --outDir lib --jsx react || node-sass --include-path sass sass/index.sass dist/ququmber-ui.css || node tools/copy-package.js",
+    "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path sass sass/index.sass dist/ququmber-ui.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -52,6 +52,6 @@
     "react-tether": "^0.6.0",
     "react-virtualized": "^9.9.0",
     "tether": "^1.4.0",
-    "ququmber-api": "file:../ququmber-api-js/lib/ququmber-api"
+    "ququmber-api": "file:../ququmber-api-js"
   }
 }

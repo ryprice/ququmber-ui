@@ -9,12 +9,15 @@
     "moduleResolution": "node",
     "noEmit": false,
     "jsx": "react",
-    "baseUrl": ".",
-    "rootDir": "."
+    "baseUrl": "./src/",
+    "rootDir": "./src/",
+    "paths": {
+      "ququmber-ui/*": ["./*"]
+    }
   },
   "include": [
-    "ququmber-ui/**/*.ts",
-    "ququmber-ui/**/*.tsx"
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ],
   "exclude": [
     "node_modules"
