@@ -1,0 +1,23 @@
+@import ../tokens
+
+.uiButton
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25)
+  padding: 8px
+  border-radius: 3px
+  color: #ffffff
+  margin: 8px 0
+  display: inline-block
+  text-decoration: none
+  position: relative
+  outline: none
+  clear: both
+
+  background: $color-go
+  border: solid darken($color-go, 3%) 1px
+  &:hover
+    background: lighten($color-go, 7%)
+  &:active
+    background: darken($color-go, 3%)
+  &:disabled
+    background: lighten($color-go, 15%)
+    color: #bbbbbb
