@@ -32,10 +32,7 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([
-      {
-        from: path.resolve('dist/ququmber-ui.css'),
-        to: path.resolve('sample/ququmber-ui.css')
-      }
+      {from: 'dist/ququmber-ui.css', to: 'ququmber-ui.css'}
     ])
   ]
 };

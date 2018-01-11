@@ -8,14 +8,16 @@ export class UIButton extends React.Component<UIButtonProps, {}> {
     className: "",
     placeholder: "",
     value: "",
-    disabled: false
+    disabled: false,
+    style: {}
   };
 
   render() {
-    const {className, onClick, children} = this.props;
+    const {className, onClick, children, style} = this.props;
     return <button
       className={`uiButton ${this.props.className}`}
-      onClick={onClick}>
+      onClick={onClick}
+      style={style}>
       {children}
     </button>;
   }
@@ -25,6 +27,7 @@ export interface UIButtonProps extends React.Props<HTMLInputElement> {
   onClick?: () => void;
   className?: string;
   children?: React.ReactNode;
+  style?: object
 }
 
 export default UIButton;

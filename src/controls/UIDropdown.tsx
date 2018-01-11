@@ -6,7 +6,8 @@ export class UIDropdown extends React.Component<UIDropdownProps, {}> {
     private boundWindowClickHandler: (e: MouseEvent) => void;
 
     public static defaultProps = {
-        open: false
+        open: false,
+        className: ''
     };
 
     public constructor(props: UIDropdownProps, context: any) {
@@ -39,17 +40,18 @@ export class UIDropdown extends React.Component<UIDropdownProps, {}> {
     }
 
     render() {
-        const {children, open} = this.props;
+        const {children, open, className} = this.props;
         return <div>
-            {open ? <div className="uiDropdown">{children}</div> : null}
+            {open ? <div className={`uiDropdown ${className}`}>{children}</div> : null}
         </div>;
     }
 }
 
-export interface UIDropdownProps extends React.Props<UIDropdown> {
+export interface UIDropdownProps {
     children?: JSX.Element | JSX.Element[];
     open?: boolean;
     onClose?: (e: MouseEvent) => void;
+    className?: string;
 }
 
 export default UIDropdown;
