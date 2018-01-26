@@ -26,28 +26,40 @@
 @import ./tasks/TaskFilterLink
 
 body
-    background-color: $color-offwhite
-    font-family: $font-stack
-    font-size: 14px
-    font-weight: normal
-    line-height: 1.2em
+  background-color: $color-offwhite
+  font-family: $font-stack
+  font-size: 14px
+  font-weight: normal
+  line-height: 1.2em
 
 h1,
 p
-    color: $color-basefont
+  color: $color-basefont
 
 button
-    border: 1px $color-controlborder solid
-    background: white
-    padding: 5px
-    cursor: pointer
+  border: 0px
+  background: $color-control
+  padding: 5px
+  cursor: pointer
+  outline: none
 
-    &:disabled
-      cursor: default
-input
-    border: 1px $color-controlborder solid
+  &:disabled
+    cursor: default
+
+  &:focus
+    background: $color-controlfocus
+
+input,
+textarea
+  border: 0px
+  background: $color-control
+  outline: none
+
+  &:focus
+    background: $color-controlfocus
+
 
 .tether-element
-    position: absolute
-    z-index: 10000
-    display: block
+  position: absolute
+  z-index: 10000
+  display: block

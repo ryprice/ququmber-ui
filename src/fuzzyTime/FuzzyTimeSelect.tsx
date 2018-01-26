@@ -164,11 +164,6 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         {this.renderGranularityItem(FuzzyGranularity.WEEK)}
         {this.renderGranularityItem(FuzzyGranularity.DAY)}
       </ol></div>
-      <UITextInput
-        onSubmit={(q) => this.onSearchKeyPress(q)}
-        className="search"
-        placeholder="Jump to a date"
-      />
       <ReactVirtualized.List
         key={'virtualScroll' + this.state.focalPoint.getGranularity().getKey()}
         className="scrollContainer"

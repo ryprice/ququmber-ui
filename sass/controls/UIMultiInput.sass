@@ -1,12 +1,15 @@
 .uiMultiInput
     @extend .uiAbstractInput
 
-    border: 1px $color-controlborder solid
     position: relative
     overflow: auto
     display: flex
     flex-direction: row
     flex-wrap: wrap
+    background: $color-control
+
+    &.focus
+      background: $color-controlfocus
 
     .uiTag
         flex-shrink: 0

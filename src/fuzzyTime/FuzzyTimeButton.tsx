@@ -33,7 +33,16 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
   }
 
   render() {
-    const {multiselect, range, className, style, value} = this.props;
+    const {
+      multiselect,
+      range,
+      className,
+      style,
+      value,
+      attachment,
+      targetAttachment
+    } = this.props;
+
     let name;
     if (multiselect && range) {
       name = formatRelativeRangeShortName(range);
@@ -42,7 +51,11 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
     }
     const computedClassName = `FuzzyTimeButton ${className ? className : ""}`;
 
-    return <TetherComponent className={computedClassName} attachment="top left" targetAttachment="bottom left">
+    return <TetherComponent
+      className={computedClassName}
+      attachment={attachment || "top left"}
+      targetAttachment={targetAttachment || "bottom left"}
+    >
       <button
         type="button"
         data-toggle="dropdown"
@@ -56,7 +69,11 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
         <span className="name"><span>{name || "None"}</span></span>
         <span className="octicon octicon-chevron-down down-arrow" />
       </button>
-      <UIDropdown open={this.state.opened} onClose={()=>this.dropdownToggleClick()}>
+      <UIDropdown
+        open={this.state.opened}
+        onClose={()=>this.dropdownToggleClick()}
+
+      >
         <FuzzyTimeSelect
           selected={value}
           onTimeSelected={this.onTimeSelected.bind(this)}
@@ -77,6 +94,8 @@ export interface FuzzyTimeButtonProps {
   className?: string;
   multiselect?: boolean;
   style?: object;
+  attachment?: string;
+  targetAttachment?: string;
 }
 
 export interface FuzzyTimeButtonState {
