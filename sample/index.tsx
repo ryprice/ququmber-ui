@@ -9,6 +9,8 @@ import UITag from 'ququmber-ui/controls/UITag';
 import UIMultiInput from 'ququmber-ui/controls/UIMultiInput';
 import UIToggle from 'ququmber-ui/controls/UIToggle';
 import UITextInput from 'ququmber-ui/controls/UITextInput';
+import UIToastNotification, {Levels} from 'ququmber-ui/controls/UIToastNotification';
+import UIToastNotificationArea from 'ququmber-ui/controls/uiToastNotificationArea';
 
 import TaskFilterLink from 'ququmber-ui/tasks/TaskFilterLink';
 
@@ -62,6 +64,23 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         onDropTasks={(taskIds: number[]) => alert('tasks dropped')}>
         {"List of tasks"}
       </TaskFilterLink>
+      <UIToastNotificationArea>
+        <UIToastNotification
+          level={Levels.WARNING}
+          title="Warning"
+          message="An error has occured."
+        />
+        <UIToastNotification
+          level={Levels.WARNING}
+          title="Warning"
+          message="An error has occured."
+        />
+        <UIToastNotification
+          level={Levels.WARNING}
+          title="Warning"
+          message="An error has occured."
+        />
+      </UIToastNotificationArea>
     </div>;
   }
 }
