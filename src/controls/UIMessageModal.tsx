@@ -12,7 +12,7 @@ export const Level = {
 export class UIMessageModal extends React.Component<UIMessageModalProps, {}> {
     render() {
         return <UIOverlay><UIModal>
-            <div className="uiMessageModal">
+            <div className="UIMessageModal">
                 <p className="title">{this.props.title}</p>
                 <p className="message">{this.props.message}</p>
                 <div className="buttonArea">

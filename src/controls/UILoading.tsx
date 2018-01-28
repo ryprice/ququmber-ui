@@ -4,7 +4,7 @@ export class UILoading extends React.Component<UILoadingProps, {}> {
     render() {
         const {size} = this.props;
         const color = this.props.color || '#eeeeee';
-        return <div className="uiLoading">
+        return <div className="UILoading">
             <div style={{marginLeft: `-${size/2}px`, marginTop: `-${size/2}px`}}  dangerouslySetInnerHTML={{__html: `
                 <svg width='${size}px' height='${size}px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
                     <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>

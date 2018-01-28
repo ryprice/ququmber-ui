@@ -53,7 +53,7 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
     return <p
       contentEditable={true}
       onChange={(e: any) => this.onChange(e)}
-      className={`uiEditableText ${this.props.className} ${this.shouldShowPlaceholder() ? 'placeholder' : ''}`}
+      className={`UIEditableText ${this.props.className} ${this.shouldShowPlaceholder() ? 'placeholder' : ''}`}
       onKeyPress={(e: any) => this.onKeyPress(e)}
       ref={(el) => this.inputEl = el}
       onBlur={() => this.onSubmit()}

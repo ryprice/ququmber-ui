@@ -15,7 +15,7 @@ export class UIButton extends React.Component<UIButtonProps, {}> {
   render() {
     const {className, onClick, children, style} = this.props;
     return <button
-      className={`uiButton ${this.props.className}`}
+      className={`UIButton ${this.props.className}`}
       onClick={onClick}
       style={style}>
       {children}

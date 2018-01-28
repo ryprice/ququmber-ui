@@ -123,7 +123,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
 
         return <TetherComponent attachment="top left" targetAttachment="bottom left">
             <div
-              className={`uiMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''}`}
+              className={`UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''}`}
             >
                 {map(selectedOptions, (option: Option) => (
                     <UITag
@@ -136,7 +136,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
                 ))}
                 <input
                     type="text"
-                    className="uiInput"
+                    className="UIInput"
                     placeholder={placeholder}
                     onClick={(e: any) => this.setState({dropdownOpen: true})}
                     onFocus={(e: any) => this.setState({dropdownOpen: true})}
@@ -145,7 +145,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
                 />
             </div>
             <UISelectDropdown
-                className="uiMultiInput"
+                className="UIMultiInput"
                 options={filteredUnselectedOptions.slice(0, 10)}
                 hoverIndex={hoverIndex}
                 onSelect={(value) => this.onOptionAdded(value) }

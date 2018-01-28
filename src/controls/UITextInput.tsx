@@ -29,7 +29,7 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
 
   render() {
     return <input
-      className={`uiTextInput ${this.props.className}`}
+      className={`UITextInput ${this.props.className}`}
       onKeyPress={(e) => this.onKeyPress(e)}
       ref={(el) => this.inputEl = el}
       defaultValue={this.props.value}

@@ -21,7 +21,7 @@ export class UIToastNotification extends React.Component<UIToastNotificationProp
     const {level, title, message} = this.props;
 
     return <div
-      className={`uiToastNotification`}
+      className={`UIToastNotification`}
       style={{background: levelToColor(level)}}
     >
       { title ? <p className="title">{String(title)}</p> : null }

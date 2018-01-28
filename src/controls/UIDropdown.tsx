@@ -42,7 +42,7 @@ export class UIDropdown extends React.Component<UIDropdownProps, {}> {
     render() {
         const {children, open, className} = this.props;
         return <div>
-            {open ? <div className={`uiDropdown ${className}`}>{children}</div> : null}
+            {open ? <div className={`UIDropdown ${className}`}>{children}</div> : null}
         </div>;
     }
 }

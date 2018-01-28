@@ -16,7 +16,7 @@ export class UITooltip extends React.Component<UITooltipProps, {}> {
             className="tether-theme-arrows-dark"
         >
             {children}
-            {open ? <div className="uiTooltip tether-content" style={{width: `${width}px`}}>{text}</div> : null}
+            {open ? <div className="UITooltip tether-content" style={{width: `${width}px`}}>{text}</div> : null}
         </TetherComponent>;
     }
 }

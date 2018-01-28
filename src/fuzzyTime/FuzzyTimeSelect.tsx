@@ -134,7 +134,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
           if (index > 0) month = month.getNext();
           else month = month.getPrev();
         });
-        return (32 + 26 * weeksInMonth(
+        return (58 + 26 * weeksInMonth(
           month.getTime().getUTCMonth(),
           month.getTime().getUTCFullYear()
         ));

@@ -1,13 +1,16 @@
 @import ../tokens
 
-.uiEditableText
-  @extend .uiAbstractInput
+.UIEditableText
+  @extend .UIAbstractInput
 
   border: 0
   outline: 0
   flex-grow: 1
   padding: .4em 0px
   background: transparent
+
+  &:hover
+    background: $color-control
 
   &:focus
     background: $color-controlfocus

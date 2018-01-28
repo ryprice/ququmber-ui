@@ -11,7 +11,7 @@ export class UIToggle extends React.Component<UIToggleProps, {}> {
 
     render() {
       const {checked, onChange, disabled, onClick, onMouseOut} = this.props;
-      return <span className={`uiToggle ${this.props.className}`}>
+      return <span className={`UIToggle ${this.props.className}`}>
         <input
           type="checkbox"
           onChange={(e: any) => onChange(e.target.checked)}

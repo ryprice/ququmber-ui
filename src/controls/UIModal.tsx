@@ -4,7 +4,7 @@ export class UIModal extends React.Component<UIModalProps, {}> {
     render() {
         const {onClose} = this.props;
         const closeButton = <button className="closeButton" onClick={onClose}>&times;</button>;
-        return <div className="uiModal">
+        return <div className="UIModal">
             {onClose ? closeButton : null}
             {this.props.children}
         </div>;

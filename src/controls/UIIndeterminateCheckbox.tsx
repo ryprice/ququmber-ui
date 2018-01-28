@@ -44,8 +44,8 @@ export class UIIndeterminateCheckbox extends React.Component<UIIndeterminateChec
         }
 
 
-        return <TetherComponent attachment="top left" targetAttachment="bottom left" className="uiIndeterminateCheckbox">
-            <button className={`uiIndeterminateCheckbox ${className ? className : ''}`}>
+        return <TetherComponent attachment="top left" targetAttachment="bottom left" className="UIIndeterminateCheckbox">
+            <button className={`UIIndeterminateCheckbox ${className ? className : ''}`}>
                 <div className="innerCheckbox" onClick={e=>this.onCheckboxChanged(e)}>{completedChar}</div>
                 <span className="octicon octicon-chevron-down" onClick={()=>this.setState({open: !this.state.open})}></span>
             </button>

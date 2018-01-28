@@ -9,7 +9,7 @@ export class UISelect extends React.Component<UISelectProps, {}> {
 
     render() {
         return <select
-            className="uiSelect"
+            className="UISelect"
             onChange={(e) => this.props.onSelect((e.target as HTMLSelectElement).value)}
         >
             {map(this.props.options, (value, key) => {

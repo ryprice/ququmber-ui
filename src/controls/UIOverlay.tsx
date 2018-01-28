@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 
 export class UIOverlayPortal extends React.Component<React.Props<UIOverlayPortal>, {}> {
     render() {
-        return <div className="uiOverlay">
+        return <div className="UIOverlay">
             <div className="content">
                 {this.props.children}
             </div>
