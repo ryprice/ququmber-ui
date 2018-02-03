@@ -2,28 +2,28 @@ import {map} from "lodash";
 import * as React from "react";
 
 export class UISelectDropdown extends React.Component<UISelectDropdownProps, {}> {
-    public static defaultProps = {
-        className: "",
-        onSelect: () => {},
-        open: false
-    };
+  public static defaultProps = {
+    className: "",
+    onSelect: () => {},
+    open: false
+  };
 
-    render() {
-        const {open, className, options, onSelect, hoverIndex} = this.props;
-        if (open) {
-            return <div><ol className={`${className} UIDropdown UISelectDropdown`}>
-                {map(options, (option, index) => (
-                    <li
-                        key={option.value}
-                        onClick={() => onSelect(option.value)}
-                        className={hoverIndex === index ? 'hover' : ''}>
-                        {option.name}
-                    </li>
-                ))}
-            </ol></div>;
-        }
-        return <div />;
+  render() {
+    const {open, className, options, onSelect, hoverIndex} = this.props;
+    if (open) {
+      return <div><ol className={`${className} UIDropdown UISelectDropdown`}>
+        {map(options, (option, index) => (
+          <li
+            key={option.value}
+            onClick={() => onSelect(option.value)}
+            className={hoverIndex === index ? 'hover' : ''}>
+            {option.name}
+          </li>
+        ))}
+      </ol></div>;
     }
+    return <div />;
+  }
 }
 
 export interface Option {

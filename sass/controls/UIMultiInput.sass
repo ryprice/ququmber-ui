@@ -1,31 +1,31 @@
 .UIMultiInput
-    @extend .UIAbstractInput
+  @extend .UIAbstractInput
 
-    position: relative
-    overflow: auto
+  position: relative
+  overflow: auto
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  background: $color-control
+
+  &.focus
+    background: $color-controlfocus
+
+  .UITag
+    flex-shrink: 0
+    flex-grow: 0
+    float: none
+
+  input.UIInput[type="text"]
+    border: 0px
+    padding: 5px 5px
+    background: transparent
+    outline: 0
+    flex-grow: 1
+    width: 40px
     display: flex
-    flex-direction: row
-    flex-wrap: wrap
-    background: $color-control
-
-    &.focus
-      background: $color-controlfocus
-
-    .UITag
-        flex-shrink: 0
-        flex-grow: 0
-        float: none
-
-    input.UIInput[type="text"]
-        border: 0px
-        padding: 5px 5px
-        background: transparent
-        outline: 0
-        flex-grow: 1
-        width: 40px
-        display: flex
-        flex-shrink: 1
+    flex-shrink: 1
 
 .UIDropdown.UIMultiInput
-    min-width: 300px
-    display: block
+  min-width: 300px
+  display: block
