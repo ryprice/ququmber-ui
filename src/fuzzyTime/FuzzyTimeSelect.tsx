@@ -22,7 +22,11 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     this.state = {
       focalPoint: (
         this.props.focalPoint ||
-        this.props.selected ||
+        (
+          this.props.selected &&
+          this.props.selected.compareTo(FuzzyTime.getForever()) &&
+          this.props.selected
+        ) ||
         (this.props.range && this.props.range.getStart())
         || FuzzyTime.getCurrent(FuzzyGranularity.DAY)
       ),
@@ -32,13 +36,13 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     };
   }
 
-  public renderGranularityItem(granularity: FuzzyGranularity) {
-    return <li
+  public renderGranularityItem(granularity: FuzzyGranularity, text: string) {
+    return <button
       className={this.state.focalPoint.getGranularity() === granularity ? 'selected' : ''}
       onClick={() => this.setState({focalPoint: this.state.focalPoint.withGranularity(granularity)})}
     >
-      {granularity.getName()}
-    </li>;
+      {text}
+    </button>;
   }
 
   public getUnitProps(): FuzzyTimeSelectUnitProps {
@@ -81,16 +85,16 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     }
 
     const {index, key, style} = info;
-    times(Math.abs(index), () => {
-      if (years) {
-        const newTime = time.getTime();
-        newTime.setUTCFullYear(newTime.getUTCFullYear() + 4 * index);
-        time = new FuzzyTime(newTime, FuzzyGranularity.YEAR);
-      } else {
+    if (years) {
+      const newTime = time.getTime();
+      newTime.setUTCFullYear(newTime.getUTCFullYear() + 4 * index);
+      time = new FuzzyTime(newTime, FuzzyGranularity.YEAR);
+    } else {
+      times(Math.abs(index), () => {
         if (index > 0) time = time.getNext();
         else time = time.getPrev();
-      }
-    });
+      });
+    }
 
     switch(time.getGranularity()) {
       case FuzzyGranularity.MONTH:
@@ -121,7 +125,6 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       case FuzzyGranularity.FOREVER:
         return <div style={style}>Forever</div>;
     }
-    return <div key={key} style={style}>{index}</div>;
   }
 
   public getRowHeight(info: {index: number}) {
@@ -158,12 +161,10 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     // const unitElmts: JSX.Element[] = [<div className="spacer" />];
     const {width, height} = this.state;
     return <div className="FuzzyTimeSelect" ref={(ref) => this.root = ref}>
-      <div className="granularitySelector"><ol>
-        {this.renderGranularityItem(FuzzyGranularity.YEAR)}
-        {this.renderGranularityItem(FuzzyGranularity.MONTH)}
-        {this.renderGranularityItem(FuzzyGranularity.WEEK)}
-        {this.renderGranularityItem(FuzzyGranularity.DAY)}
-      </ol></div>
+      <div className="viewSelector">
+        {this.renderGranularityItem(FuzzyGranularity.MONTH, 'Yearly')}
+        {this.renderGranularityItem(FuzzyGranularity.DAY, 'Daily')}
+      </div>
       <ReactVirtualized.List
         key={'virtualScroll' + this.state.focalPoint.getGranularity().getKey()}
         className="scrollContainer"
@@ -174,6 +175,18 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         rowRenderer={(info) => this.renderRow(info)}
         style={null}
       />
+      <div className="controls">
+        <button
+          className="noneButton"
+          onClick={() => this.props.onTimeSelected(null)}>
+          Cancel
+        </button>
+        <button
+          className="cancelButton"
+          onClick={() => this.props.onTimeSelected(null)}>
+          Clear
+        </button>
+      </div>
     </div>;
   }
 
@@ -199,7 +212,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
 
   onResize() {
     const newWidth = ReactDOM.findDOMNode(this.root).clientWidth;
-    const newHeight = ReactDOM.findDOMNode(this.root).clientHeight - 56;
+    const newHeight = ReactDOM.findDOMNode(this.root).clientHeight - 110;
     const {width, height} = this.state;
     if (newWidth !== width || newHeight !== height) {
       this.setState({width: newWidth, height: newHeight});
