@@ -9,37 +9,45 @@ import {parseHumanReadableFuzzyTime} from "ququmber-api";
 
 import FuzzyTimeMonthUnit from "ququmber-ui/fuzzyTime/FuzzyTimeMonthUnit";
 import {FuzzyTimeSelectUnitProps} from "ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit";
-import FuzzyTimeYeargroupUnit from "ququmber-ui/fuzzyTime/FuzzyTimeYeargroupUnit";
 import FuzzyTimeYearUnit from "ququmber-ui/fuzzyTime/FuzzyTimeYearUnit";
 import {UITextInput} from "ququmber-ui/controls/UITextInput";
 import {weeksInMonth} from "ququmber-ui/utils/dateUtils";
+
+export enum ViewMode {
+  YEARLY,
+  DAILY
+};
 
 export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, FuzzyTimeSelectState> {
 
   private scrollContainerEl: Element;
   constructor(props: FuzzyTimeSelectProps, context?: any) {
     super(props, context);
+    const focalPoint = (
+      this.props.focalPoint ||
+      (
+        this.props.selected &&
+        this.props.selected.compareTo(FuzzyTime.getForever()) &&
+        this.props.selected
+      ) ||
+      (this.props.range && this.props.range.getStart())
+      || FuzzyTime.getCurrent(FuzzyGranularity.DAY)
+    );
     this.state = {
-      focalPoint: (
-        this.props.focalPoint ||
-        (
-          this.props.selected &&
-          this.props.selected.compareTo(FuzzyTime.getForever()) &&
-          this.props.selected
-        ) ||
-        (this.props.range && this.props.range.getStart())
-        || FuzzyTime.getCurrent(FuzzyGranularity.DAY)
-      ),
+      focalPoint,
       width: 0,
       height: 0,
       midselect: false,
+      viewMode: focalPoint.getGranularity() === FuzzyGranularity.YEAR
+        ? ViewMode.YEARLY
+        : ViewMode.DAILY
     };
   }
 
-  public renderGranularityItem(granularity: FuzzyGranularity, text: string) {
+  public renderViewModeButton(viewMode: ViewMode, text: string) {
     return <button
-      className={this.state.focalPoint.getGranularity() === granularity ? 'selected' : ''}
-      onClick={() => this.setState({focalPoint: this.state.focalPoint.withGranularity(granularity)})}
+      className={this.state.viewMode === viewMode ? 'selected' : ''}
+      onClick={() => this.setState({viewMode})}
     >
       {text}
     </button>;
@@ -58,46 +66,32 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       start,
       focalPoint,
       onTasksDropped,
-      style: {}
+      style: {},
+      granularity: focalPoint.getGranularity()
     };
   };
 
   renderRow(info: {index: number, isScrolling: boolean, style: Object, key: string}) {
     let time = this.state.focalPoint;
     let years = false;
-    switch(this.state.focalPoint.getGranularity()) {
-      case FuzzyGranularity.DAY:
-      case FuzzyGranularity.WEEK:
+    switch(this.state.viewMode) {
+      case ViewMode.DAILY:
         time = time.getParent(FuzzyGranularity.MONTH);
         break;
-      case FuzzyGranularity.MONTH:
-        time = time.getParent(FuzzyGranularity.YEAR);
-        break;
-      case FuzzyGranularity.YEAR:
+      case ViewMode.YEARLY:
         const newTime = time.getTime();
         const year = newTime.getUTCFullYear();
         newTime.setUTCFullYear(year - (year % 4));
         time = new FuzzyTime(newTime, FuzzyGranularity.YEAR);
         years = true;
         break;
-      case FuzzyGranularity.FOREVER:
-        years = true;
     }
 
     const {index, key, style} = info;
-    if (years) {
-      const newTime = time.getTime();
-      newTime.setUTCFullYear(newTime.getUTCFullYear() + 4 * index);
-      time = new FuzzyTime(newTime, FuzzyGranularity.YEAR);
-    } else {
-      times(Math.abs(index), () => {
-        if (index > 0) time = time.getNext();
-        else time = time.getPrev();
-      });
-    }
+    time = time.offset(index);
 
-    switch(time.getGranularity()) {
-      case FuzzyGranularity.MONTH:
+    switch(this.state.viewMode) {
+      case ViewMode.DAILY:
         return <FuzzyTimeMonthUnit
           {...this.getUnitProps()}
           key={key}
@@ -105,52 +99,34 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
           style={style}
         />;
 
-      case FuzzyGranularity.YEAR:
-        if (years) {
-          return <FuzzyTimeYeargroupUnit
-            {...this.getUnitProps()}
-            key={key}
-            time={time}
-            style={style}
-          />;
-
-        } else {
-          return <FuzzyTimeYearUnit
-            {...this.getUnitProps()}
-            key={key}
-            time={time}
-            style={style}
-          />;
-        }
-      case FuzzyGranularity.FOREVER:
-        return <div style={style}>Forever</div>;
+      case ViewMode.YEARLY:
+        return <FuzzyTimeYearUnit
+          {...this.getUnitProps()}
+          key={key}
+          time={time}
+          style={style}
+        />;
     }
+    return null;
   }
 
   public getRowHeight(info: {index: number}) {
     const {index} = info;
-    switch(this.state.focalPoint.getGranularity()) {
-      case FuzzyGranularity.DAY:
-      case FuzzyGranularity.WEEK:
-        let month = this.state.focalPoint.getParent(FuzzyGranularity.MONTH);
-        times(Math.abs(index), () => {
-          if (index > 0) month = month.getNext();
-          else month = month.getPrev();
-        });
-        return (58 + 26 * weeksInMonth(
+    switch(this.state.viewMode) {
+      case ViewMode.DAILY: {
+        const month = this.state.focalPoint
+          .withGranularity(FuzzyGranularity.MONTH)
+          .offset(index);
+        return (58 + 32 * weeksInMonth(
           month.getTime().getUTCMonth(),
           month.getTime().getUTCFullYear()
         ));
+      }
 
-      case FuzzyGranularity.MONTH:
-        return 120;
-
-      case FuzzyGranularity.YEAR:
-        return 30;
-
-      case FuzzyGranularity.FOREVER:
-        return 30;
+      case ViewMode.YEARLY:
+        return 130;
     }
+    return 0;
   }
 
   private root: HTMLDivElement;
@@ -159,31 +135,33 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     // const {focalPoint} = this.state;
     // const today = FuzzyTime.getCurrent(FuzzyGranularity.DAY);
     // const unitElmts: JSX.Element[] = [<div className="spacer" />];
-    const {width, height} = this.state;
+    const {width, height, viewMode} = this.state;
+    const {onTimeSelected} = this.props;
+
     return <div className="FuzzyTimeSelect" ref={(ref) => this.root = ref}>
-      <div className="viewSelector">
-        {this.renderGranularityItem(FuzzyGranularity.MONTH, 'Yearly')}
-        {this.renderGranularityItem(FuzzyGranularity.DAY, 'Daily')}
+      <div className="viewModeSelector">
+        {this.renderViewModeButton(ViewMode.YEARLY, 'Yearly')}
+        {this.renderViewModeButton(ViewMode.DAILY, 'Daily')}
       </div>
       <ReactVirtualized.List
-        key={'virtualScroll' + this.state.focalPoint.getGranularity().getKey()}
+        key={'virtualScroll' + viewMode}
         className="scrollContainer"
         width={width}
         height={height}
         rowHeight={(info) => this.getRowHeight(info)}
-        rowCount={100}
+        rowCount={1000}
         rowRenderer={(info) => this.renderRow(info)}
         style={null}
       />
       <div className="controls">
         <button
           className="noneButton"
-          onClick={() => this.props.onTimeSelected(null)}>
+          onClick={() => onTimeSelected(null)}>
           Cancel
         </button>
         <button
           className="cancelButton"
-          onClick={() => this.props.onTimeSelected(null)}>
+          onClick={() => onTimeSelected(null)}>
           Clear
         </button>
       </div>
@@ -272,6 +250,7 @@ export interface FuzzyTimeSelectProps {
 
 export interface FuzzyTimeSelectState {
   focalPoint: FuzzyTime;
+  viewMode: ViewMode;
   width: number;
   height: number;
   // Indicates that a range selection is in progress

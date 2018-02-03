@@ -99,14 +99,17 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
     }
 
     private getFilteredUnselectedOptions = () => {
-        const {options, selected} = this.props;
-        const query = this.tagsInput ? this.tagsInput.value.toLowerCase() : "";
-        return filter(options, (option) => {
-            if (includes(selected, option.value)) {
-                return false;
-            }
-            return query.length < 1 || option.name.toLowerCase().indexOf(query) > -1;
-        });
+      const {options, selected} = this.props;
+      const query = this.tagsInput ? this.tagsInput.value.toLowerCase() : "";
+      return filter(options, (option) => {
+        if (includes(selected, option.value)) {
+          return false;
+        }
+        return query.length < 1 || (
+          option.name != null &&
+          option.name.toLowerCase().indexOf(query) > -1
+        );
+      });
     }
 
     render() {

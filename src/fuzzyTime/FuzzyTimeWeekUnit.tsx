@@ -35,6 +35,7 @@ export const FuzzyTimeWeekUnit = (props: FuzzyTimeWeekUnitProps) => {
       style={{}}
       time={curDay}
       key={curDay.getTime().toString()}
+      granularity={FuzzyGranularity.WEEK}
     />);
     curDay = curDay.getNext();
     daysCount++;

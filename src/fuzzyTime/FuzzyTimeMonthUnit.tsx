@@ -31,6 +31,7 @@ const FuzzyTimeMonthUnit = (props: FuzzyTimeSelectUnitProps) => {
       time={curWeek}
       month={month}
       key={curWeek.getTime().toString()}
+      granularity={FuzzyGranularity.MONTH}
     />);
     curWeek = curWeek.getNext();
     weeksCount++;

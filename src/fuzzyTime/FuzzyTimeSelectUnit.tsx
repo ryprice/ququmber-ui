@@ -7,7 +7,7 @@ import FuzzyTimeDnd from "ququmber-ui/fuzzyTime/FuzzyTimeDnd";
 export const FuzzyTimeSelectUnit = (props: FuzzyTimeSelectUnitProps) => {
   const {
     time, disabled, onClick, range, onTasksDropped,
-    selected, multiselect, start, focalPoint
+    selected, multiselect, start, focalPoint, granularity
   } = props;
 
   let className = 'FuzzyTimeSelectUnit';
@@ -28,7 +28,7 @@ export const FuzzyTimeSelectUnit = (props: FuzzyTimeSelectUnitProps) => {
 
   let name;
   let _onClick = onClick;
-  switch(focalPoint.getGranularity()) {
+  switch(granularity) {
     case FuzzyGranularity.YEAR:
       className += ' year';
       name = time.getTime().getUTCFullYear().toString();
@@ -75,6 +75,7 @@ export interface FuzzyTimeSelectUnitProps {
   focalPoint: FuzzyTime;
   onTasksDropped: (tasks: Task[], time: FuzzyTime) => void;
   style: Object;
+  granularity: FuzzyGranularity;
 }
 
 export default FuzzyTimeSelectUnit;
