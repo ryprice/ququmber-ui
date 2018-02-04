@@ -7,7 +7,7 @@ import {daysInMonth} from "ququmber-ui/utils/dateUtils";
 
 export const FuzzyTimeWeekUnit = (props: FuzzyTimeWeekUnitProps) => {
   const week = props.time;
-  const {month, onClick, focalPoint} = props;
+  const {month, onClick, focalPoint, hoverTime, onMouseOver} = props;
   let curDay;
   let numDaysToRender;
   const elmts: JSX.Element[] = [];
@@ -15,6 +15,12 @@ export const FuzzyTimeWeekUnit = (props: FuzzyTimeWeekUnitProps) => {
     month.getTime().getUTCMonth(),
     month.getTime().getUTCFullYear()
   );
+
+  elmts.push(<div
+    className="FuzzyTimeSelectUnit fullWeekButton"
+    onClick={() => onClick(week)}
+    onMouseOver={() => onMouseOver(week)}
+  />);
 
   if (!week.withGranularity(FuzzyGranularity.MONTH).equals(month)) {
     // Place spots before first of the month
@@ -35,15 +41,12 @@ export const FuzzyTimeWeekUnit = (props: FuzzyTimeWeekUnitProps) => {
       style={{}}
       time={curDay}
       key={curDay.getTime().toString()}
-      granularity={FuzzyGranularity.WEEK}
+      granularity={FuzzyGranularity.DAY}
     />);
     curDay = curDay.getNext();
     daysCount++;
   }
-  return <div
-    onClick={focalPoint.getGranularity() === FuzzyGranularity.WEEK ? () => onClick(week) : () => {}}
-    className={focalPoint.getGranularity() === FuzzyGranularity.WEEK ? 'weekContainer weekContainerAsWeek' : 'weekContainer'}
-  >
+  return <div className={`weekContainer ${(hoverTime && hoverTime.compareTo(week) === 0) ? 'weekContainerHover' : ''}`}>
     {elmts}
   </div>;
 };

@@ -7,7 +7,8 @@ import FuzzyTimeDnd from "ququmber-ui/fuzzyTime/FuzzyTimeDnd";
 export const FuzzyTimeSelectUnit = (props: FuzzyTimeSelectUnitProps) => {
   const {
     time, disabled, onClick, range, onTasksDropped,
-    selected, multiselect, start, focalPoint, granularity
+    selected, multiselect, start, focalPoint, granularity,
+    onMouseOver, onMouseOut
   } = props;
 
   let className = 'FuzzyTimeSelectUnit';
@@ -57,7 +58,12 @@ export const FuzzyTimeSelectUnit = (props: FuzzyTimeSelectUnitProps) => {
       time={time}
       onTasksDropped={onTasksDropped}
     >
-      <div className={className} onClick={() => _onClick(time)}>
+      <div
+        className={className}
+        onClick={() => _onClick(time)}
+        onMouseOver={() => onMouseOver(time)}
+        onMouseOut={() => onMouseOut(time)}
+      >
         <p>{name}</p>
       </div>
     </FuzzyTimeDnd>
@@ -76,6 +82,9 @@ export interface FuzzyTimeSelectUnitProps {
   onTasksDropped: (tasks: Task[], time: FuzzyTime) => void;
   style: Object;
   granularity: FuzzyGranularity;
+  onMouseOver: (time: FuzzyTime) => void;
+  onMouseOut: (time: FuzzyTime) => void;
+  hoverTime: FuzzyTime;
 }
 
 export default FuzzyTimeSelectUnit;

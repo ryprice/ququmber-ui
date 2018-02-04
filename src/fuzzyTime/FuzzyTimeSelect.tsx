@@ -40,8 +40,14 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       midselect: false,
       viewMode: focalPoint.getGranularity() === FuzzyGranularity.YEAR
         ? ViewMode.YEARLY
-        : ViewMode.DAILY
+        : ViewMode.DAILY,
+      initialSelected: props.selected,
+      initialRange: props.range
     };
+
+    this.unitOnMouseOver = this.unitOnMouseOver.bind(this);
+    this.unitOnMouseOut = this.unitOnMouseOut.bind(this);
+    this.unitOnClick = this.unitOnClick.bind(this);
   }
 
   public renderViewModeButton(viewMode: ViewMode, text: string) {
@@ -53,13 +59,22 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     </button>;
   }
 
+  private unitOnMouseOver = (t: FuzzyTime) =>
+    this.setState({hoverTime: t});
+
+  private unitOnMouseOut = (t: FuzzyTime) =>
+    this.setState({hoverTime: null});
+
+  private unitOnClick = (t: FuzzyTime) =>
+    this.onDateLaunchClick(t);
+
   public getUnitProps(): FuzzyTimeSelectUnitProps {
     const {range, selected, multiselect, onTasksDropped} = this.props;
-    const {focalPoint, start} = this.state;
+    const {focalPoint, start, hoverTime} = this.state;
     return {
       time: null,
       disabled: false,
-      onClick: (time) => this.onDateLaunchClick(time),
+      onClick: this.unitOnClick,
       range,
       selected,
       multiselect,
@@ -67,7 +82,10 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       focalPoint,
       onTasksDropped,
       style: {},
-      granularity: focalPoint.getGranularity()
+      granularity: focalPoint.getGranularity(),
+      onMouseOver: this.unitOnMouseOver,
+      onMouseOut: this.unitOnMouseOut,
+      hoverTime
     };
   };
 
@@ -136,7 +154,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     // const today = FuzzyTime.getCurrent(FuzzyGranularity.DAY);
     // const unitElmts: JSX.Element[] = [<div className="spacer" />];
     const {width, height, viewMode} = this.state;
-    const {onTimeSelected} = this.props;
+    const {onTimeSelected, onRangeSelected} = this.props;
 
     return <div className="FuzzyTimeSelect" ref={(ref) => this.root = ref}>
       <div className="viewModeSelector">
@@ -161,7 +179,14 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         </button>
         <button
           className="cancelButton"
-          onClick={() => onTimeSelected(null)}>
+          onClick={() => {
+            const {initialSelected, initialRange} = this.state;
+            if (!this.props.range) {
+              onTimeSelected(initialSelected);
+            } else {
+              onRangeSelected(initialRange);
+            }
+          }}>
           Clear
         </button>
       </div>
@@ -256,6 +281,9 @@ export interface FuzzyTimeSelectState {
   // Indicates that a range selection is in progress
   midselect: boolean;
   start?: FuzzyTime;
+  hoverTime?: FuzzyTime;
+  initialSelected?: FuzzyTime;
+  initialRange?: FuzzyTimeRange;
 }
 
 export default FuzzyTimeSelect;
