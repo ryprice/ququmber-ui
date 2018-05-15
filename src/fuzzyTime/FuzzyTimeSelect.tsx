@@ -214,8 +214,8 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   }
 
   onResize() {
-    const newWidth = ReactDOM.findDOMNode(this.root).clientWidth;
-    const newHeight = ReactDOM.findDOMNode(this.root).clientHeight - 110;
+    const newWidth = (ReactDOM.findDOMNode(this.root) as HTMLDivElement).clientWidth;
+    const newHeight = (ReactDOM.findDOMNode(this.root) as HTMLDivElement).clientHeight - 110;
     const {width, height} = this.state;
     if (newWidth !== width || newHeight !== height) {
       this.setState({width: newWidth, height: newHeight});

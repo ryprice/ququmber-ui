@@ -12,14 +12,13 @@ export class UISelect extends React.Component<UISelectProps, {}> {
       className="UISelect"
       onChange={(e) => this.props.onSelect((e.target as HTMLSelectElement).value)}
     >
-      {map(this.props.options, (value, key) => {
-        const selected = key === this.props.defaultValue ? {selected: "selected"} : {};
-        return <option
+      {map(this.props.options, (value, key) =>
+        <option
           key={key}
           value={key}
-          {...selected}
-        >{value}</option>;
-      })}
+          selected={key === this.props.defaultValue}
+        >{value}</option>
+      )}
     </select>;
   }
 }
