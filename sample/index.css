@@ -1,0 +1,34 @@
+.sideNav {
+  background: #eee
+}
+
+.sideNav p {
+  margin: 8px
+}
+
+.sideNav p.header {
+  margin-top: 24px;
+  font-weight: bold;
+}
+
+.sideNav a {
+  cursor: pointer;
+}
+
+.sideNav a:hover {
+  text-decoration: underline;
+}
+
+.componentSection {
+  margin: 30px;
+}
+
+.componentSection h1 {
+  font-size: 20px;
+  margin: 20px 0 20px 0;
+}
+
+.componentSection .componentWell {
+  border: #eee 1px solid;
+  padding: 10px
+}
