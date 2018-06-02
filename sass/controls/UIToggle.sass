@@ -1,3 +1,5 @@
+@import ../tokens
+
 .UIToggle
   @extend .UIAbstractInput
 
@@ -30,7 +32,7 @@
     transition: 0.3s
 
   input:checked + label
-    background: #bada55
+    background: $color-go
 
   input:checked + label:after
     left: calc(100% - 1px)

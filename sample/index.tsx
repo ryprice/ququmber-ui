@@ -4,9 +4,11 @@ import * as ReactDnd from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 
 import UIBadge from 'ququmber-ui/controls/UIBadge';
+import UIButton from 'ququmber-ui/controls/UIButton';
 import UIColorSelector from 'ququmber-ui/controls/UIColorSelector';
 import UIEditableText from 'ququmber-ui/controls/UIEditableText';
 import UITag from 'ququmber-ui/controls/UITag';
+import UIMessageModal from 'ququmber-ui/controls/UIMessageModal';
 import UIMultiInput from 'ququmber-ui/controls/UIMultiInput';
 import UIToggle from 'ququmber-ui/controls/UIToggle';
 import UITextInput from 'ququmber-ui/controls/UITextInput';
@@ -30,8 +32,8 @@ class RootComponent extends React.Component<{}, RootComponentState> {
     }
   }
 
-  onNavClick(name) {
-    this.setState({curNav: name});
+  onNavClick(idx: number) {
+    this.setState({curNav: idx});
   }
 
   render() {
@@ -89,7 +91,20 @@ class RootComponent extends React.Component<{}, RootComponentState> {
       </UIToastNotificationArea>],
       ['ququmber-ui/controls/UIBadge', <div>
         <UIBadge color={Colors.GO} text="Activated" />
+        &nbsp;&nbsp;
         <UIBadge color={Colors.DISABLED} text="Disabled" />
+      </div>],
+      ['ququmber-ui/controls/UIMessageModal', <UIMessageModal
+        title="There was a problem"
+        message="It looks like the service had a hiccup processesing your request. Try refreshing the page and starting over. If you're still seeing this issue contact support."
+        onCancel={()=>{}}
+        onConfirm={()=>{}}
+      />],
+      ['ququmber-ui/controls/UIButton', <div>
+        <UIButton style={{width: '200px'}}>Default Color</UIButton><br />
+        <UIButton style={{width: '200px'}} color="go">Go</UIButton><br />
+        <UIButton style={{width: '200px'}} color="facebook">Facebook</UIButton><br />
+        <UIButton style={{width: '200px'}} color="google">Google</UIButton><br />
       </div>],
 
       'FuzzyTime',
@@ -118,7 +133,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
               {pathParts[pathParts.length - 1]}
             </a></p>;
           }
-        )}
+        })}
       </div>
 
       <div style={{flexGrow: 1}}>

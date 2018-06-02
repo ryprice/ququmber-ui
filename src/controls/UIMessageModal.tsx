@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import UIButton from "ququmber-ui/controls/UIButton";
 import {UIModal} from "ququmber-ui/controls/UIModal";
 import {UIOverlay} from "ququmber-ui/controls/UIOverlay";
 
@@ -16,8 +17,8 @@ export class UIMessageModal extends React.Component<UIMessageModalProps, {}> {
         <p className="title">{this.props.title}</p>
         <p className="message">{this.props.message}</p>
         <div className="buttonArea">
-          <button onClick={this.props.onCancel}>Cancel</button>
-          <button onClick={this.props.onConfirm}>Confirm</button>
+          <UIButton onClick={this.props.onConfirm} color="go">Confirm</UIButton>
+          <UIButton onClick={this.props.onCancel}>Cancel</UIButton>
         </div>
       </div>
     </UIModal></UIOverlay>;
