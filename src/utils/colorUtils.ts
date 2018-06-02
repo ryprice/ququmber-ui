@@ -3,7 +3,7 @@ export const isDarkColor = (bgColor: string) => {
   const components = getRGBComponents(bgColor);
   const bgDelta = (components.R * 0.299) + (components.G * 0.587) + (components.B * 0.114);
 
-  return (255 - bgDelta) < nThreshold;
+  return !((255 - bgDelta) < nThreshold);
 };
 
 const getRGBComponents = (color: string) => ({

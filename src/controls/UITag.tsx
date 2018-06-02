@@ -17,7 +17,7 @@ export class UITag extends React.Component<UITagProps, {}> {
     );
 
     return <div
-      className={`UITag ${color && isDarkColor(color) ? 'darkText' : 'lightText'}`}
+      className={`UITag ${color && isDarkColor(color) ? 'lightText' : 'darkText'}`}
       style={style}>
       {name}
       {canRemove !== false && removeButton}

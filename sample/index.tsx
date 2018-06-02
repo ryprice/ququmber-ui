@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import * as ReactDnd from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 
+import * as Colors from 'ququmber-ui/Colors';
 import UIBadge from 'ququmber-ui/controls/UIBadge';
 import UIButton from 'ququmber-ui/controls/UIButton';
 import UIColorSelector from 'ququmber-ui/controls/UIColorSelector';
@@ -15,12 +16,10 @@ import UITextInput from 'ququmber-ui/controls/UITextInput';
 import UIToastNotification, {Levels} from 'ququmber-ui/controls/UIToastNotification';
 import UIToastNotificationArea from 'ququmber-ui/controls/uiToastNotificationArea';
 
-
 import TaskFilterLink from 'ququmber-ui/tasks/TaskFilterLink';
 import FuzzyTimeButton from 'ququmber-ui/fuzzyTime/FuzzyTimeButton';
 
-import * as Colors from 'ququmber-ui/Colors';
-
+import ColorsSection from './ColorsSection';
 import ComponentSection from './ComponentSection';
 
 class RootComponent extends React.Component<{}, RootComponentState> {
@@ -109,6 +108,9 @@ class RootComponent extends React.Component<{}, RootComponentState> {
 
       'FuzzyTime',
       ['ququmber-ui/fuzzyTime/FuzzyTimeButton', <FuzzyTimeButton />],
+
+      'Colors',
+      ['ququmber-ui/Colors', <ColorsSection />],
 
       'ququmber-api',
       ['ququmber-ui/tasks/TaskFilterLink', <TaskFilterLink
