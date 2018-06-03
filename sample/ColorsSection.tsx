@@ -9,7 +9,6 @@ const ColorsSubsection = (props: ColorsSubsectionProps) =>
     <p className="header">{props.name}</p>
     {map(props.colors, (hex, name) => {
       const isDark = isDarkColor(hex.substring(1, hex.length));
-      console.log(isDark);
       return <div className="tile" style={{background: hex}}>
         <p className={`name ${isDark ? '' : 'light'}`}>{name}</p>
         <p className={`hex ${isDark ? '' : 'light'}`}>{hex}</p>
