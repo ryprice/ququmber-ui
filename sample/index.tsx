@@ -29,10 +29,21 @@ class RootComponent extends React.Component<{}, RootComponentState> {
       toggleValue: true,
       curNav: null
     }
+
+    window.addEventListener(
+      "hashchange",
+      () => this.onHashChange(),
+      false
+    );
   }
 
-  onNavClick(idx: number) {
-    this.setState({curNav: idx});
+  componentDidMount() {
+    this.onHashChange();
+  }
+
+  onHashChange() {
+    const path = window.location.hash.substr(1, window.location.hash.length);
+    this.setState({curNav: path});
   }
 
   render() {
@@ -40,14 +51,14 @@ class RootComponent extends React.Component<{}, RootComponentState> {
 
     const sections = [
       'Controls',
-      ['UIColorSelector', <UIColorSelector
+      ['ququmber-ui/controls/UIColorSelector', <UIColorSelector
         onColorChanged={console.log}
         value={null}
       />],
       ['ququmber-ui/controls/UIEditableText', <UIEditableText
         placeholder="Enter your text here"
       />],
-      ['UITag', <div>
+      ['ququmber-ui/controls/UITag', <div>
         <UITag name="Shopping" canRemove={true} color="4286f4" />
         <UITag name="Work" canRemove={true} color="f4e242" />
         <UITag name="Sideproject" canRemove={true} color="b72924" />
@@ -120,7 +131,8 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         {"List of tasks"}
       </TaskFilterLink>]
     ];
-    const curSection = sections[this.state.curNav];
+
+    const curSection = sections.find(s => s[0] === this.state.curNav);
 
     return <div style={{display: 'flex', flexDirection: 'row'}}>
       <div style={{width: '200px', flexGrow: 0, flexShrink: 0}} className="sideNav">
@@ -130,8 +142,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
           } else {
             const pathParts = (s[0] as string).split('/');
 
-            return <p><a
-              onClick={() => this.onNavClick(idx)}>
+            return <p><a href={`#${s[0]}`}>
               {pathParts[pathParts.length - 1]}
             </a></p>;
           }
@@ -150,7 +161,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
 
 interface RootComponentState {
   toggleValue: boolean;
-  curNav: number;
+  curNav: string;
 }
 
 const el = document.createElement('div');

@@ -13,6 +13,7 @@
 
 .sideNav a {
   cursor: pointer;
+  color: #222
 }
 
 .sideNav a:hover {
