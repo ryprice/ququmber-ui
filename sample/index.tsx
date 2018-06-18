@@ -11,8 +11,6 @@ import UIEditableText from 'ququmber-ui/controls/UIEditableText';
 import UITag from 'ququmber-ui/controls/UITag';
 import UIMultiInput from 'ququmber-ui/controls/UIMultiInput';
 import UITextInput from 'ququmber-ui/controls/UITextInput';
-import UIToastNotification, {Levels} from 'ququmber-ui/controls/UIToastNotification';
-import UIToastNotificationArea from 'ququmber-ui/controls/uiToastNotificationArea';
 
 import TaskFilterLink from 'ququmber-ui/tasks/TaskFilterLink';
 import FuzzyTimeButton from 'ququmber-ui/fuzzyTime/FuzzyTimeButton';
@@ -23,6 +21,7 @@ import FormSection from './FormSection';
 import TypographySection from './TypographySection';
 
 import UIMessageModalSample from './controls/UIMessageModalSample';
+import UIToastNotificationSample from './controls/UIToastNotificationSample';
 import UIToggleSample from './controls/UIToggleSample';
 
 class RootComponent extends React.Component<{}, RootComponentState> {
@@ -77,23 +76,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
       ['ququmber-ui/controls/UITextInput', <UITextInput
         placeholder="Your name here"
       />],
-      ['ququmber-ui/controls/UIToastNotification', <UIToastNotificationArea>
-        <UIToastNotification
-          level={Levels.INFO}
-          title="Warning"
-          message="An info has occured."
-        />
-        <UIToastNotification
-          level={Levels.WARNING}
-          title="Warning"
-          message="A warning has occured."
-        />
-        <UIToastNotification
-          level={Levels.ERROR}
-          title="Warning"
-          message="An error has occured."
-        />
-      </UIToastNotificationArea>],
+      ['ququmber-ui/controls/UIToastNotification', <UIToastNotificationSample />],
       ['ququmber-ui/controls/UIBadge', <div>
         <UIBadge color={Colors.GO} text="Activated" />
         &nbsp;&nbsp;
