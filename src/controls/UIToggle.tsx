@@ -2,26 +2,26 @@ import * as React from "react";
 
 export class UIToggle extends React.Component<UIToggleProps, {}> {
 
-    inputEl: HTMLInputElement;
+  inputEl: HTMLInputElement;
 
-    public static defaultProps = {
-      className: "",
-      disabled: false
-    };
+  public static defaultProps = {
+    className: "",
+    disabled: false
+  };
 
-    render() {
-      const {checked, onChange, disabled, onClick, onMouseOut} = this.props;
-      return <span className={`UIToggle ${this.props.className}`}>
-        <input
-          type="checkbox"
-          onChange={(e: any) => onChange(e.target.checked)}
-          id="switch"
-          checked={checked}
-          disabled={disabled}
-        />
-        <label htmlFor="switch" onClick={onClick} onMouseOut={onMouseOut}>Toggle</label>
-      </span>;
-    }
+  render() {
+    const {checked, onChange, disabled, onClick, onMouseOut} = this.props;
+    return <span className={`UIToggle ${this.props.className}`}>
+      <input
+        type="checkbox"
+        onChange={(e: any) => onChange(e.target.checked)}
+        id="switch"
+        checked={checked}
+        disabled={disabled}
+      />
+      <label htmlFor="switch" onClick={onClick} onMouseOut={onMouseOut}>Toggle</label>
+    </span>;
+  }
 }
 
 export interface UIToggleProps extends React.Props<HTMLInputElement> {
