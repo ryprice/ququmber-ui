@@ -9,9 +9,7 @@ import UIButton from 'ququmber-ui/controls/UIButton';
 import UIColorSelector from 'ququmber-ui/controls/UIColorSelector';
 import UIEditableText from 'ququmber-ui/controls/UIEditableText';
 import UITag from 'ququmber-ui/controls/UITag';
-import UIMessageModal from 'ququmber-ui/controls/UIMessageModal';
 import UIMultiInput from 'ququmber-ui/controls/UIMultiInput';
-import UIToggle from 'ququmber-ui/controls/UIToggle';
 import UITextInput from 'ququmber-ui/controls/UITextInput';
 import UIToastNotification, {Levels} from 'ququmber-ui/controls/UIToastNotification';
 import UIToastNotificationArea from 'ququmber-ui/controls/uiToastNotificationArea';
@@ -21,14 +19,16 @@ import FuzzyTimeButton from 'ququmber-ui/fuzzyTime/FuzzyTimeButton';
 
 import ColorsSection from './ColorsSection';
 import ComponentSection from './ComponentSection';
+import FormSection from './FormSection';
+import TypographySection from './TypographySection';
+
+import UIMessageModalSample from './controls/UIMessageModalSample';
+import UIToggleSample from './controls/UIToggleSample';
 
 class RootComponent extends React.Component<{}, RootComponentState> {
   constructor(props: {}) {
     super(props);
-    this.state = {
-      toggleValue: true,
-      curNav: null
-    }
+    this.state = {curNav: null};
 
     window.addEventListener(
       "hashchange",
@@ -47,8 +47,6 @@ class RootComponent extends React.Component<{}, RootComponentState> {
   }
 
   render() {
-    const {toggleValue} = this.state;
-
     const sections = [
       'Controls',
       ['ququmber-ui/controls/UIColorSelector', <UIColorSelector
@@ -75,26 +73,23 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         onOptionAdded={() => {}}
         onOptionRemoved={() => {}}
       />],
-      ['ququmber-ui/controls/UIToggle', <UIToggle
-        checked={toggleValue}
-        onChange={value => this.setState({toggleValue: value})}
-      />],
+      ['ququmber-ui/controls/UIToggle', <UIToggleSample />],
       ['ququmber-ui/controls/UITextInput', <UITextInput
         placeholder="Your name here"
       />],
       ['ququmber-ui/controls/UIToastNotification', <UIToastNotificationArea>
         <UIToastNotification
-          level={Levels.WARNING}
+          level={Levels.INFO}
           title="Warning"
-          message="An error has occured."
+          message="An info has occured."
         />
         <UIToastNotification
           level={Levels.WARNING}
           title="Warning"
-          message="An error has occured."
+          message="A warning has occured."
         />
         <UIToastNotification
-          level={Levels.WARNING}
+          level={Levels.ERROR}
           title="Warning"
           message="An error has occured."
         />
@@ -104,12 +99,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         &nbsp;&nbsp;
         <UIBadge color={Colors.DISABLED} text="Disabled" />
       </div>],
-      ['ququmber-ui/controls/UIMessageModal', <UIMessageModal
-        title="There was a problem"
-        message="It looks like the service had a hiccup processesing your request. Try refreshing the page and starting over. If you're still seeing this issue contact support."
-        onCancel={()=>{}}
-        onConfirm={()=>{}}
-      />],
+      ['ququmber-ui/controls/UIMessageModal', <UIMessageModalSample />],
       ['ququmber-ui/controls/UIButton', <div>
         <UIButton style={{width: '200px'}}>Default Color</UIButton><br />
         <UIButton style={{width: '200px'}} color="go">Go</UIButton><br />
@@ -120,8 +110,10 @@ class RootComponent extends React.Component<{}, RootComponentState> {
       'FuzzyTime',
       ['ququmber-ui/fuzzyTime/FuzzyTimeButton', <FuzzyTimeButton />],
 
-      'Colors',
+      'Styles',
       ['ququmber-ui/Colors', <ColorsSection />],
+      ['ququmber-ui/Typography', <TypographySection />],
+      ['Sample-form', <FormSection />],
 
       'ququmber-api',
       ['ququmber-ui/tasks/TaskFilterLink', <TaskFilterLink
@@ -160,7 +152,6 @@ class RootComponent extends React.Component<{}, RootComponentState> {
 }
 
 interface RootComponentState {
-  toggleValue: boolean;
   curNav: string;
 }
 
