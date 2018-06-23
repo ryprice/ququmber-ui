@@ -3,8 +3,8 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import TetherComponent from "react-tether";
 
-import {UISelectDropdown} from "ququmber-ui/controls/UISelectDropdown";
-import {UITag} from "ququmber-ui/controls/UITag";
+import UISelectDropdown from "ququmber-ui/controls/UISelectDropdown";
+import UITag from "ququmber-ui/controls/UITag";
 
 export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInputState> {
 

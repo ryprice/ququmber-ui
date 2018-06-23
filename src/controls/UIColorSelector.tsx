@@ -2,7 +2,7 @@ import {includes} from 'lodash';
 import * as React from "react";
 import TetherComponent from "react-tether";
 
-import {UIDropdown} from "ququmber-ui/controls/UIDropdown";
+import UIDropdown from "ququmber-ui/controls/UIDropdown";
 
 const colorOptions = [
   "b80000", "ff6600", "fccb00", "99ff99",

@@ -8,6 +8,7 @@ import UIBadge from 'ququmber-ui/controls/UIBadge';
 import UIButton from 'ququmber-ui/controls/UIButton';
 import UIColorSelector from 'ququmber-ui/controls/UIColorSelector';
 import UIEditableText from 'ququmber-ui/controls/UIEditableText';
+import UIIndeterminateCheckbox from 'ququmber-ui/controls/UIIndeterminateCheckbox';
 import UITag from 'ququmber-ui/controls/UITag';
 import UIMultiInput from 'ququmber-ui/controls/UIMultiInput';
 import UITextInput from 'ququmber-ui/controls/UITextInput';
@@ -71,6 +72,9 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         selected={["1", "2"]}
         onOptionAdded={() => {}}
         onOptionRemoved={() => {}}
+      />],
+      ['ququmber-ui/controls/UIIndeterminateCheckbox', <UIIndeterminateCheckbox
+        onChange={() => {}}
       />],
       ['ququmber-ui/controls/UIToggle', <UIToggleSample />],
       ['ququmber-ui/controls/UITextInput', <UITextInput

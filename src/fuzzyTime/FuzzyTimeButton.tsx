@@ -8,7 +8,7 @@ import {
   FuzzyTimeRange,
 } from "ququmber-api";
 
-import {UIDropdown} from "ququmber-ui/controls/UIDropdown";
+import UIDropdown from "ququmber-ui/controls/UIDropdown";
 import FuzzyTimeSelect from "ququmber-ui/fuzzyTime/FuzzyTimeSelect";
 
 export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, FuzzyTimeButtonState> {

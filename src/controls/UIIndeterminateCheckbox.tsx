@@ -1,7 +1,7 @@
 import * as React from "react";
 import TetherComponent from "react-tether";
 
-import {UIDropdown} from "ququmber-ui/controls/UIDropdown";
+import UIDropdown from "ququmber-ui/controls/UIDropdown";
 
 export class UIIndeterminateCheckbox extends React.Component<UIIndeterminateCheckboxProps, UIIndeterminateCheckboxState> {
 

@@ -10,7 +10,7 @@ import {parseHumanReadableFuzzyTime} from "ququmber-api";
 import FuzzyTimeMonthUnit from "ququmber-ui/fuzzyTime/FuzzyTimeMonthUnit";
 import {FuzzyTimeSelectUnitProps} from "ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit";
 import FuzzyTimeYearUnit from "ququmber-ui/fuzzyTime/FuzzyTimeYearUnit";
-import {UITextInput} from "ququmber-ui/controls/UITextInput";
+import UITextInput from "ququmber-ui/controls/UITextInput";
 import {weeksInMonth} from "ququmber-ui/utils/dateUtils";
 
 export enum ViewMode {
