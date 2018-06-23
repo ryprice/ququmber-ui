@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import UIButton from "ququmber-ui/controls/UIButton";
+import UIButtonFooter from "ququmber-ui/controls/UIButtonFooter";
 import {UIModal} from "ququmber-ui/controls/UIModal";
 import {UIOverlay} from "ququmber-ui/controls/UIOverlay";
 
@@ -16,10 +17,10 @@ export class UIMessageModal extends React.Component<UIMessageModalProps, {}> {
       <div className="UIMessageModal">
         <p className="title">{this.props.title}</p>
         <p className="message">{this.props.message}</p>
-        <div className="buttonArea">
+        <UIButtonFooter>
           <UIButton onClick={this.props.onConfirm} color="go">Confirm</UIButton>
           <UIButton onClick={this.props.onCancel}>Cancel</UIButton>
-        </div>
+        </UIButtonFooter>
       </div>
     </UIModal></UIOverlay>;
   }
