@@ -9,12 +9,12 @@
     "babel-cli": "^6.23.0",
     "babel-plugin-transform-es2015-modules-amd": "^6.22.0",
     "babel-preset-stage-2": "^6.22.0",
+    "copy-webpack-plugin": "^4.2.3",
+    "file-system": "^2.2.2",
     "node-sass": "^4.7.2",
     "tslint": "^4.4.2",
-    "typescript": "^2.6.2",
-    "webpack": "^3.5.5",
-    "copy-webpack-plugin": "^4.2.3",
-    "file-system": "^2.2.2"
+    "typescript": "^2.9.2",
+    "webpack": "^3.5.5"
   },
   "scripts": {
     "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path sass sass/index.sass dist/ququmber-ui.css",
@@ -39,9 +39,8 @@
     "@types/react-dnd": "^2.0.33",
     "@types/react-dnd-html5-backend": "^2.1.8",
     "@types/react-dom": "^16.0.3",
-    "@types/react-tether": "^0.5.2",
     "@types/react-virtualized": "^9.7.2",
-    "@types/tether": "^1.4.2",
+    "@types/tether": "^1.4.3",
     "jquery": "^3.2.1",
     "immutable": "^3.8.1",
     "lodash": "^4.17.4",
@@ -49,9 +48,9 @@
     "react-dnd": "^2.5.4",
     "react-dnd-html5-backend": "^2.4.1",
     "react-dom": "^16.0.3",
-    "react-tether": "^0.6.1",
+    "react-tether": "^1.0.0",
     "react-virtualized": "^9.9.0",
-    "tether": "^1.4.0",
+    "tether": "^1.4.4",
     "ququmber-api": "file:../ququmber-api-js"
   }
 }

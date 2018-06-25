@@ -49,10 +49,15 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
     } else if (value) {
       name = formatRelativeShortName(value);
     }
+
     const computedClassName = `FuzzyTimeButton ${className ? className : ""}`;
+    const classes: {[className: string]: boolean; } = {FuzzyTimeButton: true};
+    if (className) {
+      classes[className] = true;
+    }
 
     return <TetherComponent
-      className={computedClassName}
+      classes={classes}
       attachment={attachment || "top left"}
       targetAttachment={targetAttachment || "bottom left"}
     >

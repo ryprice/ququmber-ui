@@ -8,7 +8,8 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
     className: "",
     placeholder: "",
     value: "",
-    disabled: false
+    disabled: false,
+    style: {}
   };
 
   onKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -28,15 +29,17 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
   }
 
   render() {
+    const {props} = this;
     return <input
-      className={`UITextInput ${this.props.className}`}
+      style={props.style}
+      className={`UITextInput ${props.className}`}
       onKeyPress={(e) => this.onKeyPress(e)}
       ref={(el) => this.inputEl = el}
-      defaultValue={this.props.value}
-      placeholder={this.props.placeholder}
+      defaultValue={props.value}
+      placeholder={props.placeholder}
       onBlur={() => this.onSubmit()}
-      disabled={this.props.disabled}
-      onChange={this.props.onChange}
+      disabled={props.disabled}
+      onChange={props.onChange}
     />;
   }
 }
@@ -49,6 +52,7 @@ export interface UITextInputProps extends React.Props<HTMLInputElement> {
   defaultValue?: string;
   disabled?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => boolean;
+  style?: any;
 }
 
 export default UITextInput;
