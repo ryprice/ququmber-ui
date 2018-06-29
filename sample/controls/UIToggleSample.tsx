@@ -4,10 +4,11 @@ import * as React from 'react';
 import UIToggle from 'ququmber-ui/controls/UIToggle';
 
 class UIToggleSample extends React.Component<{}, UIToggleSampleState> {
-  constructor(props: {}, context: any) {
-    super(props, context);
-    this.state = {value: false};
-  }
+
+  readonly state: UIToggleSampleState = {
+    value: false
+  };
+  
   render() {
     const {value} = this.state;
     return <div className="UIToggleSample">

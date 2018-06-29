@@ -4,10 +4,9 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
 
   inputEl: HTMLParagraphElement;
 
-  constructor(props: UIEditableTextProps, context: any) {
-    super(props, context);
-    this.state = {value: null};
-  }
+  readonly state: UIEditableTextState = {
+    value: null
+  };
 
   public static defaultProps = {
     className: "",

@@ -18,33 +18,38 @@ export enum ViewMode {
   DAILY
 };
 
+const initialState = (props: FuzzyTimeSelectProps): FuzzyTimeSelectState => {
+  const focalPoint = (
+    this.props.focalPoint ||
+    (
+      this.props.selected &&
+      this.props.selected.compareTo(FuzzyTime.getForever()) &&
+      this.props.selected
+    ) ||
+    (this.props.range && this.props.range.getStart())
+    || FuzzyTime.getCurrent(FuzzyGranularity.DAY)
+  );
+  return {
+    focalPoint,
+    width: 0,
+    height: 0,
+    midselect: false,
+    viewMode: focalPoint.getGranularity() === FuzzyGranularity.YEAR
+      ? ViewMode.YEARLY
+      : ViewMode.DAILY,
+    initialSelected: props.selected,
+    initialRange: props.range
+  };
+};
+
 export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, FuzzyTimeSelectState> {
 
   private scrollContainerEl: Element;
-  
+
+  readonly state: FuzzyTimeSelectState = initialState(this.props);
+
   constructor(props: FuzzyTimeSelectProps, context?: any) {
     super(props, context);
-    const focalPoint = (
-      this.props.focalPoint ||
-      (
-        this.props.selected &&
-        this.props.selected.compareTo(FuzzyTime.getForever()) &&
-        this.props.selected
-      ) ||
-      (this.props.range && this.props.range.getStart())
-      || FuzzyTime.getCurrent(FuzzyGranularity.DAY)
-    );
-    this.state = {
-      focalPoint,
-      width: 0,
-      height: 0,
-      midselect: false,
-      viewMode: focalPoint.getGranularity() === FuzzyGranularity.YEAR
-        ? ViewMode.YEARLY
-        : ViewMode.DAILY,
-      initialSelected: props.selected,
-      initialRange: props.range
-    };
 
     this.unitOnMouseOver = this.unitOnMouseOver.bind(this);
     this.unitOnMouseOut = this.unitOnMouseOut.bind(this);

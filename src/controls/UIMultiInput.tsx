@@ -11,9 +11,13 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
   private tagsInput: HTMLInputElement;
   private updateDropdownDebounced: () => void;
 
+  readonly state: UIMultiInputState = {
+    dropdownOpen: false,
+    hoverIndex: undefined
+  };
+
   public constructor(props: UIMultiInputProps, context: any) {
     super(props, context);
-    this.state = {dropdownOpen: false, hoverIndex: undefined};
     this.updateDropdownDebounced = debounce(() => this.updateDropdown(), 100);
     this.boundWindowClickHandler = (e) => this.windowClickHandler(e);
   }

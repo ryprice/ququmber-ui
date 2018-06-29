@@ -27,18 +27,18 @@ import UIToastNotificationSample from './controls/UIToastNotificationSample';
 import UIToggleSample from './controls/UIToggleSample';
 
 class RootComponent extends React.Component<{}, RootComponentState> {
-  constructor(props: {}) {
-    super(props);
-    this.state = {curNav: null};
 
+  readonly state: RootComponentState = {
+    curNav: null
+  };
+
+  componentDidMount() {
     window.addEventListener(
       "hashchange",
       () => this.onHashChange(),
       false
     );
-  }
 
-  componentDidMount() {
     this.onHashChange();
   }
 
@@ -97,7 +97,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
 
       'FuzzyTime',
       ['ququmber-ui/fuzzyTime/FuzzyTimeButton', <FuzzyTimeButton />],
-      
+
       'Styles',
       ['ququmber-ui/Colors', <ColorsSection />],
       ['ququmber-ui/Typography', <TypographySection />],

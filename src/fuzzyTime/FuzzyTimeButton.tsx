@@ -13,9 +13,12 @@ import FuzzyTimeSelect from "ququmber-ui/fuzzyTime/FuzzyTimeSelect";
 
 export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, FuzzyTimeButtonState> {
 
+  readonly state = {
+    opened: false
+  };
+
   public constructor(props: FuzzyTimeButtonProps, context: any) {
     super(props, context);
-    this.state = {opened: false};
   }
 
   private dropdownToggleClick() {

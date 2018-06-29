@@ -5,10 +5,9 @@ import UIDropdown from "ququmber-ui/controls/UIDropdown";
 
 export class UIIndeterminateCheckbox extends React.Component<UIIndeterminateCheckboxProps, UIIndeterminateCheckboxState> {
 
-  constructor(props: UIIndeterminateCheckboxProps, context?: any) {
-    super(props, context);
-    this.state = {open: false};
-  }
+  readonly state: UIIndeterminateCheckboxState = {
+    open: false
+  };
 
   private onCheckboxChanged(e: any) {
     const {value, onChange} = this.props;

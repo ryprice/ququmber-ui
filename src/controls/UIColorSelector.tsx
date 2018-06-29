@@ -12,10 +12,10 @@ const colorOptions = [
 
 export class UIColorSelector extends React.Component<UIColorSelectorProps, UIColorSelectorState> {
 
-  constructor(props: UIColorSelectorProps, context?: any) {
-    super(props, context);
-    this.state = {open: false, custom: null};
-  }
+  readonly state: UIColorSelectorState = {
+    open: false,
+    custom: null
+  };
 
   private onColorChanged(value: string) {
     const {onColorChanged} = this.props;

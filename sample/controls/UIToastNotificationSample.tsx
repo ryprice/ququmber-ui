@@ -6,14 +6,12 @@ import UIToastNotification, {Levels} from 'ququmber-ui/controls/UIToastNotificat
 import UIToastNotificationArea from 'ququmber-ui/controls/uiToastNotificationArea';
 
 class UIToastNotificationSample extends React.Component<{}, UIToastNotificationSampleState> {
-  constructor(props: {}, context: any) {
-    super(props, context);
-    this.state = {
-      showError: false,
-      showWarning: false,
-      showInfo: false,
-      showSuccess: false
-    };
+
+  readonly state: UIToastNotificationSampleState = {
+    showError: false,
+    showWarning: false,
+    showInfo: false,
+    showSuccess: false
   }
   render() {
     const {showSuccess, showInfo, showWarning, showError} = this.state;

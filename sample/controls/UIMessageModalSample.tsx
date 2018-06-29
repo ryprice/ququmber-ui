@@ -5,10 +5,11 @@ import UIButton from 'ququmber-ui/controls/UIButton';
 import UIMessageModal from 'ququmber-ui/controls/UIMessageModal';
 
 class UIMessageModalSample extends React.Component<{}, UIMessageModalSampleState> {
-  constructor(props: {}, context: any) {
-    super(props, context);
-    this.state = {open: false};
-  }
+
+  readonly state: UIMessageModalSampleState = {
+    open: false
+  };
+
   render() {
     return <div className="UIMessageModalSample">
       <UIButton onClick={() => this.setState({open: true})}>Open modal</UIButton>
