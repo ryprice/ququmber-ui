@@ -15,7 +15,7 @@ export class UITooltip extends React.Component<UITooltipProps, {}> {
     return <TetherComponent
       attachment={attachment}
       targetAttachment={targetAttachment}
-      classes={{'tether-theme-arrows-dark': true}}
+      className="tether-theme-arrows-dark"
     >
       {children}
       {open && (

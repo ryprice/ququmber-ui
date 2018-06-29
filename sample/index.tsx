@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import * as ReactDnd from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 
+import {FuzzyTime, FuzzyGranularity, FuzzyTimeRange} from 'ququmber-api';
 import * as Colors from 'ququmber-ui/Colors';
 import UIBadge from 'ququmber-ui/controls/UIBadge';
 import UIButton from 'ququmber-ui/controls/UIButton';
@@ -96,7 +97,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
 
       'FuzzyTime',
       ['ququmber-ui/fuzzyTime/FuzzyTimeButton', <FuzzyTimeButton />],
-
+      
       'Styles',
       ['ququmber-ui/Colors', <ColorsSection />],
       ['ququmber-ui/Typography', <TypographySection />],

@@ -21,6 +21,7 @@ export enum ViewMode {
 export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, FuzzyTimeSelectState> {
 
   private scrollContainerEl: Element;
+  
   constructor(props: FuzzyTimeSelectProps, context?: any) {
     super(props, context);
     const focalPoint = (

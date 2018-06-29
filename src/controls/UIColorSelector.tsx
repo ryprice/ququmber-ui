@@ -59,7 +59,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
 
   public render(): JSX.Element {
     const {value} = this.props;
-    return <TetherComponent classes={{UIColorSelector: true}} attachment="top left" targetAttachment="bottom left">
+    return <TetherComponent className="UIColorSelector" attachment="top left" targetAttachment="bottom left">
       <button className="UIColorSelector" onClick={()=>this.setState({open: !this.state.open})}>
         <div className="colorSample" style={{background: value ? `#${value}` : 'transparent'}} />
         <span className="octicon octicon-chevron-down"></span>
