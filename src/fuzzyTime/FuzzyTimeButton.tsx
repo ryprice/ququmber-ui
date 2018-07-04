@@ -13,7 +13,7 @@ import FuzzyTimeSelect from "ququmber-ui/fuzzyTime/FuzzyTimeSelect";
 
 export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, FuzzyTimeButtonState> {
 
-  readonly state = {
+  readonly state: FuzzyTimeButtonState= {
     opened: false
   };
 

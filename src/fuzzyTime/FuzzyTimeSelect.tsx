@@ -20,13 +20,13 @@ export enum ViewMode {
 
 const initialState = (props: FuzzyTimeSelectProps): FuzzyTimeSelectState => {
   const focalPoint = (
-    this.props.focalPoint ||
+    props.focalPoint ||
     (
-      this.props.selected &&
-      this.props.selected.compareTo(FuzzyTime.getForever()) &&
-      this.props.selected
+      props.selected &&
+      props.selected.compareTo(FuzzyTime.getForever()) &&
+      props.selected
     ) ||
-    (this.props.range && this.props.range.getStart())
+    (props.range && props.range.getStart())
     || FuzzyTime.getCurrent(FuzzyGranularity.DAY)
   );
   return {
@@ -34,7 +34,7 @@ const initialState = (props: FuzzyTimeSelectProps): FuzzyTimeSelectState => {
     width: 0,
     height: 0,
     midselect: false,
-    viewMode: focalPoint.getGranularity() === FuzzyGranularity.YEAR
+    viewMode: focalPoint && focalPoint.getGranularity() === FuzzyGranularity.YEAR
       ? ViewMode.YEARLY
       : ViewMode.DAILY,
     initialSelected: props.selected,
