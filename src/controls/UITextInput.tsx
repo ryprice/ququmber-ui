@@ -1,4 +1,10 @@
+import {includes} from 'lodash';
 import * as React from "react";
+
+export const SubmitBehaviors = {
+  BLUR: 1,
+  ENTER: 2
+};
 
 export class UITextInput extends React.Component<UITextInputProps, {}> {
 
@@ -9,13 +15,24 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
     placeholder: "",
     value: "",
     disabled: false,
-    style: {}
+    style: {},
+    autofocus: false,
+    submitBehaviors: [
+      SubmitBehaviors.BLUR,
+      SubmitBehaviors.ENTER
+    ]
   };
+
+  componentDidMount() {
+    this.inputEl.focus();
+  }
 
   onKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
     switch (event.charCode) {
       case 13: // enter
-        this.onSubmit();
+        if (includes(this.props.submitBehaviors, SubmitBehaviors.ENTER)) {
+          this.onSubmit();
+        }
         break;
       default:
         break;
@@ -28,6 +45,12 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
     onSubmit && onSubmit(this.inputEl.value);
   }
 
+  onBlur() {
+    if (includes(this.props.submitBehaviors, SubmitBehaviors.BLUR)) {
+      this.onSubmit();
+    }
+  }
+
   render() {
     const {props} = this;
     return <input
@@ -37,7 +60,7 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
       ref={(el) => this.inputEl = el}
       defaultValue={props.value}
       placeholder={props.placeholder}
-      onBlur={() => this.onSubmit()}
+      onBlur={() => this.onBlur()}
       disabled={props.disabled}
       onChange={props.onChange}
     />;
@@ -53,6 +76,8 @@ export interface UITextInputProps extends React.Props<HTMLInputElement> {
   disabled?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => boolean;
   style?: any;
+  autofocus?: boolean;
+  submitBehaviors?: number[];
 }
 
 export default UITextInput;
