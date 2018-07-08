@@ -9,7 +9,7 @@ export class UIToastNotificationArea extends React.Component<UIToastNotification
 }
 
 export interface UIToastNotificationAreaProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default UIToastNotificationArea;

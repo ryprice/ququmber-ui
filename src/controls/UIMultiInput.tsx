@@ -86,7 +86,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
   private windowClickHandler(e: MouseEvent) {
     const el = ReactDOM.findDOMNode(this);
     const child = e.target as Element;
-    if (!(el != child && el.contains(child))) {
+    if (!(el !== child && el.contains(child))) {
       this.setState({dropdownOpen: false});
     }
   }

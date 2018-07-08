@@ -11,5 +11,5 @@ export const GO = '#32A150';
 export const NOTIFY = "#0095FF";
 export const QUQUMBER = '#444444';
 
-export const GOOGLE = "#E53935"
+export const GOOGLE = "#E53935";
 export const FACEBOOK = "#4267b2";

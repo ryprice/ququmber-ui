@@ -14,7 +14,7 @@ const levelToColor = (level: string) => {
     case Levels.INFO: return '#b8d0ef';
     case Levels.SUCCESS: return '#90dda1';
   }
-}
+};
 
 export class UIToastNotification extends React.Component<UIToastNotificationProps, {}> {
   render() {

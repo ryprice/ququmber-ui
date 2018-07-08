@@ -7,16 +7,16 @@ import * as ReactVirtualized from 'react-virtualized';
 import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange, Task} from "ququmber-api";
 import {parseHumanReadableFuzzyTime} from "ququmber-api";
 
+import UITextInput from "ququmber-ui/controls/UITextInput";
 import FuzzyTimeMonthUnit from "ququmber-ui/fuzzyTime/FuzzyTimeMonthUnit";
 import {FuzzyTimeSelectUnitProps} from "ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit";
 import FuzzyTimeYearUnit from "ququmber-ui/fuzzyTime/FuzzyTimeYearUnit";
-import UITextInput from "ququmber-ui/controls/UITextInput";
 import {weeksInMonth} from "ququmber-ui/utils/dateUtils";
 
 export enum ViewMode {
   YEARLY,
   DAILY
-};
+}
 
 const initialState = (props: FuzzyTimeSelectProps): FuzzyTimeSelectState => {
   const focalPoint = (
@@ -66,13 +66,13 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   }
 
   private unitOnMouseOver = (t: FuzzyTime) =>
-    this.setState({hoverTime: t});
+    this.setState({hoverTime: t})
 
   private unitOnMouseOut = (t: FuzzyTime) =>
-    this.setState({hoverTime: null});
+    this.setState({hoverTime: null})
 
   private unitOnClick = (t: FuzzyTime) =>
-    this.onDateLaunchClick(t);
+    this.onDateLaunchClick(t)
 
   public getUnitProps(): FuzzyTimeSelectUnitProps {
     const {range, selected, multiselect, onTasksDropped} = this.props;
@@ -93,7 +93,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       onMouseOut: this.unitOnMouseOut,
       hoverTime
     };
-  };
+  }
 
   renderRow(info: {index: number, isScrolling: boolean, style: Object, key: string}) {
     let time = this.state.focalPoint;
@@ -266,7 +266,6 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       this.props.onTimeSelected(date);
     }
   }
-
 }
 
 export interface FuzzyTimeSelectProps {

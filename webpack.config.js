@@ -1,5 +1,6 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TSLintPlugin = require('tslint-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -33,6 +34,9 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       {from: 'dist/ququmber-ui.css', to: 'ququmber-ui.css'}
-    ])
+    ]),
+    new TSLintPlugin({
+      files: ['src/**/*.ts', 'src/**/*.tsx']
+    })
   ]
 };
