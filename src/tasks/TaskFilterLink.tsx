@@ -46,14 +46,14 @@ const dropTargetSpec: ReactDnd.DropTargetSpec<TaskFilterLinkProps> = {
   }
 };
 
-const dropTargetCollector: ReactDnd.DropTargetCollector = (
+const dropTargetCollector: ReactDnd.DropTargetCollector<TaskFilterLinkProps> = (
   connect: ReactDnd.DropTargetConnector,
   monitor: ReactDnd.DropTargetMonitor
 ) => ({
   connectDropTarget: connect.dropTarget(),
   isOver: monitor.isOver(),
   canDrop: monitor.canDrop()
-});
+} as TaskFilterLinkProps);
 
 export default ReactDnd.DropTarget("TASK", dropTargetSpec, dropTargetCollector)(
   PrivateTaskFilterLink

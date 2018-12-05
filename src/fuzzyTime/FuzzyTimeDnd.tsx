@@ -30,12 +30,12 @@ const dropTargetSpec: ReactDnd.DropTargetSpec<FuzzyTimeDndProps> = {
 };
 
 
-const dropTargetCollector: ReactDnd.DropTargetCollector = (connect: ReactDnd.DropTargetConnector, monitor: ReactDnd.DropTargetMonitor) => {
+const dropTargetCollector: ReactDnd.DropTargetCollector<FuzzyTimeDndProps> = (connect: ReactDnd.DropTargetConnector, monitor: ReactDnd.DropTargetMonitor) => {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
     canDrop: monitor.canDrop()
-  };
+  } as FuzzyTimeDndProps;
 };
 
 export default ReactDnd.DropTarget("TASK", dropTargetSpec, dropTargetCollector)(
