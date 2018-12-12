@@ -27,7 +27,7 @@ export class UISelectDropdown extends React.Component<UISelectDropdownProps, {}>
 }
 
 export interface Option {
-    name: string;
+    name: string | JSX.Element;
     value: string;
     color?: string;
 }
