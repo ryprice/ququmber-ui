@@ -1,6 +1,8 @@
 import {map} from "lodash";
 import * as React from "react";
 
+import UIDropdown from "ququmber-ui/controls/UIDropdown";
+
 export class UISelectDropdown extends React.Component<UISelectDropdownProps, {}> {
   public static defaultProps = {
     className: "",
@@ -9,20 +11,26 @@ export class UISelectDropdown extends React.Component<UISelectDropdownProps, {}>
   };
 
   render() {
-    const {open, className, options, onSelect, hoverIndex} = this.props;
-    if (open) {
-      return <div><ol className={`${className} UIDropdown UISelectDropdown`}>
-        {map(options, (option, index) => (
-          <li
+    const {
+      open, className, options, onSelect,
+      hoverIndex, onClose, selected
+    } = this.props;
+
+    return <UIDropdown open={open} onClose={onClose}>
+      <ol className={`${className} UIDropdown UISelectDropdown`}>
+        {map(options, (option, index) => {
+          let itemClassName = "";
+          itemClassName += hoverIndex === index ? ' hover' : '';
+          itemClassName += selected === option.value ? ' selected' : '';
+          return <li
             key={option.value}
             onClick={() => onSelect(option.value)}
-            className={hoverIndex === index ? 'hover' : ''}>
+            className={itemClassName}>
             {option.name}
-          </li>
-        ))}
-      </ol></div>;
-    }
-    return <div />;
+          </li>;
+        })}
+      </ol>
+    </UIDropdown>;
   }
 }
 
@@ -38,6 +46,8 @@ export interface UISelectDropdownProps extends React.Props<UISelectDropdownProps
     className?: string;
     open?: boolean;
     hoverIndex?: number;
+    onClose?: (e: MouseEvent) => void;
+    selected?: string;
 }
 
 export default UISelectDropdown;
