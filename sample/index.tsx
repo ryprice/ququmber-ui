@@ -93,6 +93,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         <UIButton style={{width: '200px'}} color="go">Go</UIButton><br />
         <UIButton style={{width: '200px'}} color="facebook">Facebook</UIButton><br />
         <UIButton style={{width: '200px'}} color="google">Google</UIButton><br />
+        <UIButton style={{width: '200px'}} color="go" loading={true}>Loading</UIButton><br />
       </div>],
 
       'FuzzyTime',

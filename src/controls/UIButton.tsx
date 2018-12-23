@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import UILoading from 'ququmber-ui/controls/UILoading';
+
 export class UIButton extends React.Component<UIButtonProps, {}> {
 
   inputEl: HTMLInputElement;
@@ -10,11 +12,18 @@ export class UIButton extends React.Component<UIButtonProps, {}> {
     value: "",
     disabled: false,
     style: {},
-    color: 'control'
+    color: 'control',
+    loading: false
   };
 
   render() {
-    const {className, onClick, children, style, color, disabled, id} = this.props;
+    const {
+      className, onClick, children, style,
+      color, disabled, id, loading
+    } = this.props;
+
+    const loadingSize = 20;
+
     return <button
       className={`UIButton ${this.props.className} color-${color}`}
       onClick={onClick}
@@ -22,7 +31,17 @@ export class UIButton extends React.Component<UIButtonProps, {}> {
       disabled={disabled}
       id={id}
     >
-      {children}
+      <span className="inner">{children}</span>
+      {loading && <div
+        style={{
+          height: "13px", // font size
+          width: `${loadingSize}px`,
+          position: 'relative',
+          display: 'inline-block'
+        }}>
+          <UILoading size={loadingSize} />
+        </div>
+      }
     </button>;
   }
 }
@@ -35,6 +54,7 @@ export interface UIButtonProps extends React.Props<HTMLInputElement> {
   color?: string;
   disabled?: boolean;
   id?: string;
+  loading?: boolean;
 }
 
 export default UIButton;
