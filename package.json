@@ -18,7 +18,7 @@
     "webpack": "^3.5.5"
   },
   "scripts": {
-    "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path sass sass/index.sass dist/ququmber-ui.css && tslint -p .",
+    "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path sass src/index.sass dist/ququmber-ui.css && tslint -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
