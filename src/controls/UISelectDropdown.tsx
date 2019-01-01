@@ -17,7 +17,7 @@ export class UISelectDropdown extends React.Component<UISelectDropdownProps, {}>
     } = this.props;
 
     return <UIDropdown open={open} onClose={onClose}>
-      <ol className={`${className} UIDropdown UISelectDropdown`}>
+      <ol className={`${className} UISelectDropdown`}>
         {map(options, (option, index) => {
           let itemClassName = "";
           itemClassName += hoverIndex === index ? ' hover' : '';

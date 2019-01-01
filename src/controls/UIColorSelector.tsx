@@ -59,22 +59,41 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
 
   public render(): JSX.Element {
     const {value} = this.props;
-    return <TetherComponent className="UIColorSelector" attachment="top left" targetAttachment="bottom left">
-      <button className="UIColorSelector" onClick={()=>this.setState({open: !this.state.open})}>
-        <div className="colorSample" style={{background: value ? `#${value}` : 'transparent'}} />
+    return <TetherComponent
+      className="UIColorSelector"
+      attachment="top left"
+      targetAttachment="bottom left"
+    >
+      <button
+        className="UIColorSelector"
+        onClick={()=>this.setState({open: !this.state.open})}
+      >
+        <div
+          className="colorSample"
+          style={{background: value ? `#${value}` : 'transparent'}}
+        />
         <span className="octicon octicon-chevron-down"></span>
       </button>
-      <UIDropdown open={this.state.open} onClose={()=>this.setState({open: false})}>
+      <UIDropdown
+        open={this.state.open}
+        onClose={()=>this.setState({open: false})}
+      >
         <ol>{colorOptions.map((color) => this.renderOption(color))}</ol>
         <div className="customArea">
-          <div className="colorSample" style={{background: `#${this.state.custom}`}} />
+          <div
+            className="colorSample"
+            style={{background: `#${this.state.custom}`}}
+          />
           <input
             type="text"
             onChange={(e) => this.onCustomColorChanged(e.target.value)}
             placeholder="#CUSTOM"
             onKeyDown={(e) => this.onCustomColorKeyDown(e)}
           />
-          <button onClick={() => this.onColorChanged(this.state.custom)}>Select</button>
+          <button
+            onClick={() => this.onColorChanged(this.state.custom)}>
+            Select
+          </button>
         </div>
       </UIDropdown>
     </TetherComponent>;

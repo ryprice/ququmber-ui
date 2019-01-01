@@ -38,7 +38,6 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
   }
 
   onChange(value: string) {
-    console.log(value);
     this.setState({value});
   }
 
