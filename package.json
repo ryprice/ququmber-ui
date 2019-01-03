@@ -12,13 +12,14 @@
     "copy-webpack-plugin": "^4.5.2",
     "file-system": "^2.2.2",
     "node-sass": "^4.11.0",
+    "sass-lint": "^1.12.1",
     "tslint": "^5.10.0",
     "tslint-webpack-plugin": "^1.2.2",
     "typescript": "^2.9.2",
     "webpack": "^3.5.5"
   },
   "scripts": {
-    "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path src src/index.sass dist/ququmber-ui.css && tslint -p . && cp src/tokens.sass lib/tokens.sass",
+    "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path src src/index.sass dist/ququmber-ui.css && tslint -p . && sass-lint -c .sasslintrc -v -q --syntax sass && cp src/tokens.sass lib/tokens.sass",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
