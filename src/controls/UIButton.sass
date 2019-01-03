@@ -1,7 +1,7 @@
 @import '../tokens'
 
 .UIButton
-  text-shadow: 0 -1px 0 rgba(0,0,0,0.25)
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
   padding: 0
   border-radius: 3px
   color: #ffffff
@@ -21,37 +21,48 @@
   &.color-go
     background: $color-go
     border: solid darken($color-go, 3%) 1px
+
     &:hover
       background: lighten($color-go, 7%)
+
     &:active
       background: darken($color-go, 3%)
+
     &:focus
       background: darken($color-go, 3%)
+
     &:disabled
       background: lighten($color-go, 15%)
       color: #bbbbbb
 
   &.color-control
     color: $color-basefont
-    text-shadow: 0 -1px 0 rgba(255,255,255,0.25)
+    text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.25)
     background: $color-control
     border: solid darken($color-control, 20%) 1px
+
     &:hover
       background: lighten($color-control, 7%)
+
     &:active
       background: darken($color-control, 3%)
+
     &:focus
       background: darken($color-control, 3%)
+
     &:disabled
       background: lighten($color-control, 15%)
 
   &.color-google
     background: $color-google
     border: solid darken($color-google, 3%) 1px
+
     &:hover
       background: lighten($color-google, 7%)
+
     &:active
       background: darken($color-google, 3%)
+
     &:disabled
       background: lighten($color-google, 15%)
       color: #bbbbbb
@@ -59,10 +70,13 @@
   &.color-facebook
     background: $color-facebook
     border: solid darken($color-facebook, 3%) 1px
+
     &:hover
       background: lighten($color-facebook, 7%)
+
     &:active
       background: darken($color-facebook, 3%)
+
     &:disabled
       background: lighten($color-facebook, 15%)
       color: #bbbbbb
