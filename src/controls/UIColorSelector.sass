@@ -1,49 +1,49 @@
 .UIColorSelector
-    @extend .UIAbstractInput
+  @extend .UIAbstractInput
 
-    .colorSample
-        outline: 1px solid $color-control
-        width: 17px
-        height: 17px
-        background: transparent
-        text-align: center
+  .colorSample
+    outline: 1px solid $color-control
+    width: 17px
+    height: 17px
+    background: transparent
+    text-align: center
+    float: left
+    cursor: pointer
+    margin-right: 7px
+
+  .UIDropdown
+    width: 188px
+
+    ol
+      overflow: auto
+
+      li
+        text-align: left
         float: left
-        cursor: pointer
+        overflow: auto
+
+      .colorSample
+        margin: 7px
+
+    .customArea
+      background: $color-offwhite
+      border-top: 1px solid $color-control
+      padding: 7px
+      display: flex
+      width: 100%
+      box-sizing: border-box
+
+      .colorSample,
+      button
+        flex-grow: 0
+        flex-shrink: 0
+        position: relative
+
+      .colorSample
+        top: 3px
+
+      input
+        flex-grow: 1
+        flex-shrink: 1
+        min-width: 0
         margin-right: 7px
-
-    .UIDropdown
-        width: 188px
-
-        ol
-            overflow: auto
-
-            li
-                text-align: left
-                float: left
-                overflow: auto
-
-            .colorSample
-                margin: 7px
-
-        .customArea
-            background: $color-offwhite
-            border-top: 1px solid $color-control
-            padding: 7px
-            display: flex
-            width: 100%
-            box-sizing: border-box
-
-            .colorSample,
-            button
-                flex-grow: 0
-                flex-shrink: 0
-                position: relative
-
-            .colorSample
-                top: 3px
-
-            input
-                flex-grow: 1
-                flex-shrink: 1
-                min-width: 0
-                margin-right: 7px

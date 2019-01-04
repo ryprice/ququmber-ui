@@ -8,20 +8,30 @@ rules:
   empty-line-between-blocks: 1
   hex-notation: 1
   single-line-per-selector: 1
+  indentation: 1
+  no-color-keywords: 1
+  no-duplicate-properties: 1
 
-  no-duplicate-properties: 0
+  shorthand-values:
+    - 1
+    - allowed-shorthands:
+        - 1
+        - 2
+        - 4
+
+  hex-length:
+    - 1
+    - style:
+        - long
+
+  force-attribute-nesting: 0
+  leading-zero: 0
   property-sort-order: 0
   class-name-format: 0
-  hex-length: 0
   no-color-literals: 0
   no-vendor-prefixes: 0
   force-pseudo-nesting: 0
   force-element-nesting: 0
-  leading-zero: 0
-  indentation: 0
-  force-attribute-nesting: 0
-  shorthand-values: 0
   placeholder-in-extend: 0
-  no-color-keywords: 0
   no-qualifying-elements: 0
   pseudo-element: 0
