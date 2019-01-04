@@ -16,7 +16,8 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
-      'ququmber-ui': path.resolve('lib')
+      'ququmber-ui': path.resolve('lib'),
+      'ququmber-api': path.resolve('node_modules/ququmber-api/lib')
     }
   },
 

@@ -22,8 +22,6 @@ export class UIButton extends React.Component<UIButtonProps, {}> {
       color, disabled, id, loading
     } = this.props;
 
-    const loadingSize = 20;
-
     return <button
       className={`UIButton ${this.props.className} color-${color}`}
       onClick={onClick}
@@ -32,14 +30,8 @@ export class UIButton extends React.Component<UIButtonProps, {}> {
       id={id}
     >
       <span className="inner">{children}</span>
-      {loading && <div
-        style={{
-          height: "13px", // font size
-          width: `${loadingSize}px`,
-          position: 'relative',
-          display: 'inline-block'
-        }}>
-          <UILoading size={loadingSize} />
+      {loading && <div className="loadingContainer">
+          <UILoading />
         </div>
       }
     </button>;
