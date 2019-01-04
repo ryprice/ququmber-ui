@@ -4,6 +4,8 @@ export class UILoading extends React.Component<UILoadingProps, {}> {
   render() {
     const {size} = this.props;
     const color = this.props.color || '#eeeeee';
+
+    /* tslint:disable:max-line-length */
     return <div className="UILoading" style={{fontSize: size}}>
       <div style={{marginLeft: `-.5em`, marginTop: `-.5em`}}  dangerouslySetInnerHTML={{__html: `
         <svg width='1em' height='1em' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
@@ -14,6 +16,7 @@ export class UILoading extends React.Component<UILoadingProps, {}> {
         </svg>
       `}} />
     </div>;
+    /* tslint:enable:max-line-length */
   }
 }
 

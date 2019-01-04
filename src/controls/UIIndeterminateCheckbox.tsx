@@ -3,7 +3,9 @@ import TetherComponent from "react-tether";
 
 import UIDropdown from "ququmber-ui/controls/UIDropdown";
 
-export class UIIndeterminateCheckbox extends React.Component<UIIndeterminateCheckboxProps, UIIndeterminateCheckboxState> {
+export class UIIndeterminateCheckbox extends
+  React.Component<UIIndeterminateCheckboxProps, UIIndeterminateCheckboxState>
+{
 
   readonly state: UIIndeterminateCheckboxState = {
     open: false
@@ -29,7 +31,9 @@ export class UIIndeterminateCheckbox extends React.Component<UIIndeterminateChec
         }}
         className={value === this.props.value ? 'selected' : ''}
       >
-        <div className="innerCheckbox"><span className={`octicon octicon-${icon}`} /></div>
+        <div className="innerCheckbox">
+          <span className={`octicon octicon-${icon}`} />
+        </div>
         {name}
       </li>
     );
@@ -46,17 +50,29 @@ export class UIIndeterminateCheckbox extends React.Component<UIIndeterminateChec
     }
 
 
-    return <TetherComponent attachment="top left" targetAttachment="bottom left" className="UIIndeterminateCheckbox">
-      <button className={`UIIndeterminateCheckbox ${className ? className : ''}`}>
-        <div className="innerCheckbox" onClick={e=>this.onCheckboxChanged(e)}>{completedChar}</div>
-        <span className="octicon octicon-chevron-down" onClick={()=>this.setState({open: !this.state.open})}></span>
-      </button>
-      <UIDropdown open={this.state.open} onClose={()=>this.setState({open: false})}><ol>
-        {this.renderOption(true, 'Complete', 'check')}
-        {this.renderOption(false, 'Incomplete', null)}
-        {this.renderOption(undefined, 'Any', 'dash')}
-      </ol></UIDropdown>
-    </TetherComponent>;
+    return (
+      <TetherComponent
+        attachment="top left"
+        targetAttachment="bottom left"
+        className="UIIndeterminateCheckbox">
+        <button className={`UIIndeterminateCheckbox ${className ? className : ''}`}>
+          <div
+            className="innerCheckbox"
+            onClick={e=>this.onCheckboxChanged(e)}>
+            {completedChar}
+          </div>
+          <span
+            className="octicon octicon-chevron-down"
+            onClick={()=>this.setState({open: !this.state.open})}>
+          </span>
+        </button>
+        <UIDropdown open={this.state.open} onClose={()=>this.setState({open: false})}><ol>
+          {this.renderOption(true, 'Complete', 'check')}
+          {this.renderOption(false, 'Incomplete', null)}
+          {this.renderOption(undefined, 'Any', 'dash')}
+        </ol></UIDropdown>
+      </TetherComponent>
+    );
   }
 }
 

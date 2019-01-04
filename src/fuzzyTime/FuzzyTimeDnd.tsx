@@ -20,7 +20,11 @@ export interface FuzzyTimeDndProps {
 }
 
 const dropTargetSpec: ReactDnd.DropTargetSpec<FuzzyTimeDndProps> = {
-  drop: (props: FuzzyTimeDndProps, monitor: ReactDnd.DropTargetMonitor, component: PrivateFuzzyTimeDnd) => {
+  drop: (
+    props: FuzzyTimeDndProps,
+    monitor: ReactDnd.DropTargetMonitor,
+    component: PrivateFuzzyTimeDnd
+  ) => {
     const tasks = monitor.getItem() as Task[];
     props.onTasksDropped(tasks, props.time);
   },
@@ -30,7 +34,10 @@ const dropTargetSpec: ReactDnd.DropTargetSpec<FuzzyTimeDndProps> = {
 };
 
 
-const dropTargetCollector: ReactDnd.DropTargetCollector = (connect: ReactDnd.DropTargetConnector, monitor: ReactDnd.DropTargetMonitor) => {
+const dropTargetCollector: ReactDnd.DropTargetCollector = (
+  connect: ReactDnd.DropTargetConnector,
+  monitor: ReactDnd.DropTargetMonitor
+) => {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),

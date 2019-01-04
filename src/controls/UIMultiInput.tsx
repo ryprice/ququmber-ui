@@ -186,10 +186,14 @@ export interface UIMultiInputState {
 
 const sortByCanRemoveComparator = (a: Option, b: Option) => {
   if (a.canRemove === false) {
-    if (b.canRemove !== false) return -1;
+    if (b.canRemove !== false) {
+      return -1;
+    }
   }
   if (a.canRemove !== false) {
-    if (b.canRemove === false) return 1;
+    if (b.canRemove === false) {
+      return 1;
+    }
   }
   return 0;
 };
