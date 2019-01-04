@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import UIButton from "ququmber-ui/controls/UIButton";
+import UIButton from "ququmber-ui/button/UIButton";
 import UIModal from "ququmber-ui/controls/UIModal";
 import UIOverlay from "ququmber-ui/controls/UIOverlay";
 

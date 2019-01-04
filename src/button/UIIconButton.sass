@@ -1,0 +1,25 @@
+@import '../tokens'
+
+.UIIconButton
+  background: transparent
+  color: $color-ququmber
+  border: 0
+  font-size: 1em
+
+  i
+    margin: 0
+
+  &:hover,
+  &:hover>i
+    color: lighten($color-ququmber, 20%)
+    background: transparent
+
+  &:active,
+  &:active>i
+    color: $color-ququmber
+    background: transparent
+
+  &:focus,
+  &:focus>i
+    color: $color-ququmber
+    background: transparent

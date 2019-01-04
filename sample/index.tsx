@@ -1,21 +1,24 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import * as ReactDnd from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
+import * as ReactDOM from 'react-dom';
 
-import {FuzzyTime, FuzzyGranularity, FuzzyTimeRange} from 'ququmber-api';
+import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange} from 'ququmber-api';
+
+import UIButton from 'ququmber-ui/button/UIButton';
+import UIIconButton from 'ququmber-ui/button/UIIconButton';
 import * as Colors from 'ququmber-ui/Colors';
 import UIBadge from 'ququmber-ui/controls/UIBadge';
-import UIButton from 'ququmber-ui/controls/UIButton';
 import UIColorSelector from 'ququmber-ui/controls/UIColorSelector';
 import UIEditableText from 'ququmber-ui/controls/UIEditableText';
 import UIIndeterminateCheckbox from 'ququmber-ui/controls/UIIndeterminateCheckbox';
-import UITag from 'ququmber-ui/controls/UITag';
 import UIMultiInput from 'ququmber-ui/controls/UIMultiInput';
+import UITag from 'ququmber-ui/controls/UITag';
 import UITextInput from 'ququmber-ui/controls/UITextInput';
 
-import TaskFilterLink from 'ququmber-ui/tasks/TaskFilterLink';
 import FuzzyTimeButton from 'ququmber-ui/fuzzyTime/FuzzyTimeButton';
+
+import TaskFilterLink from 'ququmber-ui/tasks/TaskFilterLink';
 
 import ColorsSection from './ColorsSection';
 import ComponentSection from './ComponentSection';
@@ -88,13 +91,19 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         <UIBadge color={Colors.DISABLED} text="Disabled" />
       </div>],
       ['ququmber-ui/controls/UIMessageModal', <UIMessageModalSample />],
-      ['ququmber-ui/controls/UIButton', <div>
+
+      'Button',
+      ['ququmber-ui/button/UIButton', <div>
         <UIButton style={{width: '200px'}}>Default Color</UIButton><br />
         <UIButton style={{width: '200px'}} color="go">Go</UIButton><br />
         <UIButton style={{width: '200px'}} color="facebook">Facebook</UIButton><br />
         <UIButton style={{width: '200px'}} color="google">Google</UIButton><br />
         <UIButton style={{width: '200px'}} color="go" loading={true}>Loading</UIButton><br />
         <UIButton style={{fontSize: '20px'}} color="facebook">20px Large Button</UIButton><br />
+      </div>],
+      ['ququmber-ui/button/UIIconButton', <div>
+        <UIIconButton icon="fa fa-inbox" /><br />
+        <div style={{fontSize: '20px'}}><UIIconButton icon="fa fa-inbox" /></div><br />
       </div>],
 
       'FuzzyTime',

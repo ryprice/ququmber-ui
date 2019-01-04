@@ -1,7 +1,7 @@
 import {map, pick} from 'lodash';
 import * as React from 'react';
 
-import UIButton from 'ququmber-ui/controls/UIButton';
+import UIButton from 'ququmber-ui/button/UIButton';
 import UIToastNotification, {Levels} from 'ququmber-ui/controls/UIToastNotification';
 import UIToastNotificationArea from 'ququmber-ui/controls/uiToastNotificationArea';
 
