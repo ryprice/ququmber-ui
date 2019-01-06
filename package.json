@@ -36,7 +36,6 @@
   "homepage": "https://github.com/ryprice/ququmber-ui#readme",
   "dependencies": {
     "@types/immutable": "^3.8.7",
-    "@types/jquery": "^3.3.22",
     "@types/lodash": "^4.14.68",
     "@types/prop-types": "^15.5.6",
     "@types/react": "^16.7.13",
@@ -45,7 +44,6 @@
     "@types/react-virtualized": "^9.18.11",
     "@types/tether": "^1.4.3",
     "immutable": "^3.8.1",
-    "jquery": "^3.3.1",
     "lodash": "^4.17.11",
     "ququmber-api": "file:../ququmber-api-js",
     "react": "^16.6.3",

@@ -1,4 +1,3 @@
-import * as jquery from 'jquery';
 import {times} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from  'react-dom';
@@ -231,11 +230,13 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   private scrollToFocalPoint() {
     const {focalPoint} = this.state;
     if (focalPoint) {
-      const $timenavscroll = jquery(this.scrollContainerEl);
-      const $focalPoint = jquery(this.focalPointComponent);
-      if ($timenavscroll.length > 0 && $focalPoint.length > 0) {
-        const scrollTo = $focalPoint.offset().top - $timenavscroll.offset().top + $timenavscroll.scrollTop() - 200;
-        $timenavscroll.scrollTop(scrollTo);
+      const timenavscrollEl = ReactDOM.findDOMNode(this.scrollContainerEl) as Element;
+      const focalPointEl = ReactDOM.findDOMNode(this.focalPointComponent) as Element;
+      if (timenavscrollEl && focalPointEl) {
+        const timenavscrollOffsetTop = timenavscrollEl.getBoundingClientRect().top + document.body.scrollTop;
+        const focalPointOffsetTop = focalPointEl.getBoundingClientRect().top + document.body.scrollTop;
+        // const scrollTo = focalPointOffsetTop - timenavscrollOffsetTop + $timenavscroll.scrollTop() - 200;
+        // $timenavscroll.scrollTop(scrollTo);
       }
     }
   }
