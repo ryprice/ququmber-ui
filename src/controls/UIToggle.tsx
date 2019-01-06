@@ -1,11 +1,11 @@
-import * as React from "react";
+import * as React from 'react';
 
 export class UIToggle extends React.Component<UIToggleProps, {}> {
 
   inputEl: HTMLInputElement;
 
   public static defaultProps = {
-    className: "",
+    className: '',
     disabled: false
   };
 

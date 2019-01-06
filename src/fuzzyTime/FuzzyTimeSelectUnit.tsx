@@ -1,8 +1,8 @@
-import * as React from "react";
+import * as React from 'react';
 
-import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange, Task} from "ququmber-api";
+import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange, Task} from 'ququmber-api';
 
-import FuzzyTimeDnd from "ququmber-ui/fuzzyTime/FuzzyTimeDnd";
+import FuzzyTimeDnd from 'ququmber-ui/fuzzyTime/FuzzyTimeDnd';
 
 export const FuzzyTimeSelectUnit = (props: FuzzyTimeSelectUnitProps) => {
   const {
@@ -37,7 +37,7 @@ export const FuzzyTimeSelectUnit = (props: FuzzyTimeSelectUnitProps) => {
 
     case FuzzyGranularity.MONTH:
       className += ' month';
-      name = time.getTime().toLocaleString("en-us", {month: "short", timeZone: "UTC"});
+      name = time.getTime().toLocaleString('en-us', {month: 'short', timeZone: 'UTC'});
       break;
 
     case FuzzyGranularity.WEEK:

@@ -1,5 +1,5 @@
 import {includes} from 'lodash';
-import * as React from "react";
+import * as React from 'react';
 
 export const SubmitBehaviors = {
   BLUR: 1,
@@ -11,9 +11,9 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
   inputEl: HTMLInputElement;
 
   public static defaultProps = {
-    className: "",
-    placeholder: "",
-    value: "",
+    className: '',
+    placeholder: '',
+    value: '',
     disabled: false,
     style: {},
     autofocus: false,

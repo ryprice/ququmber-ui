@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as ReactDnd from "react-dnd";
+import * as React from 'react';
+import * as ReactDnd from 'react-dnd';
 
 class PrivateTaskFilterLink extends React.Component<TaskFilterLinkProps, {}>  {
   onClick(event: React.MouseEvent<HTMLElement>) {
@@ -37,12 +37,12 @@ export interface TaskFilterLinkProps {
 const dropTargetSpec: ReactDnd.DropTargetSpec<TaskFilterLinkProps> = {
   drop: (props: TaskFilterLinkProps, monitor: ReactDnd.DropTargetMonitor, component: PrivateTaskFilterLink) => {
     const item = monitor.getItem() as any;
-    if (monitor.getItemType() === "TASK") {
+    if (monitor.getItemType() === 'TASK') {
       props.onDropTasks(item.taskIds);
     }
   },
   canDrop: (props: TaskFilterLinkProps, monitor: ReactDnd.DropTargetMonitor) => {
-    return props.onDropTasks && monitor.getItemType() === "TASK";
+    return props.onDropTasks && monitor.getItemType() === 'TASK';
   }
 };
 
@@ -55,6 +55,6 @@ const dropTargetCollector: ReactDnd.DropTargetCollector = (
   canDrop: monitor.canDrop()
 });
 
-export default ReactDnd.DropTarget("TASK", dropTargetSpec, dropTargetCollector)(
+export default ReactDnd.DropTarget('TASK', dropTargetSpec, dropTargetCollector)(
   PrivateTaskFilterLink
 );

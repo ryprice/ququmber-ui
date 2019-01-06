@@ -1,11 +1,11 @@
-import * as React from "react";
-import * as ReactDnd from "react-dnd";
+import * as React from 'react';
+import * as ReactDnd from 'react-dnd';
 
-import {FuzzyTime, Task} from "ququmber-api";
+import {FuzzyTime, Task} from 'ququmber-api';
 
 class PrivateFuzzyTimeDnd extends React.Component<FuzzyTimeDndProps, {}> {
   public render(): JSX.Element {
-    // const unitClasses = (this.props.canDrop && this.props.isOver) ? " droppingTask" : "";
+    // const unitClasses = (this.props.canDrop && this.props.isOver) ? ' droppingTask' : '';
     return this.props.connectDropTarget(this.props.children as React.ReactElement<any>);
   }
 }
@@ -45,6 +45,6 @@ const dropTargetCollector: ReactDnd.DropTargetCollector = (
   };
 };
 
-export default ReactDnd.DropTarget("TASK", dropTargetSpec, dropTargetCollector)(
+export default ReactDnd.DropTarget('TASK', dropTargetSpec, dropTargetCollector)(
   PrivateFuzzyTimeDnd
 );

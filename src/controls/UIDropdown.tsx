@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
 export class UIDropdown extends React.Component<UIDropdownProps, {}> {
 
@@ -21,12 +21,12 @@ export class UIDropdown extends React.Component<UIDropdownProps, {}> {
       // a click event Listener during click event handling apparently
       // fires the listener.
       setTimeout(() =>
-        window.addEventListener("click", this.boundWindowClickHandler, false)
+        window.addEventListener('click', this.boundWindowClickHandler, false)
       , 0);
     }
 
     if (this.props.open && !nextProps.open) {
-      window.removeEventListener("click", this.boundWindowClickHandler);
+      window.removeEventListener('click', this.boundWindowClickHandler);
     }
   }
 

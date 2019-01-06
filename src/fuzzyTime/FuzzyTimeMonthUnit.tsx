@@ -1,10 +1,10 @@
-import * as React from "react";
+import * as React from 'react';
 
-import {FuzzyGranularity} from "ququmber-api";
+import {FuzzyGranularity} from 'ququmber-api';
 
-import {FuzzyTimeSelectUnitProps} from "ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit";
-import FuzzyTimeWeekUnit from "ququmber-ui/fuzzyTime/FuzzyTimeWeekUnit";
-import {weeksInMonth} from "ququmber-ui/utils/dateUtils";
+import {FuzzyTimeSelectUnitProps} from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
+import FuzzyTimeWeekUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeWeekUnit';
+import {weeksInMonth} from 'ququmber-ui/utils/dateUtils';
 
 const FuzzyTimeMonthUnit = (props: FuzzyTimeSelectUnitProps) => {
   const month = props.time;
@@ -15,7 +15,7 @@ const FuzzyTimeMonthUnit = (props: FuzzyTimeSelectUnitProps) => {
     className="monthTitle"
     onClick={() => onClick(month)}
     key="title">
-    {month.getTime().toLocaleString("en-us", {month: "long", timeZone: "UTC"})}
+    {month.getTime().toLocaleString('en-us', {month: 'long', timeZone: 'UTC'})}
   </div>);
 
   const numWeeksInMonth = weeksInMonth(

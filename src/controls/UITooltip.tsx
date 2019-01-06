@@ -1,5 +1,5 @@
-import * as React from "react";
-import TetherComponent from "react-tether";
+import * as React from 'react';
+import TetherComponent from 'react-tether';
 
 export class UITooltip extends React.Component<UITooltipProps, {}> {
 

@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 export class UIEditableText extends React.Component<UIEditableTextProps, UIEditableTextState> {
 
@@ -9,9 +9,9 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
   };
 
   public static defaultProps = {
-    className: "",
-    value: "",
-    placeholder: ""
+    className: '',
+    value: '',
+    placeholder: ''
   };
 
   public componentWillReceiveProps(nextProps: UIEditableTextProps) {

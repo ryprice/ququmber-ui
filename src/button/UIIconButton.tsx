@@ -1,9 +1,9 @@
-import * as React from "react";
+import * as React from 'react';
 
 export class UIIconButton extends React.Component<UIIconButtonProps, {}> {
 
   public static defaultProps = {
-    className: "",
+    className: '',
     disabled: false
   };
 

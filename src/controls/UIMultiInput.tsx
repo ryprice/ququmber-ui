@@ -1,10 +1,10 @@
-import {debounce, filter, find, includes, map} from "lodash";
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import TetherComponent from "react-tether";
+import {debounce, filter, find, includes, map} from 'lodash';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import TetherComponent from 'react-tether';
 
-import UISelectDropdown from "ququmber-ui/controls/UISelectDropdown";
-import UITag from "ququmber-ui/controls/UITag";
+import UISelectDropdown from 'ququmber-ui/controls/UISelectDropdown';
+import UITag from 'ququmber-ui/controls/UITag';
 
 export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInputState> {
 
@@ -40,7 +40,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
     this.setState({dropdownOpen: false, hoverIndex: undefined});
   }
 
-  private lastValue = "";
+  private lastValue = '';
 
   private onKeyUp(event: any) {
     const {hoverIndex} = this.state;
@@ -94,17 +94,17 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
   boundWindowClickHandler: (e: MouseEvent) => void;
 
   public componentDidMount() {
-    window.addEventListener("click", this.boundWindowClickHandler, false);
+    window.addEventListener('click', this.boundWindowClickHandler, false);
   }
 
 
   public componentWillUnmount() {
-    window.removeEventListener("click", this.boundWindowClickHandler);
+    window.removeEventListener('click', this.boundWindowClickHandler);
   }
 
   private getFilteredUnselectedOptions = () => {
     const {options, selected} = this.props;
-    const query = this.tagsInput ? this.tagsInput.value.toLowerCase() : "";
+    const query = this.tagsInput ? this.tagsInput.value.toLowerCase() : '';
     return filter(options, (option) => {
       if (includes(selected, option.value)) {
         return false;

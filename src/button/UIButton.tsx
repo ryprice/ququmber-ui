@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 import UILoading from 'ququmber-ui/controls/UILoading';
 
@@ -7,9 +7,9 @@ export class UIButton extends React.Component<UIButtonProps, {}> {
   inputEl: HTMLInputElement;
 
   public static defaultProps = {
-    className: "",
-    placeholder: "",
-    value: "",
+    className: '',
+    placeholder: '',
+    value: '',
     disabled: false,
     style: {},
     color: 'control',

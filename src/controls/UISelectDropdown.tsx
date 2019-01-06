@@ -1,11 +1,11 @@
-import {map} from "lodash";
-import * as React from "react";
+import {map} from 'lodash';
+import * as React from 'react';
 
-import UIDropdown from "ququmber-ui/controls/UIDropdown";
+import UIDropdown from 'ququmber-ui/controls/UIDropdown';
 
 export class UISelectDropdown extends React.Component<UISelectDropdownProps, {}> {
   public static defaultProps = {
-    className: "",
+    className: '',
     onSelect: () => {},
     open: false
   };
@@ -19,7 +19,7 @@ export class UISelectDropdown extends React.Component<UISelectDropdownProps, {}>
     return <UIDropdown open={open} onClose={onClose}>
       <ol className={`${className} UISelectDropdown`}>
         {map(options, (option, index) => {
-          let itemClassName = "";
+          let itemClassName = '';
           itemClassName += hoverIndex === index ? ' hover' : '';
           itemClassName += selected === option.value ? ' selected' : '';
           return <li

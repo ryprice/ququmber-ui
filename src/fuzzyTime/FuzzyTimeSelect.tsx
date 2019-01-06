@@ -1,17 +1,17 @@
-import * as jquery from "jquery";
-import {times} from "lodash";
-import * as React from "react";
+import * as jquery from 'jquery';
+import {times} from 'lodash';
+import * as React from 'react';
 import * as ReactDOM from  'react-dom';
 import * as ReactVirtualized from 'react-virtualized';
 
-import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange, Task} from "ququmber-api";
-import {parseHumanReadableFuzzyTime} from "ququmber-api";
+import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange, Task} from 'ququmber-api';
+import {parseHumanReadableFuzzyTime} from 'ququmber-api';
 
-import UITextInput from "ququmber-ui/controls/UITextInput";
-import FuzzyTimeMonthUnit from "ququmber-ui/fuzzyTime/FuzzyTimeMonthUnit";
-import {FuzzyTimeSelectUnitProps} from "ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit";
-import FuzzyTimeYearUnit from "ququmber-ui/fuzzyTime/FuzzyTimeYearUnit";
-import {weeksInMonth} from "ququmber-ui/utils/dateUtils";
+import UITextInput from 'ququmber-ui/controls/UITextInput';
+import FuzzyTimeMonthUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeMonthUnit';
+import {FuzzyTimeSelectUnitProps} from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
+import FuzzyTimeYearUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeYearUnit';
+import {weeksInMonth} from 'ququmber-ui/utils/dateUtils';
 
 export enum ViewMode {
   YEARLY,

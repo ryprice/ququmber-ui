@@ -1,15 +1,15 @@
-import * as React from "react";
-import TetherComponent from "react-tether";
+import * as React from 'react';
+import TetherComponent from 'react-tether';
 
 import {
   formatRelativeRangeShortName,
   formatRelativeShortName,
   FuzzyTime,
   FuzzyTimeRange,
-} from "ququmber-api";
+} from 'ququmber-api';
 
-import UIDropdown from "ququmber-ui/controls/UIDropdown";
-import FuzzyTimeSelect from "ququmber-ui/fuzzyTime/FuzzyTimeSelect";
+import UIDropdown from 'ququmber-ui/controls/UIDropdown';
+import FuzzyTimeSelect from 'ququmber-ui/fuzzyTime/FuzzyTimeSelect';
 
 export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, FuzzyTimeButtonState> {
 
@@ -53,13 +53,13 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
       name = formatRelativeShortName(value);
     }
 
-    const computedClassName = `FuzzyTimeButton ${className ? className : ""}`;
+    const computedClassName = `FuzzyTimeButton ${className ? className : ''}`;
     const classes: {[className: string]: string; } = {'element': computedClassName};
 
     return <TetherComponent
       className={computedClassName}
-      attachment={attachment || "top left"}
-      targetAttachment={targetAttachment || "bottom left"}
+      attachment={attachment || 'top left'}
+      targetAttachment={targetAttachment || 'bottom left'}
     >
       <button
         type="button"
@@ -71,7 +71,7 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
         style={style}
       >
         <span className="octicon octicon-calendar calendar-icon" />
-        <span className="name"><span>{name || "None"}</span></span>
+        <span className="name"><span>{name || 'None'}</span></span>
         <span className="octicon octicon-chevron-down down-arrow" />
       </button>
       <UIDropdown

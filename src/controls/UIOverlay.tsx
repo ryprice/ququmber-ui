@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 export class UIOverlayPortal extends React.Component<React.Props<UIOverlayPortal>, {}> {

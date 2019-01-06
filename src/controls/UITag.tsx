@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
 
-import {isDarkColor} from "ququmber-ui/utils/colorUtils";
+import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 
 export class UITag extends React.Component<UITagProps, {}> {
   render() {

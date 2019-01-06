@@ -1,9 +1,9 @@
-import * as React from "react";
+import * as React from 'react';
 
-import {FuzzyGranularity, FuzzyTime} from "ququmber-api";
+import {FuzzyGranularity, FuzzyTime} from 'ququmber-api';
 
-import FuzzyTimeSelectUnit, {FuzzyTimeSelectUnitProps} from "ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit";
-import {daysInMonth} from "ququmber-ui/utils/dateUtils";
+import FuzzyTimeSelectUnit, {FuzzyTimeSelectUnitProps} from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
+import {daysInMonth} from 'ququmber-ui/utils/dateUtils';
 
 export const FuzzyTimeWeekUnit = (props: FuzzyTimeWeekUnitProps) => {
   const week = props.time;

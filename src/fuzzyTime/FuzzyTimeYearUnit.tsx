@@ -1,8 +1,8 @@
-import * as React from "react";
+import * as React from 'react';
 
-import {FuzzyGranularity} from "ququmber-api";
+import {FuzzyGranularity} from 'ququmber-api';
 
-import FuzzyTimeSelectUnit, {FuzzyTimeSelectUnitProps} from "ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit";
+import FuzzyTimeSelectUnit, {FuzzyTimeSelectUnitProps} from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
 
 const FuzzyTimeYearUnit = (props: FuzzyTimeSelectUnitProps) => {
   const year = props.time;
