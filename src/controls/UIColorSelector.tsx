@@ -72,7 +72,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
           className="colorSample"
           style={{background: value ? `#${value}` : 'transparent'}}
         />
-        <span className="octicon octicon-chevron-down"></span>
+        <span className="octicon octicon-chevron-down" />
       </button>
       <UIDropdown
         open={this.state.open}

@@ -63,14 +63,16 @@ export class UIIndeterminateCheckbox extends
           </div>
           <span
             className="octicon octicon-chevron-down"
-            onClick={()=>this.setState({open: !this.state.open})}>
-          </span>
+            onClick={()=>this.setState({open: !this.state.open})}
+          />
         </button>
-        <UIDropdown open={this.state.open} onClose={()=>this.setState({open: false})}><ol>
-          {this.renderOption(true, 'Complete', 'check')}
-          {this.renderOption(false, 'Incomplete', null)}
-          {this.renderOption(undefined, 'Any', 'dash')}
-        </ol></UIDropdown>
+        <UIDropdown open={this.state.open} onClose={()=>this.setState({open: false})}>
+          <ol>
+            {this.renderOption(true, 'Complete', 'check')}
+            {this.renderOption(false, 'Incomplete', null)}
+            {this.renderOption(undefined, 'Any', 'dash')}
+          </ol>
+        </UIDropdown>
       </TetherComponent>
     );
   }

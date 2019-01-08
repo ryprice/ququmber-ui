@@ -34,6 +34,7 @@ export interface UIToastNotificationProps {
   level: string;
   title?: string;
   message?: string;
+  key: string;
 }
 
 export default UIToastNotification;

@@ -15,6 +15,7 @@
     "stylelint": "^9.9.0",
     "stylelint-webpack-plugin": "^0.10.5",
     "tslint": "^5.10.0",
+    "tslint-react": "^3.6.0",
     "tslint-webpack-plugin": "^1.2.2",
     "typescript": "^2.9.2",
     "webpack": "^3.5.5"
