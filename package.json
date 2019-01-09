@@ -12,6 +12,7 @@
     "copy-webpack-plugin": "^4.5.2",
     "file-system": "^2.2.2",
     "node-sass": "^4.11.0",
+    "ququmber-build": "file:../ququmber-build",
     "stylelint": "^9.9.0",
     "stylelint-webpack-plugin": "^0.10.5",
     "tslint": "^5.10.0",
