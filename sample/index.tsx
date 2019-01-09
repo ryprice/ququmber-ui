@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as ReactDnd from "react-dnd";
-import HTML5Backend from "react-dnd-html5-backend";
+import * as ReactDnd from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import * as ReactDOM from 'react-dom';
 
 import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange} from 'ququmber-api';
@@ -37,7 +37,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
 
   componentDidMount() {
     window.addEventListener(
-      "hashchange",
+      'hashchange',
       () => this.onHashChange(),
       false
     );
@@ -125,26 +125,31 @@ class RootComponent extends React.Component<{}, RootComponentState> {
 
     const curSection = sections.find(s => s[0] === this.state.curNav);
 
-    return <div style={{display: 'flex', flexDirection: 'row'}}>
-      <div style={{width: '200px', flexGrow: 0, flexShrink: 0}} className="sideNav">
-        {sections.map((s, idx) => {
-          if (typeof s === 'string') {
-            return <p className="header">{s}</p>;
-          } else {
-            const pathParts = (s[0] as string).split('/');
-
-            return <p><a href={`#${s[0]}`}>
-              {pathParts[pathParts.length - 1]}
-            </a></p>;
-          }
-        })}
+    return <div>
+      <div className="topbar">
+        <div id="logo" />
       </div>
+      <div className="mainContent">
+        <div className="sideNav">
+          {sections.map((s, idx) => {
+            if (typeof s === 'string') {
+              return <p className="header">{s}</p>;
+            } else {
+              const pathParts = (s[0] as string).split('/');
 
-      <div style={{flexGrow: 1}}>
-        {curSection ? <ComponentSection
-          name={curSection[0] as string}>
-          {curSection[1] as JSX.Element}
-        </ComponentSection> : null}
+              return <p><a href={`#${s[0]}`}>
+                {pathParts[pathParts.length - 1]}
+              </a></p>;
+            }
+          })}
+        </div>
+
+        <div style={{flexGrow: 1}}>
+          {curSection ? <ComponentSection
+            name={curSection[0] as string}>
+            {curSection[1] as JSX.Element}
+          </ComponentSection> : null}
+        </div>
       </div>
     </div>;
   }

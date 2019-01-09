@@ -12,7 +12,7 @@ const ColorsSubsection = (props: ColorsSubsectionProps) =>
       return <div className="tile" style={{background: hex}}>
         <p className={`name ${isDark ? '' : 'light'}`}>{name}</p>
         <p className={`hex ${isDark ? '' : 'light'}`}>{hex}</p>
-      </div>
+      </div>;
     })}
   </div>;
 

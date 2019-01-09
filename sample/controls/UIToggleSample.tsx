@@ -8,7 +8,7 @@ class UIToggleSample extends React.Component<{}, UIToggleSampleState> {
   readonly state: UIToggleSampleState = {
     value: false
   };
-  
+
   render() {
     const {value} = this.state;
     return <div className="UIToggleSample">

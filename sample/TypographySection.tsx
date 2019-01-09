@@ -16,7 +16,13 @@ const TypographySection = () =>
     <SampleParagraph />
 
     <h2>Hyperlink</h2>
-    <p>Here in this paragraph is a hyperlink. <a href="http://ququmber.com/">Go to Ququmber.</a> Note that it is blue when dropped into a text block such as here. You have probably never <a href="http://ququmber.com/89724897234987">been here.</a></p>
+    <p>
+      Here in this paragraph is a hyperlink.&nbsp;
+      <a href="http://ququmber.com/">Go to Ququmber</a>.
+      Note that it is blue when dropped into a text block such as here.
+      You have probably never&nbsp;
+      <a href={`http://ququmber.com/${Math.random()}`}>been here</a>.
+    </p>
   </div>;
 
 export default TypographySection;

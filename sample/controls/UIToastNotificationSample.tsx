@@ -12,7 +12,8 @@ class UIToastNotificationSample extends React.Component<{}, UIToastNotificationS
     showWarning: false,
     showInfo: false,
     showSuccess: false
-  }
+  };
+
   render() {
     const {showSuccess, showInfo, showWarning, showError} = this.state;
     return <div className="UIToastNotificationSample">
@@ -25,21 +26,25 @@ class UIToastNotificationSample extends React.Component<{}, UIToastNotificationS
       <UIButton onClick={() => this.setState({showError: true})}>Show error</UIButton>
       <UIToastNotificationArea>
         {showSuccess && <UIToastNotification
+          key="1"
           level={Levels.SUCCESS}
           title="Success"
           message="A success has occured. Congrats to you!"
         />}
         {showInfo && <UIToastNotification
+          key="2"
           level={Levels.INFO}
           title="Info"
           message="An info has occured."
         />}
         {showWarning && <UIToastNotification
+          key="3"
           level={Levels.WARNING}
           title="Warning"
           message="A warning has occured."
         />}
         {showError && <UIToastNotification
+          key="4"
           level={Levels.ERROR}
           title="Error"
           message="An error has occured."
@@ -50,10 +55,10 @@ class UIToastNotificationSample extends React.Component<{}, UIToastNotificationS
 }
 
 interface UIToastNotificationSampleState {
-  showError: boolean,
-  showWarning: boolean,
-  showInfo: boolean,
-  showSuccess: boolean
+  showError: boolean;
+  showWarning: boolean;
+  showInfo: boolean;
+  showSuccess: boolean;
 }
 
 export default UIToastNotificationSample;
