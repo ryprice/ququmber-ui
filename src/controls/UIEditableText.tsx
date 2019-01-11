@@ -14,6 +14,13 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
     placeholder: ''
   };
 
+  public componentDidMount() {
+    const {value, autofocus} = this.props;
+    if (autofocus) {
+      this.inputEl.focus();
+    }
+  }
+
   public componentWillReceiveProps(nextProps: UIEditableTextProps) {
     if (this.props.value !== nextProps.value) {
       this.setState({value: nextProps.value ? nextProps.value : null});
@@ -46,17 +53,24 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
   }
 
   render() {
-    const {placeholder, value, onClick} = this.props;
+    const {placeholder, value, onClick, autofocus, onFocus, className} = this.props;
+    const renderedClassName = (
+      `UIEditableText ${className} ` +
+      (this.shouldShowPlaceholder() ? 'placeholder' : '')
+    );
 
     return <p
       contentEditable={true}
       onChange={(e: any) => this.onChange(e)}
-      className={`UIEditableText ${this.props.className} ${this.shouldShowPlaceholder() ? 'placeholder' : ''}`}
+      className={renderedClassName}
       onKeyPress={(e: any) => this.onKeyPress(e)}
-      ref={(el) => this.inputEl = el}
+      ref={(el) => { this.inputEl = el; }}
       onBlur={() => this.onSubmit()}
       suppressContentEditableWarning ={true}
-      onFocus={() => this.setState({value: value ? value : ''})}
+      onFocus={() => {
+        this.setState({value: value ? value : ''});
+        onFocus && onFocus();
+      }}
       onClick={onClick}
     >{this.state.value != null ? this.state.value : (value ? value : placeholder)}</p>;
   }
@@ -68,6 +82,8 @@ export interface UIEditableTextProps extends React.Props<HTMLInputElement> {
     className?: string;
     placeholder?: string;
     onClick?: () => void;
+    autofocus?: boolean;
+    onFocus?: () => void;
 }
 
 export interface UIEditableTextState {
