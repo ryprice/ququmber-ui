@@ -1,36 +1,54 @@
+import {times} from 'lodash';
 import * as React from 'react';
 
 import {FuzzyGranularity} from 'ququmber-api';
 
-import FuzzyTimeSelectUnit, {FuzzyTimeSelectUnitProps} from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
+import FuzzyTimeSelectUnit, {
+  FuzzyTimeSelectUnitProps,
+  shouldUnitComponentUpdate
+} from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
 
-const FuzzyTimeYearUnit = (props: FuzzyTimeSelectUnitProps) => {
-  const year = props.time;
-  const {onClick, style} = props;
-  const elmts: JSX.Element[] = [];
-
-  elmts.push();
-
-  let curMonth = year.withGranularity(FuzzyGranularity.MONTH);
-  let monthsCount = 0;
-  while (monthsCount < 12) {
-    elmts.push(<FuzzyTimeSelectUnit
-      {...props}
-      style={{}}
-      time={curMonth}
-      key={curMonth.getTime().toString()}
-      granularity={FuzzyGranularity.MONTH}
-    />);
-    curMonth = curMonth.getNext();
-    monthsCount++;
+class FuzzyTimeYearUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
+  onClick = () => {
+    const {time, onClick} = this.props;
+    onClick(time);
   }
 
-  return <div style={style} className="FuzzyTimeYearUnit">
-    <div className="yearTitle" onClick={() => onClick(year)} key="title">
-      {year.getTime().getUTCFullYear().toString()}
-    </div>
-    <div style={{marginLeft: '30px', marginTop: '20px'}}>{elmts}</div>
-  </div>;
-};
+  shouldComponentUpdate(nextProps: FuzzyTimeSelectUnitProps, nextState: {}) {
+    return shouldUnitComponentUpdate(this.props, this.state, nextProps, nextState);
+  }
+
+  render() {
+    const year = this.props.time;
+    const {style} = this.props;
+
+    let curMonth = year.withGranularity(FuzzyGranularity.MONTH);
+    const monthsCount = 12;
+    const months = times(monthsCount, () => {
+      const prevMonth = curMonth;
+      curMonth = curMonth.getNext();
+      return prevMonth;
+    });
+
+    return <div style={style} className="FuzzyTimeYearUnit">
+      <div
+        className="yearTitle"
+        onClick={this.onClick}
+        key="title">
+        {year.getTime().getUTCFullYear().toString()}
+      </div>
+      <div style={{marginLeft: '30px', marginTop: '20px'}}>
+        {months.map(month =>
+          <FuzzyTimeSelectUnit
+            {...this.props}
+            time={month}
+            key={month.getTime().toString()}
+            granularity={FuzzyGranularity.MONTH}
+          />
+        )}
+      </div>
+    </div>;
+  }
+}
 
 export default FuzzyTimeYearUnit;
