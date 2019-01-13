@@ -47,7 +47,7 @@ class FuzzyTimeMonthUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
     });
 
     return <div
-      className={`monthContainer ${(hoverTime && hoverTime.equals(month)) ? 'monthContainerHover' : ''}`}
+      className={`FuzzyTimeMonthUnit ${(hoverTime && hoverTime.equals(month)) ? 'FuzzyTimeMonthUnitHover' : ''}`}
       style={style}>
       <div style={{clear: 'both'}} key="clear" />
       <div

@@ -13,7 +13,7 @@ import FuzzyTimeSelect from 'ququmber-ui/fuzzyTime/FuzzyTimeSelect';
 
 export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, FuzzyTimeButtonState> {
 
-  readonly state: FuzzyTimeButtonState= {
+  readonly state: FuzzyTimeButtonState = {
     opened: false
   };
 
@@ -21,7 +21,7 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
     super(props, context);
   }
 
-  private dropdownToggleClick() {
+  dropdownToggleClick = () => {
     this.setState({opened: !this.state.opened});
   }
 
@@ -54,10 +54,8 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
     }
 
     const computedClassName = `FuzzyTimeButton ${className ? className : ''}`;
-    const classes: {[className: string]: string; } = {'element': computedClassName};
 
     return <TetherComponent
-      className={computedClassName}
       attachment={attachment || 'top left'}
       targetAttachment={targetAttachment || 'bottom left'}
     >
@@ -67,7 +65,7 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
         aria-haspopup="true"
         aria-expanded="true"
         className={computedClassName}
-        onClick={() => this.dropdownToggleClick()}
+        onClick={this.dropdownToggleClick}
         style={style}
       >
         <span className="octicon octicon-calendar calendar-icon" />
@@ -76,8 +74,8 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
       </button>
       <UIDropdown
         open={this.state.opened}
-        onClose={()=>this.dropdownToggleClick()}
-
+        onClose={this.dropdownToggleClick}
+        className="FuzzyTimeButtonDropdown"
       >
         <FuzzyTimeSelect
           selected={value}

@@ -1,0 +1,34 @@
+@import '../tokens'
+
+.FuzzyTimeWeekUnit
+  overflow: auto
+
+  .fullWeekButton
+    width: 9%
+    height: 32px
+    background: $color-offwhite
+
+  .day
+    width: 13%
+
+    p
+      top: 6px
+
+    &:last-child
+      border-right: 0
+
+    &.notChild
+      visibility: hidden
+
+  .day,
+  .fullWeekButton
+    height: 32px
+    border: 1px $color-white solid
+    border-right: 0
+    border-bottom: 0
+
+.FuzzyTimeWeekUnit.FuzzyTimeWeekUnitHover,
+.FuzzyTimeMonthUnitHover
+  .day:not(.placeholder)
+    background-color: $color-selected
+    cursor: pointer

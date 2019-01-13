@@ -187,12 +187,24 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     return 0;
   }
 
-  public renderViewModeButton(viewMode: ViewMode, text: string) {
+  public renderViewModeButton(viewMode: ViewMode, text: string, icon: string) {
     return <button
       className={this.state.viewMode === viewMode ? 'selected' : ''}
       onClick={() => this.setState({viewMode})}
     >
+      <i className={icon} />
       {text}
+    </button>;
+  }
+
+  renderQuickOption(time: FuzzyTime, name: string) {
+    const {onTimeSelected} = this.props;
+    return <button
+      className="quickOption"
+      onClick={() => onTimeSelected(time)}
+      onMouseOver={() => this.unitOnMouseOver(time)}
+      onMouseOut={() => this.unitOnMouseOut(time)}>
+      {name}
     </button>;
   }
 
@@ -210,10 +222,29 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       hoverTime
     };
 
+    const today = FuzzyTime.getCurrent(FuzzyGranularity.DAY);
+    const tomorrow = today.getNext();
+    const thisWeek = FuzzyTime.getCurrent(FuzzyGranularity.WEEK);
+    const nextWeek = thisWeek.getNext();
+    const nextMonth = FuzzyTime.getCurrent(FuzzyGranularity.MONTH).getNext();
+    const forever = FuzzyTime.getForever();
+
     return <div className="FuzzyTimeSelect" ref={(ref) => this.rootRef = ref}>
+      <div className="quickOptions">
+        {this.renderQuickOption(today, 'today')}
+        {this.renderQuickOption(tomorrow, 'tomorrow')}
+        {this.renderQuickOption(thisWeek, 'this week')}
+        {this.renderQuickOption(nextWeek, 'next week')}
+        {this.renderQuickOption(nextMonth, 'next month')}
+        <button
+          className="quickOption quickOptionNone"
+          onClick={() => onTimeSelected(forever)}>
+          no date
+        </button>
+      </div>
       <div className="viewModeSelector">
-        {this.renderViewModeButton(ViewMode.YEARLY, 'Yearly')}
-        {this.renderViewModeButton(ViewMode.DAILY, 'Daily')}
+        {this.renderViewModeButton(ViewMode.DAILY, 'day/week', 'fa fa-expand')}
+        {this.renderViewModeButton(ViewMode.YEARLY, 'month/year', 'fa fa-compress')}
       </div>
       <ReactVirtualized.List
         key={'virtualScroll' + viewMode}

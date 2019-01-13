@@ -17,6 +17,7 @@ import UITag from 'ququmber-ui/controls/UITag';
 import UITextInput from 'ququmber-ui/controls/UITextInput';
 
 import FuzzyTimeButton from 'ququmber-ui/fuzzyTime/FuzzyTimeButton';
+import FuzzyTimeSelect from 'ququmber-ui/fuzzyTime/FuzzyTimeSelect';
 
 import TaskFilterLink from 'ququmber-ui/tasks/TaskFilterLink';
 
@@ -108,6 +109,21 @@ class RootComponent extends React.Component<{}, RootComponentState> {
 
       'FuzzyTime',
       ['ququmber-ui/fuzzyTime/FuzzyTimeButton', <FuzzyTimeButton />],
+      ['ququmber-ui/fuzzyTime/FuzzyTimeSelect', (
+        <div style={{
+          width: '300px',
+          height: '500px',
+          background: '#ffffff'
+        }}>
+          <FuzzyTimeSelect
+            selected={null}
+            onTimeSelected={() => {}}
+            multiselect={false}
+            onRangeSelected={() => {}}
+            range={null}
+          />
+        </div>
+      )],
 
       'Styles',
       ['ququmber-ui/Colors', <ColorsSection />],

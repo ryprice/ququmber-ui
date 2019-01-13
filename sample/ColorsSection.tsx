@@ -35,7 +35,8 @@ const ColorsSection = () =>
     <ColorsSubsection name="Accents" colors={pick(Colors, [
       'QUQUMBER',
       'NOTIFY',
-      'GO'
+      'GO',
+      'DEEPRED'
     ])} />
     <ColorsSubsection name="Integrations" colors={pick(Colors, [
       'GOOGLE',

@@ -8,34 +8,12 @@
 
   .scrollContainer
     overflow: hidden
-    padding-left: 10px
-    padding-right: 10px
 
   .scrollContainer::-webkit-scrollbar
     display: none
 
   .spacer
     height: 56px
-
-  .monthTitle,
-  .yearTitle
-    clear: both
-    margin-top: 30px
-    padding-bottom: 10px
-    text-transform: lowercase
-    font-weight: normal
-    color: $color-quiet
-    cursor: pointer
-
-
-  .monthTitle
-    margin-left: 25px
-
-  .monthContainer
-    float: none
-    clear: both
-    overflow: hidden
-    font-size: 20px
 
   .viewModeSelector
     width: 100%
@@ -52,13 +30,43 @@
       text-align: center
       background: none
 
-      &.selected,
-      &:active
-        border-bottom: $color-ququmber solid 3px
+      i
+        padding-right: 8px
+
+      &.selected
         font-weight: bold
 
-      &:hover:not(.selected)
-        border-bottom: #aaaaaa solid 3px
+      &:active,
+      &:hover
+        background: $color-controlfocus
+
+  .quickOptions
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    padding: 10px 5px 15px 5px
+    border-bottom: 1px solid $color-br
+
+    .quickOption
+      border: 1px $color-quiet solid
+      border-radius: 8px
+      padding: 2px 10px
+      margin: 5px 0 0 3px
+      flex-grow: 0
+      flex-shrink: 0
+      background: transparent
+
+      &:hover,
+      &:active
+        background: $color-controlfocus
+
+      &.quickOptionNone
+        border: 1px $color-deepred solid
+        color: $color-deepred
+
+        &:active,
+        &:hover
+          background: #ffeeee
 
   .controls
     width: 100%
@@ -77,13 +85,3 @@
 
     .cancelButton
       margin-right: 5px
-
-  .weekContainer
-    overflow: auto
-
-  .weekContainerHover
-    clear: both
-
-    .day:not(.placeholder)
-      background-color: $color-selected
-      cursor: pointer

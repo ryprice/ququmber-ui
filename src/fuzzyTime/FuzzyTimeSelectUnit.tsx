@@ -71,11 +71,12 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
     const {
       time, disabled, onClick, range, onTasksDropped,
       selected, multiselect, start, focalPoint, granularity,
-      onMouseOver, onMouseOut
+      onMouseOver, onMouseOut, hoverTime
     } = this.props;
 
     let className = 'FuzzyTimeSelectUnit';
     className += disabled ? ' disabled' : '';
+    className += hoverTime && hoverTime.overlaps(time) ? ' FuzzyTimeSelectUnitHover' : '';
     className += time.equals(FuzzyTime.getCurrent(time.getGranularity())) ? ' today' : '';
     className += time.equals(selected) ? ' selected' : '';
     if (multiselect) {

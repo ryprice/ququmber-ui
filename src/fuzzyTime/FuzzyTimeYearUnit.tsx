@@ -9,9 +9,19 @@ import FuzzyTimeSelectUnit, {
 } from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
 
 class FuzzyTimeYearUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
-  onClick = () => {
+  onYearClick = () => {
     const {time, onClick} = this.props;
     onClick(time);
+  }
+
+  onYearMouseOver = () => {
+    const {time, onMouseOver} = this.props;
+    onMouseOver(time);
+  }
+
+  onYearMouseOut = () => {
+    const {time, onMouseOut} = this.props;
+    onMouseOut(time);
   }
 
   shouldComponentUpdate(nextProps: FuzzyTimeSelectUnitProps, nextState: {}) {
@@ -33,7 +43,9 @@ class FuzzyTimeYearUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
     return <div style={style} className="FuzzyTimeYearUnit">
       <div
         className="yearTitle"
-        onClick={this.onClick}
+        onClick={this.onYearClick}
+        onMouseOver={this.onYearMouseOver}
+        onMouseOut={this.onYearMouseOut}
         key="title">
         {year.getTime().getUTCFullYear().toString()}
       </div>

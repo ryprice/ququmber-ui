@@ -61,7 +61,7 @@ class FuzzyTimeWeekUnit extends React.Component<FuzzyTimeWeekUnitProps, {}> {
     });
 
     return <div
-      className={`weekContainer ${(hoverTime && hoverTime.equals(week)) ? 'weekContainerHover' : ''}`}>
+      className={`FuzzyTimeWeekUnit ${(hoverTime && hoverTime.equals(week)) ? 'FuzzyTimeWeekUnitHover' : ''}`}>
       <div
         className="FuzzyTimeSelectUnit fullWeekButton"
         onClick={this.onClick}

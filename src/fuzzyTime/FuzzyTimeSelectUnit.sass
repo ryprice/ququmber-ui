@@ -16,7 +16,8 @@
     text-align: center
 
   &:hover:not(.placeholder),
-  &.droppingTask
+  &.droppingTask,
+  &.FuzzyTimeSelectUnitHover
     background-color: $color-selected
     cursor: pointer
 
@@ -24,28 +25,7 @@
     background-color: $color-selected
 
   &.today p
-    color: #aa0000
-
-  &.day
-    width: 13%
-    height: 32px
-
-    p
-      top: 6px
-
-    &:last-child
-      border-right: 0
-
-    &.notChild
-      visibility: hidden
-
-
-  &.fullWeekButton
-    width: 7%
-    height: 32px
-    background: #eeeeee
-    border: 1px solid $color-white
-    border-right: 6px solid $color-white
+    color: $color-deepred
 
   &.month
     height: 30px
