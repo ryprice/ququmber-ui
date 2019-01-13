@@ -2,7 +2,9 @@ import {includes} from 'lodash';
 import * as React from 'react';
 import TetherComponent from 'react-tether';
 
+import * as COLORS from 'ququmber-ui/Colors';
 import UIDropdown from 'ququmber-ui/controls/UIDropdown';
+import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 
 const colorOptions = [
   'b80000', 'ff6600', 'fccb00', '99ff99',
@@ -11,6 +13,8 @@ const colorOptions = [
 ];
 
 export class UIColorSelector extends React.Component<UIColorSelectorProps, UIColorSelectorState> {
+
+  private inputRef: HTMLInputElement;
 
   readonly state: UIColorSelectorState = {
     open: false,
@@ -23,26 +27,22 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
     onColorChanged(value);
   }
 
-  private onCustomColorChanged(value: string) {
-    this.setState({custom: value});
-  }
-
-  private onCustomColorKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+  onCustomColorChanged = () => {
     const validHexChars = [
       '1', '2', '3', '4', '5', '6', '7', '8',
       '9', '0', 'A', 'B', 'C', 'D', 'E', 'F'
     ];
-    const validKeyCodes = [8, 9, 46, 16, 17, 18];
-    const isHexChar = includes(validHexChars, String.fromCharCode(e.keyCode).toUpperCase());
-    const isControlKey = includes(validKeyCodes, e.keyCode);
-    const overSixChar = this.state.custom && this.state.custom.length >= 6;
-    if (
-      !isControlKey &&
-      (!isHexChar || overSixChar) &&
-      !e.ctrlKey && !e.altKey) {
-      e.preventDefault();
-      return false;
-    }
+    const filteredValue = this.inputRef.value
+      .split('')
+      .filter((char: string) => includes(validHexChars, char.toUpperCase()))
+      .map((char: string) => char.toUpperCase())
+      .join('')
+      .substr(0, 6);
+
+    this.setState({custom: filteredValue});
+    // sets custom back to null
+    setTimeout(() => this.setState({custom: null}), 10);
+    return true;
   }
 
   private renderOption(color: string) {
@@ -59,20 +59,26 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
 
   public render(): JSX.Element {
     const {value} = this.props;
+
     return <TetherComponent
       className="UIColorSelector"
       attachment="top left"
       targetAttachment="bottom left"
     >
       <button
-        className="UIColorSelector"
-        onClick={()=>this.setState({open: !this.state.open})}
-      >
+        className="UIColorSelector UIColorSelectorButton"
+        onClick={()=>this.setState({open: !this.state.open})}>
         <div
           className="colorSample"
-          style={{background: value ? `#${value}` : 'transparent'}}
-        />
-        <span className="octicon octicon-chevron-down" />
+          style={{background: value ? `#${value}` : 'transparent'}}>
+          <i
+            className="fa fa-palette"
+            style={{color: value
+              ? (isDarkColor(`#${value}`) ? COLORS.WHITE : COLORS.BASEFONT)
+              : COLORS.BASEFONT
+            }}
+          />
+        </div>
       </button>
       <UIDropdown
         open={this.state.open}
@@ -86,13 +92,14 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
           />
           <input
             type="text"
-            onChange={(e) => this.onCustomColorChanged(e.target.value)}
-            placeholder="#CUSTOM"
-            onKeyDown={(e) => this.onCustomColorKeyDown(e)}
+            value={this.state.custom}
+            ref={(ref: HTMLInputElement) => {this.inputRef = ref;}}
+            onKeyUp={this.onCustomColorChanged}
+            placeholder="FFFFFF"
           />
           <button
-            onClick={() => this.onColorChanged(this.state.custom)}>
-            Select
+            onClick={() => this.onColorChanged(this.inputRef.value)}>
+            Custom
           </button>
         </div>
       </UIDropdown>
