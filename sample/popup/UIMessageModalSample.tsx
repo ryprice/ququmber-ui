@@ -2,7 +2,7 @@ import {map, pick} from 'lodash';
 import * as React from 'react';
 
 import UIButton from 'ququmber-ui/button/UIButton';
-import UIMessageModal from 'ququmber-ui/controls/UIMessageModal';
+import UIMessageModal from 'ququmber-ui/popup/UIMessageModal';
 
 class UIMessageModalSample extends React.Component<{}, UIMessageModalSampleState> {
 

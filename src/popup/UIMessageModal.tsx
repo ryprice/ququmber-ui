@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import UIButton from 'ququmber-ui/button/UIButton';
 import UIButtonFooter from 'ququmber-ui/controls/UIButtonFooter';
-import UIModal from 'ququmber-ui/controls/UIModal';
-import UIOverlay from 'ququmber-ui/controls/UIOverlay';
+import UIModal from 'ququmber-ui/popup/UIModal';
+import UIOverlay from 'ququmber-ui/popup/UIOverlay';
 
 export const Level = {
   Info: 0,

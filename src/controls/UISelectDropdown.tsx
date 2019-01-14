@@ -1,7 +1,7 @@
 import {map} from 'lodash';
 import * as React from 'react';
 
-import UIDropdown from 'ququmber-ui/controls/UIDropdown';
+import UIDropdown from 'ququmber-ui/popup/UIDropdown';
 
 export class UISelectDropdown extends React.Component<UISelectDropdownProps, {}> {
   public static defaultProps = {

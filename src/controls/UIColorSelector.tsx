@@ -3,7 +3,7 @@ import * as React from 'react';
 import TetherComponent from 'react-tether';
 
 import * as COLORS from 'ququmber-ui/Colors';
-import UIDropdown from 'ququmber-ui/controls/UIDropdown';
+import UIDropdown from 'ququmber-ui/popup/UIDropdown';
 import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 
 const colorOptions = [

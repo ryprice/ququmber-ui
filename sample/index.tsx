@@ -5,7 +5,6 @@ import * as ReactDOM from 'react-dom';
 
 import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange} from 'ququmber-api';
 
-import UIButton from 'ququmber-ui/button/UIButton';
 import UIIconButton from 'ququmber-ui/button/UIIconButton';
 import * as Colors from 'ququmber-ui/Colors';
 import UIBadge from 'ququmber-ui/controls/UIBadge';
@@ -26,9 +25,12 @@ import ComponentSection from './ComponentSection';
 import FormSection from './FormSection';
 import TypographySection from './TypographySection';
 
-import UIMessageModalSample from './controls/UIMessageModalSample';
+
+import UIButtonSample from './button/UIButtonSample';
+import UITagSample from './controls/UITagSample';
 import UIToastNotificationSample from './controls/UIToastNotificationSample';
 import UIToggleSample from './controls/UIToggleSample';
+import UIMessageModalSample from './popup/UIMessageModalSample';
 
 class RootComponent extends React.Component<{}, RootComponentState> {
 
@@ -61,12 +63,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
       ['ququmber-ui/controls/UIEditableText', <UIEditableText
         placeholder="Enter your text here"
       />],
-      ['ququmber-ui/controls/UITag', <div>
-        <UITag name="Shopping" canRemove={true} color="4286f4" />
-        <UITag name="Work" canRemove={true} color="f4e242" />
-        <UITag name="Sideproject" canRemove={true} color="b72924" />
-        <UITag name="Untriaged" canRemove={true} color="238444" />
-      </div>],
+      ['ququmber-ui/controls/UITag', <UITagSample />],
       ['ququmber-ui/controls/UIMultiInput', <UIMultiInput
         options={[
           {value: "1", name: "One"},
@@ -91,17 +88,12 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         &nbsp;&nbsp;
         <UIBadge color={Colors.DISABLED} text="Disabled" />
       </div>],
-      ['ququmber-ui/controls/UIMessageModal', <UIMessageModalSample />],
+
+      'Popup',
+      ['ququmber-ui/popup/UIMessageModal', <UIMessageModalSample />],
 
       'Button',
-      ['ququmber-ui/button/UIButton', <div>
-        <UIButton style={{width: '200px'}}>Default Color</UIButton><br />
-        <UIButton style={{width: '200px'}} color="go">Go</UIButton><br />
-        <UIButton style={{width: '200px'}} color="facebook">Facebook</UIButton><br />
-        <UIButton style={{width: '200px'}} color="google">Google</UIButton><br />
-        <UIButton style={{width: '200px'}} color="go" loading={true}>Loading</UIButton><br />
-        <UIButton style={{fontSize: '20px'}} color="facebook">20px Large Button</UIButton><br />
-      </div>],
+      ['ququmber-ui/button/UIButton', <UIButtonSample />],
       ['ququmber-ui/button/UIIconButton', <div>
         <UIIconButton icon="fa fa-inbox" /><br />
         <div style={{fontSize: '20px'}}><UIIconButton icon="fa fa-inbox" /></div><br />
