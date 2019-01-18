@@ -13,7 +13,7 @@ export const Level = {
 
 export class UIMessageModal extends React.Component<UIMessageModalProps, {}> {
   render() {
-    const {title, message, onConfirm, onCancel, className} = this.props;
+    const {title, message, onConfirm, onCancel, className, color} = this.props;
 
     return <UIOverlay>
       <UIModal className={className}>
@@ -21,7 +21,7 @@ export class UIMessageModal extends React.Component<UIMessageModalProps, {}> {
           <p className="title">{title}</p>
           <p className="message">{message}</p>
           <UIButtonFooter>
-            <UIButton onClick={onConfirm} color="go">Confirm</UIButton>
+            <UIButton onClick={onConfirm} color={color || 'go'}>Confirm</UIButton>
             <UIButton onClick={onCancel}>Cancel</UIButton>
           </UIButtonFooter>
         </div>
@@ -37,6 +37,7 @@ export interface UIMessageModalProps extends React.Props<UIMessageModal> {
   onCancel: () => void;
   onConfirm: () => void;
   className?: string;
+  color?: string;
 }
 
 export default UIMessageModal;

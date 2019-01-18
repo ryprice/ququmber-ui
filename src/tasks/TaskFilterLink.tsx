@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDnd from 'react-dnd';
 
 class PrivateTaskFilterLink extends React.Component<TaskFilterLinkProps, {}>  {
-  onClick(event: React.MouseEvent<HTMLElement>) {
+  onClick = (event: React.MouseEvent<HTMLElement>) => {
     const {onClick, href} = this.props;
     if (!(event.ctrlKey || event.metaKey) || !href) {
       onClick();
@@ -16,7 +16,7 @@ class PrivateTaskFilterLink extends React.Component<TaskFilterLinkProps, {}>  {
       <a
         className="TaskFilterLink"
         href={href}
-        onClick={this.onClick.bind(this)}>
+        onClick={this.onClick}>
         {children ? children : ''}
       </a>
     );

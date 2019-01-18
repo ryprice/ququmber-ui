@@ -86,3 +86,17 @@
     &:disabled
       background: lighten($color-facebook, 15%)
       color: #bbbbbb
+
+  &.color-red
+    background: $color-red
+    border: solid darken($color-red, 3%) 1px
+
+    &:hover
+      background: lighten($color-red, 7%)
+
+    &:active
+      background: darken($color-red, 3%)
+
+    &:disabled
+      background: lighten($color-red, 15%)
+      color: #bbbbbb

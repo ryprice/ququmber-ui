@@ -11,6 +11,7 @@ export const GO = '#32A150';
 export const NOTIFY = '#0095FF';
 export const QUQUMBER = '#444444';
 export const DEEPRED = '#aa0000';
+export const RED = '#DE1D1D';
 
 export const GOOGLE = '#E53935';
 export const FACEBOOK = '#4267b2';

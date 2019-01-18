@@ -36,7 +36,8 @@ const ColorsSection = () =>
       'QUQUMBER',
       'NOTIFY',
       'GO',
-      'DEEPRED'
+      'DEEPRED',
+      'RED'
     ])} />
     <ColorsSubsection name="Integrations" colors={pick(Colors, [
       'GOOGLE',
