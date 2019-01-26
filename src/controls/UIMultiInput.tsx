@@ -117,7 +117,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
   }
 
   render() {
-    const {options, selected, className, placeholder} = this.props;
+    const {options, selected, className, placeholder, renderItem} = this.props;
     const {hoverIndex, dropdownOpen} = this.state;
 
     const selectedOptions = selected
@@ -132,15 +132,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       <div
         className={`UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''}`}
       >
-        {map(selectedOptions, (option: Option) => (
-          <UITag
-            key={option.value}
-            name={option.name}
-            onRemoved={() => this.onOptionRemoved(option.value)}
-            color={option.color}
-            canRemove={option.canRemove}
-          />
-        ))}
+        {map(selectedOptions, (option: Option) => renderItem ? renderItem(option, true) : option.name)}
         <input
           type="text"
           className="UIInput"
@@ -153,7 +145,10 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       </div>
       <UISelectDropdown
         className="UIMultiInput"
-        options={filteredUnselectedOptions.slice(0, 10)}
+        options={filteredUnselectedOptions.slice(0, 10).map(option => ({
+          ...option,
+          name: renderItem ? renderItem(option, false) : name
+        }))}
         hoverIndex={hoverIndex}
         onSelect={(value) => this.onOptionAdded(value) }
         open={this.state.dropdownOpen}
@@ -177,6 +172,7 @@ export interface UIMultiInputProps {
   className?: string;
   placeholder?: string;
   onQueryChanged?: (query: string) => void;
+  renderItem?: (option: Option, selected: boolean) => JSX.Element;
 }
 
 export interface UIMultiInputState {
