@@ -22,7 +22,9 @@ export class UITooltip extends React.Component<UITooltipProps, {}> {
         <div
           className="UITooltip tether-content"
           style={{width: `${width}px`}}>
-          {text}
+          <div className="UITooltipInner">
+            {text}
+          </div>
         </div>
       )}
     </TetherComponent>;

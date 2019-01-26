@@ -4,22 +4,7 @@ import * as React from 'react';
 import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange, Task} from 'ququmber-api';
 
 import FuzzyTimeDnd from 'ququmber-ui/fuzzyTime/FuzzyTimeDnd';
-
-
-const shallowDifference = (a: any, b: any): {[key: string]: boolean} => {
-  const diff: {[key: string]: boolean} = {};
-  for (const key in a) {
-    if(!(key in b) || a[key] !== b[key]) {
-      diff[key] = true;
-    }
-  }
-  for (const key in b) {
-    if(!(key in a) || a[key] !== b[key]) {
-      diff[key] = true;
-    }
-  }
-  return diff;
-};
+import {shallowDifference} from 'ququmber-ui/utils/reactUtils';
 
 export const shouldUnitComponentUpdate = (
   props: FuzzyTimeSelectUnitProps,

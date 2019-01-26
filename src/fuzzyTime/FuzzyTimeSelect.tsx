@@ -227,7 +227,6 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     const thisWeek = FuzzyTime.getCurrent(FuzzyGranularity.WEEK);
     const nextWeek = thisWeek.getNext();
     const nextMonth = FuzzyTime.getCurrent(FuzzyGranularity.MONTH).getNext();
-    const forever = FuzzyTime.getForever();
 
     return <div className="FuzzyTimeSelect" ref={(ref) => this.rootRef = ref}>
       <div className="quickOptions">
@@ -238,7 +237,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         {this.renderQuickOption(nextMonth, 'next month')}
         <button
           className="quickOption quickOptionNone"
-          onClick={() => onTimeSelected(forever)}>
+          onClick={() => onTimeSelected(null)}>
           no date
         </button>
       </div>
