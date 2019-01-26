@@ -17,7 +17,7 @@ export class UITag extends React.Component<UITagProps, {}> {
     );
 
     return <div
-      className={`UITag ${!color || isDarkColor(color) ? 'lightText' : 'darkText'}`}
+      className={`UITag ${!color || isDarkColor(color) ? 'lightText' : 'darkText'} ${canRemove ? 'canRemove' : ''}`}
       style={style}>
       {name}
       {canRemove !== false && removeButton}
@@ -26,7 +26,7 @@ export class UITag extends React.Component<UITagProps, {}> {
 }
 
 export interface UITagProps extends React.Props<UITag> {
-  name: string;
+  name: string | JSX.Element;
   onRemoved?: () => void;
   color?: string;
   canRemove?: boolean;

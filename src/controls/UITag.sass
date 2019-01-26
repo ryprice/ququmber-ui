@@ -1,23 +1,33 @@
 .UITag
   margin: .3em
-  padding: .1em .3em
+  padding: .1em .8em
   background: $color-ququmber
   display: inline
   border-radius: .25em
 
   &.lightText
-    color: $color-inverttext
+    color: $color-white
 
   &.darkText
     color: $color-basefont
 
   .remove
     overflow: hidden
-    margin: 0 .15em 0 .5em
-    display: inline-block
+    margin: 0 .15em 0 .3em
     background: transparent
     border: 0
     outline: 0
     padding: 0
     color: inherit
     line-height: .6em
+    font-size: .8em
+    vertical-align: top
+    display: none
+
+  &.canRemove
+    &:hover,
+    &:focus
+      padding: .1em .2em
+
+      .remove
+        display: inline-block
