@@ -19,6 +19,7 @@
     width: 100%
     display: flex
     flex-direction: row
+    box-shadow: 0 0 20px rgba(0,0,0,.2)
 
     button
       padding: 6px
@@ -46,6 +47,9 @@
     flex-wrap: wrap
     padding: 10px 5px 15px 5px
     border-bottom: 1px solid $color-br
+    z-index: 10
+    position: relative
+    background: $color-white
 
     .quickOption
       border: 1px $color-quiet solid
@@ -60,13 +64,14 @@
       &:active
         background: $color-controlfocus
 
-      &.quickOptionNone
-        border: 1px $color-deepred solid
-        color: $color-deepred
+      &.selected
+        background-color: $color-notify
+        color: $color-white
+        border: 1px darken($color-notify, 10%) solid
 
-        &:active,
-        &:hover
-          background: #ffeeee
+        &:hover,
+        &:active
+          background-color: darken($color-notify, 10%)
 
   .controls
     width: 100%

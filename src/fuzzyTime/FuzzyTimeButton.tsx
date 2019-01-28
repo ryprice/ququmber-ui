@@ -80,7 +80,7 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
         <FuzzyTimeSelect
           selected={value}
           onTimeSelected={this.onTimeSelected.bind(this)}
-          multiselect={false}
+          multiselect={multiselect}
           onRangeSelected={this.onRangeSelected.bind(this)}
           range={range}
         />

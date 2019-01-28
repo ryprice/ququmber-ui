@@ -6,6 +6,28 @@ import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange, Task} from 'ququmber-api';
 import FuzzyTimeDnd from 'ququmber-ui/fuzzyTime/FuzzyTimeDnd';
 import {shallowDifference} from 'ququmber-ui/utils/reactUtils';
 
+export const unitClassName = (props: FuzzyTimeSelectUnitProps) => {
+  const {disabled, hoverTime, time, multiselect, range, selected, start} = props;
+  let className = '';
+  className += disabled ? ' disabled' : '';
+  className += hoverTime && hoverTime.overlaps(time) ? ' FuzzyTimeSelectUnitHover' : '';
+  className += time.equals(FuzzyTime.getCurrent(time.getGranularity())) ? ' today' : '';
+  className += time.equals(selected) ? ' selected' : '';
+  if (multiselect) {
+    className += (range && range.contains(time)) ? ' selected' : '';
+    if (start) {
+      className += time.equals(start) ? ' selected' : '';
+    } else if (
+      range &&
+      (!range.getStart() || time.compareTo(range.getStart()) >= 0) &&
+      (!range.getEnd() || time.compareTo(range.getEnd()) <= 0)
+    ) {
+      className += ' selected';
+    }
+  }
+  return className;
+};
+
 export const shouldUnitComponentUpdate = (
   props: FuzzyTimeSelectUnitProps,
   state: any,
@@ -60,21 +82,7 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
     } = this.props;
 
     let className = 'FuzzyTimeSelectUnit';
-    className += disabled ? ' disabled' : '';
-    className += hoverTime && hoverTime.overlaps(time) ? ' FuzzyTimeSelectUnitHover' : '';
-    className += time.equals(FuzzyTime.getCurrent(time.getGranularity())) ? ' today' : '';
-    className += time.equals(selected) ? ' selected' : '';
-    if (multiselect) {
-      if (start) {
-        className += time.equals(start) ? ' selected' : '';
-      } else if (
-        range &&
-        (!range.getStart() || time.compareTo(range.getStart()) >= 0) &&
-        (!range.getEnd() || time.compareTo(range.getEnd()) <= 0)
-      ) {
-        className += ' selected';
-      }
-    }
+    className += unitClassName(this.props);
 
     let name;
     let _onClick = onClick;

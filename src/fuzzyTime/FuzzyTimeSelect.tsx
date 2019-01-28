@@ -13,7 +13,10 @@ import FuzzyTime, {buildFuzzyTime} from 'ququmber-api/FuzzyTime';
 
 import UITextInput from 'ququmber-ui/controls/UITextInput';
 import FuzzyTimeMonthUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeMonthUnit';
-import {FuzzyTimeSelectUnitProps} from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
+import {
+  FuzzyTimeSelectUnitProps,
+  unitClassName
+} from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
 import FuzzyTimeYearUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeYearUnit';
 import {weeksInMonth} from 'ququmber-ui/utils/dateUtils';
 
@@ -187,7 +190,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     return 0;
   }
 
-  public renderViewModeButton(viewMode: ViewMode, text: string, icon: string) {
+  renderViewModeButton(viewMode: ViewMode, text: string, icon: string) {
     return <button
       className={this.state.viewMode === viewMode ? 'selected' : ''}
       onClick={() => this.setState({viewMode})}
@@ -200,7 +203,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   renderQuickOption(time: FuzzyTime, name: string) {
     const {onTimeSelected} = this.props;
     return <button
-      className="quickOption"
+      className={`quickOption ${unitClassName({...this.getUnitProps(), time})}`}
       onClick={() => onTimeSelected(time)}
       onMouseOver={() => this.unitOnMouseOver(time)}
       onMouseOut={() => this.unitOnMouseOut(time)}>
@@ -235,11 +238,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         {this.renderQuickOption(thisWeek, 'this week')}
         {this.renderQuickOption(nextWeek, 'next week')}
         {this.renderQuickOption(nextMonth, 'next month')}
-        <button
-          className="quickOption quickOptionNone"
-          onClick={() => onTimeSelected(null)}>
-          no date
-        </button>
+        {this.renderQuickOption(FuzzyTime.getForever(), 'no date')}
       </div>
       <div className="viewModeSelector">
         {this.renderViewModeButton(ViewMode.DAILY, 'day/week', 'fa fa-expand')}

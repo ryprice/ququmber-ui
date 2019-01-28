@@ -17,15 +17,23 @@
 
   &:hover:not(.placeholder),
   &.droppingTask,
-  &.FuzzyTimeSelectUnitHover
+  &.hover
     background-color: $color-selected
     cursor: pointer
 
   &.selected
-    background-color: $color-selected
+    background-color: $color-notify
 
-  &.today p
-    color: $color-deepred
+    p
+      color: $color-white
+
+  &.today
+    p
+      color: $color-notify
+      font-weight: bold
+
+    &.selected p
+      color: $color-white
 
   &.month
     height: 30px
