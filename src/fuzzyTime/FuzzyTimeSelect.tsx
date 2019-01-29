@@ -201,9 +201,14 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   }
 
   renderQuickOption(time: FuzzyTime, name: string) {
-    const {onTimeSelected} = this.props;
+    const {onTimeSelected, selected, range} = this.props;
+    const selectedOrRangeSelected = (
+      time.equals(selected) ||
+      (range && range.getStart().equals(time) && range.getEnd().equals(time))
+    );
+    console.log(selectedOrRangeSelected);
     return <button
-      className={`quickOption ${unitClassName({...this.getUnitProps(), time})}`}
+      className={`quickOption ${selectedOrRangeSelected ? 'selected' : ''}`}
       onClick={() => onTimeSelected(time)}
       onMouseOver={() => this.unitOnMouseOver(time)}
       onMouseOut={() => this.unitOnMouseOut(time)}>
