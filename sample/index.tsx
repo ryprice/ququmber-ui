@@ -25,12 +25,14 @@ import ComponentSection from './ComponentSection';
 import FormSection from './FormSection';
 import TypographySection from './TypographySection';
 
-
 import UIButtonSample from './button/UIButtonSample';
 import UITagSample from './controls/UITagSample';
 import UIToastNotificationSample from './controls/UIToastNotificationSample';
 import UIToggleSample from './controls/UIToggleSample';
+
 import UIMessageModalSample from './popup/UIMessageModalSample';
+import UIPopupSample from './popup/UIPopupSample';
+import UITooltipSample from './popup/UITooltipSample';
 
 class RootComponent extends React.Component<{}, RootComponentState> {
 
@@ -91,6 +93,8 @@ class RootComponent extends React.Component<{}, RootComponentState> {
 
       'Popup',
       ['ququmber-ui/popup/UIMessageModal', <UIMessageModalSample />],
+      ['ququmber-ui/popup/UITooltip', <UITooltipSample />],
+      ['ququmber-ui/popup/UIPopup', <UIPopupSample />],
 
       'Button',
       ['ququmber-ui/button/UIButton', <UIButtonSample />],
