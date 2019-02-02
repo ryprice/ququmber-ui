@@ -36,6 +36,7 @@ class UIPopup extends React.Component<UIPopupProps, {}> {
       onClose();
     }
   }
+
   render() {
     const {open, children, onClose, className, targetAttachment, attachment} = this.props;
 

@@ -1,7 +1,7 @@
 import {map, pick} from 'lodash';
 import * as React from 'react';
 
-import * as Colors from 'ququmber-ui/Colors';
+import Colors from 'ququmber-ui/Colors';
 import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 
 const ColorsSubsection = (props: ColorsSubsectionProps) =>

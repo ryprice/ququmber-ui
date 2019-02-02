@@ -6,7 +6,7 @@ import * as ReactDOM from 'react-dom';
 import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange} from 'ququmber-api';
 
 import UIIconButton from 'ququmber-ui/button/UIIconButton';
-import * as Colors from 'ququmber-ui/Colors';
+import Colors from 'ququmber-ui/Colors';
 import UIBadge from 'ququmber-ui/controls/UIBadge';
 import UIColorSelector from 'ququmber-ui/controls/UIColorSelector';
 import UIEditableText from 'ququmber-ui/controls/UIEditableText';
@@ -59,7 +59,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
     const sections = [
       'Controls',
       ['ququmber-ui/controls/UIColorSelector', <UIColorSelector
-        onColorChanged={console.log}
+        onColorChanged={() => {}}
         value={null}
       />],
       ['ququmber-ui/controls/UIEditableText', <UIEditableText

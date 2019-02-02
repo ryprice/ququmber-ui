@@ -2,7 +2,7 @@ import {includes} from 'lodash';
 import * as React from 'react';
 import TetherComponent from 'react-tether';
 
-import * as COLORS from 'ququmber-ui/Colors';
+import Colors from 'ququmber-ui/Colors';
 import UIDropdown from 'ququmber-ui/popup/UIDropdown';
 import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 
@@ -74,8 +74,8 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
           <i
             className="fa fa-palette"
             style={{color: value
-              ? (isDarkColor(`#${value}`) ? COLORS.WHITE : COLORS.BASEFONT)
-              : COLORS.BASEFONT
+              ? (isDarkColor(`#${value}`) ? Colors.WHITE : Colors.BASEFONT)
+              : Colors.BASEFONT
             }}
           />
         </div>

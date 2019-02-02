@@ -4,6 +4,7 @@ import UIButton from 'ququmber-ui/button/UIButton';
 import UIButtonFooter from 'ququmber-ui/controls/UIButtonFooter';
 import UIModal from 'ququmber-ui/popup/UIModal';
 import UIOverlay from 'ququmber-ui/popup/UIOverlay';
+import Stylings from 'ququmber-ui/Stylings';
 
 export const Level = {
   Info: 0,
@@ -13,7 +14,7 @@ export const Level = {
 
 export class UIMessageModal extends React.Component<UIMessageModalProps, {}> {
   render() {
-    const {title, message, onConfirm, onCancel, className, color} = this.props;
+    const {title, message, onConfirm, onCancel, className, confirmStyling} = this.props;
 
     return <UIOverlay>
       <UIModal className={className}>
@@ -21,7 +22,7 @@ export class UIMessageModal extends React.Component<UIMessageModalProps, {}> {
           <p className="title">{title}</p>
           <p className="message">{message}</p>
           <UIButtonFooter>
-            <UIButton onClick={onConfirm} color={color || 'go'}>Confirm</UIButton>
+            <UIButton onClick={onConfirm} styling={confirmStyling || Stylings.GO}>Confirm</UIButton>
             <UIButton onClick={onCancel}>Cancel</UIButton>
           </UIButtonFooter>
         </div>
@@ -37,7 +38,7 @@ export interface UIMessageModalProps extends React.Props<UIMessageModal> {
   onCancel: () => void;
   onConfirm: () => void;
   className?: string;
-  color?: string;
+  confirmStyling?: Stylings;
 }
 
 export default UIMessageModal;

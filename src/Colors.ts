@@ -1,17 +1,20 @@
+enum Colors {
+  WHITE = '#FFFFFF',
+  OFFWHITE = '#F8F8F8',
+  CONTROL = '#F2F2F2',
+  SELECTED = '#DDDDDD',
+  QUIET = '#AAAAAA',
+  DISABLED = '#888888',
+  BASEFONT = '#333333',
 
-export const WHITE = '#FFFFFF';
-export const OFFWHITE = '#F8F8F8';
-export const CONTROL = '#F2F2F2';
-export const SELECTED = '#DDDDDD';
-export const QUIET = '#AAAAAA';
-export const DISABLED = '#888888';
-export const BASEFONT = '#333333';
+  GO = '#32A150',
+  NOTIFY = '#0095FF',
+  QUQUMBER = '#444444',
+  DEEPRED = '#aa0000',
+  RED = '#DE1D1D',
 
-export const GO = '#32A150';
-export const NOTIFY = '#0095FF';
-export const QUQUMBER = '#444444';
-export const DEEPRED = '#aa0000';
-export const RED = '#DE1D1D';
+  GOOGLE = '#E53935',
+  FACEBOOK = '#4267b2'
+}
 
-export const GOOGLE = '#E53935';
-export const FACEBOOK = '#4267b2';
+export default Colors;
