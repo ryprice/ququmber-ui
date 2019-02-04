@@ -12,6 +12,8 @@ const UIButtonSample = () =>
     <UIButton style={{width: '200px'}} styling={Stylings.RED}>Red</UIButton><br />
     <UIButton style={{width: '200px'}} styling={Stylings.GO} loading={true}>Loading</UIButton><br />
     <UIButton style={{fontSize: '20px'}} styling={Stylings.FACEBOOK}>20px Large Button</UIButton><br />
+    <UIButton style={{width: '200px'}} styling={Stylings.OUTLINE}>Outline</UIButton><br />
+    <UIButton style={{width: '200px'}} styling={Stylings.LINK}>Link</UIButton><br />
   </div>;
 
 export default UIButtonSample;

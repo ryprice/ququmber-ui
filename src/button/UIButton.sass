@@ -100,3 +100,36 @@
     &:disabled
       background: lighten($color-red, 15%)
       color: #bbbbbb
+
+  &.styling-outline
+    background: transparent
+    border: solid $color-controlborder 1px
+    color: $color-basefont
+    text-shadow: transparent
+
+    &:hover
+      background: $color-control
+
+    &:active
+      background: darken($color-control, 3%)
+
+    &:disabled
+      background: lighten($color-control, 15%)
+      color: $color-quiet
+
+  &.styling-link
+    background: transparent
+    border: 0 transparent
+    color: $color-basefont
+    text-shadow: 0 0 0 transparent
+
+    .inner
+      text-decoration: underline
+
+    &:hover,
+    &:active
+      .inner
+        color: $color-notify
+
+    &:disabled
+      color: $color-quiet
