@@ -3,9 +3,26 @@
 .FuzzyTimeWeekUnit
   overflow: auto
 
+  .day,
+  .fullWeekButton
+    height: 32px
+    border: 1px $color-white solid
+    border-right: 0
+    border-bottom: 0
+    padding-top: 0
+    box-sizing: border-box
+    float: left
+    text-transform: uppercase
+    position: relative
+    overflow: hidden
+    text-align: center
+    font-size: 13px
+    padding-top: 7px
+
   .fullWeekButton
     width: 9%
     height: 32px
+    padding-top: 0
 
     p
       padding: 0
@@ -26,15 +43,9 @@
     &.notChild
       visibility: hidden
 
-  .day,
-  .fullWeekButton
-    height: 32px
-    border: 1px $color-white solid
-    border-right: 0
-    border-bottom: 0
+    &.now
+      color: $color-notify
+      font-weight: bold
 
-.FuzzyTimeWeekUnit.FuzzyTimeWeekUnitHover,
-.FuzzyTimeMonthUnitHover
-  .day:not(.placeholder)
-    background-color: $color-selected
-    cursor: pointer
+      &.selected
+        color: $color-white

@@ -9,10 +9,18 @@ import {shallowDifference} from 'ququmber-ui/utils/reactUtils';
 export const unitClassName = (props: FuzzyTimeSelectUnitProps) => {
   const {disabled, hoverTime, time, multiselect, range, selected, start} = props;
   let className = '';
-  className += disabled ? ' disabled' : '';
-  className += hoverTime && hoverTime.overlaps(time) ? ' FuzzyTimeSelectUnitHover' : '';
-  className += time.equals(FuzzyTime.getCurrent(time.getGranularity())) ? ' today' : '';
-  className += time.equals(selected) ? ' selected' : '';
+  if (disabled) {
+    className += ' disabled';
+  }
+  if (hoverTime && hoverTime.contains(time)) {
+    className += ' hover';
+  }
+  if (time.equals(FuzzyTime.getCurrent(time.getGranularity()))) {
+    className += ' now';
+  }
+  if (selected && (time.equals(selected) || selected.contains(time))) {
+    className += ' selected';
+  }
   if (multiselect) {
     className += (range && range.contains(time)) ? ' selected' : '';
     if (start) {
@@ -78,30 +86,40 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
     const {
       time, disabled, onClick, range, onTasksDropped,
       selected, multiselect, start, focalPoint, granularity,
-      onMouseOver, onMouseOut, hoverTime
+      onMouseOver, onMouseOut, hoverTime, children
     } = this.props;
 
     let className = 'FuzzyTimeSelectUnit';
     className += unitClassName(this.props);
+    if (this.props.className) {
+      className += ' ' + this.props.className;
+    } else {
+      switch(granularity) {
+        case FuzzyGranularity.YEAR:
+          className += ' year';
+          break;
+
+        case FuzzyGranularity.MONTH:
+          className += ' month';
+          break;
+
+        case FuzzyGranularity.DAY:
+          className += ' day';
+          break;
+      }
+    }
 
     let name;
-    let _onClick = onClick;
     switch(granularity) {
       case FuzzyGranularity.YEAR:
-        className += ' year';
         name = time.getTime().getUTCFullYear().toString();
         break;
 
       case FuzzyGranularity.MONTH:
-        className += ' month';
         name = time.getTime().toLocaleString('en-us', {month: 'short', timeZone: 'UTC'});
         break;
 
-      case FuzzyGranularity.WEEK:
-        _onClick = () => {};
-
       case FuzzyGranularity.DAY:
-        className += ' day';
         name = time.getTime().getUTCDate().toString();
         break;
 
@@ -121,7 +139,7 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
           onMouseOver={this.onMouseOver}
           onMouseOut={this.onMouseOut}
         >
-          <p>{name}</p>
+          {children || name}
         </div>
       </FuzzyTimeDnd>
     );
@@ -131,18 +149,22 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
 export interface FuzzyTimeSelectUnitProps {
   time: FuzzyTime;
   disabled: boolean;
-  onClick: (time: FuzzyTime) => void;
-  range: FuzzyTimeRange;
   selected: FuzzyTime;
+  granularity: FuzzyGranularity;
+  hoverTime: FuzzyTime;
+  focalPoint: FuzzyTime;
+  range?: FuzzyTimeRange;
   multiselect: boolean;
   start: FuzzyTime;
-  focalPoint: FuzzyTime;
-  onTasksDropped: (tasks: Task[], time: FuzzyTime) => void;
+
   style?: Object;
-  granularity: FuzzyGranularity;
+  children?: React.ReactNode;
+  className?: string;
+
+  onClick: (time: FuzzyTime) => void;
   onMouseOver: (time: FuzzyTime) => void;
   onMouseOut: (time: FuzzyTime) => void;
-  hoverTime: FuzzyTime;
+  onTasksDropped: (tasks: Task[], time: FuzzyTime) => void;
 }
 
 export default FuzzyTimeSelectUnit;

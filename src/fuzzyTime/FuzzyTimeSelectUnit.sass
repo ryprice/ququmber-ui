@@ -1,19 +1,6 @@
 @import '../tokens'
 
 .FuzzyTimeSelectUnit
-  box-sizing: border-box
-  float: left
-  text-transform: uppercase
-  position: relative
-  border-color: #bbbbbb
-  overflow: hidden
-
-  p
-    position: absolute
-    z-index: 1
-    width: 100%
-    text-align: center
-
   &:hover:not(.placeholder),
   &.droppingTask,
   &.hover
@@ -22,21 +9,7 @@
 
   &.selected
     background-color: $color-notify
+    color: $color-white
 
-    p
-      color: $color-white
-
-  &.today
-    p
-      color: $color-notify
-      font-weight: bold
-
-    &.selected p
-      color: $color-white
-
-  &.month
-    height: 30px
-    clear: none
-    float: left
-    width: 25%
-    overflow: hidden
+    &.hover
+      background-color: lighten($color-notify, 20%)

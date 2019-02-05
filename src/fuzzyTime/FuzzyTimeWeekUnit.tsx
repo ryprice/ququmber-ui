@@ -74,8 +74,6 @@ class FuzzyTimeWeekUnit extends React.Component<FuzzyTimeWeekUnitProps, {}> {
       {days.map(day =>
         <FuzzyTimeSelectUnit
           {...this.props}
-          onMouseOver={emptyFn}
-          onMouseOut={emptyFn}
           time={day}
           key={day.getTime().toString()}
           granularity={FuzzyGranularity.DAY}

@@ -12,21 +12,6 @@ import {weeksInMonth} from 'ququmber-ui/utils/dateUtils';
 
 class FuzzyTimeMonthUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
 
-  onClick = () => {
-    const {time, onClick} = this.props;
-    onClick(time);
-  }
-
-  onMouseOver = () => {
-    const {time, onMouseOver} = this.props;
-    onMouseOver(time);
-  }
-
-  onMouseOut = () => {
-    const {time, onMouseOut} = this.props;
-    onMouseOut(time);
-  }
-
   shouldComponentUpdate(nextProps: FuzzyTimeSelectUnitProps, nextState: {}) {
     return shouldUnitComponentUpdate(this.props, this.state, nextProps, nextState);
   }
@@ -50,14 +35,13 @@ class FuzzyTimeMonthUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
       className={`FuzzyTimeMonthUnit ${(hoverTime && hoverTime.equals(month)) ? 'FuzzyTimeMonthUnitHover' : ''}`}
       style={style}>
       <div style={{clear: 'both'}} key="clear" />
-      <div
+      <FuzzyTimeSelectUnit
+        {...this.props}
+        time={month}
         className="monthTitle"
-        onClick={this.onClick}
-        onMouseOver={this.onMouseOver}
-        onMouseOut={this.onMouseOut}
         key="title">
         {month.getTime().toLocaleString('en-us', {month: 'long', timeZone: 'UTC'})}
-      </div>
+      </FuzzyTimeSelectUnit>
       {weeks.map(week =>
         <FuzzyTimeWeekUnit
           {...this.props}
