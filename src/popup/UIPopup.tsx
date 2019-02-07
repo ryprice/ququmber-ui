@@ -5,6 +5,9 @@ import TetherComponent from 'react-tether';
 import UIDropdown from 'ququmber-ui/popup/UIDropdown';
 
 class UIPopup extends React.Component<UIPopupProps, {}> {
+
+  private contentRef: HTMLDivElement;
+
   public static defaultProps = {
     attachment: 'top right',
     targetAttachment: 'bottom right',
@@ -30,7 +33,7 @@ class UIPopup extends React.Component<UIPopupProps, {}> {
 
   windowClickHandler = (e: MouseEvent) => {
     const {onClose, open} = this.props;
-    const thisEl = ReactDOM.findDOMNode(this.refs.content);
+    const thisEl = ReactDOM.findDOMNode(this.contentRef);
     const targetEl = e.target as Element;
     if (thisEl && !thisEl.contains(targetEl) && onClose && open) {
       onClose();
@@ -47,7 +50,7 @@ class UIPopup extends React.Component<UIPopupProps, {}> {
         className="tether-theme-arrows">
         {children[0]}
         <div
-          ref="content"
+          ref={(ref: HTMLDivElement) => this.contentRef = ref}
           className={`${className} tether-content`}>
           {children[1]}
         </div>
