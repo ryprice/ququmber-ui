@@ -130,9 +130,10 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
 
     return <TetherComponent attachment="top left" targetAttachment="bottom left">
       <div
-        className={`UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''}`}
-      >
-        {map(selectedOptions, (option: Option) => renderItem ? renderItem(option, true) : option.name)}
+        className={`UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''}`}>
+        {map(selectedOptions, (option: Option) =>
+          renderItem ? renderItem(option, true) : option.name)
+        }
         <input
           type="text"
           className="UIInput"
