@@ -117,7 +117,15 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
   }
 
   render() {
-    const {options, selected, className, placeholder, renderItem} = this.props;
+    const {
+      options,
+      selected,
+      className,
+      placeholder,
+      renderItem,
+      attachment,
+      targetAttachment
+    } = this.props;
     const {hoverIndex, dropdownOpen} = this.state;
 
     const selectedOptions = selected
@@ -128,7 +136,9 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       .sort(sortByCanRemoveComparator);
     const filteredUnselectedOptions = this.getFilteredUnselectedOptions();
 
-    return <TetherComponent attachment="top left" targetAttachment="bottom left">
+    return <TetherComponent
+      attachment={attachment || 'top left'}
+      targetAttachment={targetAttachment || 'bottom left'}>
       <div
         className={`UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''}`}>
         {map(selectedOptions, (option: Option) =>
@@ -174,6 +184,8 @@ export interface UIMultiInputProps {
   placeholder?: string;
   onQueryChanged?: (query: string) => void;
   renderItem?: (option: Option, selected: boolean) => JSX.Element;
+  attachment?: string;
+  targetAttachment?: string;
 }
 
 export interface UIMultiInputState {
