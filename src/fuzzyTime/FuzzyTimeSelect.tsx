@@ -216,6 +216,31 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     </button>;
   }
 
+  private renderQuickOptions() {
+    const today = FuzzyTime.getCurrent(FuzzyGranularity.DAY);
+    const tomorrow = today.getNext();
+    const thisWeek = FuzzyTime.getCurrent(FuzzyGranularity.WEEK);
+    const nextWeek = thisWeek.getNext();
+    const nextMonth = FuzzyTime.getCurrent(FuzzyGranularity.MONTH).getNext();
+
+    const quickOptions = this.props.quickOptions != null
+      ? this.props.quickOptions
+      : [
+        {time: today, name: 'today'},
+        {time: tomorrow, name: 'this week'},
+        {time: thisWeek, name: 'next week'},
+        {time: nextWeek, name: 'this month'},
+        {time: nextMonth, name: 'next month'},
+        {time: FuzzyTime.getForever(), name: 'no date'},
+      ];
+    if (quickOptions.length === 0) {
+      return null;
+    }
+    return <div className="quickOptions">
+      {quickOptions.map(qo => this.renderQuickOption(qo.time, qo.name))}
+    </div>;
+  }
+
   render() {
     // const {focalPoint} = this.state;
     // const today = FuzzyTime.getCurrent(FuzzyGranularity.DAY);
@@ -230,21 +255,8 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       hoverTime
     };
 
-    const today = FuzzyTime.getCurrent(FuzzyGranularity.DAY);
-    const tomorrow = today.getNext();
-    const thisWeek = FuzzyTime.getCurrent(FuzzyGranularity.WEEK);
-    const nextWeek = thisWeek.getNext();
-    const nextMonth = FuzzyTime.getCurrent(FuzzyGranularity.MONTH).getNext();
-
     return <div className="FuzzyTimeSelect" ref={(ref) => this.rootRef = ref}>
-      <div className="quickOptions">
-        {this.renderQuickOption(today, 'today')}
-        {this.renderQuickOption(tomorrow, 'tomorrow')}
-        {this.renderQuickOption(thisWeek, 'this week')}
-        {this.renderQuickOption(nextWeek, 'next week')}
-        {this.renderQuickOption(nextMonth, 'next month')}
-        {this.renderQuickOption(FuzzyTime.getForever(), 'no date')}
-      </div>
+      {this.renderQuickOptions()}
       <div className="viewModeSelector">
         {this.renderViewModeButton(ViewMode.DAILY, 'day/week', 'fa fa-expand')}
         {this.renderViewModeButton(ViewMode.YEARLY, 'month/year', 'fa fa-compress')}
@@ -307,6 +319,7 @@ export interface FuzzyTimeSelectProps {
   range?: FuzzyTimeRange;
   multiselect?: boolean;
   onRangeSelected?: (range: FuzzyTimeRange) => void;
+  quickOptions?: {time: FuzzyTime, name: string}[];
 }
 
 export interface FuzzyTimeSelectState {
