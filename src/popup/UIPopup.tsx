@@ -22,12 +22,12 @@ class UIPopup extends React.Component<UIPopupProps, {}> {
       // a click event Listener during click event handling apparently
       // fires the listener.
       setTimeout(() =>
-        window.addEventListener('click', this.windowClickHandler, false)
+        window.addEventListener('mousedown', this.windowClickHandler, false)
       , 0);
     }
 
     if (props.open && !nextProps.open) {
-      window.removeEventListener('click', this.windowClickHandler);
+      window.removeEventListener('mousedown', this.windowClickHandler);
     }
   }
 
