@@ -7,7 +7,7 @@ class UINanoProgress extends React.Component<UINanoProgressProps, UINanoProgress
   static defaultProps: UINanoProgressProps = {
     initialValue: 0,
     completionLinger: 500,
-    optimismFactor: .25,
+    optimismFactor: 0.25,
     optimismIncrement: 150
   };
 

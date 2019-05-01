@@ -1,6 +1,6 @@
 import {times} from 'lodash';
 import * as React from 'react';
-import * as ReactDOM from  'react-dom';
+import * as ReactDOM from 'react-dom';
 import * as ReactVirtualized from 'react-virtualized';
 
 import {
