@@ -22,7 +22,7 @@ class UINanoProgress extends React.Component<UINanoProgressProps, UINanoProgress
   componentDidMount() {
     const {value, optimismIncrement} = this.props;
     if (value != null) {
-      this.timerId = setTimeout(
+      this.timerId = window.setTimeout(
         () => this.incrementProgress(value),
         optimismIncrement
       );
@@ -31,7 +31,7 @@ class UINanoProgress extends React.Component<UINanoProgressProps, UINanoProgress
 
   componentWillUnmount() {
     const {value} = this.state;
-    clearTimeout(this.timerId);
+    window.clearTimeout(this.timerId);
     if (value >= 100) {
       this.setState({value: null});
     }
@@ -51,24 +51,24 @@ class UINanoProgress extends React.Component<UINanoProgressProps, UINanoProgress
   incrementProgress = (nextValue: number) => {
     const {initialValue, optimismFactor, optimismIncrement} = this.props;
     const {value} = this.state;
-    clearTimeout(this.timerId);
+    window.clearTimeout(this.timerId);
     if (value < 99.5 && nextValue != null) {
       this.setState({value: Math.max(value, nextValue)});
-      this.timerId = setTimeout(this.incrementProgress, optimismIncrement);
+      this.timerId = window.setTimeout(this.incrementProgress, optimismIncrement);
     } else if (nextValue == null) {
       this.setState({
         value: value + (100 - value) * optimismFactor
       });
-      this.timerId = setTimeout(this.incrementProgress, optimismIncrement);
+      this.timerId = window.setTimeout(this.incrementProgress, optimismIncrement);
     }
   }
 
   completeProgress = () => {
     const {completionLinger, optimismIncrement} = this.props;
-    clearTimeout(this.timerId);
-    this.timerId = setTimeout(() => {
+    window.clearTimeout(this.timerId);
+    this.timerId = window.setTimeout(() => {
       this.setState({value: 100});
-      this.timerId = setTimeout(() => {
+      this.timerId = window.setTimeout(() => {
         this.setState({value: null});
       }, completionLinger);
     }, optimismIncrement);
