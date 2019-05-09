@@ -3,61 +3,28 @@ import * as ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
 
 import UIDropdown from 'ququmber-ui/popup/UIDropdown';
+import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
 
-class UIPopup extends React.Component<UIPopupProps, {}> {
+const {useRef} = React;
 
-  private contentRef: HTMLDivElement;
-
-  public static defaultProps = {
-    attachment: 'top right',
-    targetAttachment: 'bottom right',
-    closeOnOutsideClick: true
-  };
-
-  public componentWillReceiveProps(nextProps: UIPopupProps) {
-    const {props} = this;
-
-    if (!props.open && nextProps.open && props.closeOnOutsideClick) {
-      // Delay it until the open click is completely handled. Adding
-      // a click event Listener during click event handling apparently
-      // fires the listener.
-      setTimeout(() =>
-        window.addEventListener('mousedown', this.windowClickHandler, false)
-      , 0);
-    }
-
-    if (props.open && !nextProps.open) {
-      window.removeEventListener('mousedown', this.windowClickHandler);
-    }
-  }
-
-  windowClickHandler = (e: MouseEvent) => {
-    const {onClose, open} = this.props;
-    const thisEl = ReactDOM.findDOMNode(this.contentRef);
-    const targetEl = e.target as Element;
-    if (thisEl && !thisEl.contains(targetEl) && onClose && open) {
-      onClose();
-    }
-  }
-
-  render() {
-    const {open, children, onClose, className, targetAttachment, attachment} = this.props;
-
-    return open
-    ? <TetherComponent
-        attachment={attachment}
-        targetAttachment={targetAttachment}
-        className="tether-theme-arrows">
-        {children[0]}
-        <div
-          ref={(ref: HTMLDivElement) => this.contentRef = ref}
-          className={`${className} tether-content`}>
-          {children[1]}
-        </div>
-      </TetherComponent>
-    : children[0];
-  }
-}
+const UIPopup = (props: UIPopupProps) => {
+  const {open, children, onClose, className, targetAttachment, attachment} = props;
+  const contentRef = useRef();
+  useOnOutsideClick([contentRef], onClose);
+  return open
+  ? <TetherComponent
+      attachment={attachment}
+      targetAttachment={targetAttachment}
+      className="tether-theme-arrows">
+      {children[0]}
+      <div
+        ref={contentRef}
+        className={`${className} tether-content`}>
+        {children[1]}
+      </div>
+    </TetherComponent>
+  : children[0];
+};
 
 interface UIPopupProps {
   open: boolean;
@@ -68,5 +35,11 @@ interface UIPopupProps {
   attachment?: string;
   closeOnOutsideClick: boolean;
 }
+
+UIPopup.defaultProps = {
+  attachment: 'top right',
+  targetAttachment: 'bottom right',
+  closeOnOutsideClick: true
+};
 
 export default UIPopup;

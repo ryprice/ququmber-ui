@@ -1,17 +1,16 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-const {useCallback, useEffect, useMemo} = React;
+const {useCallback, useEffect, useMemo, useRef} = React;
 
 const useOnOutsideClick = (
   refs: React.MutableRefObject<any>[],
   onOutsideClick: () => void
 ) => {
-
-  const memoRefs = useMemo(() => refs, refs);
-
+  const onOutsideClickRef = useRef(onOutsideClick);
+  onOutsideClickRef.current = onOutsideClick;
   const windowClickHandler = useCallback((e: MouseEvent) => {
-    const els = memoRefs.map(ref => ReactDOM.findDOMNode(ref.current)) as Element[];
+    const els = refs.map(ref => ReactDOM.findDOMNode(ref.current)) as Element[];
     const childEl = e.target as Element;
     if (childEl) {
       let insideClick = false;
@@ -24,8 +23,8 @@ const useOnOutsideClick = (
         return true;
       }
     }
-    onOutsideClick();
-  }, [memoRefs, onOutsideClick]);
+    onOutsideClickRef.current && onOutsideClickRef.current();
+  }, []);
 
   useEffect(() => {
     window.addEventListener('mousedown', windowClickHandler, false);

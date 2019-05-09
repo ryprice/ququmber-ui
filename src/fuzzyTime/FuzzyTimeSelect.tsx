@@ -227,9 +227,9 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       ? this.props.quickOptions
       : [
         {time: today, name: 'today'},
-        {time: tomorrow, name: 'this week'},
-        {time: thisWeek, name: 'next week'},
-        {time: nextWeek, name: 'this month'},
+        {time: tomorrow, name: 'tomorrow'},
+        {time: thisWeek, name: 'this week'},
+        {time: nextWeek, name: 'next week'},
         {time: nextMonth, name: 'next month'},
         {time: FuzzyTime.getForever(), name: 'no date'},
       ];
