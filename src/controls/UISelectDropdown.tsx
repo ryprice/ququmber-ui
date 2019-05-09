@@ -46,7 +46,7 @@ export interface UISelectDropdownProps extends React.Props<UISelectDropdownProps
     className?: string;
     open?: boolean;
     hoverIndex?: number;
-    onClose?: (e: MouseEvent) => void;
+    onClose?: () => void;
     selected?: string;
 }
 
