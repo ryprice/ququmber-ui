@@ -15,29 +15,24 @@ export class UIOverlayPortal extends React.Component<React.Props<UIOverlayPortal
 export class UIOverlay extends React.Component<UIOverlayProps, {}> {
   private node: HTMLElement;
 
-  componentDidMount () {
+  constructor(props: UIOverlayProps) {
+    super(props);
     this.node = document.createElement('div');
+  }
+
+  componentDidMount () {
     document.body.appendChild(this.node);
-    this.renderPortal(this.props);
   }
 
   componentWillUnmount () {
-    ReactDOM.unmountComponentAtNode(this.node);
     document.body.removeChild(this.node);
   }
 
-  componentWillReceiveProps(newProps: UIOverlayProps) {
-    this.renderPortal(newProps);
-  }
-
-  renderPortal(props: UIOverlayProps) {
-    ReactDOM.unstable_renderSubtreeIntoContainer(this, (
-      <UIOverlayPortal {...props} />
-    ), this.node);
-  }
-
-  public render(): JSX.Element {
-    return null;
+  render() {
+    return ReactDOM.createPortal(
+      <UIOverlayPortal {...this.props} />,
+      this.node
+    );
   }
 }
 
