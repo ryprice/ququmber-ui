@@ -5,7 +5,8 @@ const {useCallback, useEffect, useMemo, useRef} = React;
 
 const useOnOutsideClick = (
   refs: React.MutableRefObject<any>[],
-  onOutsideClick: () => void
+  onOutsideClick: () => void,
+  enabled: boolean = true,
 ) => {
   const onOutsideClickRef = useRef(onOutsideClick);
   onOutsideClickRef.current = onOutsideClick;
@@ -27,11 +28,13 @@ const useOnOutsideClick = (
   }, []);
 
   useEffect(() => {
-    window.addEventListener('mousedown', windowClickHandler, false);
-    return () => {
-      window.removeEventListener('mousedown', windowClickHandler);
-    };
-  });
+    if (enabled) {
+      window.addEventListener('mousedown', windowClickHandler, false);
+      return () => {
+        window.removeEventListener('mousedown', windowClickHandler);
+      };
+    }
+  }, [enabled]);
 };
 
 export default useOnOutsideClick;

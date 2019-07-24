@@ -12,21 +12,24 @@ export class UITooltip extends React.Component<UITooltipProps, {}> {
 
   public render() {
     const {children, text, width, open, attachment, targetAttachment} = this.props;
+
+    if (!open) {
+      return children;
+    }
+
     return <TetherComponent
       attachment={attachment}
       targetAttachment={targetAttachment}
       className="tether-theme-arrows-dark"
     >
       {children}
-      {open && (
-        <div
-          className="UITooltip tether-content"
-          style={{width: `${width}px`}}>
-          <div className="UITooltipInner">
-            {text}
-          </div>
+      <div
+        className="UITooltip tether-content"
+        style={{width: `${width}px`}}>
+        <div className="UITooltipInner">
+          {text}
         </div>
-      )}
+      </div>
     </TetherComponent>;
   }
 }

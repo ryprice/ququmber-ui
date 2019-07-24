@@ -10,7 +10,7 @@ const {useRef} = React;
 const UIPopup = (props: UIPopupProps) => {
   const {open, children, onClose, className, targetAttachment, attachment} = props;
   const contentRef = useRef();
-  useOnOutsideClick([contentRef], onClose);
+  useOnOutsideClick([contentRef], onClose, open);
   return open
   ? <TetherComponent
       attachment={attachment}
