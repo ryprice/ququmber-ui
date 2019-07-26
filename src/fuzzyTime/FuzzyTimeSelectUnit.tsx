@@ -3,7 +3,6 @@ import * as React from 'react';
 
 import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange, Task} from 'ququmber-api';
 
-import FuzzyTimeDnd from 'ququmber-ui/fuzzyTime/FuzzyTimeDnd';
 import {shallowDifference} from 'ququmber-ui/utils/reactUtils';
 
 export const unitClassName = (props: FuzzyTimeSelectUnitProps) => {
@@ -128,20 +127,14 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
     }
 
     return (
-      <FuzzyTimeDnd
-        key={time.toString()}
-        time={time}
-        onTasksDropped={onTasksDropped}
+      <div
+        className={className}
+        onClick={this.onClick}
+        onMouseOver={this.onMouseOver}
+        onMouseOut={this.onMouseOut}
       >
-        <div
-          className={className}
-          onClick={this.onClick}
-          onMouseOver={this.onMouseOver}
-          onMouseOut={this.onMouseOut}
-        >
-          {children || name}
-        </div>
-      </FuzzyTimeDnd>
+        {children || name}
+      </div>
     );
   }
 }

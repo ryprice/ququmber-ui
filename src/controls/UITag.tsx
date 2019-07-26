@@ -4,7 +4,7 @@ import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 
 export class UITag extends React.Component<UITagProps, {}> {
   render() {
-    const {color, name, onRemoved, canRemove} = this.props;
+    const {color, name, onRemoved, canRemove, onClick} = this.props;
     const style = color ? {background: `#${color}`} : {};
 
     const removeButton = (
@@ -16,8 +16,15 @@ export class UITag extends React.Component<UITagProps, {}> {
       </button>
     );
 
+    const className = (
+      'UITag ' +
+      (!color || isDarkColor(color) ? 'lightText ' : 'darkText ') +
+      (canRemove ? 'canRemove ' : '')
+    );
+
     return <div
-      className={`UITag ${!color || isDarkColor(color) ? 'lightText' : 'darkText'} ${canRemove ? 'canRemove' : ''}`}
+      onClick={onClick}
+      className={className}
       style={style}>
       {name}
       {canRemove !== false && removeButton}
@@ -30,6 +37,7 @@ export interface UITagProps extends React.Props<UITag> {
   onRemoved?: () => void;
   color?: string;
   canRemove?: boolean;
+  onClick?: () => void;
 }
 
 export default UITag;
