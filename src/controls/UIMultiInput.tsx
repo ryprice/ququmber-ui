@@ -136,24 +136,30 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       .sort(sortByCanRemoveComparator);
     const filteredUnselectedOptions = this.getFilteredUnselectedOptions();
 
+    const input = <div
+      className={`UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''}`}>
+      {map(selectedOptions, (option: Option) =>
+        renderItem ? renderItem(option, true) : option.name)
+      }
+      <input
+        type="text"
+        className="UIInput"
+        placeholder={placeholder}
+        onClick={(e: any) => this.setState({dropdownOpen: true})}
+        onFocus={(e: any) => this.setState({dropdownOpen: true})}
+        onKeyUp={(e: any) => this.onKeyUp(e)}
+        ref={(el: any) => this.receiveTagsInputEl(el)}
+      />
+    </div>;
+
+    if (!dropdownOpen) {
+      return input;
+    }
+
     return <TetherComponent
       attachment={attachment || 'top left'}
       targetAttachment={targetAttachment || 'bottom left'}>
-      <div
-        className={`UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''}`}>
-        {map(selectedOptions, (option: Option) =>
-          renderItem ? renderItem(option, true) : option.name)
-        }
-        <input
-          type="text"
-          className="UIInput"
-          placeholder={placeholder}
-          onClick={(e: any) => this.setState({dropdownOpen: true})}
-          onFocus={(e: any) => this.setState({dropdownOpen: true})}
-          onKeyUp={(e: any) => this.onKeyUp(e)}
-          ref={(el: any) => this.receiveTagsInputEl(el)}
-        />
-      </div>
+      {input}
       <UISelectDropdown
         className="UIMultiInput"
         options={filteredUnselectedOptions.slice(0, 10).map(option => ({
