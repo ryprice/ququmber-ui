@@ -24,3 +24,24 @@
     display: flex
     align-items: center
     justify-content: center
+
+.UIOverlayTransition-appear
+  opacity: 0
+
+.UIOverlayTransition-appear.UIOverlayTransition-appear-active
+  opacity: 1
+  transition: .2s
+
+.UIOverlayTransition-enter
+  opacity: 0
+
+.UIOverlayTransition-enter.UIOverlayTransition-enter-active
+  opacity: 1
+  transition: .2s
+
+.UIOverlayTransition-leave
+  opacity: 1
+
+.UIOverlayTransition-leave.UIOverlayTransition-leave-active
+  opacity: 0
+  transition: .2s

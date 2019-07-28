@@ -80,7 +80,6 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
   }
 
   private updateDropdown() {
-    this.forceUpdate();
   }
 
   private windowClickHandler(e: MouseEvent) {

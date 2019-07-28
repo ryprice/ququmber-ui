@@ -1,30 +1,37 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-export class UIOverlayPortal extends React.Component<React.Props<UIOverlayPortal>, {}> {
-  render() {
-    return <div className="UIOverlay">
+import UIMountTransition from 'ququmber-ui/utils/UIMountTransition';
+
+const UIOverlayPortal = (props: UIOverlayProps) => {
+  return <UIMountTransition className="UIOverlayTransition" mounted={props.open}>
+    <div className="UIOverlay">
       <div className="content">
-        {this.props.children}
+        {props.children}
       </div>
       <div className="background" />
-    </div>;
-  }
-}
+    </div>
+  </UIMountTransition>;
+};
 
 export class UIOverlay extends React.Component<UIOverlayProps, {}> {
   private node: HTMLElement;
 
+  static defaultProps = {
+    open: true,
+  };
+
   constructor(props: UIOverlayProps) {
+    console.log(props);
     super(props);
     this.node = document.createElement('div');
   }
 
-  componentDidMount () {
+  componentDidMount() {
     document.body.appendChild(this.node);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     document.body.removeChild(this.node);
   }
 
@@ -36,8 +43,9 @@ export class UIOverlay extends React.Component<UIOverlayProps, {}> {
   }
 }
 
-export interface UIOverlayProps extends React.Props<UIOverlay> {
-
+export interface UIOverlayProps {
+  open?: boolean;
+  children: JSX.Element | JSX.Element[];
 }
 
 export default UIOverlay;

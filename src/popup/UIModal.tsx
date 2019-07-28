@@ -1,25 +1,33 @@
 import * as React from 'react';
 
-export class UIModal extends React.Component<UIModalProps, {}> {
-  render() {
-    const {onClose, className} = this.props;
+import UIMountTransition from 'ququmber-ui/utils/UIMountTransition';
 
-    const closeButton = <button
-      className="closeButton"
-      onClick={onClose}>
-      &times;
-    </button>;
+const UIModal = (props: UIModalProps) => {
+  const {onClose, className, children, open} = props;
 
-    return <div className={`UIModal ${className || ''}`}>
+  const closeButton = <button
+    className="closeButton"
+    onClick={onClose}>
+    &times;
+  </button>;
+
+  return <UIMountTransition mounted={open} className="UIModalTransition">
+    <div className={`UIModal ${className || ''}`}>
       {onClose ? closeButton : null}
-      {this.props.children}
-    </div>;
-  }
-}
+      {children}
+    </div>
+  </UIMountTransition>;
+};
 
-export interface UIModalProps extends React.Props<UIModal> {
+export interface UIModalProps {
   onClose?: () => void;
   className?: string;
+  children?: JSX.Element | JSX.Element[];
+  open?: boolean;
 }
+
+UIModal.defaultProps = {
+  open: true,
+};
 
 export default UIModal;

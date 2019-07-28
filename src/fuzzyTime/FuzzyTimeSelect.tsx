@@ -80,12 +80,10 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
 
   unitOnMouseOver = (t: FuzzyTime) => {
     this.setState({hoverTime: t});
-    this.forceUpdate();
   }
 
   unitOnMouseOut = (t: FuzzyTime) => {
     this.setState({hoverTime: null});
-    this.forceUpdate();
   }
 
   unitOnClick = (t: FuzzyTime) => {

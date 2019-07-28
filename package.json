@@ -20,6 +20,7 @@
     "stylelint-webpack-plugin": "^0.10.5",
     "tslint": "^5.16.0",
     "tslint-react": "^3.6.0",
+    "tslint-react-hooks": "^2.2.1",
     "tslint-webpack-plugin": "^1.2.2",
     "typescript": "^3.4.5",
     "webpack": "^3.12.0"
@@ -44,6 +45,7 @@
     "@types/lodash": "^4.14.123",
     "@types/prop-types": "^15.7.1",
     "@types/react": "^16.8.6",
+    "@types/react-addons-css-transition-group": "^15.0.5",
     "@types/react-dom": "^16.8.4",
     "@types/react-virtualized": "^9.21.1",
     "@types/tether": "^1.4.4",
@@ -51,6 +53,7 @@
     "lodash": "^4.17.11",
     "ququmber-api": "file:../ququmber-api-js",
     "react": "^16.8.6",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dnd": "^9.3.2",
     "react-dnd-html5-backend": "^9.3.2",
     "react-dom": "^16.8.6",
