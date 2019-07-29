@@ -5,7 +5,7 @@ const {useEffect, useState} = React;
 
 const UIMountTransition = (props: UIMountTransitionProps) => {
   const {children, className} = props;
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(props.mounted);
 
   useEffect(() => setMounted(props.mounted), [props.mounted]);
 

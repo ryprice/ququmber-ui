@@ -22,7 +22,6 @@ export class UIOverlay extends React.Component<UIOverlayProps, {}> {
   };
 
   constructor(props: UIOverlayProps) {
-    console.log(props);
     super(props);
     this.node = document.createElement('div');
   }
