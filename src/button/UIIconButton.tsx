@@ -10,7 +10,8 @@ const UIIconButton = (props: UIIconButtonProps) => {
   const {className, onClick, disabled, icon, tooltip} = props;
   const [showTooltip, setShowTooltip] = useState(false);
 
-  const [onMouseOver, onMouseOut] = useDelayedMouseHover(setShowTooltip, 300, 0);
+  const setShowTooltipIfEnabled = (v: boolean) => tooltip && setShowTooltip(v);
+  const [onMouseOver, onMouseOut] = useDelayedMouseHover(setShowTooltipIfEnabled, 300, 0);
   const buttonWithMaybeTooltipProps = tooltip ? {onMouseOver, onMouseOut} : {};
 
   const button = <button
@@ -54,4 +55,8 @@ export interface UIIconButtonProps {
   tooltip?: string;
 }
 
-export default UIIconButton;
+export default class UIIconButtonClass extends React.Component<UIIconButtonProps> {
+  render() {
+    return <UIIconButton {...this.props} />;
+  }
+}

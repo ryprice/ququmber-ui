@@ -38,29 +38,30 @@
         float: left
         overflow: auto
 
-    .customArea
-      padding: 1px
-      display: flex
-      width: 100%
+  .buttons
+    font-size: .8em
+    display: flex
+
+    .UIButton
+      margin: 10px
+      flex-grow: 1
+
+  .customArea
+    padding: 1px
+    display: flex
+    margin: 10px
+    box-sizing: border-box
+
+    input
+      flex-grow: 1
+      flex-shrink: 1
+      min-width: 0
+      border: 1px solid transparent
+      color: $color-basefont
+      font-family: monospace
+      padding: 0 .5em
+      letter-spacing: .1em
+      font-size: 18px
+      border: 1px solid $color-white
       box-sizing: border-box
-
-      button
-        flex-grow: 0
-        flex-shrink: 0
-        width: 72px
-        border: 1px solid $color-white
-        box-sizing: border-box
-
-      input
-        flex-grow: 1
-        flex-shrink: 1
-        min-width: 0
-        border: 1px solid transparent
-        background: transparent
-        color: $color-basefont
-        font-family: monospace
-        padding: 0 .5em
-        letter-spacing: .1em
-        font-size: 18px
-        border: 1px solid $color-white
-        box-sizing: border-box
+      margin-left: 10px

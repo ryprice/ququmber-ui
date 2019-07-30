@@ -2,8 +2,10 @@ import {includes} from 'lodash';
 import * as React from 'react';
 import TetherComponent from 'react-tether';
 
+import UIButton from 'ququmber-ui/button/UIButton';
 import Colors from 'ququmber-ui/Colors';
 import UIDropdown from 'ququmber-ui/popup/UIDropdown';
+import Stylings from 'ququmber-ui/Stylings';
 import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 
 const colorOptions = [
@@ -16,14 +18,24 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
 
   private inputRef: HTMLInputElement;
 
-  readonly state: UIColorSelectorState = {
-    open: false,
-    custom: null
-  };
+  constructor(props: UIColorSelectorProps) {
+    super(props);
+    this.state = {
+      custom: props.value.toUpperCase(),
+    };
+  }
+
+  componentWillReceiveProps(nextProps: UIColorSelectorProps) {
+    if (this.props.value !== nextProps.value) {
+      this.setState({
+        custom: nextProps.value.toUpperCase(),
+      });
+    }
+  }
 
   private onColorChanged(value: string) {
-    const {onColorChanged} = this.props;
-    this.setState({open: false});
+    const {onColorChanged, onClose} = this.props;
+    onClose();
     onColorChanged(value);
   }
 
@@ -36,8 +48,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
       .split('')
       .filter((char: string) => includes(validHexChars, char.toUpperCase()))
       .map((char: string) => char.toUpperCase())
-      .join('')
-      .substr(0, 6);
+      .join('');
 
     this.setState({custom: filteredValue});
     // sets custom back to null
@@ -58,37 +69,22 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
   }
 
   public render(): JSX.Element {
-    const {value} = this.props;
+    const {value, children, open, onClose} = this.props;
+    const {custom} = this.state;
 
     return <TetherComponent
       className="UIColorSelector"
       attachment="top left"
-      targetAttachment="bottom left"
-    >
-      <button
-        className="UIColorSelector UIColorSelectorButton"
-        onClick={()=>this.setState({open: !this.state.open})}>
-        <div
-          className="colorSample"
-          style={{background: value ? `#${value}` : 'transparent'}}>
-          <i
-            className="fa fa-palette"
-            style={{color: value
-              ? (isDarkColor(`#${value}`) ? Colors.WHITE : Colors.BASEFONT)
-              : Colors.BASEFONT
-            }}
-          />
-        </div>
-      </button>
+      targetAttachment="bottom left">
+      {children}
       <UIDropdown
-        open={this.state.open}
-        onClose={()=>this.setState({open: false})}
-      >
+        open={open}
+        onClose={onClose}>
         <ol>{colorOptions.map((color) => this.renderOption(color))}</ol>
         <div className="customArea">
           <div
             className="colorSample"
-            style={{background: `#${this.state.custom}`}}
+            style={{background: `#${custom}`}}
           />
           <input
             type="text"
@@ -97,10 +93,18 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
             onKeyUp={this.onCustomColorChanged}
             placeholder="FFFFFF"
           />
-          <button
+        </div>
+        <div className="buttons">
+          <UIButton
+            styling={Stylings.OUTLINE}
+            onClick={onClose}>
+            Cancel
+          </UIButton>
+          <UIButton
+            styling={Stylings.GO}
             onClick={() => this.onColorChanged(this.inputRef.value)}>
-            Custom
-          </button>
+            Done
+          </UIButton>
         </div>
       </UIDropdown>
     </TetherComponent>;
@@ -108,12 +112,14 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
 }
 
 export interface UIColorSelectorProps extends React.Props<UIColorSelector> {
-  value?: string;
+  value: string;
+  open: boolean;
   onColorChanged: (value?: string) => void;
+  children: JSX.Element;
+  onClose: () => void;
 }
 
 export interface UIColorSelectorState {
-  open: boolean;
   custom: string;
 }
 

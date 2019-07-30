@@ -8,7 +8,6 @@ const useDelayedMouseHover = (callback: (val: boolean) => any, delayInMs: number
   const outTimerRef = useRef<number>();
 
   const onMouseOver = useCallback(() => {
-    console.log('over');
     if (!overTimerRef.current) {
       overTimerRef.current = delay(() => callback(true), delayInMs);
     }
@@ -19,7 +18,6 @@ const useDelayedMouseHover = (callback: (val: boolean) => any, delayInMs: number
   }, [delayInMs]);
 
   const onMouseOut = useCallback(() => {
-    console.log('out');
     if (!outTimerRef.current) {
       outTimerRef.current = delay(() => callback(false), delayOutMs);
     }
