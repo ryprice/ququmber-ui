@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ReactDnd from 'react-dnd';
+import {DndProvider} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import * as ReactDOM from 'react-dom';
 
@@ -9,11 +9,12 @@ import UIIconButton from 'ququmber-ui/button/UIIconButton';
 import Colors from 'ququmber-ui/Colors';
 import UIBadge from 'ququmber-ui/controls/UIBadge';
 import UIColorSelector from 'ququmber-ui/controls/UIColorSelector';
-import UIEditableText from 'ququmber-ui/controls/UIEditableText';
 import UIIndeterminateCheckbox from 'ququmber-ui/controls/UIIndeterminateCheckbox';
-import UIMultiInput from 'ququmber-ui/controls/UIMultiInput';
 import UITag from 'ququmber-ui/controls/UITag';
-import UITextInput from 'ququmber-ui/controls/UITextInput';
+import UICopyInput from 'ququmber-ui/input/UICopyInput';
+import UIEditableText from 'ququmber-ui/input/UIEditableText';
+import UIMultiInput from 'ququmber-ui/input/UIMultiInput';
+import UITextInput from 'ququmber-ui/input/UITextInput';
 
 import FuzzyTimeButton from 'ququmber-ui/fuzzyTime/FuzzyTimeButton';
 
@@ -25,6 +26,7 @@ import FormSection from './FormSection';
 import TypographySection from './TypographySection';
 
 import UIButtonSample from './button/UIButtonSample';
+import UIColorSelectorSample from './controls/UIColorSelectorSample';
 import UITagSample from './controls/UITagSample';
 import UIToastNotificationSample from './controls/UIToastNotificationSample';
 import UIToggleSample from './controls/UIToggleSample';
@@ -59,15 +61,27 @@ class RootComponent extends React.Component<{}, RootComponentState> {
   render() {
     const sections = [
       'Controls',
-      ['ququmber-ui/controls/UIColorSelector', <UIColorSelector
-        onColorChanged={() => {}}
-        value={null}
+      ['ququmber-ui/controls/UIColorSelector', <UIColorSelectorSample />],
+      ['ququmber-ui/controls/UITag', <UITagSample />],
+      ['ququmber-ui/controls/UIIndeterminateCheckbox', <UIIndeterminateCheckbox
+        onChange={() => {}}
       />],
-      ['ququmber-ui/controls/UIEditableText', <UIEditableText
+      ['ququmber-ui/controls/UIToggle', <UIToggleSample />],
+      ['ququmber-ui/controls/UIToastNotification', <UIToastNotificationSample />],
+      ['ququmber-ui/controls/UIBadge', <div>
+        <UIBadge color={Colors.GO} text="Activated" />
+        &nbsp;&nbsp;
+        <UIBadge color={Colors.DISABLED} text="Disabled" />
+      </div>],
+
+      'Input',
+      ['ququmber-ui/input/UICopyInput', <UICopyInput
+        value="http://app.ququmber.com/t/1839483?s=7d92kd0mc283mns0yu44j"
+      />],
+      ['ququmber-ui/input/UIEditableText', <UIEditableText
         placeholder="Enter your text here"
       />],
-      ['ququmber-ui/controls/UITag', <UITagSample />],
-      ['ququmber-ui/controls/UIMultiInput', <UIMultiInput
+      ['ququmber-ui/input/UIMultiInput', <UIMultiInput
         options={[
           {value: "1", name: "One"},
           {value: "2", name: "Two"},
@@ -78,19 +92,9 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         onOptionAdded={() => {}}
         onOptionRemoved={() => {}}
       />],
-      ['ququmber-ui/controls/UIIndeterminateCheckbox', <UIIndeterminateCheckbox
-        onChange={() => {}}
-      />],
-      ['ququmber-ui/controls/UIToggle', <UIToggleSample />],
-      ['ququmber-ui/controls/UITextInput', <UITextInput
+      ['ququmber-ui/input/UITextInput', <UITextInput
         placeholder="Your name here"
       />],
-      ['ququmber-ui/controls/UIToastNotification', <UIToastNotificationSample />],
-      ['ququmber-ui/controls/UIBadge', <div>
-        <UIBadge color={Colors.GO} text="Activated" />
-        &nbsp;&nbsp;
-        <UIBadge color={Colors.DISABLED} text="Disabled" />
-      </div>],
 
       'Popup',
       ['ququmber-ui/popup/UIMessageModal', <UIMessageModalSample />],
@@ -160,5 +164,8 @@ interface RootComponentState {
 
 const el = document.createElement('div');
 document.querySelector('body').appendChild(el);
-const DndRootComponent = ReactDnd.DragDropContext(HTML5Backend)(RootComponent);
-ReactDOM.render(<DndRootComponent />, el);
+ReactDOM.render(
+  <DndProvider backend={HTML5Backend}>
+    <RootComponent />
+  </DndProvider>
+, el);

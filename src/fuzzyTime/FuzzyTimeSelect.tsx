@@ -11,13 +11,13 @@ import {
 } from 'ququmber-api';
 import FuzzyTime, {buildFuzzyTime} from 'ququmber-api/FuzzyTime';
 
-import UITextInput from 'ququmber-ui/controls/UITextInput';
 import FuzzyTimeMonthUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeMonthUnit';
 import {
   FuzzyTimeSelectUnitProps,
   unitClassName
 } from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
 import FuzzyTimeYearUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeYearUnit';
+import UITextInput from 'ququmber-ui/input/UITextInput';
 import {weeksInMonth} from 'ququmber-ui/utils/dateUtils';
 
 export enum ViewMode {

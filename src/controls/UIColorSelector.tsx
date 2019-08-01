@@ -21,7 +21,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
   constructor(props: UIColorSelectorProps) {
     super(props);
     this.state = {
-      custom: props.value.toUpperCase(),
+      custom: props.value ? props.value.toUpperCase() : null,
     };
   }
 
@@ -112,7 +112,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
 }
 
 export interface UIColorSelectorProps extends React.Props<UIColorSelector> {
-  value: string;
+  value?: string;
   open: boolean;
   onColorChanged: (value?: string) => void;
   children: JSX.Element;

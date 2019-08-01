@@ -1,8 +1,8 @@
 import {map, pick} from 'lodash';
 import * as React from 'react';
 
-import UIMultiInput from 'ququmber-ui/controls/UIMultiInput';
-import UITextInput from 'ququmber-ui/controls/UITextInput';
+import UIMultiInput from 'ququmber-ui/input/UIMultiInput';
+import UITextInput from 'ququmber-ui/input/UITextInput';
 
 const FormSection = () => {
   const options = [
