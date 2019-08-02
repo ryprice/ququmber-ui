@@ -4,15 +4,19 @@ import TetherComponent from 'react-tether';
 import UIMountTransition from 'ququmber-ui/utils/UIMountTransition';
 import useDelayedMouseHover from 'ququmber-ui/utils/useDelayedMouseHover';
 
-const {useState} = React;
+const {useCallback, useState} = React;
 
 const UIIconButton = (props: UIIconButtonProps) => {
   const {className, onClick, disabled, icon, tooltip} = props;
   const [showTooltip, setShowTooltip] = useState(false);
 
-  const setShowTooltipIfEnabled = (v: boolean) => tooltip && setShowTooltip(v);
+  const setShowTooltipIfEnabled = useCallback((v: boolean) => tooltip && setShowTooltip(v), []);
   const [onMouseOver, onMouseOut] = useDelayedMouseHover(setShowTooltipIfEnabled, 300, 0);
   const buttonWithMaybeTooltipProps = tooltip ? {onMouseOver, onMouseOut} : {};
+  const onClickWithHideTooltip = useCallback(() => {
+    setShowTooltip(false);
+    onClick();
+  }, [onClick]);
 
   const button = <button
     className={`UIIconButton ${className}`}
