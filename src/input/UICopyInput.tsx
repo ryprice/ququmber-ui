@@ -5,7 +5,7 @@ import UIButton from 'ququmber-ui/button/UIButton';
 const {useCallback, useRef} = React;
 
 const UICopyInput = (props: UICopyInputProps) => {
-  const {value, className} = props;
+  const {value, className, onCopy} = props;
   const inputRef = useRef<HTMLInputElement>();
 
   const onCopyClick = useCallback(() => {
@@ -15,7 +15,10 @@ const UICopyInput = (props: UICopyInputProps) => {
       inputEl.setSelectionRange(0, value ? value.length : 0);
       document.execCommand('copy');
     }
-  }, [value]);
+    if (onCopy) {
+      onCopy();
+    }
+  }, [value, onCopy]);
 
   return <div className="UICopyInput">
     <input
@@ -36,6 +39,7 @@ const UICopyInput = (props: UICopyInputProps) => {
 export interface UICopyInputProps {
   value?: string;
   className?: string;
+  onCopy?: () => void;
 }
 
 export default React.memo(UICopyInput);
