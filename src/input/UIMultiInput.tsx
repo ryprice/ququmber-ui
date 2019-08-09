@@ -188,7 +188,7 @@ export interface UIMultiInputProps {
   className?: string;
   placeholder?: string;
   onQueryChanged?: (query: string) => void;
-  renderItem?: (option: Option, selected: boolean) => JSX.Element;
+  renderItem?: (option: Option, selected: boolean) => React.ReactChild;
   attachment?: string;
   targetAttachment?: string;
 }

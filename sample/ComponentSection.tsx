@@ -11,7 +11,7 @@ const ComponentSection = (props: ComponentSectionProps) => {
 
 interface ComponentSectionProps {
   name: string;
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 }
 
 export default ComponentSection;

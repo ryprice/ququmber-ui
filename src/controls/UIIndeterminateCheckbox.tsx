@@ -39,7 +39,7 @@ export class UIIndeterminateCheckbox extends
     );
   }
 
-  public render(): JSX.Element {
+  public render() {
     const {value, className} = this.props;
 
     let completedChar = <span className="octicon octicon-dash" />;

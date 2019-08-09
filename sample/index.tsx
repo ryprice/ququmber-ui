@@ -150,7 +150,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         <div style={{flexGrow: 1}}>
           {curSection ? <ComponentSection
             name={curSection[0] as string}>
-            {curSection[1] as JSX.Element}
+            {curSection[1] as React.ReactChild}
           </ComponentSection> : null}
         </div>
       </div>

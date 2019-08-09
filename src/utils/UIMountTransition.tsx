@@ -22,7 +22,7 @@ const UIMountTransition = (props: UIMountTransitionProps) => {
 export interface UIMountTransitionProps {
   mounted: boolean;
   className: string;
-  children?: JSX.Element | JSX.Element[];
+  children?: React.ReactNode;
 }
 
 export default UIMountTransition;

@@ -44,7 +44,7 @@ export class UIOverlay extends React.Component<UIOverlayProps, {}> {
 
 export interface UIOverlayProps {
   open?: boolean;
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 }
 
 export default UIOverlay;

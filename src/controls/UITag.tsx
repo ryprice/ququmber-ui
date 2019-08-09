@@ -41,7 +41,7 @@ const UITag = (props: UITagProps) => {
 };
 
 export interface UITagProps {
-  name: string | JSX.Element;
+  name: React.ReactChild;
   onRemoved?: () => void;
   color?: string;
   canRemove?: boolean;

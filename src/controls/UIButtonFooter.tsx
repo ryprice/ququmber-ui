@@ -13,7 +13,7 @@ export class UIButtonFooter extends React.Component<UIButtonFooterProps, {}> {
 }
 
 export interface UIButtonFooterProps extends React.Props<UIButtonFooter> {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 }
 
 export default UIButtonFooter;

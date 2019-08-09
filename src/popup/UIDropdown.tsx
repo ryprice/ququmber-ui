@@ -21,7 +21,7 @@ UIDropdown.defaultProps = {
 };
 
 export interface UIDropdownProps {
-  children?: JSX.Element | JSX.Element[];
+  children?: React.ReactNode;
   open?: boolean;
   onClose?: () => void;
   className?: string;

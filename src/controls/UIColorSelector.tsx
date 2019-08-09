@@ -68,7 +68,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
     );
   }
 
-  public render(): JSX.Element {
+  public render() {
     const {value, children, open, onClose} = this.props;
     const {custom} = this.state;
 
@@ -115,7 +115,7 @@ export interface UIColorSelectorProps extends React.Props<UIColorSelector> {
   value?: string;
   open: boolean;
   onColorChanged: (value?: string) => void;
-  children: JSX.Element;
+  children: React.ReactNode;
   onClose: () => void;
 }
 

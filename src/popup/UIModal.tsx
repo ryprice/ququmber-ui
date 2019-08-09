@@ -22,7 +22,7 @@ const UIModal = (props: UIModalProps) => {
 export interface UIModalProps {
   onClose?: () => void;
   className?: string;
-  children?: JSX.Element | JSX.Element[];
+  children?: React.ReactNode;
   open?: boolean;
 }
 

@@ -34,7 +34,7 @@ export class UIMessageModal extends React.Component<UIMessageModalProps, {}> {
 export interface UIMessageModalProps extends React.Props<UIMessageModal> {
   level?: number;
   title: string;
-  message: JSX.Element | JSX.Element[] | string;
+  message: React.ReactNode;
   onCancel: () => void;
   onConfirm: () => void;
   className?: string;

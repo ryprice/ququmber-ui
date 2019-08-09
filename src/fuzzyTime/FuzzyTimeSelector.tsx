@@ -3,7 +3,7 @@ import * as React from 'react';
 import {FuzzyTimeRange} from 'ququmber-api';
 
 export class FuzzyTimeSelector extends React.Component<FuzzyTimeSelectorProps, {}> {
-  render(): JSX.Element {
+  render(): React.ReactNode {
     return null;
   }
 }

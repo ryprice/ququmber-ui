@@ -129,7 +129,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     };
   }
 
-  renderRow = (info: {index: number, isScrolling: boolean, style: Object, key: string}): JSX.Element => {
+  renderRow = (info: {index: number, isScrolling: boolean, style: Object, key: string}): React.ReactNode => {
     let time = this.state.focalPoint;
     let years = false;
     switch(this.state.viewMode) {
