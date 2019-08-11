@@ -9,7 +9,7 @@ import UITag from 'ququmber-ui/controls/UITag';
 export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInputState> {
 
   private tagsInput: HTMLInputElement;
-  private updateDropdownDebounced: () => void;
+  private readonly updateDropdownDebounced: () => void;
 
   readonly state: UIMultiInputState = {
     dropdownOpen: false,
@@ -101,7 +101,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
     window.removeEventListener('click', this.boundWindowClickHandler);
   }
 
-  private getFilteredUnselectedOptions = () => {
+  private readonly getFilteredUnselectedOptions = () => {
     const {options, selected} = this.props;
     const query = this.tagsInput ? this.tagsInput.value.toLowerCase() : '';
     return filter(options, (option) => {

@@ -51,7 +51,7 @@ const initialState = (props: FuzzyTimeSelectProps): FuzzyTimeSelectState => {
 
 export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, FuzzyTimeSelectState> {
 
-  private scrollContainerEl: Element;
+  private readonly scrollContainerEl: Element;
 
   private rootRef: HTMLDivElement;
 

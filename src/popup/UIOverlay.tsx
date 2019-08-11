@@ -15,7 +15,8 @@ const UIOverlayPortal = (props: UIOverlayProps) => {
 };
 
 export class UIOverlay extends React.Component<UIOverlayProps, {}> {
-  private node: HTMLElement;
+
+  private readonly node: HTMLElement;
 
   static defaultProps = {
     open: true,
