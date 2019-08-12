@@ -1,14 +1,27 @@
 import * as React from 'react';
 import {findDOMNode} from 'react-dom';
 
+import Colors from 'ququmber-ui/Colors';
 import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 
 const {useRef} = React;
 
 const UITag = (props: UITagProps) => {
-  const {color, name, onRemoved, canRemove} = props;
+  const {name, onRemoved, canRemove, outline} = props;
+  const color = props.color != null ? props.color : Colors.QUQUMBER;
   const removeButtonRef = useRef();
-  const style = color ? {background: `#${color}`} : {};
+
+  const filledStyle = {
+    background: `#${color}`,
+    border: `0`,
+    color: isDarkColor(color) ? Colors.WHITE : Colors.BASEFONT,
+  };
+  const outlinedStyle = {
+    background: 'transparent',
+    border: `1px solid #${color}`,
+    color: `#${color}`,
+  };
+  const style = outline === true ? outlinedStyle : filledStyle;
 
   const removeButton = (
     <button
@@ -25,11 +38,7 @@ const UITag = (props: UITagProps) => {
     }
   };
 
-  const className = (
-    'UITag ' +
-    (!color || isDarkColor(color) ? 'lightText ' : 'darkText ') +
-    (canRemove ? 'canRemove ' : '')
-  );
+  const className = 'UITag ' + (canRemove ? 'canRemove ' : '');
 
   return <div
     onClick={onClick}
@@ -46,6 +55,7 @@ export interface UITagProps {
   color?: string;
   canRemove?: boolean;
   onClick?: () => void;
+  outline?: boolean;
 }
 
 export default UITag;
