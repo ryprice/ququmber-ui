@@ -7,13 +7,15 @@ import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 const ColorsSubsection = (props: ColorsSubsectionProps) =>
   <div className="ColorSubsection">
     <p className="header">{props.name}</p>
-    {map(props.colors, (hex, name) => {
-      const isDark = isDarkColor(hex.substring(1, hex.length));
-      return <div className="tile" style={{background: hex}}>
-        <p className={`name ${isDark ? '' : 'light'}`}>{name}</p>
-        <p className={`hex ${isDark ? '' : 'light'}`}>{hex}</p>
-      </div>;
-    })}
+    <div className="swatches">
+      {map(props.colors, (hex, name) => {
+        const isDark = isDarkColor(hex.substring(1, hex.length));
+        return <div className="swatch" style={{background: hex}}>
+          <p className={`name ${isDark ? '' : 'light'}`}>{name}</p>
+          <p className={`hex ${isDark ? '' : 'light'}`}>{hex}</p>
+        </div>;
+      })}
+    </div>
   </div>;
 
 interface ColorsSubsectionProps {

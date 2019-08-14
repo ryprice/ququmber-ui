@@ -83,12 +83,12 @@ class RootComponent extends React.Component<{}, RootComponentState> {
       />],
       ['ququmber-ui/input/UIMultiInput', <UIMultiInput
         options={[
-          {value: "1", name: "One"},
-          {value: "2", name: "Two"},
-          {value: "3", name: "Three"},
-          {value: "3", name: "Four"}
+          {value: '1', name: 'One'},
+          {value: '2', name: 'Two'},
+          {value: '3', name: 'Three'},
+          {value: '3', name: 'Four'}
         ]}
-        selected={["1", "2"]}
+        selected={['1', '2']}
         onOptionAdded={() => {}}
         onOptionRemoved={() => {}}
       />],
@@ -122,7 +122,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         href="http://google.com"
         onClick={() => alert('clicked list')}
         onDropTasks={(taskIds: number[]) => alert('tasks dropped')}>
-        {"List of tasks"}
+        {'List of tasks'}
       </TaskFilterLink>]
     ];
 

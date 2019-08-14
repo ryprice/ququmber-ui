@@ -18,6 +18,21 @@ const UITagSample = () =>
       <UITag name="Sideproject" canRemove={true} color="b72924" outline={true} />
       <UITag name="Untriaged" canRemove={true} color="238444" outline={true} />
     </div>
+    <div>
+      <h1>Sizes</h1>
+      <p style={{fontSize: '1em'}}>
+        <UITag name="Baking" canRemove={true} color="4286f4" outline={false} />
+        <UITag name="Baking" canRemove={true} color="4286f4" outline={true} />
+      </p>
+      <p style={{fontSize: '1.5em'}}>
+        <UITag name="Baking" canRemove={true} color="4286f4" outline={false} />
+        <UITag name="Baking" canRemove={true} color="4286f4" outline={true} />
+      </p>
+      <p style={{fontSize: '2em'}}>
+        <UITag name="Baking" canRemove={true} color="4286f4" outline={false} />
+        <UITag name="Baking" canRemove={true} color="4286f4" outline={true} />
+      </p>
+    </div>
   </div>;
 
 export default UITagSample;
