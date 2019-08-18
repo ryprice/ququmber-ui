@@ -17,12 +17,22 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
     opened: false
   };
 
+  static readonly defaultProps = {
+    disabled: false,
+  };
+
   public constructor(props: FuzzyTimeButtonProps, context: any) {
     super(props, context);
   }
 
   dropdownToggleClick = () => {
-    this.setState({opened: !this.state.opened});
+    if (!this.props.disabled) {
+      this.setState({opened: !this.state.opened});
+    }
+  }
+
+  closeDropdown = () => {
+    this.setState({opened: false});
   }
 
   private onTimeSelected(time: FuzzyTime) {
@@ -43,7 +53,8 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
       style,
       value,
       attachment,
-      targetAttachment
+      targetAttachment,
+      disabled,
     } = this.props;
 
     let name;
@@ -53,7 +64,7 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
       name = formatRelativeShortName(value);
     }
 
-    const computedClassName = `FuzzyTimeButton ${className ? className : ''}`;
+    const computedClassName = `UIAbstractInput FuzzyTimeButton ${className ? className : ''}`;
 
     return <TetherComponent
       attachment={attachment || 'top left'}
@@ -64,6 +75,7 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="true"
+        disabled={disabled}
         className={computedClassName}
         onClick={this.dropdownToggleClick}
         style={style}
@@ -74,7 +86,7 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
       </button>
       <UIDropdown
         open={this.state.opened}
-        onClose={this.dropdownToggleClick}
+        onClose={this.closeDropdown}
         className="FuzzyTimeButtonDropdown"
       >
         <FuzzyTimeSelect
@@ -99,6 +111,7 @@ export interface FuzzyTimeButtonProps {
   style?: object;
   attachment?: string;
   targetAttachment?: string;
+  disabled?: boolean;
 }
 
 export interface FuzzyTimeButtonState {
