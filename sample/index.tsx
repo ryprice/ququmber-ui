@@ -8,6 +8,7 @@ import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange} from 'ququmber-api';
 import UIIconButton from 'ququmber-ui/button/UIIconButton';
 import Colors from 'ququmber-ui/Colors';
 import UIBadge from 'ququmber-ui/controls/UIBadge';
+import UICheckbox from 'ququmber-ui/controls/UICheckbox';
 import UIColorSelector from 'ququmber-ui/controls/UIColorSelector';
 import UIIndeterminateCheckbox from 'ququmber-ui/controls/UIIndeterminateCheckbox';
 import UITag from 'ququmber-ui/controls/UITag';
@@ -67,6 +68,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
         onChange={() => {}}
       />],
       ['ququmber-ui/controls/UIToggle', <UIToggleSample />],
+      ['ququmber-ui/controls/UICheckbox', <UICheckbox />],
       ['ququmber-ui/controls/UIToastNotification', <UIToastNotificationSample />],
       ['ququmber-ui/controls/UIBadge', <div>
         <UIBadge color={Colors.GO} text="Activated" />

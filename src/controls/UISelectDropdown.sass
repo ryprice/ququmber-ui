@@ -4,17 +4,17 @@
   background: $color-white
   width: 100%
 
-  li
+  .item
     padding: 0.3em
     cursor: pointer
 
-  li.selected
-    background: $color-selected
+    &.selected
+      background: $color-selected
+
+      &:hover,
+      .hover
+        background: $color-selectedhover
 
     &:hover,
     .hover
-      background: $color-selectedhover
-
-  li:hover,
-  .hover
-    background: $color-offwhite
+      background: $color-offwhite

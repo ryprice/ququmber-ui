@@ -33,8 +33,9 @@ const UITag = (props: UITagProps) => {
   );
 
   const onClick = (e: React.MouseEvent) => {
-    if (!findDOMNode(removeButtonRef.current).contains(e.target as Node)) {
-      props.onClick();
+    const removeButtonEl = findDOMNode(removeButtonRef.current);
+    if (removeButtonEl && !removeButtonEl.contains(e.target as Node)) {
+      props.onClick != null && props.onClick();
     }
   };
 
