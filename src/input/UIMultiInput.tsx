@@ -49,7 +49,9 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       case 8:
         if (this.lastValue.length < 1) {
           const selected = this.props.selected;
-          this.onOptionRemoved(selected[selected.length - 1]);
+          if (selected.length > 0) {
+            this.onOptionRemoved(selected[selected.length - 1]);
+          }
         }
         break;
 
@@ -75,7 +77,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
     if (event.keyCode !== 13) {
       this.setState({dropdownOpen: true});
     }
-    onQueryChanged(this.tagsInput.value);
+    onQueryChanged && onQueryChanged(this.tagsInput.value);
     this.lastValue = this.tagsInput.value;
   }
 
@@ -123,7 +125,8 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       placeholder,
       renderItem,
       attachment,
-      targetAttachment
+      targetAttachment,
+      renderDropdownContents,
     } = this.props;
     const {hoverIndex, dropdownOpen} = this.state;
 
@@ -151,25 +154,25 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       />
     </div>;
 
-    if (!dropdownOpen) {
-      return input;
-    }
-
-    return <TetherComponent
-      attachment={attachment || 'top left'}
-      targetAttachment={targetAttachment || 'bottom left'}>
+    return <div>
       {input}
-      <UISelectDropdown
-        className="UIMultiInput"
-        options={filteredUnselectedOptions.slice(0, 10).map(option => ({
-          ...option,
-          name: renderItem ? renderItem(option, false) : name
-        }))}
-        hoverIndex={hoverIndex}
-        onSelect={(value) => this.onOptionAdded(value) }
-        open={this.state.dropdownOpen}
-      />
-    </TetherComponent>;
+      {dropdownOpen && <TetherComponent
+        attachment={attachment || 'top left'}
+        targetAttachment={targetAttachment || 'bottom left'}>
+        <div />
+        <UISelectDropdown
+          className="UIMultiInput"
+          options={filteredUnselectedOptions.slice(0, 10).map(option => ({
+            ...option,
+            name: renderItem ? renderItem(option, false) : option.name
+          }))}
+          hoverIndex={hoverIndex}
+          onSelect={(value) => this.onOptionAdded(value) }
+          open={this.state.dropdownOpen}
+          renderDropdownContents={renderDropdownContents}
+        />
+      </TetherComponent>}
+    </div>;
   }
 }
 
@@ -191,6 +194,7 @@ export interface UIMultiInputProps {
   renderItem?: (option: Option, selected: boolean) => React.ReactChild;
   attachment?: string;
   targetAttachment?: string;
+  renderDropdownContents?: (children: React.ReactChild[]) => React.ReactChild;
 }
 
 export interface UIMultiInputState {
