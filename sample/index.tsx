@@ -14,7 +14,6 @@ import UIIndeterminateCheckbox from 'ququmber-ui/controls/UIIndeterminateCheckbo
 import UITag from 'ququmber-ui/controls/UITag';
 import UICopyInput from 'ququmber-ui/input/UICopyInput';
 import UIEditableText from 'ququmber-ui/input/UIEditableText';
-import UIMultiInput from 'ququmber-ui/input/UIMultiInput';
 import UITextInput from 'ququmber-ui/input/UITextInput';
 
 import FuzzyTimeButton from 'ququmber-ui/fuzzyTime/FuzzyTimeButton';
@@ -27,12 +26,16 @@ import FormSection from './FormSection';
 import TypographySection from './TypographySection';
 
 import UIButtonSample from './button/UIButtonSample';
+
 import UIColorSelectorSample from './controls/UIColorSelectorSample';
 import UITagSample from './controls/UITagSample';
 import UIToastNotificationSample from './controls/UIToastNotificationSample';
 import UIToggleSample from './controls/UIToggleSample';
 
 import FuzzyTimeSelectSample from './fuzzyTime/FuzzyTimeSelectSample';
+
+import UIMultiInputSample from './input/UIMultiInputSample';
+import UISelectSample from './input/UISelectSample';
 
 import UIMessageModalSample from './popup/UIMessageModalSample';
 import UIPopupSample from './popup/UIPopupSample';
@@ -83,20 +86,11 @@ class RootComponent extends React.Component<{}, RootComponentState> {
       ['ququmber-ui/input/UIEditableText', <UIEditableText
         placeholder="Enter your text here"
       />],
-      ['ququmber-ui/input/UIMultiInput', <UIMultiInput
-        options={[
-          {value: '1', name: 'One'},
-          {value: '2', name: 'Two'},
-          {value: '3', name: 'Three'},
-          {value: '3', name: 'Four'}
-        ]}
-        selected={['1', '2']}
-        onOptionAdded={() => {}}
-        onOptionRemoved={() => {}}
-      />],
+      ['ququmber-ui/input/UIMultiInput', <UIMultiInputSample />],
       ['ququmber-ui/input/UITextInput', <UITextInput
         placeholder="Your name here"
       />],
+      ['ququmber-ui/input/UISelect', <UISelectSample />],
 
       'Popup',
       ['ququmber-ui/popup/UIMessageModal', <UIMessageModalSample />],

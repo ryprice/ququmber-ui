@@ -117,6 +117,14 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
     });
   }
 
+  private readonly defaultRenderItem = (option: Option) => {
+    return <UITag
+      name={option.name}
+      onRemoved={() => this.onOptionRemoved(option.value)}
+      canRemove={option.canRemove}
+    />;
+  }
+
   render() {
     const {
       options,
@@ -131,17 +139,22 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
     const {hoverIndex, dropdownOpen} = this.state;
 
     const selectedOptions = selected
-      .map((value) => (
-        find(options, (o) => o.value === value) ||
-        {name: value, value} as Option
-      ))
+      .map((value) => {
+        const foundOption = find(options, (o) => o.value === value);
+        const valueOnlyOption = {name: value, value} as Option;
+        const transformedOption = foundOption || valueOnlyOption;
+        if (transformedOption.canRemove == null) {
+          transformedOption.canRemove = true;
+        }
+        return transformedOption;
+      })
       .sort(sortByCanRemoveComparator);
     const filteredUnselectedOptions = this.getFilteredUnselectedOptions();
 
     const input = <div
       className={`UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''}`}>
       {map(selectedOptions, (option: Option) =>
-        renderItem ? renderItem(option, true) : option.name)
+        renderItem ? renderItem(option, true) : this.defaultRenderItem(option))
       }
       <input
         type="text"
@@ -161,7 +174,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
         targetAttachment={targetAttachment || 'bottom left'}>
         <div />
         <UISelectDropdown
-          className="UIMultiInput"
+          className="UIMultiInputDropdown"
           options={filteredUnselectedOptions.slice(0, 10).map(option => ({
             ...option,
             name: renderItem ? renderItem(option, false) : option.name

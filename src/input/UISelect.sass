@@ -1,0 +1,27 @@
+.UISelect
+  @extend .UIAbstractInput
+
+  position: relative
+  overflow: auto
+  display: flex
+  flex-direction: row
+  background: $color-control
+  padding: .3em
+  cursor: pointer
+  align-items: center
+
+  .selectedOptions
+    flex-grow: 1
+
+  .down-arrow
+    height: 100%
+    vertical-align: middle
+    padding-left: 10px
+    flex-grow: 0
+    flex-shrink: 0
+    float: right
+    display: flex
+
+.UIMultiInputDropdown
+  min-width: 300px
+  display: block

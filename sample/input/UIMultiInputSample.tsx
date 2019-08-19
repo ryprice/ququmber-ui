@@ -1,0 +1,37 @@
+import * as React from 'react';
+
+import UIMultiInput from 'ququmber-ui/input/UIMultiInput';
+
+const {useState} = React;
+
+const UIMultiInputSample = (props: {}) => {
+  const [selected, setSelected] = useState(['1', '2']);
+
+  return (
+    <UIMultiInput
+      options={[
+        {value: '1', name: 'Ford'},
+        {value: '2', name: 'Mazda'},
+        {value: '3', name: 'Ferrari'},
+        {value: '4', name: 'Honda'},
+        {value: '5', name: 'Toyota'},
+        {value: '6', name: 'Lamborghini'},
+        {value: '7', name: 'Lexus'},
+        {value: '8', name: 'Fiat'},
+        {value: '9', name: 'BMW'},
+        {value: '10', name: 'Lincoln'},
+        {value: '11', name: 'Tesla'},
+        {value: '12', name: 'Jeep'},
+        {value: '13', name: 'Crysler'},
+
+      ]}
+      selected={selected}
+      onOptionAdded={key => setSelected([...selected, key])}
+      onOptionRemoved={removedKey => {
+        setSelected(selected.filter(key => key !== removedKey));
+      }}
+    />
+  );
+};
+
+export default UIMultiInputSample;
