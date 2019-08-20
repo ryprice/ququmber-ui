@@ -29,7 +29,9 @@ const ColorsSection = () =>
       'WHITE',
       'OFFWHITE',
       'CONTROL',
-      'SELECTED',
+      'OPTION_HOVER',
+      'OPTION_SELECTED',
+      'OPTION_SELECTEDHOVER',
       'QUIET',
       'DISABLED',
       'BASEFONT'
