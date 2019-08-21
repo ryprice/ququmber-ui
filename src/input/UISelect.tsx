@@ -18,6 +18,7 @@ export const UISelect = (props: UISelectProps) => {
     targetAttachment,
     renderDropdownContents,
     onQueryChanged,
+    disabled
   } = props;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -27,18 +28,26 @@ export const UISelect = (props: UISelectProps) => {
   const rootRef = useRef<HTMLDivElement>();
   const dropdownRef = useRef<HTMLDivElement>();
 
-  const openDropdown = useCallback(() => setDropdownOpen(true), []);
+  const openDropdown = useCallback(() => {
+    if (!disabled) {
+      setDropdownOpen(true);
+    }
+  }, [disabled]);
   const closeDropdown = useCallback(() => {
-    setDropdownOpen(false);
     setHoverIndex(undefined);
+    setDropdownOpen(false);
   }, []);
 
   const onSelect = useCallback((value: string) => {
     props.onSelect(value);
     closeDropdown();
-  }, [closeDropdown]);
+  }, [closeDropdown, props.onSelect]);
 
   const onKeyUp = useCallback((event: any) => {
+    if (disabled) {
+      return;
+    }
+
     switch(event.keyCode) {
       case 13:
         onSelect(options[hoverIndex].value);
@@ -58,7 +67,7 @@ export const UISelect = (props: UISelectProps) => {
         break;
     }
     return false;
-  }, [onSelect, hoverIndex, options, closeDropdown, dropdownOpen]);
+  }, [onSelect, hoverIndex, options, closeDropdown, dropdownOpen, disabled]);
 
   useOnOutsideClick([rootRef, dropdownRef], closeDropdown, dropdownOpen);
 
@@ -73,11 +82,11 @@ export const UISelect = (props: UISelectProps) => {
   const input = <div
     onKeyDown={() => false}
     onKeyPress={() => false}
-    contentEditable={true}
+    role="button"
     onKeyUp={onKeyUp}
     className={`UISelect ${className || ''} ${dropdownOpen ? 'focus' : ''}`}>
-    <span className="selectedOptions">{selectedOption.name}</span>
-    <span className="octicon octicon-chevron-down down-arrow" />
+    <span className="selectedOptions">{renderItem ? renderItem(selectedOption, false) : selectedOption.name}</span>
+    <span className="octicon octicon-chevron-down down-arrow" key="down-arrow" />
   </div>;
 
   return <div ref={rootRef} onClick={openDropdown} tabIndex={0}>
@@ -107,7 +116,6 @@ export interface Option {
   name: string;
   value: string;
   color?: string;
-  canRemove?: boolean;
 }
 
 export interface UISelectProps {
@@ -121,6 +129,7 @@ export interface UISelectProps {
   attachment?: string;
   targetAttachment?: string;
   renderDropdownContents?: (children: React.ReactChild[]) => React.ReactChild;
+  disabled?: boolean;
 }
 
 export interface UIMultiInputState {

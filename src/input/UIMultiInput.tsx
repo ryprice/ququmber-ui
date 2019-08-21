@@ -135,6 +135,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       attachment,
       targetAttachment,
       renderDropdownContents,
+      disabled,
     } = this.props;
     const {hoverIndex, dropdownOpen} = this.state;
 
@@ -145,6 +146,9 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
         const transformedOption = foundOption || valueOnlyOption;
         if (transformedOption.canRemove == null) {
           transformedOption.canRemove = true;
+        }
+        if (disabled) {
+          transformedOption.canRemove = false;
         }
         return transformedOption;
       })
@@ -157,6 +161,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
         renderItem ? renderItem(option, true) : this.defaultRenderItem(option))
       }
       <input
+        disabled={disabled}
         type="text"
         className="UIInput"
         placeholder={placeholder}
@@ -208,6 +213,7 @@ export interface UIMultiInputProps {
   attachment?: string;
   targetAttachment?: string;
   renderDropdownContents?: (children: React.ReactChild[]) => React.ReactChild;
+  disabled?: boolean;
 }
 
 export interface UIMultiInputState {
