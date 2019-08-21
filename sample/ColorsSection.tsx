@@ -25,20 +25,26 @@ interface ColorsSubsectionProps {
 
 const ColorsSection = () =>
   <div className="ColorSection">
-    <ColorsSubsection name="Ququmber" colors={pick(Colors, [
-      'WHITE',
-      'OFFWHITE',
+    <ColorsSubsection name="Controls" colors={pick(Colors, [
       'CONTROL',
+      'CONTROL_HOVER',
+      'CONTROL_BORDER',
       'OPTION_HOVER',
       'OPTION_SELECTED',
       'OPTION_SELECTEDHOVER',
-      'QUIET',
       'DISABLED',
-      'BASEFONT'
+    ])} />
+    <ColorsSubsection name="Grayscales" colors={pick(Colors, [
+      'WHITE',
+      'OFFWHITE',
+      'QUIET',
+      'QUQUMBER',
+      'BASEFONT',
+      'BLACK'
     ])} />
     <ColorsSubsection name="Accents" colors={pick(Colors, [
-      'QUQUMBER',
       'NOTIFY',
+      'NOTIFY_HOVER',
       'GO',
       'DEEPRED',
       'RED'

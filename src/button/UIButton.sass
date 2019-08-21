@@ -3,8 +3,8 @@
 .UIButton
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
   padding: 0
-  border-radius: .25em
-  color: #ffffff
+  border-radius: $border-radius-button
+  color: $color-white
   margin: .5em 0
   display: inline-block
   text-decoration: none
@@ -27,7 +27,7 @@
 
   &.styling-go
     background: $color-go
-    border: solid darken($color-go, 3%) 1px
+    border: solid $color-go-border 1px
 
     &:hover
       background: lighten($color-go, 7%)
@@ -40,7 +40,7 @@
 
     &:disabled
       background: lighten($color-go, 15%)
-      color: #bbbbbb
+      color: rgba(255, 255, 255, 0.75)
 
   &.styling-control
     color: $color-basefont
@@ -72,7 +72,7 @@
 
     &:disabled
       background: lighten($color-google, 15%)
-      color: #bbbbbb
+      color: rgba(255, 255, 255, 0.75)
 
   &.styling-facebook
     background: $color-facebook
@@ -86,7 +86,7 @@
 
     &:disabled
       background: lighten($color-facebook, 15%)
-      color: #bbbbbb
+      color: rgba(255, 255, 255, 0.75)
 
   &.styling-red
     background: $color-red
@@ -100,11 +100,11 @@
 
     &:disabled
       background: lighten($color-red, 15%)
-      color: #bbbbbb
+      color: rgba(255, 255, 255, 0.75)
 
   &.styling-outline
     background: transparent
-    border: solid $color-controlborder 1px
+    border: solid $color-control-border 1px
     color: $color-basefont
     text-shadow: transparent
 

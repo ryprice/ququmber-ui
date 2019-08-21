@@ -8,7 +8,7 @@ const {useRef} = React;
 
 const UITag = (props: UITagProps) => {
   const {name, onRemoved, canRemove, outline} = props;
-  const color = props.color != null ? props.color : Colors.QUQUMBER;
+  const color = props.color != null ? props.color : Colors.QUQUMBER.substring(1);
   const removeButtonRef = useRef();
 
   const filledStyle = {

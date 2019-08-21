@@ -1,3 +1,5 @@
+@import 'tokens'
+
 .ColorSection
   .swatch
     width: 200px
@@ -11,22 +13,22 @@
     position: absolute
     left: 20px
     bottom: 20px
-    color: #ffffff
+    color: $color-white
     font-size: 14px
     opacity: .8
 
     &.light
-      color: #000000
+      color: $color-black
 
   .hex
     position: absolute
     left: 20px
     bottom: 40px
-    color: #ffffff
+    color: $color-white
     font-size: 20px
 
     &.light
-      color: #000000
+      color: $color-black
 
   .ColorSubsection
     clear: both
