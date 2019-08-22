@@ -26,6 +26,7 @@ import FormSection from './FormSection';
 import TypographySection from './TypographySection';
 
 import UIButtonSample from './button/UIButtonSample';
+import UIDropdownButtonSample from './button/UIDropdownButtonSample';
 
 import UIColorSelectorSample from './controls/UIColorSelectorSample';
 import UITagSample from './controls/UITagSample';
@@ -99,6 +100,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
 
       'Button',
       ['ququmber-ui/button/UIButton', <UIButtonSample />],
+      ['ququmber-ui/button/UIDropdownButton', <UIDropdownButtonSample />],
       ['ququmber-ui/button/UIIconButton', <div>
         <UIIconButton icon="fa fa-inbox" /><br />
         <div style={{fontSize: '20px'}}><UIIconButton icon="fa fa-inbox" /></div><br />

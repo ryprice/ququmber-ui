@@ -190,6 +190,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
 
   renderViewModeButton(viewMode: ViewMode, text: string, icon: string) {
     return <button
+      key={viewMode}
       className={this.state.viewMode === viewMode ? 'selected' : ''}
       onClick={() => this.setState({viewMode})}
     >
@@ -206,6 +207,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     );
 
     return <button
+      key={`${time.toString()}-quickoption`}
       className={`quickOption ${selectedOrRangeSelected ? 'selected' : ''}`}
       onClick={() => onTimeSelected(time)}
       onMouseOver={() => this.unitOnMouseOver(time)}
@@ -267,16 +269,18 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         rowHeight={this.getRowHeight}
         rowCount={1000}
         rowRenderer={this.renderRow}
-        style={null}
+        style={{}}
         {...invalidationPropsForRows}
       />
       <div className="controls">
         <button
+          key="none-button"
           className="noneButton"
           onClick={() => onTimeSelected(null)}>
           Cancel
         </button>
         <button
+          key="cancel-button"
           className="cancelButton"
           onClick={this.onCancelClick}>
           Clear

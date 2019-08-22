@@ -68,8 +68,8 @@ class FuzzyTimeWeekUnit extends React.Component<FuzzyTimeWeekUnitProps, {}> {
         onMouseOver={this.onMouseOver}
         onMouseOut={this.onMouseOut}
       ><p>&#91;</p></div>
-      {times(placeholderDaysCount, () =>
-        <div className="FuzzyTimeSelectUnit placeholder day" />
+      {times(placeholderDaysCount, (idx: number) =>
+        <div className="FuzzyTimeSelectUnit placeholder day" key={`${idx}-day-placeholder`} />
       )}
       {days.map(day =>
         <FuzzyTimeSelectUnit
