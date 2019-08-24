@@ -1,15 +1,5 @@
 @import '../tokens'
 
 .FuzzyTimeSelectUnit
-  &:hover:not(.placeholder),
-  &.droppingTask,
-  &.hover
-    background-color: $color-option-hover
+  &:hover:not(.placeholder)
     cursor: pointer
-
-  &.selected
-    background-color: $color-notify
-    color: $color-white
-
-    &.hover
-      background-color: lighten($color-notify, 20%)

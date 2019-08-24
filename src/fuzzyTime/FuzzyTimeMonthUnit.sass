@@ -9,12 +9,21 @@
     clear: both
     margin-left: 33px
     margin-top: 30px
-    padding-bottom: 10px
     font-size: 16px
     text-transform: lowercase
     font-weight: normal
     color: $color-basefont
     cursor: pointer
+    border-bottom: $color-br 1px solid
+    margin-right: 7%
+
+    &:hover:not(.placeholder),
+    &.hover
+      font-weight: bold
+
+    &.selected
+      color: $color-notify
+      font-weight: bold
 
     p
       margin: 0

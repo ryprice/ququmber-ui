@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import {FuzzyGranularity, FuzzyTime} from 'ququmber-api';
 
+import UIIconButton from 'ququmber-ui/button/UIIconButton';
 import FuzzyTimeSelectUnit, {
   FuzzyTimeSelectUnitProps,
   shouldUnitComponentUpdate
@@ -34,7 +35,7 @@ class FuzzyTimeWeekUnit extends React.Component<FuzzyTimeWeekUnitProps, {}> {
 
   render() {
     const week = this.props.time;
-    const {month, hoverTime} = this.props;
+    const {month, hoverTime, selected} = this.props;
     let curDay: FuzzyTime;
     let placeholderDaysCount;
     let daysCount;
@@ -60,14 +61,21 @@ class FuzzyTimeWeekUnit extends React.Component<FuzzyTimeWeekUnitProps, {}> {
       return prevDay;
     });
 
-    return <div
-      className={`FuzzyTimeWeekUnit ${(hoverTime && hoverTime.equals(week)) ? 'FuzzyTimeWeekUnitHover' : ''}`}>
+    return <div className="FuzzyTimeWeekUnit">
       <div
-        className="FuzzyTimeSelectUnit fullWeekButton"
+        className={
+          'FuzzyTimeSelectUnit fullWeekButton ' +
+          ((hoverTime && hoverTime.equals(week)) ? 'hover ' : '') +
+          ((selected && week.equals(selected)) ? 'selected ' : '')
+        }
         onClick={this.onClick}
         onMouseOver={this.onMouseOver}
-        onMouseOut={this.onMouseOut}
-      ><p>&#91;</p></div>
+        onMouseOut={this.onMouseOut}>
+        <UIIconButton
+          icon="qqico qqico-cal-week"
+          tooltip="entire week"
+        />
+      </div>
       {times(placeholderDaysCount, (idx: number) =>
         <div className="FuzzyTimeSelectUnit placeholder day" key={`${idx}-day-placeholder`} />
       )}

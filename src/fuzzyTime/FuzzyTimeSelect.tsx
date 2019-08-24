@@ -11,6 +11,7 @@ import {
 } from 'ququmber-api';
 import FuzzyTime, {buildFuzzyTime} from 'ququmber-api/FuzzyTime';
 
+import UIButton from 'ququmber-ui/button/UIButton';
 import FuzzyTimeMonthUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeMonthUnit';
 import {
   FuzzyTimeSelectUnitProps,
@@ -18,6 +19,7 @@ import {
 } from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
 import FuzzyTimeYearUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeYearUnit';
 import UITextInput from 'ququmber-ui/input/UITextInput';
+import Stylings from 'ququmber-ui/Stylings';
 import {weeksInMonth} from 'ququmber-ui/utils/dateUtils';
 
 export enum ViewMode {
@@ -199,7 +201,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     </button>;
   }
 
-  renderQuickOption(time: FuzzyTime, name: string) {
+  renderQuickOption(time: FuzzyTime, name: string, icon: string) {
     const {onTimeSelected, selected, range} = this.props;
     const selectedOrRangeSelected = (
       time.equals(selected) ||
@@ -212,7 +214,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       onClick={() => onTimeSelected(time)}
       onMouseOver={() => this.unitOnMouseOver(time)}
       onMouseOut={() => this.unitOnMouseOut(time)}>
-      {name}
+      <i className={icon} />
     </button>;
   }
 
@@ -226,18 +228,18 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     const quickOptions = this.props.quickOptions != null
       ? this.props.quickOptions
       : [
-        {time: today, name: 'today'},
-        {time: tomorrow, name: 'tomorrow'},
-        {time: thisWeek, name: 'this week'},
-        {time: nextWeek, name: 'next week'},
-        {time: nextMonth, name: 'next month'},
-        {time: FuzzyTime.getForever(), name: 'no date'},
+        {time: today, name: 'today', icon: 'qqico qqico-cal-day'},
+        {time: tomorrow, name: 'tomorrow', icon: 'qqico qqico-cal-tomorrow'},
+        {time: thisWeek, name: 'this week', icon: 'qqico qqico-cal-week'},
+        {time: nextWeek, name: 'next week', icon: 'qqico qqico-cal-next-week'},
+        {time: nextMonth, name: 'next month', icon: 'qqico qqico-cal-next-month'},
+        {time: FuzzyTime.getForever(), name: 'no date', icon: 'fa fa-times'},
       ];
     if (quickOptions.length === 0) {
       return null;
     }
     return <div className="quickOptions">
-      {quickOptions.map(qo => this.renderQuickOption(qo.time, qo.name))}
+      {quickOptions.map(qo => this.renderQuickOption(qo.time, qo.name, qo.icon))}
     </div>;
   }
 
@@ -258,8 +260,8 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     return <div className="FuzzyTimeSelect" ref={(ref) => this.rootRef = ref}>
       {this.renderQuickOptions()}
       <div className="viewModeSelector">
-        {this.renderViewModeButton(ViewMode.DAILY, 'day/week', 'fa fa-expand')}
-        {this.renderViewModeButton(ViewMode.YEARLY, 'month/year', 'fa fa-compress')}
+        {this.renderViewModeButton(ViewMode.DAILY, 'days/weeks', 'qqico qqico-cal-day')}
+        {this.renderViewModeButton(ViewMode.YEARLY, 'months/years', 'qqico qqico-cal-year')}
       </div>
       <ReactVirtualized.List
         key={'virtualScroll' + viewMode}
@@ -273,18 +275,19 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         {...invalidationPropsForRows}
       />
       <div className="controls">
-        <button
+        <UIButton
           key="none-button"
           className="noneButton"
           onClick={() => onTimeSelected(null)}>
           Cancel
-        </button>
-        <button
+        </UIButton>
+        <UIButton
           key="cancel-button"
           className="cancelButton"
+          styling={Stylings.GO}
           onClick={this.onCancelClick}>
           Clear
-        </button>
+        </UIButton>
       </div>
     </div>;
   }
@@ -321,7 +324,7 @@ export interface FuzzyTimeSelectProps {
   range?: FuzzyTimeRange;
   multiselect?: boolean;
   onRangeSelected?: (range: FuzzyTimeRange) => void;
-  quickOptions?: {time: FuzzyTime, name: string}[];
+  quickOptions?: {time: FuzzyTime, name: string, icon: string}[];
 }
 
 export interface FuzzyTimeSelectState {

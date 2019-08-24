@@ -11,13 +11,21 @@ export const unitClassName = (props: FuzzyTimeSelectUnitProps) => {
   if (disabled) {
     className += ' disabled';
   }
-  if (hoverTime && hoverTime.contains(time)) {
+  if (
+    hoverTime &&
+    !hoverTime.equals(FuzzyTime.getForever()) &&
+    hoverTime.contains(time)
+  ) {
     className += ' hover';
   }
   if (time.equals(FuzzyTime.getCurrent(time.getGranularity()))) {
     className += ' now';
   }
-  if (selected && (time.equals(selected) || selected.contains(time))) {
+  if (
+    selected &&
+    !selected.equals(FuzzyTime.getForever()) &&
+    (time.equals(selected) || selected.contains(time))
+  ) {
     className += ' selected';
   }
   if (multiselect) {
