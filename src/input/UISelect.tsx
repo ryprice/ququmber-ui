@@ -16,9 +16,11 @@ export const UISelect = (props: UISelectProps) => {
     renderItem,
     attachment,
     targetAttachment,
-    renderDropdownContents,
     onQueryChanged,
-    disabled
+    disabled,
+    allowFreeform,
+    onSelectFreeform,
+    freeformValue,
   } = props;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -27,6 +29,7 @@ export const UISelect = (props: UISelectProps) => {
   const lastValue = lastValueRef.current;
   const rootRef = useRef<HTMLDivElement>();
   const dropdownRef = useRef<HTMLDivElement>();
+  const searchInputRef = useRef<HTMLInputElement>();
 
   const openDropdown = useCallback(() => {
     if (!disabled) {
@@ -39,7 +42,11 @@ export const UISelect = (props: UISelectProps) => {
   }, []);
 
   const onSelect = useCallback((value: string) => {
-    props.onSelect(value);
+    if (value === 'freeform') {
+      props.onSelectFreeform(searchInputRef.current.value);
+    } else {
+      props.onSelect(value);
+    }
     closeDropdown();
   }, [closeDropdown, props.onSelect]);
 
@@ -66,8 +73,9 @@ export const UISelect = (props: UISelectProps) => {
         setHoverIndex(hoverIndex != null ? Math.min(hoverIndex + 1, optionsCount - 1) : 0);
         break;
     }
+    onQueryChanged && onQueryChanged(searchInputRef.current.value);
     return false;
-  }, [onSelect, hoverIndex, options, closeDropdown, dropdownOpen, disabled]);
+  }, [onSelect, hoverIndex, options, closeDropdown, dropdownOpen, disabled, onQueryChanged]);
 
   useOnOutsideClick([rootRef, dropdownRef], closeDropdown, dropdownOpen);
 
@@ -75,19 +83,39 @@ export const UISelect = (props: UISelectProps) => {
     return <span>{option.name}</span>;
   };
 
+
   const foundOption = find(options, (o) => o.value === selected);
   const valueOnlyOption = {name: selected, value: selected} as Option;
-  const selectedOption = foundOption || valueOnlyOption;
+  const freeformOption = allowFreeform ? {name: freeformValue, value: 'freeform', isFreeform: true} : null;
+  const selectedOption = foundOption || freeformOption || valueOnlyOption;
 
   const input = <div
-    onKeyDown={() => false}
-    onKeyPress={() => false}
     role="button"
     onKeyUp={onKeyUp}
     className={`UISelect ${className || ''} ${dropdownOpen ? 'focus' : ''}`}>
     <span className="selectedOptions">{renderItem ? renderItem(selectedOption, false) : selectedOption.name}</span>
     <span className="octicon octicon-chevron-down down-arrow" key="down-arrow" />
   </div>;
+
+  const searchInput = <input
+    className="searchInput"
+    onKeyUp={onKeyUp}
+    ref={searchInputRef}
+    placeholder="Search"
+  />;
+
+  const renderDropdownContents = (children: React.ReactChild[]) => {
+    const content = <div className="UISelectDropdown">
+      {searchInput || null}
+      {children}
+    </div>;
+    if (props.renderDropdownContents) {
+      props.renderDropdownContents([content]);
+    }
+    return content;
+  };
+
+  const currentQuery = searchInputRef.current ?  searchInputRef.current.value : '';
 
   return <div ref={rootRef} onClick={openDropdown} tabIndex={0}>
     {input}
@@ -97,11 +125,26 @@ export const UISelect = (props: UISelectProps) => {
       <div />
       <div ref={dropdownRef}>
         <UISelectDropdown
-          className="UIMultiInputDropdown"
-          options={options.slice(0, 10).map(option => ({
-            ...option,
-            name: renderItem ? renderItem(option, false) : option.name
-          }))}
+          className="UISelectDropdown"
+          options={options
+            .slice(0, 10)
+            .map(option => ({
+              ...option,
+              name: renderItem ? renderItem(option, false) : option.name
+            }))
+            .concat((allowFreeform && currentQuery.length > 0 || freeformValue)
+              ? [{
+                  name: <span>
+                    <span className="just">Just '</span>
+                    {currentQuery || freeformValue}
+                    <span className="just">'</span>
+                  </span>,
+                  value: 'freeform',
+                  isFreeform: true
+                }]
+              : []
+            )
+          }
           hoverIndex={hoverIndex}
           onSelect={onSelect}
           open={dropdownOpen}
@@ -116,6 +159,7 @@ export interface Option {
   name: string;
   value: string;
   color?: string;
+  isFreeform?: boolean;
 }
 
 export interface UISelectProps {
@@ -130,6 +174,9 @@ export interface UISelectProps {
   targetAttachment?: string;
   renderDropdownContents?: (children: React.ReactChild[]) => React.ReactChild;
   disabled?: boolean;
+  allowFreeform?: boolean;
+  onSelectFreeform?: (value: string) => any;
+  freeformValue?: string;
 }
 
 export interface UIMultiInputState {

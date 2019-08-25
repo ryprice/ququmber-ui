@@ -24,9 +24,9 @@ export class UISelect extends React.Component<UISelectProps, {}> {
 }
 
 export interface UISelectProps extends React.Props<UISelect> {
-    defaultValue?: string;
-    onSelect?: (key: string) => void;
-    options: {[key: string]: string};
+  defaultValue?: string;
+  onSelect?: (key: string) => void;
+  options: {[key: string]: string};
 }
 
 export default UISelect;
