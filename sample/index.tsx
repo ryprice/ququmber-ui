@@ -10,7 +10,6 @@ import Colors from 'ququmber-ui/Colors';
 import UIBadge from 'ququmber-ui/controls/UIBadge';
 import UICheckbox from 'ququmber-ui/controls/UICheckbox';
 import UIColorSelector from 'ququmber-ui/controls/UIColorSelector';
-import UIIndeterminateCheckbox from 'ququmber-ui/controls/UIIndeterminateCheckbox';
 import UITag from 'ququmber-ui/controls/UITag';
 import UICopyInput from 'ququmber-ui/input/UICopyInput';
 import UIEditableText from 'ququmber-ui/input/UIEditableText';
@@ -68,9 +67,6 @@ class RootComponent extends React.Component<{}, RootComponentState> {
       'Controls',
       ['ququmber-ui/controls/UIColorSelector', <UIColorSelectorSample />],
       ['ququmber-ui/controls/UITag', <UITagSample />],
-      ['ququmber-ui/controls/UIIndeterminateCheckbox', <UIIndeterminateCheckbox
-        onChange={() => {}}
-      />],
       ['ququmber-ui/controls/UIToggle', <UIToggleSample />],
       ['ququmber-ui/controls/UICheckbox', <UICheckbox />],
       ['ququmber-ui/controls/UIToastNotification', <UIToastNotificationSample />],

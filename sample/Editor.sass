@@ -1,0 +1,24 @@
+.Editor
+  display: flex
+  flex-direction: row
+  border: $color-silent 1px solid
+  overflow: hidden
+  border-radius: 6px
+
+  .renderContainer
+    flex-grow: 1
+    flex-shrink: 1
+    flex-basis: 0
+    padding: 10px
+    background: $color-white
+
+  .codeContainer
+    flex-grow: 1
+    flex-shrink: 1
+    flex-basis: 0
+    margin-left: 10px
+    background: #383838
+    caret-color: $color-white
+
+    &:hover
+      background: #222222
