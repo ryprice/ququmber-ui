@@ -4,27 +4,27 @@
   "description": "React UI library for Ququmber",
   "main": "gulpfile.js",
   "devDependencies": {
-    "awesome-typescript-loader": "^3.5.0",
-    "@babel/core": "^7.5.5",
     "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
     "@babel/plugin-transform-modules-amd": "^7.5.0",
     "@babel/preset-stage-2": "^7.0.0",
-    "copy-webpack-plugin": "^4.5.2",
-    "css-loader": "^2.1.1",
-    "extract-text-webpack-plugin": "^3.0.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "copy-webpack-plugin": "^5.0.4",
+    "css-loader": "^3.2.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-system": "^2.2.2",
     "node-sass": "^4.12.0",
     "ququmber-build": "file:../ququmber-build",
-    "sass-loader": "^6.0.6",
+    "sass-loader": "^7.3.1",
     "stylelint": "^9.10.1",
     "stylelint-webpack-plugin": "^0.10.5",
     "tslint": "^5.16.0",
     "tslint-react": "^3.6.0",
     "tslint-react-hooks": "^2.2.1",
-    "tslint-webpack-plugin": "^1.2.2",
+    "tslint-webpack-plugin": "^2.1.0",
     "typescript": "^3.4.5",
     "webfonts-generator": "^0.4.0",
-    "webpack": "^3.12.0"
+    "webpack": "^4.39.3"
   },
   "scripts": {
     "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path src src/index.sass dist/ququmber-ui.css && tslint -p . && stylelint src/**/*.sass --syntax sass && cp src/tokens.sass lib/tokens.sass",
@@ -61,6 +61,7 @@
     "react-live": "^2.2.0",
     "react-tether": "^1.0.4",
     "react-virtualized": "^9.21.0",
-    "tether": "^1.4.6"
+    "tether": "^1.4.6",
+    "webpack-cli": "^3.3.7"
   }
 }
