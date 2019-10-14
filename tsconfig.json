@@ -9,11 +9,11 @@
     "moduleResolution": "node",
     "noEmit": false,
     "jsx": "react",
-    "baseUrl": "./src/",
+    "baseUrl": ".",
     "rootDir": "./src/",
     "paths": {
-      "ququmber-ui/*": ["./*"],
-      "ququmber-api/*": ["../node_modules/ququmber-api/lib/*"]
+      "ququmber-ui/*": ["src/*"],
+      "ququmber-api/*": ["node_modules/ququmber-api/src/*"]
     }
   },
   "include": [
