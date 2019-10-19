@@ -49,7 +49,7 @@ class UINanoProgress extends React.Component<UINanoProgressProps, UINanoProgress
   }
 
   incrementProgress = (nextValue: number) => {
-    const {initialValue, optimismFactor, optimismIncrement} = this.props;
+    const {optimismFactor, optimismIncrement} = this.props;
     const {value} = this.state;
     window.clearTimeout(this.timerId);
     if (value < 99.5 && nextValue != null) {

@@ -1,4 +1,4 @@
-import {debounce, filter, find, includes, map} from 'lodash';
+import {find} from 'lodash';
 import * as React from 'react';
 import TetherComponent from 'react-tether';
 
@@ -11,7 +11,6 @@ export const UISelect = (props: UISelectProps) => {
   const {
     selected,
     className,
-    placeholder,
     renderItem,
     attachment,
     targetAttachment,
@@ -26,8 +25,6 @@ export const UISelect = (props: UISelectProps) => {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(undefined);
-  const lastValueRef = useRef('');
-  const lastValue = lastValueRef.current;
   const rootRef = useRef<HTMLDivElement>();
   const dropdownRef = useRef<HTMLDivElement>();
   const searchInputRef = useRef<HTMLInputElement>();
@@ -85,12 +82,12 @@ export const UISelect = (props: UISelectProps) => {
 
   const onSelect = useCallback((value: string) => {
     if (value === 'freeform') {
-      props.onSelectFreeform(searchInputRef.current.value);
+      onSelectFreeform(searchInputRef.current.value);
     } else {
       props.onSelect(value);
     }
     closeDropdown();
-  }, [closeDropdown, props.onSelect]);
+  }, [closeDropdown, props.onSelect, onSelectFreeform]);
 
   const onKeyUp = useCallback((event: any) => {
     if (disabled) {

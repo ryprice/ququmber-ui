@@ -1,9 +1,8 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 
 import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
 
-const {useCallback, useRef, useState} = React;
+const {useRef} = React;
 
 const UIDropdown = (props: UIDropdownProps) => {
   const {children, open, className, onClose} = props;

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDnd from 'react-dnd';
 
 interface TaskFilterLinkProps {
   href?: string;
@@ -10,7 +9,7 @@ interface TaskFilterLinkProps {
 
 
 const TaskFilterLink = (props: TaskFilterLinkProps) => {
-  const {children, href, onDropTasks} = props;
+  const {children, href} = props;
 
   const onClick = (event: React.MouseEvent<HTMLElement>) => {
     if (!(event.ctrlKey || event.metaKey) || !href) {

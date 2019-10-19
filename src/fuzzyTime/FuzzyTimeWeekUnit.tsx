@@ -10,8 +10,6 @@ import FuzzyTimeSelectUnit, {
 } from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
 import {daysInMonth} from 'ququmber-ui/utils/dateUtils';
 
-const emptyFn = () => {};
-
 class FuzzyTimeWeekUnit extends React.Component<FuzzyTimeWeekUnitProps, {}> {
 
   onClick = () => {

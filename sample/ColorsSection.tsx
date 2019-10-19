@@ -37,6 +37,7 @@ const ColorsSection = () =>
     <ColorsSubsection name="Grayscales" colors={pick(Colors, [
       'WHITE',
       'OFFWHITE',
+      'SILENT',
       'QUIET',
       'QUQUMBER',
       'BASEFONT',

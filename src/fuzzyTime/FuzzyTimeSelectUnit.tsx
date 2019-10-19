@@ -90,11 +90,7 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
   }
 
   render() {
-    const {
-      time, disabled, onClick, range, onTasksDropped,
-      selected, multiselect, start, focalPoint, granularity,
-      onMouseOver, onMouseOut, hoverTime, children
-    } = this.props;
+    const {time, children, granularity} = this.props;
 
     let className = 'FuzzyTimeSelectUnit';
     className += unitClassName(this.props);

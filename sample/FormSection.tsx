@@ -1,4 +1,3 @@
-import {map, pick} from 'lodash';
 import * as React from 'react';
 
 import UIMultiInput from 'ququmber-ui/input/UIMultiInput';

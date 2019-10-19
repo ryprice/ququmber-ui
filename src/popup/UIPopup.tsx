@@ -1,8 +1,6 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
 
-import UIDropdown from 'ququmber-ui/popup/UIDropdown';
 import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
 
 const {useRef} = React;

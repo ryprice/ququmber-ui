@@ -1,8 +1,13 @@
-import {map, pick} from 'lodash';
 import * as React from 'react';
 
 const SampleParagraph = () =>
-  <p>To the extent that this software may be used to reproduce, modify, publish or distribute materials, it is licensed to you only for reproduction, modification, publication and distribution of non- copyrighted materials, materials in which you own the copyright, or materials you are authorized or legally permitted to reproduce, modify, publish or distribute. If you are uncertain about your right to copy, modify, publish or distribute any material, you should contact your legal advisor.</p>;
+  <p>
+    To the extent that this software may be used to reproduce, modify, publish or distribute materials,
+    it is licensed to you only for reproduction, modification, publication and distribution of
+    non-copyrighted materials, materials in which you own the copyright, or materials you are authorized
+    or legally permitted to reproduce, modify, publish or distribute. If you are uncertain about your
+    right to copy, modify, publish or distribute any material, you should contact your legal advisor.
+  </p>;
 
 const TypographySection = () =>
   <div className="TypographySection">

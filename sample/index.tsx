@@ -3,14 +3,10 @@ import {DndProvider} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import * as ReactDOM from 'react-dom';
 
-import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange} from 'ququmber-api';
-
 import UIIconButton from 'ququmber-ui/button/UIIconButton';
 import Colors from 'ququmber-ui/Colors';
 import UIBadge from 'ququmber-ui/controls/UIBadge';
 import UICheckbox from 'ququmber-ui/controls/UICheckbox';
-import UIColorSelector from 'ququmber-ui/controls/UIColorSelector';
-import UITag from 'ququmber-ui/controls/UITag';
 import UICopyInput from 'ququmber-ui/input/UICopyInput';
 import UIEditableText from 'ququmber-ui/input/UIEditableText';
 import UITextInput from 'ququmber-ui/input/UITextInput';

@@ -1,9 +1,5 @@
 import * as React from 'react';
 
-import Colors from 'ququmber-ui/Colors';
-
-import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
-
 export class UIBadge extends React.Component<UIBadgeProps, {}> {
   render() {
     const {color, text} = this.props;

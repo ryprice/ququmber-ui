@@ -36,7 +36,7 @@ const UIDropdownButton = (props: UIDropdownButtonProps) => {
       onClose={onClose}
       className="UIDropdownButtonDropdown">
       {options.map((option: UIDropdownButtonOption, index: number) => (
-        <button className="option" onClick={() => onClickOptionAndClose(index)}>
+        <button key={index} className="option" onClick={() => onClickOptionAndClose(index)}>
           <i className={option.icon} />
           &nbsp;&nbsp;
           {option.name}

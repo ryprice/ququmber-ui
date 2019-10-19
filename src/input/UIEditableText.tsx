@@ -15,7 +15,7 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
   };
 
   public componentDidMount() {
-    const {value, autofocus} = this.props;
+    const {autofocus} = this.props;
     if (autofocus) {
       this.inputEl.focus();
     }
@@ -53,7 +53,7 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
   }
 
   render() {
-    const {placeholder, value, onClick, autofocus, onFocus, className} = this.props;
+    const {placeholder, value, onClick, onFocus, className} = this.props;
     const renderedClassName = (
       `UIEditableText ${className} ` +
       (this.shouldShowPlaceholder() ? 'placeholder' : '')

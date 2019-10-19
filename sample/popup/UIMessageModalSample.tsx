@@ -1,4 +1,3 @@
-import {map, pick} from 'lodash';
 import * as React from 'react';
 
 import UIButton from 'ququmber-ui/button/UIButton';

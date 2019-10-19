@@ -20,7 +20,7 @@ const UICopyInput = (props: UICopyInputProps) => {
     }
   }, [value, onCopy]);
 
-  return <div className="UICopyInput">
+  return <div className={`UICopyInput ${className || ''}`}>
     <input
       defaultValue={value}
       onClick={onCopyClick}

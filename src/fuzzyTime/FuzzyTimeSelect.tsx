@@ -1,4 +1,3 @@
-import {times} from 'lodash';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as ReactVirtualized from 'react-virtualized';
@@ -6,19 +5,14 @@ import * as ReactVirtualized from 'react-virtualized';
 import {
   FuzzyGranularity,
   FuzzyTimeRange,
-  parseHumanReadableFuzzyTime,
   Task
 } from 'ququmber-api';
 import FuzzyTime, {buildFuzzyTime} from 'ququmber-api/FuzzyTime';
 
 import UIButton from 'ququmber-ui/button/UIButton';
 import FuzzyTimeMonthUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeMonthUnit';
-import {
-  FuzzyTimeSelectUnitProps,
-  unitClassName
-} from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
+import {FuzzyTimeSelectUnitProps} from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
 import FuzzyTimeYearUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeYearUnit';
-import UITextInput from 'ququmber-ui/input/UITextInput';
 import Stylings from 'ququmber-ui/Stylings';
 import {weeksInMonth} from 'ququmber-ui/utils/dateUtils';
 
@@ -53,7 +47,7 @@ const initialState = (props: FuzzyTimeSelectProps): FuzzyTimeSelectState => {
 
 export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, FuzzyTimeSelectState> {
 
-  private readonly scrollContainerEl: Element;
+  // private readonly scrollContainerEl: Element;
 
   private rootRef: HTMLDivElement;
 
@@ -133,7 +127,6 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
 
   renderRow = (info: {index: number, isScrolling: boolean, style: Object, key: string}): React.ReactNode => {
     let time = this.state.focalPoint;
-    let years = false;
     switch(this.state.viewMode) {
       case ViewMode.DAILY:
         time = time.getParent(FuzzyGranularity.MONTH);
@@ -144,7 +137,6 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         const year = newTime.getUTCFullYear();
         newTime.setUTCFullYear(year - (year % 4));
         time = buildFuzzyTime(newTime, FuzzyGranularity.YEAR);
-        years = true;
         break;
     }
 
@@ -304,7 +296,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   private scrollToFocalPoint() {
     const {focalPoint} = this.state;
     if (focalPoint) {
-      const timenavscrollEl = ReactDOM.findDOMNode(this.scrollContainerEl) as Element;
+      // const timenavscrollEl = ReactDOM.findDOMNode(this.scrollContainerEl) as Element;
       // const focalPointEl = ReactDOM.findDOMNode(this.focalPointComponent) as Element;
       // if (timenavscrollEl && focalPointEl) {
       //   const timenavscrollOffsetTop = timenavscrollEl.getBoundingClientRect().top + document.body.scrollTop;

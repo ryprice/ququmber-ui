@@ -3,10 +3,8 @@ import * as React from 'react';
 import TetherComponent from 'react-tether';
 
 import UIButton from 'ququmber-ui/button/UIButton';
-import Colors from 'ququmber-ui/Colors';
 import UIDropdown from 'ququmber-ui/popup/UIDropdown';
 import Stylings from 'ququmber-ui/Stylings';
-import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 
 const colorOptions = [
   'b80000', 'ff6600', 'fccb00', '99ff99',
@@ -69,7 +67,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
   }
 
   public render() {
-    const {value, children, open, onClose} = this.props;
+    const {children, open, onClose} = this.props;
     const {custom} = this.state;
 
     return <TetherComponent

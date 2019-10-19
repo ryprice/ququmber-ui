@@ -1,4 +1,3 @@
-import {map, pick} from 'lodash';
 import * as React from 'react';
 
 import UIToggle from 'ququmber-ui/controls/UIToggle';

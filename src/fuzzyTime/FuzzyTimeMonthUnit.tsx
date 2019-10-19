@@ -18,7 +18,7 @@ class FuzzyTimeMonthUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
 
   render() {
     const month = this.props.time;
-    const {style, onClick, hoverTime} = this.props;
+    const {style, hoverTime} = this.props;
 
     const weeksCount: number = weeksInMonth(
       month.getTime().getUTCMonth(),

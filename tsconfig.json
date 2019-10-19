@@ -14,13 +14,11 @@
     "paths": {
       "ququmber-ui/*": ["src/*"],
       "ququmber-api/*": ["node_modules/ququmber-api/src/*"]
-    }
+    },
+    "noUnusedLocals": true
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
 }
