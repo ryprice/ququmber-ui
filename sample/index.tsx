@@ -119,7 +119,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
     const curSection = sections.find(s => s[0] === this.state.curNav);
 
     return <div>
-      <div className="topbar">
+      <div className="Topbar">
         <div id="logo" />
       </div>
       <div className="mainContent">
