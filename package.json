@@ -1,7 +1,7 @@
 {
   "name": "ququmber-ui",
   "version": "1.0.0",
-  "description": "React UI library for Ququmber",
+  "description": "React UI library for ListLab",
   "main": "gulpfile.js",
   "devDependencies": {
     "@babel/cli": "^7.5.5",

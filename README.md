@@ -1,6 +1,6 @@
 # ququmber-ui
-Standalone React component library for Ququmber projects.
+Standalone React component library for ListLab projects.
 
-http://dev.ququmber.com/ui/
+http://dev.listlab.io/ui/
 
-![screenshot](http://dev.ququmber.com/ui/sample.png)
+![screenshot](http://dev.listlab.io/ui/sample.png)

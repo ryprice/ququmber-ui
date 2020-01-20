@@ -74,7 +74,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
 
       'Input',
       ['ququmber-ui/input/UICopyInput', <UICopyInput
-        value="http://app.ququmber.com/t/1839483?s=7d92kd0mc283mns0yu44j"
+        value="http://app.listlab.io/t/1839483?s=7d92kd0mc283mns0yu44j"
       />],
       ['ququmber-ui/input/UIEditableText', <UIEditableText
         placeholder="Enter your text here"
