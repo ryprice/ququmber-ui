@@ -1,6 +1,6 @@
 {
   "extends": [
-    "ququmber-build/tslint.json",
-    "ququmber-build/tslint-ui.json"
+    "listlab-build/tslint.json",
+    "listlab-build/tslint-ui.json"
   ]
 }
