@@ -13,7 +13,7 @@
     "rootDir": "./src/",
     "paths": {
       "ququmber-ui/*": ["src/*"],
-      "ququmber-api/*": ["node_modules/ququmber-api/src/*"]
+      "listlab-api/*": ["node_modules/listlab-api/src/*"]
     },
     "noUnusedLocals": true
   },

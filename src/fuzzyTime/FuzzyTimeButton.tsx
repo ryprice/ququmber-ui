@@ -6,7 +6,7 @@ import {
   formatRelativeShortName,
   FuzzyTime,
   FuzzyTimeRange,
-} from 'ququmber-api';
+} from 'listlab-api';
 
 import FuzzyTimeSelect from 'ququmber-ui/fuzzyTime/FuzzyTimeSelect';
 import UIDropdown from 'ququmber-ui/popup/UIDropdown';

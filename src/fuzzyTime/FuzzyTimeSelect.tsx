@@ -6,8 +6,8 @@ import {
   FuzzyGranularity,
   FuzzyTimeRange,
   Task
-} from 'ququmber-api';
-import FuzzyTime, {buildFuzzyTime} from 'ququmber-api/FuzzyTime';
+} from 'listlab-api';
+import FuzzyTime, {buildFuzzyTime} from 'listlab-api/FuzzyTime';
 
 import UIButton from 'ququmber-ui/button/UIButton';
 import FuzzyTimeMonthUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeMonthUnit';

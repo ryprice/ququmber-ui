@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {FuzzyTimeRange} from 'ququmber-api';
+import {FuzzyTimeRange} from 'listlab-api';
 
 export class FuzzyTimeSelector extends React.Component<FuzzyTimeSelectorProps, {}> {
   render(): React.ReactNode {

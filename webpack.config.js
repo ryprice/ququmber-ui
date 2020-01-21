@@ -20,7 +20,7 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.sass'],
     alias: {
       'ququmber-ui': path.resolve('lib'),
-      'ququmber-api': path.resolve('node_modules/ququmber-api/lib')
+      'listlab-api': path.resolve('node_modules/listlab-api/lib')
     }
   },
 

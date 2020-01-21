@@ -107,7 +107,7 @@ class RootComponent extends React.Component<{}, RootComponentState> {
       ['ququmber-ui/Typography', <TypographySection />],
       ['Sample-form', <FormSection />],
 
-      'ququmber-api',
+      'listlab-api',
       ['ququmber-ui/tasks/TaskFilterLink', <TaskFilterLink
         href="http://google.com"
         onClick={() => alert('clicked list')}

@@ -1,7 +1,7 @@
 import {times} from 'lodash';
 import * as React from 'react';
 
-import {FuzzyGranularity} from 'ququmber-api';
+import {FuzzyGranularity} from 'listlab-api';
 
 import FuzzyTimeSelectUnit, {
   FuzzyTimeSelectUnitProps,

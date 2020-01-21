@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {FuzzyTime} from 'ququmber-api';
+import {FuzzyTime} from 'listlab-api';
 
 import FuzzyTimeSelect from 'ququmber-ui/fuzzyTime/FuzzyTimeSelect';
 

@@ -1,7 +1,7 @@
 import {size} from 'lodash';
 import * as React from 'react';
 
-import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange, Task} from 'ququmber-api';
+import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange, Task} from 'listlab-api';
 
 import {shallowDifference} from 'ququmber-ui/utils/reactUtils';
 
