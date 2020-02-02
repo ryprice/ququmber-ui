@@ -2,20 +2,14 @@ import * as React from 'react';
 import TetherComponent from 'react-tether';
 
 import UIButton from 'ququmber-ui/button/UIButton';
-import UIDropdown from 'ququmber-ui/popup/UIDropdown';
+import UIContextMenu, {UIContextMenuOption} from 'ququmber-ui/popup/UIContextMenu';
 import Stylings from 'ququmber-ui/Stylings';
 
 const {useCallback, useState} = React;
 
 const UIDropdownButton = (props: UIDropdownButtonProps) => {
-  const {name, options, styling, style} = props;
+  const {name, options, styling, style, className} = props;
   const [open, setOpen] = useState(false);
-
-  const onClickOptionAndClose = useCallback((index: number) => {
-    setOpen(false);
-    const option = options[index];
-    option.onClick && option.onClick();
-  }, [options]);
 
   const onClose = useCallback(() => setOpen(false), []);
 
@@ -23,40 +17,26 @@ const UIDropdownButton = (props: UIDropdownButtonProps) => {
     attachment="top right"
     targetAttachment="bottom right">
     <UIButton
+      className={`${className} UIDropdownButton`}
       styling={styling}
       onClick={() => setOpen(true)}>
       <span style={style}>
         {name}
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <i className="fa fa-caret-down" style={{float: 'right'}}/>
+        <i className="dropdownArrow fa fa-caret-down" style={{float: 'right'}} />
       </span>
     </UIButton>
-    <UIDropdown
-      open={open}
-      onClose={onClose}
-      className="UIDropdownButtonDropdown">
-      {options.map((option: UIDropdownButtonOption, index: number) => (
-        <button key={index} className="option" onClick={() => onClickOptionAndClose(index)}>
-          <i className={option.icon} />
-          &nbsp;&nbsp;
-          {option.name}
-        </button>
-      ))}
-    </UIDropdown>
+    <UIContextMenu open={open} options={options} onClose={onClose} />
   </TetherComponent>;
 };
 
-interface UIDropdownButtonOption {
-  name: string;
-  icon: string;
-  onClick: () => void;
-}
+type UIDropdownButtonOption = UIContextMenuOption;
 
 interface UIDropdownButtonProps {
   options: UIDropdownButtonOption[];
   styling?: Stylings;
   name: React.ReactNode;
   style?: object;
+  className?: string;
 }
 
 export default UIDropdownButton;

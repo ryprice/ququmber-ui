@@ -1,0 +1,18 @@
+@import tokens
+
+.UIContextMenu
+  display: flex
+  flex-direction: column
+
+  .option
+    padding: 10px
+    padding-right: 50px
+    margin: 4px 2px
+    background: transparent
+    text-align: left
+
+    &:hover
+      background: $color-option-hover
+
+    &:active
+      background: $color-option-selected
