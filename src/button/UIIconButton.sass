@@ -2,7 +2,6 @@
 
 .UIIconButton
   background: transparent
-  color: $color-ququmber
   border: 0
   font-size: 1em
 
@@ -11,18 +10,44 @@
 
   &:hover,
   &:hover>i
-    color: lighten($color-ququmber, 20%)
     background: transparent
 
   &:active,
   &:active>i
-    color: $color-ququmber
     background: transparent
 
   &:focus,
   &:focus>i
-    color: $color-ququmber
     background: transparent
+
+  &.styling-control
+    color: $color-ququmber
+    &:hover,
+    &:hover>i
+      color: lighten($color-ququmber, 20%)
+
+    &:active,
+    &:active>i
+      color: $color-ququmber
+
+    &:focus,
+    &:focus>i
+      color: lighten($color-notify, 20%)
+
+  &.styling-notify
+    color: $color-notify
+
+    &:hover,
+    &:hover>i
+      color: lighten($color-notify, 20%)
+
+    &:active,
+    &:active>i
+      color: $color-notify
+
+    &:focus,
+    &:focus>i
+      color: lighten($color-notify, 20%)
 
 .UIIconButtonTransition-appear
   opacity: 0

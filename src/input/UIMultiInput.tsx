@@ -170,6 +170,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
         onKeyUp={(e: any) => this.onKeyUp(e)}
         ref={(el: any) => this.receiveTagsInputEl(el)}
       />
+      <span className="octicon octicon-chevron-down down-arrow" key="down-arrow" />
     </div>;
 
     return <div>

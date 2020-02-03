@@ -5,7 +5,8 @@ enum Stylings {
   GOOGLE = 'google',
   FACEBOOK = 'facebook',
   OUTLINE = 'outline',
-  LINK = 'link'
+  LINK = 'link',
+  NOTIFY = 'notify',
 }
 
 export default Stylings;

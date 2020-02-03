@@ -1,13 +1,14 @@
 import * as React from 'react';
 import TetherComponent from 'react-tether';
 
+import Stylings from 'ququmber-ui/Stylings';
 import UIMountTransition from 'ququmber-ui/utils/UIMountTransition';
 import useDelayedMouseHover from 'ququmber-ui/utils/useDelayedMouseHover';
 
 const {useCallback, useState} = React;
 
 const UIIconButton = (props: UIIconButtonProps) => {
-  const {className, onClick, disabled, icon, tooltip} = props;
+  const {className, onClick, disabled, icon, tooltip, styling} = props;
   const [showTooltip, setShowTooltip] = useState(false);
 
   const setShowTooltipIfEnabled = useCallback((v: boolean) => tooltip && setShowTooltip(v), []);
@@ -15,7 +16,7 @@ const UIIconButton = (props: UIIconButtonProps) => {
   const buttonWithMaybeTooltipProps = tooltip ? {onMouseOver, onMouseOut} : {};
 
   const button = <button
-    className={`UIIconButton ${className}`}
+    className={`UIIconButton styling-${styling} ${className}`}
     onClick={onClick}
     disabled={disabled}
     {...buttonWithMaybeTooltipProps}>
@@ -44,7 +45,8 @@ const UIIconButton = (props: UIIconButtonProps) => {
 
 UIIconButton.defaultProps = {
   className: '',
-  disabled: false
+  disabled: false,
+  styling: Stylings.CONTROL,
 };
 
 export interface UIIconButtonProps {
@@ -53,6 +55,7 @@ export interface UIIconButtonProps {
   className?: string;
   disabled?: boolean;
   tooltip?: string;
+  styling?: Stylings;
 }
 
 export default class UIIconButtonClass extends React.Component<UIIconButtonProps> {
