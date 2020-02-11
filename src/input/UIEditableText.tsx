@@ -53,14 +53,14 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
   }
 
   render() {
-    const {placeholder, value, onClick, onFocus, className} = this.props;
+    const {placeholder, value, onClick, onFocus, className, disabled} = this.props;
     const renderedClassName = (
       `UIEditableText ${className} ` +
       (this.shouldShowPlaceholder() ? 'placeholder' : '')
     );
 
     return <p
-      contentEditable={true}
+      contentEditable={disabled ? false : true}
       onChange={(e: any) => this.onChange(e)}
       className={renderedClassName}
       onKeyPress={(e: any) => this.onKeyPress(e)}
@@ -77,13 +77,14 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
 }
 
 export interface UIEditableTextProps extends React.Props<HTMLInputElement> {
-    value?: string;
-    onSubmit?: (value: string) => void;
-    className?: string;
-    placeholder?: string;
-    onClick?: () => void;
-    autofocus?: boolean;
-    onFocus?: () => void;
+  value?: string;
+  onSubmit?: (value: string) => void;
+  className?: string;
+  placeholder?: string;
+  onClick?: () => void;
+  autofocus?: boolean;
+  onFocus?: () => void;
+  disabled?: boolean;
 }
 
 export interface UIEditableTextState {
