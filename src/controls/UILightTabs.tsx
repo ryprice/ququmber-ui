@@ -14,7 +14,7 @@ const UILightTabs = (props: UILightTabsProps) => {
         selected={tab.id === selectedTab}
         id={tab.id}
         key={tab.id}
-        onClick={(id) => {console.log(id); setSelectedTab(id); }}
+        onClick={setSelectedTab}
         name={tab.name}
       />)}
     </div>
