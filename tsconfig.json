@@ -10,7 +10,7 @@
     "noEmit": false,
     "jsx": "react",
     "baseUrl": ".",
-    "rootDir": "./src/",
+    "rootDir": ".",
     "paths": {
       "ququmber-ui/*": ["src/*"],
       "listlab-api/*": ["node_modules/listlab-api/src/*"]

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {
-  LiveProvider,
   LiveEditor,
   LiveError,
-  LivePreview
+  LivePreview,
+  LiveProvider,
 } from 'react-live';
 
 import Colors from 'ququmber-ui/Colors';
@@ -27,8 +27,8 @@ const Editor = (props: EditorProps) => {
         <LiveEditor />
       </div>
     </LiveProvider>
-  </div>
-}
+  </div>;
+};
 
 interface EditorProps {
   code: string;

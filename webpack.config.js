@@ -7,24 +7,35 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 module.exports = {
   entry: {
     'sample': './sample/index',
-    'sample-styles': './sample/index.sass'
+    'ququmber-ui': './src/index.sass',
+    'sample-styles': './sample/index.sass',
   },
 
   output: {
     filename: '[name].js',
     path: __dirname + '/sample/build',
-    libraryTarget: 'amd'
+    libraryTarget: 'umd'
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.sass'],
+    extensions: ['.ts', '.tsx', '.js', '.sass', '.html'],
     alias: {
-      'ququmber-ui': path.resolve('lib'),
-      'listlab-api': path.resolve('node_modules/listlab-api/lib')
+      'ququmber-ui': path.resolve('src'),
+      'listlab-api': path.resolve('node_modules/listlab-api/src')
     }
   },
 
   devtool: 'source-map',
+
+  devServer: {
+    inline: true,
+    port: 3001,
+    historyApiFallback: {
+      rewrites: [
+        { from: 'index.html', to: '/sample/index.html' },
+      ]
+    }
+  },
 
   module: {
     rules: [
@@ -43,7 +54,7 @@ module.exports = {
             options: { includePaths: ['../ququmber-ui/lib'] }
           }
         ]
-      }
+      },
     ]
   },
   plugins: [
@@ -54,7 +65,12 @@ module.exports = {
       {from: 'dist/ququmber-ui.css', to: 'ququmber-ui.css'}
     ]),
     new TSLintPlugin({
-      files: ['src/**/*.ts', 'src/**/*.tsx']
+      files: [
+        'src/**/*.ts',
+        'src/**/*.tsx',
+        'sample/**/*.ts',
+        'sample/**/*.tsx'
+      ]
     }),
     new StyleLintPlugin({
       syntax: 'sass'

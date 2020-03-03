@@ -13,8 +13,8 @@
     "css-loader": "^3.2.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-system": "^2.2.2",
-    "node-sass": "^4.12.0",
     "listlab-build": "file:../listlab-build",
+    "node-sass": "^4.12.0",
     "sass-loader": "^7.3.1",
     "stylelint": "^9.10.1",
     "stylelint-webpack-plugin": "^0.10.5",
@@ -25,11 +25,12 @@
     "typescript": "^3.4.5",
     "webfonts-generator": "^0.4.0",
     "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.10.3"
   },
   "scripts": {
     "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path src src/index.sass dist/ququmber-ui.css && tslint -p . && stylelint src/**/*.sass --syntax sass && cp src/tokens.sass lib/tokens.sass",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sample": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -52,8 +53,8 @@
     "@types/react-virtualized": "^9.21.1",
     "@types/tether": "^1.4.4",
     "immutable": "^3.8.1",
-    "lodash": "^4.17.11",
     "listlab-api": "file:../listlab-api-js",
+    "lodash": "^4.17.11",
     "react": "^16.8.6",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dnd": "^9.3.2",

@@ -48,7 +48,11 @@ const ColorsSection = () =>
       'NOTIFY_HOVER',
       'GO',
       'DEEPRED',
-      'RED'
+      'RED',
+      'LIGHTRED',
+      'LIGHTYELLOW',
+      'LIGHTGREEN',
+      'LIGHTBLUE',
     ])} />
     <ColorsSubsection name="Integrations" colors={pick(Colors, [
       'GOOGLE',
