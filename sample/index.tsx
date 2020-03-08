@@ -3,7 +3,6 @@ import {DndProvider} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import * as ReactDOM from 'react-dom';
 
-import UIIconButton from 'ququmber-ui/button/UIIconButton';
 import Colors from 'ququmber-ui/Colors';
 import UIBadge from 'ququmber-ui/controls/UIBadge';
 import UICheckbox from 'ququmber-ui/controls/UICheckbox';
@@ -22,6 +21,7 @@ import TypographySection from './TypographySection';
 
 import UIButtonSample from './button/UIButtonSample';
 import UIDropdownButtonSample from './button/UIDropdownButtonSample';
+import UIIconButtonSample from './button/UIIconButtonSample';
 
 import UIColorSelectorSample from './controls/UIColorSelectorSample';
 import UITagSample from './controls/UITagSample';
@@ -52,7 +52,7 @@ const RootComponent = () => {
     onHashChange();
   }, []);
 
-  
+
   const sections = [
     'Controls',
     ['ququmber-ui/controls/UIColorSelector', <UIColorSelectorSample />],
@@ -87,10 +87,7 @@ const RootComponent = () => {
     'Button',
     ['ququmber-ui/button/UIButton', <UIButtonSample />],
     ['ququmber-ui/button/UIDropdownButton', <UIDropdownButtonSample />],
-    ['ququmber-ui/button/UIIconButton', <div>
-      <UIIconButton icon="fa fa-inbox" /><br />
-      <div style={{fontSize: '20px'}}><UIIconButton icon="fa fa-inbox" /></div><br />
-    </div>],
+    ['ququmber-ui/button/UIIconButton', <UIIconButtonSample />],
 
     'FuzzyTime',
     ['ququmber-ui/fuzzyTime/FuzzyTimeButton', <FuzzyTimeButton />],
@@ -120,6 +117,7 @@ const RootComponent = () => {
     } else {
       setFilter(null);
     }
+    return true;
   }, [setFilter, filter]);
 
   const filteredSections = sections.filter(s => {
