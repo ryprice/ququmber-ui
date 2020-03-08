@@ -1,3 +1,33 @@
-.UICheckbox
-  width: 20px
-  height: 20px
+@import tokens
+
+input[type='checkbox'].UICheckbox
+  width: 1.5em
+  height: 1.5em
+  appearance: none
+  -webkit-appearance: none
+  color: $color-black
+  -moz-appearance: none
+  outline: 0
+  border: 1px solid $color-control-border
+  cursor: pointer
+  position: relative
+  border-radius: $border-radius-input
+
+  &:before
+    position: absolute
+    content: ''
+    display: block
+    top: .1em
+    left: .35em
+    width: .4em
+    height: .7em
+    border-style: solid
+    transform: rotate(45deg)
+    opacity: 0
+    border-style: solid;
+    border-color: $color-basefont;
+    border-width: 0 .2em .2em 0;
+
+  &:checked
+    &:before
+      opacity: 1
