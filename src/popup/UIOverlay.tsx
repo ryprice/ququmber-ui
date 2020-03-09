@@ -36,6 +36,9 @@ export class UIOverlay extends React.Component<UIOverlayProps, {}> {
   }
 
   render() {
+    if (this.props.debugInline) {
+      return this.props.children;
+    }
     return ReactDOM.createPortal(
       <UIOverlayPortal {...this.props} />,
       this.node
@@ -46,6 +49,7 @@ export class UIOverlay extends React.Component<UIOverlayProps, {}> {
 export interface UIOverlayProps {
   open?: boolean;
   children: React.ReactNode;
+  debugInline?: boolean;
 }
 
 export default UIOverlay;
