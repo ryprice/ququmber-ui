@@ -19,6 +19,8 @@ import ComponentSection from './ComponentSection';
 import FormSection from './FormSection';
 import TypographySection from './TypographySection';
 
+import UIBannerSample from './alerts/UIBannerSample';
+
 import UIButtonSample from './button/UIButtonSample';
 import UIDropdownButtonSample from './button/UIDropdownButtonSample';
 import UIIconButtonSample from './button/UIIconButtonSample';
@@ -92,6 +94,9 @@ const RootComponent = () => {
     'FuzzyTime',
     ['ququmber-ui/fuzzyTime/FuzzyTimeButton', <FuzzyTimeButton />],
     ['ququmber-ui/fuzzyTime/FuzzyTimeSelect', <FuzzyTimeSelectSample />],
+
+    'Alerts',
+    ['ququmber-ui/alerts/UIBanner', <UIBannerSample />],
 
     'Styles',
     ['ququmber-ui/Colors', <ColorsSection />],

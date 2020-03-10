@@ -21,7 +21,7 @@ const UIBanner = (props: UIBannerProps) => {
 
 interface UIBannerProps {
   children: React.ReactNode;
-  onClose: () => void;
+  onClose?: () => void;
   background: string;
 }
 
