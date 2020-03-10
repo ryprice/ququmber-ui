@@ -134,3 +134,18 @@
 
     &:disabled
       color: $color-quiet
+
+  
+  &.styling-notify
+    background: $color-notify
+    border: solid darken($color-notify, 3%) 1px
+
+    &:hover
+      background: lighten($color-notify, 7%)
+
+    &:active
+      background: darken($color-notify, 3%)
+
+    &:disabled
+      background: lighten($color-notify, 15%)
+      color: rgba(255, 255, 255, 0.75)
