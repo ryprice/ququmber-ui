@@ -16,8 +16,8 @@ class FuzzyTimeYearUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
 
   render() {
     const {props} = this;
-    const year = props.time;
     const {style} = props;
+    const year = props.time;
 
     let curMonth = year.withGranularity(FuzzyGranularity.MONTH);
     const monthsCount = 12;
@@ -30,7 +30,6 @@ class FuzzyTimeYearUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
     return <div style={style} className="FuzzyTimeYearUnit">
       <FuzzyTimeSelectUnit
         {...props}
-        time={year}
         className="yearTitle"
         key="title">
         {year.getTime().getUTCFullYear().toString()}

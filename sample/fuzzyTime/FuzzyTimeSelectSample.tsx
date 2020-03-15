@@ -1,18 +1,18 @@
 import * as React from 'react';
 
-import {FuzzyTime} from 'listlab-api';
+import {FuzzyTime, FuzzyTimeRange} from 'listlab-api';
 
 import FuzzyTimeSelect from 'ququmber-ui/fuzzyTime/FuzzyTimeSelect';
 
-class FuzzyTimeSelectSample extends React.Component<{}, FuzzyTimeSelectSampleState> {
+const {useState} = React;
 
-  readonly state: FuzzyTimeSelectSampleState = {
-    time1: null
-  };
+const FuzzyTimeSelectSample = () => {
+  const [time1, setTime1] = useState<FuzzyTime>();
+  const [range1, setRange1] = useState<FuzzyTimeRange>();
 
-  render() {
-    const {time1} = this.state;
-    return (
+  return (
+    <div>
+      <p>Time selection</p>
       <div style={{
         width: '300px',
         height: '500px',
@@ -20,16 +20,23 @@ class FuzzyTimeSelectSample extends React.Component<{}, FuzzyTimeSelectSampleSta
       }}>
         <FuzzyTimeSelect
           selected={time1}
-          onTimeSelected={(t) => this.setState({time1: t})}
-          multiselect={false}
+          onTimeSelected={setTime1}
         />
       </div>
-    );
-  }
-}
-
-interface FuzzyTimeSelectSampleState {
-  time1: FuzzyTime;
-}
+      <p>Range selection</p>
+      <div style={{
+        width: '300px',
+        height: '500px',
+        background: '#ffffff'
+      }}>
+        <FuzzyTimeSelect
+          selectedRange={range1}
+          onRangeSelected={setRange1}
+          multiselect={true}
+        />
+      </div>
+    </div>
+  );
+};
 
 export default FuzzyTimeSelectSample;

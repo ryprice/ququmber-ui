@@ -1,5 +1,7 @@
 @import '../tokens'
 
+$hoverRangeArrowSize: 13px
+
 .FuzzyTimeWeekUnit
   overflow: auto
 
@@ -19,6 +21,7 @@
     display: inline-flex
     align-items: center
     justify-content: center
+    position: relative
 
     &:hover:not(.placeholder),
     &.hover
@@ -32,6 +35,25 @@
       &:hover
         background-color: lighten($color-notify, 20%)
 
+    .hoverRangeStart
+      background: $color-notify
+      border: transparent solid $hoverRangeArrowSize
+      border-right: $color-notify solid $hoverRangeArrowSize
+      transform: rotate(45deg)
+      position: absolute
+      top: -$hoverRangeArrowSize
+      left: -$hoverRangeArrowSize
+
+    .hoverRangeEnd
+      background: $color-notify
+      border: transparent solid $hoverRangeArrowSize
+      border-left: $color-notify solid $hoverRangeArrowSize
+      transform: rotate(45deg)
+      position: absolute
+      right: -$hoverRangeArrowSize
+      bottom: -$hoverRangeArrowSize
+
+
   .fullWeekButton
     width: 9%
     height: 32px
@@ -39,7 +61,7 @@
     color: $color-quiet
 
   .day
-    width: 12%
+    width: 13%
     font-size: 13px
 
     p

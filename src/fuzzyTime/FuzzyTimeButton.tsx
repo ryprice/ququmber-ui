@@ -94,14 +94,14 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
           onTimeSelected={this.onTimeSelected.bind(this)}
           multiselect={multiselect}
           onRangeSelected={this.onRangeSelected.bind(this)}
-          range={range}
+          selectedRange={range}
         />
       </UIDropdown>
     </TetherComponent>;
   }
 }
 
-export interface FuzzyTimeButtonProps {
+export type FuzzyTimeButtonProps = {
   value?: FuzzyTime;
   range?: FuzzyTimeRange;
   onChange?: (time: FuzzyTime) => void;
@@ -112,10 +112,10 @@ export interface FuzzyTimeButtonProps {
   attachment?: string;
   targetAttachment?: string;
   disabled?: boolean;
-}
+};
 
-export interface FuzzyTimeButtonState {
+type FuzzyTimeButtonState = {
   opened: boolean;
-}
+};
 
 export default FuzzyTimeButton;

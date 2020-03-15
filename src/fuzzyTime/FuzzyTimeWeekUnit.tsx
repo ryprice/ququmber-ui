@@ -89,8 +89,8 @@ class FuzzyTimeWeekUnit extends React.Component<FuzzyTimeWeekUnitProps, {}> {
   }
 }
 
-export interface FuzzyTimeWeekUnitProps extends FuzzyTimeSelectUnitProps {
+export type FuzzyTimeWeekUnitProps = FuzzyTimeSelectUnitProps & {
   month: FuzzyTime;
-}
+};
 
 export default FuzzyTimeWeekUnit;

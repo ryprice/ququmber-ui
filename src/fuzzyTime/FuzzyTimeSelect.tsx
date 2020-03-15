@@ -29,45 +29,32 @@ const initialState = (props: FuzzyTimeSelectProps): FuzzyTimeSelectState => {
       props.selected.compareTo(FuzzyTime.getForever()) &&
       props.selected
     ) ||
-    (props.range && props.range.getStart())
+    (props.selectedRange && props.selectedRange.getStart())
     || FuzzyTime.getCurrent(FuzzyGranularity.DAY)
   );
   return {
     focalPoint,
     width: 0,
     height: 0,
-    midselect: false,
     viewMode: focalPoint && focalPoint.getGranularity() === FuzzyGranularity.YEAR
       ? ViewMode.YEARLY
       : ViewMode.DAILY,
     initialSelected: props.selected,
-    initialRange: props.range
+    initialRange: props.selectedRange
   };
 };
 
 export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, FuzzyTimeSelectState> {
 
-  // private readonly scrollContainerEl: Element;
-
   private rootRef: HTMLDivElement;
 
   readonly state: FuzzyTimeSelectState = initialState(this.props);
-
-  private shouldScrollToFocalPoint = false;
 
   private onResizeTimerId: number = null;
 
   componentDidMount() {
     this.onResizeTimerId = window.setInterval(() => this.onResize(), 150);
     this.onResize();
-    // this.scrollToFocalPoint();
-  }
-
-  componentDidUpdate() {
-    if (this.shouldScrollToFocalPoint) {
-      this.scrollToFocalPoint();
-      this.shouldScrollToFocalPoint = false;
-    }
   }
 
   componentWillUnmount() {
@@ -84,11 +71,11 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
 
   unitOnClick = (t: FuzzyTime) => {
     if (this.props.multiselect) {
-      if (!this.state.midselect) {
-        this.setState({start: t, midselect: true});
+      if (!this.state.nextRangeStart) {
+        this.setState({nextRangeStart: t});
       } else {
-        this.props.onRangeSelected(new FuzzyTimeRange(this.state.start, t));
-        this.setState({start: undefined, midselect: false});
+        this.props.onRangeSelected(new FuzzyTimeRange(this.state.nextRangeStart, t));
+        this.setState({nextRangeStart: undefined});
       }
     } else {
       this.props.onTimeSelected(t);
@@ -98,7 +85,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   onCancelClick = () => {
     const {onTimeSelected, onRangeSelected} = this.props;
     const {initialSelected, initialRange} = this.state;
-    if (!this.props.range) {
+    if (!this.props.selectedRange) {
       onTimeSelected(initialSelected);
     } else {
       onRangeSelected(initialRange);
@@ -106,16 +93,16 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   }
 
   public getUnitProps(): FuzzyTimeSelectUnitProps {
-    const {range, selected, multiselect, onTasksDropped} = this.props;
-    const {focalPoint, start, hoverTime} = this.state;
+    const {selectedRange, selected, multiselect, onTasksDropped} = this.props;
+    const {focalPoint, nextRangeStart, hoverTime} = this.state;
     return {
       time: null,
       disabled: false,
       onClick: this.unitOnClick,
-      range,
+      selectedRange,
       selected,
       multiselect,
-      start,
+      nextRangeStart,
       focalPoint,
       onTasksDropped,
       granularity: focalPoint.getGranularity(),
@@ -141,7 +128,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     }
 
     const {index, key, style} = info;
-    time = time.offset(index);
+    time = time.offset(index - 100);
 
     switch(this.state.viewMode) {
       case ViewMode.DAILY:
@@ -169,7 +156,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       case ViewMode.DAILY: {
         const month = this.state.focalPoint
           .withGranularity(FuzzyGranularity.MONTH)
-          .offset(index);
+          .offset(index - 100);
         return (58 + 32 * weeksInMonth(
           month.getTime().getUTCMonth(),
           month.getTime().getUTCFullYear()
@@ -194,10 +181,14 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   }
 
   renderQuickOption(time: FuzzyTime, name: string, icon: string) {
-    const {onTimeSelected, selected, range} = this.props;
+    const {onTimeSelected, selected, selectedRange} = this.props;
     const selectedOrRangeSelected = (
       time.equals(selected) ||
-      (range && range.getStart().equals(time) && range.getEnd().equals(time))
+      (
+        selectedRange &&
+        selectedRange.getStart().equals(time) &&
+        selectedRange.getEnd().equals(time)
+      )
     );
 
     return <button
@@ -211,6 +202,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   }
 
   private renderQuickOptions() {
+    const {onTimeSelected} = this.props;
     const today = FuzzyTime.getCurrent(FuzzyGranularity.DAY);
     const tomorrow = today.getNext();
     const thisWeek = FuzzyTime.getCurrent(FuzzyGranularity.WEEK);
@@ -225,27 +217,30 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         {time: thisWeek, name: 'this week', icon: 'qqico qqico-cal-week'},
         {time: nextWeek, name: 'next week', icon: 'qqico qqico-cal-next-week'},
         {time: nextMonth, name: 'next month', icon: 'qqico qqico-cal-next-month'},
-        {time: FuzzyTime.getForever(), name: 'no date', icon: 'fa fa-times'},
       ];
     if (quickOptions.length === 0) {
       return null;
     }
     return <div className="quickOptions">
       {quickOptions.map(qo => this.renderQuickOption(qo.time, qo.name, qo.icon))}
+      <div style={{flexGrow: 1}} />
+      <UIButton
+        style={{margin: 0}}
+        styling={Stylings.LINK}
+        onClick={() => onTimeSelected(FuzzyTime.getForever())}>
+        clear
+      </UIButton>
     </div>;
   }
 
   render() {
-    // const {focalPoint} = this.state;
-    // const today = FuzzyTime.getCurrent(FuzzyGranularity.DAY);
-    // const unitElmts: JSX.Element[] = [<div className="spacer" />];
-    const {width, height, viewMode, focalPoint, start, hoverTime} = this.state;
+    const {width, height, viewMode, focalPoint, nextRangeStart, hoverTime} = this.state;
     const {onTimeSelected} = this.props;
 
     const invalidationPropsForRows = {
       focalPoint,
       viewMode,
-      start,
+      nextRangeStart,
       hoverTime
     };
 
@@ -264,6 +259,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         rowCount={1000}
         rowRenderer={this.renderRow}
         style={{}}
+        scrollToIndex={100}
         {...invalidationPropsForRows}
       />
       <div className="controls">
@@ -286,50 +282,35 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
 
   private onResize() {
     const newWidth = (ReactDOM.findDOMNode(this.rootRef) as HTMLDivElement).clientWidth;
-    const newHeight = (ReactDOM.findDOMNode(this.rootRef) as HTMLDivElement).clientHeight - 110;
+    const newHeight = (ReactDOM.findDOMNode(this.rootRef) as HTMLDivElement).clientHeight - 90;
     const {width, height} = this.state;
     if (newWidth !== width || newHeight !== height) {
       this.setState({width: newWidth, height: newHeight});
     }
   }
-
-  private scrollToFocalPoint() {
-    const {focalPoint} = this.state;
-    if (focalPoint) {
-      // const timenavscrollEl = ReactDOM.findDOMNode(this.scrollContainerEl) as Element;
-      // const focalPointEl = ReactDOM.findDOMNode(this.focalPointComponent) as Element;
-      // if (timenavscrollEl && focalPointEl) {
-      //   const timenavscrollOffsetTop = timenavscrollEl.getBoundingClientRect().top + document.body.scrollTop;
-      //   const focalPointOffsetTop = focalPointEl.getBoundingClientRect().top + document.body.scrollTop;
-      //   const scrollTo = focalPointOffsetTop - timenavscrollOffsetTop + $timenavscroll.scrollTop() - 200;
-      //   $timenavscroll.scrollTop(scrollTo);
-      // }
-    }
-  }
 }
 
-export interface FuzzyTimeSelectProps {
+export type FuzzyTimeSelectProps = {
   focalPoint?: FuzzyTime;
-  onTimeSelected: (time: FuzzyTime) => void;
+  onTimeSelected?: (time: FuzzyTime) => void;
   onTasksDropped?: (tasks: Task[], time: FuzzyTime) => void;
   selected?: FuzzyTime;
-  range?: FuzzyTimeRange;
+  selectedRange?: FuzzyTimeRange;
   multiselect?: boolean;
   onRangeSelected?: (range: FuzzyTimeRange) => void;
   quickOptions?: {time: FuzzyTime, name: string, icon: string}[];
-}
+};
 
-export interface FuzzyTimeSelectState {
+type FuzzyTimeSelectState = {
   focalPoint: FuzzyTime;
   viewMode: ViewMode;
   width: number;
   height: number;
-  // Indicates that a range selection is in progress
-  midselect: boolean;
-  start?: FuzzyTime;
+  // First half of range selection. When defined, range selection is in progress
+  nextRangeStart?: FuzzyTime;
   hoverTime?: FuzzyTime;
   initialSelected?: FuzzyTime;
   initialRange?: FuzzyTimeRange;
-}
+};
 
 export default FuzzyTimeSelect;

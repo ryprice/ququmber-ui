@@ -6,7 +6,7 @@ import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange, Task} from 'listlab-api';
 import {shallowDifference} from 'ququmber-ui/utils/reactUtils';
 
 export const unitClassName = (props: FuzzyTimeSelectUnitProps) => {
-  const {disabled, hoverTime, time, multiselect, range, selected, start} = props;
+  const {disabled, hoverTime, time, multiselect, selectedRange, selected, nextRangeStart} = props;
   let className = '';
   if (disabled) {
     className += ' disabled';
@@ -28,14 +28,12 @@ export const unitClassName = (props: FuzzyTimeSelectUnitProps) => {
   ) {
     className += ' selected';
   }
-  if (multiselect) {
-    className += (range && range.contains(time)) ? ' selected' : '';
-    if (start) {
-      className += time.equals(start) ? ' selected' : '';
-    } else if (
-      range &&
-      (!range.getStart() || time.compareTo(range.getStart()) >= 0) &&
-      (!range.getEnd() || time.compareTo(range.getEnd()) <= 0)
+  if (multiselect && !nextRangeStart) {
+    className += (selectedRange && selectedRange.contains(time)) ? ' selected' : '';
+    if (
+      selectedRange &&
+      (!selectedRange.getStart() || time.compareTo(selectedRange.getStart()) >= 0) &&
+      (!selectedRange.getEnd() || time.compareTo(selectedRange.getEnd()) <= 0)
     ) {
       className += ' selected';
     }
@@ -90,7 +88,7 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
   }
 
   render() {
-    const {time, children, granularity} = this.props;
+    const {time, children, granularity, multiselect, hoverTime, nextRangeStart} = this.props;
 
     let className = 'FuzzyTimeSelectUnit';
     className += unitClassName(this.props);
@@ -130,6 +128,19 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
         name = 'Unknown/Forever?';
     }
 
+    const hoverTimeForRange = (
+      multiselect &&
+      hoverTime &&
+      hoverTime.equals(time) &&
+      time.getGranularity() === FuzzyGranularity.DAY
+    );
+    const isHoverRangeStart = (hoverTimeForRange && !nextRangeStart) || (
+      nextRangeStart &&
+      nextRangeStart.equals(time) &&
+      time.getGranularity() === FuzzyGranularity.DAY
+    );
+    const isHoverRangeEnd = hoverTimeForRange && nextRangeStart;
+
     return (
       <div
         className={className}
@@ -137,22 +148,24 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
         onMouseOver={this.onMouseOver}
         onMouseOut={this.onMouseOut}
       >
+        {isHoverRangeStart ? <div className="hoverRangeStart" /> : null}
+        {isHoverRangeEnd ? <div className="hoverRangeEnd" /> : null}
         {children || name}
       </div>
     );
   }
 }
 
-export interface FuzzyTimeSelectUnitProps {
+export type FuzzyTimeSelectUnitProps = {
   time: FuzzyTime;
   disabled: boolean;
   selected: FuzzyTime;
   granularity: FuzzyGranularity;
   hoverTime: FuzzyTime;
   focalPoint: FuzzyTime;
-  range?: FuzzyTimeRange;
+  selectedRange?: FuzzyTimeRange;
   multiselect: boolean;
-  start: FuzzyTime;
+  nextRangeStart: FuzzyTime;
 
   style?: Object;
   children?: React.ReactNode;
@@ -162,6 +175,6 @@ export interface FuzzyTimeSelectUnitProps {
   onMouseOver: (time: FuzzyTime) => void;
   onMouseOut: (time: FuzzyTime) => void;
   onTasksDropped: (tasks: Task[], time: FuzzyTime) => void;
-}
+};
 
 export default FuzzyTimeSelectUnit;
