@@ -181,7 +181,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   }
 
   renderQuickOption(time: FuzzyTime, name: string, icon: string) {
-    const {onTimeSelected, selected, selectedRange} = this.props;
+    const {selected, selectedRange} = this.props;
     const selectedOrRangeSelected = (
       time.equals(selected) ||
       (
@@ -194,15 +194,23 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     return <button
       key={`${time.toString()}-quickoption`}
       className={`quickOption ${selectedOrRangeSelected ? 'selected' : ''}`}
-      onClick={() => onTimeSelected(time)}
+      onClick={() => this.onQuckOptionClick(time)}
       onMouseOver={() => this.unitOnMouseOver(time)}
       onMouseOut={() => this.unitOnMouseOut(time)}>
       <i className={icon} />
     </button>;
   }
 
+  onQuckOptionClick = (time: FuzzyTime) => {
+    const {onTimeSelected, multiselect, onRangeSelected} = this.props;
+    if (!multiselect) {
+      onTimeSelected(time);
+    } else {
+      onRangeSelected(new FuzzyTimeRange(time, time));
+    }
+  }
+
   private renderQuickOptions() {
-    const {onTimeSelected} = this.props;
     const today = FuzzyTime.getCurrent(FuzzyGranularity.DAY);
     const tomorrow = today.getNext();
     const thisWeek = FuzzyTime.getCurrent(FuzzyGranularity.WEEK);
@@ -227,7 +235,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       <UIButton
         style={{margin: 0}}
         styling={Stylings.LINK}
-        onClick={() => onTimeSelected(FuzzyTime.getForever())}>
+        onClick={() => this.onQuckOptionClick(FuzzyTime.getForever())}>
         clear
       </UIButton>
     </div>;
@@ -235,7 +243,6 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
 
   render() {
     const {width, height, viewMode, focalPoint, nextRangeStart, hoverTime} = this.state;
-    const {onTimeSelected} = this.props;
 
     const invalidationPropsForRows = {
       focalPoint,
@@ -247,8 +254,8 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     return <div className="FuzzyTimeSelect" ref={(ref) => this.rootRef = ref}>
       {this.renderQuickOptions()}
       <div className="viewModeSelector">
-        {this.renderViewModeButton(ViewMode.DAILY, 'days/weeks', 'qqico qqico-cal-day')}
-        {this.renderViewModeButton(ViewMode.YEARLY, 'months/years', 'qqico qqico-cal-year')}
+        {this.renderViewModeButton(ViewMode.DAILY, 'calendar', 'qqico qqico-cal-day')}
+        {this.renderViewModeButton(ViewMode.YEARLY, 'years', 'qqico qqico-cal-year')}
       </div>
       <ReactVirtualized.List
         key={'virtualScroll' + viewMode}
@@ -259,30 +266,15 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         rowCount={1000}
         rowRenderer={this.renderRow}
         style={{}}
-        scrollToIndex={100}
+        scrollToIndex={101}
         {...invalidationPropsForRows}
       />
-      <div className="controls">
-        <UIButton
-          key="none-button"
-          className="noneButton"
-          onClick={() => onTimeSelected(null)}>
-          Cancel
-        </UIButton>
-        <UIButton
-          key="cancel-button"
-          className="cancelButton"
-          styling={Stylings.GO}
-          onClick={this.onCancelClick}>
-          Clear
-        </UIButton>
-      </div>
     </div>;
   }
 
   private onResize() {
     const newWidth = (ReactDOM.findDOMNode(this.rootRef) as HTMLDivElement).clientWidth;
-    const newHeight = (ReactDOM.findDOMNode(this.rootRef) as HTMLDivElement).clientHeight - 90;
+    const newHeight = (ReactDOM.findDOMNode(this.rootRef) as HTMLDivElement).clientHeight;
     const {width, height} = this.state;
     if (newWidth !== width || newHeight !== height) {
       this.setState({width: newWidth, height: newHeight});
