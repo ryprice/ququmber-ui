@@ -11,12 +11,18 @@ const UITag = (props: UITagProps) => {
   const color = props.color != null ? props.color : Colors.QUQUMBER.substring(1);
   const removeButtonRef = useRef();
 
+  const baseStyle = {
+    ...(props.onClick ? {cursor: 'pointer'} : {})
+  };
+
   const filledStyle = {
+    ...baseStyle,
     background: `#${color}`,
     border: `0`,
     color: isDarkColor(color) ? Colors.WHITE : Colors.BASEFONT,
   };
   const outlinedStyle = {
+    ...baseStyle,
     background: 'transparent',
     border: `1px solid #${color}`,
     color: `#${color}`,
