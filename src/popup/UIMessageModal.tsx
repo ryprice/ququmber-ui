@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import UIButton from 'ququmber-ui/button/UIButton';
-import UIButtonFooter from 'ququmber-ui/controls/UIButtonFooter';
+import UIButtonFooter from 'ququmber-ui/button/UIButtonFooter';
 import UIModal from 'ququmber-ui/popup/UIModal';
 import UIOverlay from 'ququmber-ui/popup/UIOverlay';
 import Stylings from 'ququmber-ui/Stylings';
@@ -12,26 +12,29 @@ export const Level = {
   Error: 2
 };
 
-export class UIMessageModal extends React.Component<UIMessageModalProps, {}> {
-  render() {
-    const {title, message, onConfirm, onCancel, className, confirmStyling, open, debugInline} = this.props;
+const UIMessageModal = (props: UIMessageModalProps) => {
+  const {
+    title, message, onConfirm, onCancel,
+    className,confirmStyling, open, debugInline
+  } = props;
 
-    return <UIOverlay open={open} debugInline={debugInline}>
-      <UIModal className={className} open={open}>
-        <div className="UIMessageModal">
-          <p className="title">{title}</p>
-          <p className="message">{message}</p>
-          <UIButtonFooter>
-            <UIButton onClick={onConfirm} styling={confirmStyling || Stylings.GO}>Confirm</UIButton>
-            <UIButton onClick={onCancel}>Cancel</UIButton>
-          </UIButtonFooter>
-        </div>
-      </UIModal>
-    </UIOverlay>;
-  }
-}
+  return <UIOverlay open={open} debugInline={debugInline}>
+    <UIModal className={className} open={open}>
+      <div className="UIMessageModal">
+        <p className="title">{title}</p>
+        <p className="message">{message}</p>
+        <UIButtonFooter>
+          <UIButton onClick={onConfirm} styling={confirmStyling || Stylings.GO}>
+            Confirm
+          </UIButton>
+          <UIButton onClick={onCancel}>Cancel</UIButton>
+        </UIButtonFooter>
+      </div>
+    </UIModal>
+  </UIOverlay>;
+};
 
-export interface UIMessageModalProps extends React.Props<UIMessageModal> {
+export type UIMessageModalProps = {
   level?: number;
   title: string;
   message: React.ReactNode;
@@ -41,6 +44,6 @@ export interface UIMessageModalProps extends React.Props<UIMessageModal> {
   confirmStyling?: Stylings;
   open?: boolean;
   debugInline?: boolean;
-}
+};
 
 export default UIMessageModal;

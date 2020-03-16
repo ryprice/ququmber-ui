@@ -263,7 +263,8 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         width={width}
         height={height}
         rowHeight={this.getRowHeight}
-        rowCount={1000}
+        rowCount={500}
+        overscanRowCount={2}
         rowRenderer={this.renderRow}
         style={{}}
         scrollToIndex={101}

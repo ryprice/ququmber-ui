@@ -2,7 +2,7 @@ import {find} from 'lodash';
 import * as React from 'react';
 import TetherComponent from 'react-tether';
 
-import UISelectDropdown, {UISelectDropdownOption} from 'ququmber-ui/controls/UISelectDropdown';
+import UISelectDropdown, {UISelectDropdownOption} from 'ququmber-ui/input/UISelectDropdown';
 import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
 
 const {useCallback, useMemo, useRef, useState} = React;

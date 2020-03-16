@@ -1,8 +1,8 @@
 import * as React from 'react';
 
+import UIToastNotification, {Levels} from 'ququmber-ui/alerts/UIToastNotification';
+import UIToastNotificationArea from 'ququmber-ui/alerts/UIToastNotificationArea';
 import UIButton from 'ququmber-ui/button/UIButton';
-import UIToastNotification, {Levels} from 'ququmber-ui/controls/UIToastNotification';
-import UIToastNotificationArea from 'ququmber-ui/controls/uiToastNotificationArea';
 
 class UIToastNotificationSample extends React.Component<{}, UIToastNotificationSampleState> {
 

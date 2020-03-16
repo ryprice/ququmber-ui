@@ -16,25 +16,23 @@ const levelToColor = (level: string) => {
   }
 };
 
-export class UIToastNotification extends React.Component<UIToastNotificationProps, {}> {
-  render() {
-    const {level, title, message} = this.props;
+const UIToastNotification = (props: UIToastNotificationProps) => {
+  const {level, title, message} = props;
 
-    return <div
-      className={`UIToastNotification`}
-      style={{background: levelToColor(level)}}
-    >
-      { title ? <p className="title">{String(title)}</p> : null }
-      { message ? <p className="message">{String(message)}</p> : null }
-    </div>;
-  }
-}
+  return <div
+    className={`UIToastNotification`}
+    style={{background: levelToColor(level)}}
+  >
+    { title ? <p className="title">{String(title)}</p> : null }
+    { message ? <p className="message">{String(message)}</p> : null }
+  </div>;
+};
 
-export interface UIToastNotificationProps {
+export type UIToastNotificationProps = {
   level: string;
   title?: string;
   message?: string;
   key?: string;
-}
+};
 
 export default UIToastNotification;

@@ -20,6 +20,7 @@ import FormSection from './FormSection';
 import TypographySection from './TypographySection';
 
 import UIBannerSample from './alerts/UIBannerSample';
+import UIToastNotificationSample from './alerts/UIToastNotificationSample';
 
 import UIButtonSample from './button/UIButtonSample';
 import UIDropdownButtonSample from './button/UIDropdownButtonSample';
@@ -27,7 +28,6 @@ import UIIconButtonSample from './button/UIIconButtonSample';
 
 import UIColorSelectorSample from './controls/UIColorSelectorSample';
 import UITagSample from './controls/UITagSample';
-import UIToastNotificationSample from './controls/UIToastNotificationSample';
 import UIToggleSample from './controls/UIToggleSample';
 
 import FuzzyTimeSelectSample from './fuzzyTime/FuzzyTimeSelectSample';
@@ -61,7 +61,6 @@ const RootComponent = () => {
     ['ququmber-ui/controls/UITag', <UITagSample />],
     ['ququmber-ui/controls/UIToggle', <UIToggleSample />],
     ['ququmber-ui/controls/UICheckbox', <UICheckbox />],
-    ['ququmber-ui/controls/UIToastNotification', <UIToastNotificationSample />],
     ['ququmber-ui/controls/UIBadge', <div>
       <UIBadge color={Colors.GO} text="Activated" />
       &nbsp;&nbsp;
@@ -97,6 +96,7 @@ const RootComponent = () => {
 
     'Alerts',
     ['ququmber-ui/alerts/UIBanner', <UIBannerSample />],
+    ['ququmber-ui/alerts/UIToastNotification', <UIToastNotificationSample />],
 
     'Styles',
     ['ququmber-ui/Colors', <ColorsSection />],
