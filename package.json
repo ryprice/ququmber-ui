@@ -38,10 +38,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ryprice/ququmber-ui/issues"
-  },
   "homepage": "https://github.com/ryprice/ququmber-ui#readme",
   "dependencies": {
     "@types/immutable": "^3.8.7",
