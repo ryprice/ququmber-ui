@@ -31,10 +31,11 @@ export class UIButton extends React.Component<UIButtonProps, {}> {
       id={id}
     >
       <span className="inner">{children}</span>
-      {loading && <div className="loadingContainer">
+      {loading && (
+        <div className="loadingContainer">
           <UILoading />
         </div>
-      }
+      )}
     </button>;
   }
 }

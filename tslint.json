@@ -1,6 +1,0 @@
-{
-  "extends": [
-    "listlab-build/tslint.json",
-    "listlab-build/tslint-ui.json"
-  ]
-}

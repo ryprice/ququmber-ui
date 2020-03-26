@@ -15,17 +15,17 @@ class FuzzyTimeWeekUnit extends React.Component<FuzzyTimeWeekUnitProps, {}> {
   onClick = () => {
     const {time, onClick} = this.props;
     onClick(time);
-  }
+  };
 
   onMouseOver = () => {
     const {time, onMouseOver} = this.props;
     onMouseOver(time);
-  }
+  };
 
   onMouseOut = () => {
     const {time, onMouseOut} = this.props;
     onMouseOut(time);
-  }
+  };
 
   shouldComponentUpdate(nextProps: FuzzyTimeWeekUnitProps, nextState: {}) {
     return shouldUnitComponentUpdate(this.props, this.state, nextProps, nextState);

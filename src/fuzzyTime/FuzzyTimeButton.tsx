@@ -29,11 +29,11 @@ export class FuzzyTimeButton extends React.Component<FuzzyTimeButtonProps, Fuzzy
     if (!this.props.disabled) {
       this.setState({opened: !this.state.opened});
     }
-  }
+  };
 
   closeDropdown = () => {
     this.setState({opened: false});
-  }
+  };
 
   private onTimeSelected(time: FuzzyTime) {
     this.setState({opened: false});

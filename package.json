@@ -8,9 +8,15 @@
     "@babel/core": "^7.5.5",
     "@babel/plugin-transform-modules-amd": "^7.5.0",
     "@babel/preset-stage-2": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
     "awesome-typescript-loader": "^5.2.1",
     "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
+    "eslint": "^6.8.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-system": "^2.2.2",
     "listlab-build": "file:../listlab-build",
@@ -18,10 +24,6 @@
     "sass-loader": "^7.3.1",
     "stylelint": "^9.10.1",
     "stylelint-webpack-plugin": "^0.10.5",
-    "tslint": "^5.16.0",
-    "tslint-react": "^3.6.0",
-    "tslint-react-hooks": "^2.2.1",
-    "tslint-webpack-plugin": "^2.1.0",
     "typescript": "^3.4.5",
     "webfonts-generator": "^0.4.0",
     "webpack": "^4.39.3",
@@ -29,8 +31,9 @@
     "webpack-dev-server": "^3.10.3"
   },
   "scripts": {
-    "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path src src/index.sass dist/ququmber-ui.css && tslint -p . && stylelint src/**/*.sass --syntax sass && cp src/tokens.sass lib/tokens.sass",
-    "sample": "webpack-dev-server"
+    "build": "tsc -d --declarationDir lib --outDir lib --jsx react && node-sass --include-path src src/index.sass dist/ququmber-ui.css && npm run lint && stylelint src/**/*.sass --syntax sass && cp src/tokens.sass lib/tokens.sass",
+    "sample": "webpack-dev-server --colors",
+    "lint": "eslint src/**/*.ts src/**/*.tsx sample/**/*.tsx"
   },
   "repository": {
     "type": "git",

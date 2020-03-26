@@ -10,7 +10,7 @@ const UIPopup = (props: UIPopupProps) => {
   const contentRef = useRef();
   useOnOutsideClick([contentRef], onClose, open);
   return open
-  ? <TetherComponent
+    ? <TetherComponent
       attachment={attachment}
       targetAttachment={targetAttachment}
       className="tether-theme-arrows">
@@ -21,7 +21,7 @@ const UIPopup = (props: UIPopupProps) => {
         {children[1]}
       </div>
     </TetherComponent>
-  : children[0];
+    : children[0];
 };
 
 interface UIPopupProps {

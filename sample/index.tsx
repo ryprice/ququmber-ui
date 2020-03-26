@@ -54,7 +54,7 @@ const RootComponent = () => {
     onHashChange();
   }, []);
 
-
+  /* eslint-disable react/jsx-key */
   const sections = [
     'Controls',
     ['ququmber-ui/controls/UIColorSelector', <UIColorSelectorSample />],
@@ -111,6 +111,7 @@ const RootComponent = () => {
       {'List of tasks'}
     </TaskFilterLink>]
   ];
+  /* eslint-enable react/jsx-key */
 
   const curSection = sections.find(s => s[0] === curNav);
 
@@ -170,5 +171,6 @@ document.querySelector('body').appendChild(el);
 ReactDOM.render(
   <DndProvider backend={HTML5Backend}>
     <RootComponent />
-  </DndProvider>
-, el);
+  </DndProvider>,
+  el
+);

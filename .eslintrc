@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "../listlab-build/.eslintrc",
+    "../listlab-build/ui.eslintrc"
+  ],
+  "parserOptions": {
+    "project": ["./tsconfig.eslint.json"]
+  },
+  // "rules": {
+  //   "import/order": ["error", {
+  //     "groups": [
+  //       ["external", "builtin"],
+  //       ["internal"],
+  //       ["parent"],
+  //       ["index", "sibling"]
+  //     ],
+  //     "pathGroups": [
+  //       {"pattern": "ququmber-ui/**", "group": "parent"},
+  //       {"pattern": "../**", "group": "sibling"}
+  //     ]
+  //   }]
+  // },
+  "overrides": [
+    {
+      "files": ["sample/**"],
+      "rules": {
+        "indent": "off"
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-/* tslint:disable:no-bitwise */
+/* eslint-disable no-bitwise, brace-style */
 
 export const isDarkColor = (bgColor: string) => {
   const nThreshold = 130;

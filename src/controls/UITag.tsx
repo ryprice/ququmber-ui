@@ -18,7 +18,7 @@ const UITag = (props: UITagProps) => {
   const filledStyle = {
     ...baseStyle,
     background: `#${color}`,
-    border: `0`,
+    border: '0',
     color: isDarkColor(color) ? Colors.WHITE : Colors.BASEFONT,
   };
   const outlinedStyle = {

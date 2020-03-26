@@ -63,11 +63,11 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
 
   unitOnMouseOver = (t: FuzzyTime) => {
     this.setState({hoverTime: t});
-  }
+  };
 
   unitOnMouseOut = (t: FuzzyTime) => {
     this.setState({hoverTime: null});
-  }
+  };
 
   unitOnClick = (t: FuzzyTime) => {
     if (this.props.multiselect) {
@@ -80,7 +80,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     } else {
       this.props.onTimeSelected(t);
     }
-  }
+  };
 
   onCancelClick = () => {
     const {onTimeSelected, onRangeSelected} = this.props;
@@ -90,7 +90,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     } else {
       onRangeSelected(initialRange);
     }
-  }
+  };
 
   public getUnitProps(): FuzzyTimeSelectUnitProps {
     const {selectedRange, selected, multiselect, onTasksDropped} = this.props;
@@ -148,7 +148,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         />;
     }
     return null;
-  }
+  };
 
   getRowHeight = (info: {index: number}) => {
     const {index} = info;
@@ -167,7 +167,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         return 130;
     }
     return 0;
-  }
+  };
 
   renderViewModeButton(viewMode: ViewMode, text: string, icon: string) {
     return <button
@@ -208,7 +208,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     } else {
       onRangeSelected(new FuzzyTimeRange(time, time));
     }
-  }
+  };
 
   private renderQuickOptions() {
     const today = FuzzyTime.getCurrent(FuzzyGranularity.DAY);
@@ -239,7 +239,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
         clear
       </UIButton>
     </div>;
-  }
+  };
 
   render() {
     const {width, height, viewMode, focalPoint, nextRangeStart, hoverTime} = this.state;

@@ -1,6 +1,5 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const TSLintPlugin = require('tslint-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
@@ -41,8 +40,17 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
+        loader: ['awesome-typescript-loader'],
         exclude: [/node_modules/]
+      },
+      {
+        test: /\.tsx?$/,
+        loader: ['eslint-loader'],
+        include: [path.resolve(__dirname)],
+        exclude: [
+          /node_modules/,
+          path.resolve(__dirname + '/../listlab-api-js')
+        ]
       },
       {
         test: /\.sass$/,
@@ -53,8 +61,8 @@ module.exports = {
             loader: 'sass-loader',
             options: { includePaths: ['../ququmber-ui/lib'] }
           }
-        ]
-      },
+        ],
+      }
     ]
   },
   plugins: [
@@ -64,14 +72,6 @@ module.exports = {
     new CopyWebpackPlugin([
       {from: 'dist/ququmber-ui.css', to: 'ququmber-ui.css'}
     ]),
-    new TSLintPlugin({
-      files: [
-        'src/**/*.ts',
-        'src/**/*.tsx',
-        'sample/**/*.ts',
-        'sample/**/*.tsx'
-      ]
-    }),
     new StyleLintPlugin({
       syntax: 'sass'
     })

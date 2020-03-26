@@ -115,7 +115,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
         option.name.toLowerCase().indexOf(query) > -1
       );
     });
-  }
+  };
 
   private readonly defaultRenderItem = (option: Option) => {
     return <UITag
@@ -123,7 +123,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       onRemoved={() => this.onOptionRemoved(option.value)}
       canRemove={option.canRemove}
     />;
-  }
+  };
 
   render() {
     const {
@@ -186,7 +186,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
             name: renderItem ? renderItem(option, false) : option.name
           }))}
           hoverIndex={hoverIndex}
-          onSelect={(value) => this.onOptionAdded(value) }
+          onSelect={(value) => this.onOptionAdded(value)}
           open={this.state.dropdownOpen}
           renderDropdownContents={renderDropdownContents}
         />

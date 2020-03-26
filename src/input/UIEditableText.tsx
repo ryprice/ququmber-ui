@@ -64,9 +64,11 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
       onChange={(e: any) => this.onChange(e)}
       className={renderedClassName}
       onKeyPress={(e: any) => this.onKeyPress(e)}
-      ref={(el) => { this.inputEl = el; }}
+      ref={(el) => {
+        this.inputEl = el;
+      }}
       onBlur={() => this.onSubmit()}
-      suppressContentEditableWarning ={true}
+      suppressContentEditableWarning={true}
       onFocus={() => {
         this.setState({value: value ? value : ''});
         onFocus && onFocus();

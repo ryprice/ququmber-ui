@@ -61,7 +61,7 @@ class UINanoProgress extends React.Component<UINanoProgressProps, UINanoProgress
       });
       this.timerId = window.setTimeout(this.incrementProgress, optimismIncrement);
     }
-  }
+  };
 
   completeProgress = () => {
     const {completionLinger, optimismIncrement} = this.props;
@@ -72,7 +72,7 @@ class UINanoProgress extends React.Component<UINanoProgressProps, UINanoProgress
         this.setState({value: null});
       }, completionLinger);
     }, optimismIncrement);
-  }
+  };
 
   render() {
     const {value} = this.state;

@@ -20,7 +20,7 @@ const UIToastNotification = (props: UIToastNotificationProps) => {
   const {level, title, message} = props;
 
   return <div
-    className={`UIToastNotification`}
+    className="UIToastNotification"
     style={{background: levelToColor(level)}}
   >
     { title ? <p className="title">{String(title)}</p> : null }

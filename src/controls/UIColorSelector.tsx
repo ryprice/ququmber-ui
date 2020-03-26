@@ -52,7 +52,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
     // sets custom back to null
     setTimeout(() => this.setState({custom: null}), 10);
     return true;
-  }
+  };
 
   private renderOption(color: string) {
     return (
@@ -87,7 +87,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
           <input
             type="text"
             value={this.state.custom}
-            ref={(ref: HTMLInputElement) => {this.inputRef = ref;}}
+            ref={(ref: HTMLInputElement) => this.inputRef = ref}
             onKeyUp={this.onCustomColorChanged}
             placeholder="FFFFFF"
           />
