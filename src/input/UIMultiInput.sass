@@ -6,7 +6,6 @@
   display: flex
   flex-direction: row
   flex-wrap: wrap
-  background: $color-control
   padding: .3em
 
   .UITag
@@ -33,6 +32,15 @@
 
   .down-arrow
     align-self: center
+
+  &.asControl
+    background: $color-control
+
+  &.asInline
+    background: $color-control
+
+    .down-arrow
+      display: none
 
 .UIMultiInputDropdown
   min-width: 300px

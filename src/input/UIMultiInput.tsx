@@ -136,6 +136,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       targetAttachment,
       renderDropdownContents,
       disabled,
+      asInline
     } = this.props;
     const {hoverIndex, dropdownOpen} = this.state;
 
@@ -155,8 +156,9 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       .sort(sortByCanRemoveComparator);
     const filteredUnselectedOptions = this.getFilteredUnselectedOptions();
 
-    const input = <div
-      className={`UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''}`}>
+    const input = <div className={
+      `UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''} ${asInline ? 'asInline' : 'asControl'}`
+    }>
       {map(selectedOptions, (option: Option) =>
         renderItem ? renderItem(option, true) : this.defaultRenderItem(option))
       }
@@ -215,6 +217,7 @@ export interface UIMultiInputProps {
   targetAttachment?: string;
   renderDropdownContents?: (children: React.ReactChild[]) => React.ReactChild;
   disabled?: boolean;
+  asInline?: boolean;
 }
 
 export interface UIMultiInputState {
