@@ -1,10 +1,7 @@
 const path = require('path');
-const {
-  eslintLoaderConfig,
-  tsLoaderConfig,
-  sassLoaderConfig,
-  pluginsConfig,
-} = require('../listlab-build/webpackConfigBuilders');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+const {eslintLoaderConfig, tsLoaderConfig} = require('listlab-build/webpackConfigBuilders');
 
 module.exports = {
   entry: {
@@ -43,9 +40,22 @@ module.exports = {
     rules: [
       tsLoaderConfig(),
       eslintLoaderConfig(),
-      sassLoaderConfig(),
+      {
+        test: /\.sass$/,
+        loader: [
+          ExtractTextPlugin.loader,
+          { loader: 'css-loader' },
+          {
+            loader: 'sass-loader',
+            options: { includePaths: ['../ququmber-ui/lib'] }
+          }
+        ]
+      }
     ]
   },
 
-  plugins: pluginsConfig('prod'),
+  plugins: [
+    new ExtractTextPlugin('css/[name].css', {allChunks: true}),
+    new StyleLintPlugin({syntax: 'sass'})
+  ],
 };
