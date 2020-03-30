@@ -15,7 +15,7 @@ const useDelayedMouseHover = (callback: (val: boolean) => any, delayInMs: number
       clearTimeout(outTimerRef.current);
       outTimerRef.current = 0;
     }
-  }, [delayInMs]);
+  }, [delayInMs, callback]);
 
   const onMouseOut = useCallback(() => {
     if (!outTimerRef.current) {
@@ -25,7 +25,7 @@ const useDelayedMouseHover = (callback: (val: boolean) => any, delayInMs: number
       clearTimeout(overTimerRef.current);
       overTimerRef.current = 0;
     }
-  }, [delayOutMs]);
+  }, [delayOutMs, callback]);
 
   return [onMouseOver, onMouseOut];
 };

@@ -7,7 +7,7 @@ const UICheckbox = (props: UICheckboxProps) => {
 
   const onChange = useCallback((evt: any) => {
     props.onChange && props.onChange(evt.target.checked);
-  }, [props.onChange]);
+  }, [props]);
 
   return <input
     className={`UICheckbox ${className || ''}`}

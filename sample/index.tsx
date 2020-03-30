@@ -124,7 +124,7 @@ const RootComponent = () => {
       setFilter(null);
     }
     return true;
-  }, [setFilter, filter]);
+  }, [setFilter]);
 
   const filteredSections = sections.filter(s => {
     if (filter != null && typeof s !== 'string') {

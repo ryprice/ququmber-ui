@@ -30,13 +30,13 @@ export const UISelect = (props: UISelectProps) => {
   const searchInputRef = useRef<HTMLInputElement>();
   const currentQuery = searchInputRef.current ?  searchInputRef.current.value : '';
 
-  const options: Option[] = useMemo(() => {
+  const options: UISelectOption[] = useMemo(() => {
     const freeformOption = {
       name: currentQuery || freeformValue,
       value: 'freeform',
       isFreeform: true
     };
-    const nullOption: Option = {
+    const nullOption: UISelectOption = {
       name: 'None',
       value: null,
       isFreeform: false,
@@ -46,15 +46,15 @@ export const UISelect = (props: UISelectProps) => {
     return props.options.slice(0, 10)
       .concat(showFreeform ? [freeformOption] : [])
       .concat(allowNull ? [nullOption] : []);
-  }, [props.options, allowFreeform, currentQuery, freeformValue, allowNull]);
+  }, [props, allowFreeform, currentQuery, freeformValue, allowNull]);
 
-  const renderDefaultFreeformItem = () => (
+  const renderDefaultFreeformItem = useCallback(() => (
     <span>
       <span className="just">Just '</span>
       {currentQuery || freeformValue}
       <span className="just">'</span>
     </span>
-  );
+  ), [freeformValue, currentQuery]);
 
   const optionsWithRenderedName: UISelectDropdownOption[] = useMemo(() => {
     return options.map(option => {
@@ -66,7 +66,7 @@ export const UISelect = (props: UISelectProps) => {
       }
       return {...option, name: renderedContent};
     });
-  }, [options, renderItem]);
+  }, [options, renderItem, renderDefaultFreeformItem]);
 
   const openDropdown = useCallback(() => {
     if (!disabled) {
@@ -87,7 +87,7 @@ export const UISelect = (props: UISelectProps) => {
       props.onSelect(value);
     }
     closeDropdown();
-  }, [closeDropdown, props.onSelect, onSelectFreeform]);
+  }, [closeDropdown, props, onSelectFreeform]);
 
   const onKeyUp = useCallback((event: any) => {
     if (disabled) {
@@ -114,12 +114,12 @@ export const UISelect = (props: UISelectProps) => {
     }
     onQueryChanged && onQueryChanged(searchInputRef.current.value);
     return false;
-  }, [onSelect, hoverIndex, options, closeDropdown, dropdownOpen, disabled, onQueryChanged]);
+  }, [onSelect, hoverIndex, options, dropdownOpen, disabled, onQueryChanged, openDropdown]);
 
   useOnOutsideClick([rootRef, dropdownRef], closeDropdown, dropdownOpen);
 
   const foundOption = find(options, (o) => o.value === selected);
-  const valueOnlyOption = {name: selected, value: selected} as Option;
+  const valueOnlyOption = {name: selected, value: selected} as UISelectOption;
   const freeformOption = allowFreeform ? {name: freeformValue, value: 'freeform', isFreeform: true} : null;
   const selectedOption = foundOption || freeformOption || valueOnlyOption;
 
@@ -170,7 +170,7 @@ export const UISelect = (props: UISelectProps) => {
   </div>;
 };
 
-export interface Option {
+export interface UISelectOption {
   name: string;
   value?: string;
   color?: string;
@@ -178,14 +178,14 @@ export interface Option {
 }
 
 export interface UISelectProps {
-  options: Option[];
+  options: UISelectOption[];
   selected: string;
   onSelect: (value: string) => any;
   onSelectFreeform?: (value: string) => any;
   onQueryChanged?: (query: string) => void;
   className?: string;
   placeholder?: string;
-  renderItem?: (option: Option, selected: boolean) => React.ReactChild;
+  renderItem?: (option: UISelectOption, selected: boolean) => React.ReactChild;
   renderDropdownContents?: (children: React.ReactChild[]) => React.ReactChild;
   attachment?: string;
   targetAttachment?: string;

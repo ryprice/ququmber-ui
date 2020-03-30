@@ -11,7 +11,7 @@ const UIContextMenu = (props: UIContextMenuProps) => {
     onClose();
     const option = options[index];
     option.onClick && option.onClick();
-  }, [options]);
+  }, [options, onClose]);
 
   return <UIDropdown
     open={open}

@@ -11,7 +11,9 @@ const UIIconButton = (props: UIIconButtonProps) => {
   const {className, onClick, disabled, icon, tooltip, styling} = props;
   const [showTooltip, setShowTooltip] = useState(false);
 
-  const setShowTooltipIfEnabled = useCallback((v: boolean) => tooltip && setShowTooltip(v), []);
+  const setShowTooltipIfEnabled = useCallback((v: boolean) => {
+    return tooltip && setShowTooltip(v);
+  }, [tooltip]);
   const [onMouseOver, onMouseOut] = useDelayedMouseHover(setShowTooltipIfEnabled, 300, 0);
   const buttonWithMaybeTooltipProps = tooltip ? {onMouseOver, onMouseOut} : {};
 

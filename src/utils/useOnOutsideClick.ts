@@ -25,7 +25,8 @@ const useOnOutsideClick = (
       }
     }
     onOutsideClickRef.current && onOutsideClickRef.current();
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [...refs]);
 
   useEffect(() => {
     if (enabled) {
@@ -34,7 +35,7 @@ const useOnOutsideClick = (
         window.removeEventListener('mousedown', windowClickHandler);
       };
     }
-  }, [enabled]);
+  }, [enabled, windowClickHandler]);
 };
 
 export default useOnOutsideClick;
