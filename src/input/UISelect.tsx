@@ -22,6 +22,8 @@ export const UISelect = (props: UISelectProps) => {
     allowNull,
     isSearchable,
   } = props;
+  const propsOptions = props.options;
+  const propsOnSelect = props.onSelect;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(undefined);
@@ -43,10 +45,10 @@ export const UISelect = (props: UISelectProps) => {
     };
     const showFreeform = (allowFreeform && currentQuery.length > 0 || freeformValue);
 
-    return props.options.slice(0, 10)
+    return propsOptions.slice(0, 10)
       .concat(showFreeform ? [freeformOption] : [])
       .concat(allowNull ? [nullOption] : []);
-  }, [props, allowFreeform, currentQuery, freeformValue, allowNull]);
+  }, [propsOptions, allowFreeform, currentQuery, freeformValue, allowNull]);
 
   const renderDefaultFreeformItem = useCallback(() => (
     <span>
@@ -84,10 +86,10 @@ export const UISelect = (props: UISelectProps) => {
     if (value === 'freeform') {
       onSelectFreeform(searchInputRef.current.value);
     } else {
-      props.onSelect(value);
+      propsOnSelect(value);
     }
     closeDropdown();
-  }, [closeDropdown, props, onSelectFreeform]);
+  }, [closeDropdown, onSelectFreeform, propsOnSelect]);
 
   const onKeyUp = useCallback((event: any) => {
     if (disabled) {
@@ -170,14 +172,14 @@ export const UISelect = (props: UISelectProps) => {
   </div>;
 };
 
-export interface UISelectOption {
+export type UISelectOption = {
   name: string;
   value?: string;
   color?: string;
   isFreeform?: boolean;
-}
+};
 
-export interface UISelectProps {
+export type UISelectProps = {
   options: UISelectOption[];
   selected: string;
   onSelect: (value: string) => any;
@@ -194,6 +196,6 @@ export interface UISelectProps {
   allowFreeform?: boolean;
   allowNull?: boolean;
   isSearchable?: boolean;
-}
+};
 
 export default UISelect;

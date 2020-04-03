@@ -117,7 +117,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
     });
   };
 
-  private readonly defaultRenderItem = (option: Option) => {
+  private readonly defaultRenderItem = (option: UIMultiInputOption) => {
     return <UITag
       name={option.name}
       onRemoved={() => this.onOptionRemoved(option.value)}
@@ -143,7 +143,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
     const selectedOptions = selected
       .map((value) => {
         const foundOption = find(options, (o) => o.value === value);
-        const valueOnlyOption = {name: value, value} as Option;
+        const valueOnlyOption = {name: value, value} as UIMultiInputOption;
         const transformedOption = foundOption || valueOnlyOption;
         if (transformedOption.canRemove == null) {
           transformedOption.canRemove = true;
@@ -159,7 +159,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
     const input = <div className={
       `UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''} ${asInline ? 'asInline' : 'asControl'}`
     }>
-      {map(selectedOptions, (option: Option) =>
+      {map(selectedOptions, (option: UIMultiInputOption) =>
         renderItem ? renderItem(option, true) : this.defaultRenderItem(option))
       }
       <input
@@ -197,35 +197,35 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
   }
 }
 
-export interface Option {
+export type UIMultiInputOption = {
   name: string;
   value: string;
   color?: string;
   canRemove?: boolean;
-}
+};
 
-export interface UIMultiInputProps {
-  options: Option[];
+export type UIMultiInputProps = {
+  options: UIMultiInputOption[];
   selected: string[];
   onOptionAdded: (value: string) => any;
   onOptionRemoved: (value: string) => any;
   className?: string;
   placeholder?: string;
   onQueryChanged?: (query: string) => void;
-  renderItem?: (option: Option, selected: boolean) => React.ReactChild;
+  renderItem?: (option: UIMultiInputOption, selected: boolean) => React.ReactChild;
   attachment?: string;
   targetAttachment?: string;
   renderDropdownContents?: (children: React.ReactChild[]) => React.ReactChild;
   disabled?: boolean;
   asInline?: boolean;
-}
+};
 
-export interface UIMultiInputState {
+export type UIMultiInputState = {
   dropdownOpen: boolean;
   hoverIndex: number;
-}
+};
 
-const sortByCanRemoveComparator = (a: Option, b: Option) => {
+const sortByCanRemoveComparator = (a: UIMultiInputOption, b: UIMultiInputOption) => {
   if (a.canRemove === false) {
     if (b.canRemove !== false) {
       return -1;

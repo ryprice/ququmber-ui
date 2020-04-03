@@ -39,7 +39,7 @@ module.exports = {
   module: {
     rules: [
       tsLoaderConfig(),
-      eslintLoaderConfig(),
+      eslintLoaderConfig('ququmber-ui'),
       {
         test: /\.sass$/,
         loader: [
