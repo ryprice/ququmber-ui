@@ -27,17 +27,17 @@ const UIContextMenu = (props: UIContextMenuProps) => {
   </UIDropdown>;
 };
 
-export interface UIContextMenuOption {
+export type UIContextMenuOption = {
   name: string;
   icon: string;
   onClick: () => void;
-}
+};
 
-export interface UIContextMenuProps {
+export type UIContextMenuProps = {
   options: UIContextMenuOption[];
   onClose: () => void;
   open: boolean;
   className?: string;
-}
+};
 
 export default UIContextMenu;

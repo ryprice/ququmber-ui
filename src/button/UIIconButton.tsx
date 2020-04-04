@@ -51,14 +51,14 @@ UIIconButton.defaultProps = {
   styling: Stylings.CONTROL,
 };
 
-export interface UIIconButtonProps {
+export type UIIconButtonProps = {
   icon: string;
   onClick?: () => void;
   className?: string;
   disabled?: boolean;
   tooltip?: string;
   styling?: Stylings;
-}
+};
 
 export default class UIIconButtonClass extends React.Component<UIIconButtonProps> {
   render() {

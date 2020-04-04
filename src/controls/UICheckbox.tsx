@@ -19,12 +19,12 @@ const UICheckbox = (props: UICheckboxProps) => {
   />;
 };
 
-interface UICheckboxProps {
+type UICheckboxProps = {
   onChange?: (value: boolean) => void;
   className?: string;
   disabled?: boolean;
   checked?: boolean;
-}
+};
 
 UICheckbox.defaultProps = {
   disabled: false

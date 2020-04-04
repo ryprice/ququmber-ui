@@ -67,7 +67,7 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
   }
 }
 
-export interface UITextInputProps extends React.Props<HTMLInputElement> {
+export type UITextInputProps = {
   value?: string;
   onSubmit?: (value: string) => void;
   className?: string;
@@ -78,6 +78,6 @@ export interface UITextInputProps extends React.Props<HTMLInputElement> {
   style?: any;
   autofocus?: boolean;
   submitBehaviors?: number[];
-}
+};
 
 export default UITextInput;

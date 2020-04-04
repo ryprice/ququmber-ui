@@ -31,12 +31,12 @@ const UIDropdownButton = (props: UIDropdownButtonProps) => {
 
 type UIDropdownButtonOption = UIContextMenuOption;
 
-interface UIDropdownButtonProps {
+type UIDropdownButtonProps = {
   options: UIDropdownButtonOption[];
   styling?: Stylings;
   name: React.ReactNode;
   style?: object;
   className?: string;
-}
+};
 
 export default UIDropdownButton;

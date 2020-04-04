@@ -36,10 +36,10 @@ const UICopyInput = (props: UICopyInputProps) => {
   </div>;
 };
 
-export interface UICopyInputProps {
+export type UICopyInputProps = {
   value?: string;
   className?: string;
   onCopy?: () => void;
-}
+};
 
 export default React.memo(UICopyInput);

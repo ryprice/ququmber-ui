@@ -19,12 +19,12 @@ const UIModal = (props: UIModalProps) => {
   </UIMountTransition>;
 };
 
-export interface UIModalProps {
+export type UIModalProps = {
   onClose?: () => void;
   className?: string;
   children?: React.ReactNode;
   open?: boolean;
-}
+};
 
 UIModal.defaultProps = {
   open: true,

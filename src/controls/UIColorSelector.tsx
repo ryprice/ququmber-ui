@@ -109,16 +109,16 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
   }
 }
 
-export interface UIColorSelectorProps extends React.Props<UIColorSelector> {
+export type UIColorSelectorProps = {
   value?: string;
   open: boolean;
   onColorChanged: (value?: string) => void;
   children: React.ReactNode;
   onClose: () => void;
-}
+};
 
-export interface UIColorSelectorState {
+export type UIColorSelectorState = {
   custom: string;
-}
+};
 
 export default UIColorSelector;

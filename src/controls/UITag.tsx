@@ -56,13 +56,13 @@ const UITag = (props: UITagProps) => {
   </div>;
 };
 
-export interface UITagProps {
+export type UITagProps = {
   name: React.ReactChild;
   onRemoved?: () => void;
   color?: string;
   canRemove?: boolean;
   onClick?: () => void;
   outline?: boolean;
-}
+};
 
 export default UITag;

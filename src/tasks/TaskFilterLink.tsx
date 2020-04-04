@@ -1,12 +1,11 @@
 import * as React from 'react';
 
-interface TaskFilterLinkProps {
+type TaskFilterLinkProps = {
   href?: string;
   onClick?: () => void;
   onDropTasks?: (taskIds: number[]) => void;
   children?: React.ReactNode;
-}
-
+};
 
 const TaskFilterLink = (props: TaskFilterLinkProps) => {
   const {children, href} = props;

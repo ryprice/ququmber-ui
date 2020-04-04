@@ -20,9 +20,9 @@ export class UILoading extends React.Component<UILoadingProps, {}> {
   }
 }
 
-export interface UILoadingProps extends React.Props<UILoading> {
+export type UILoadingProps = {
   size?: number;
   color?: string;
-}
+};
 
 export default UILoading;

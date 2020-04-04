@@ -34,12 +34,12 @@ export class UITooltip extends React.Component<UITooltipProps, {}> {
   }
 }
 
-export interface UITooltipProps {
+export type UITooltipProps = {
   text: string;
   width?: number;
   open?: boolean;
   attachment?: string;
   targetAttachment?: string;
-}
+};
 
 export default UITooltip;

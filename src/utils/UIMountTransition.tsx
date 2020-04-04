@@ -19,10 +19,10 @@ const UIMountTransition = (props: UIMountTransitionProps) => {
   </ReactCSSTransitionGroup>;
 };
 
-export interface UIMountTransitionProps {
+export type UIMountTransitionProps = {
   mounted: boolean;
   className: string;
   children?: React.ReactNode;
-}
+};
 
 export default UIMountTransition;

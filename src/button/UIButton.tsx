@@ -40,7 +40,7 @@ export class UIButton extends React.Component<UIButtonProps, {}> {
   }
 }
 
-export interface UIButtonProps extends React.Props<HTMLInputElement> {
+export type UIButtonProps = {
   onClick?: () => void;
   className?: string;
   children?: React.ReactNode;
@@ -49,6 +49,6 @@ export interface UIButtonProps extends React.Props<HTMLInputElement> {
   disabled?: boolean;
   id?: string;
   loading?: boolean;
-}
+};
 
 export default UIButton;

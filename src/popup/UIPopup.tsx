@@ -24,7 +24,7 @@ const UIPopup = (props: UIPopupProps) => {
     : children[0];
 };
 
-interface UIPopupProps {
+type UIPopupProps = {
   open: boolean;
   children: JSX.Element[];
   onClose: () => void;
@@ -32,7 +32,7 @@ interface UIPopupProps {
   targetAttachment?: string;
   attachment?: string;
   closeOnOutsideClick: boolean;
-}
+};
 
 UIPopup.defaultProps = {
   attachment: 'top right',

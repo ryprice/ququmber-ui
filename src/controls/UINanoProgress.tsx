@@ -83,17 +83,17 @@ class UINanoProgress extends React.Component<UINanoProgressProps, UINanoProgress
   }
 }
 
-interface UINanoProgressState {
+type UINanoProgressState = {
   value: number;
-}
+};
 
-export interface UINanoProgressProps {
+export type UINanoProgressProps = {
   value?: number;
   initialValue?: number;
   completionLinger?: number;
   optimismFactor?: number;
   optimismIncrement?: number;
   className?: string;
-}
+};
 
 export default UINanoProgress;

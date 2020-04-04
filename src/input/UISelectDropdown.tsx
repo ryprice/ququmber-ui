@@ -43,21 +43,21 @@ export class UISelectDropdown extends React.Component<UISelectDropdownProps, {}>
   }
 }
 
-export interface UISelectDropdownOption {
-    name: React.ReactChild | string;
-    value?: string;
-    color?: string;
-}
+export type UISelectDropdownOption = {
+  name: React.ReactChild | string;
+  value?: string;
+  color?: string;
+};
 
-export interface UISelectDropdownProps extends React.Props<UISelectDropdownProps> {
-    options: UISelectDropdownOption[];
-    onSelect?: (key: string) => void;
-    className?: string;
-    open?: boolean;
-    hoverIndex?: number;
-    onClose?: () => void;
-    selected?: string;
-    renderDropdownContents?: (children: React.ReactChild[]) => React.ReactChild;
-}
+export type UISelectDropdownProps = {
+  options: UISelectDropdownOption[];
+  onSelect?: (key: string) => void;
+  className?: string;
+  open?: boolean;
+  hoverIndex?: number;
+  onClose?: () => void;
+  selected?: string;
+  renderDropdownContents?: (children: React.ReactChild[]) => React.ReactChild;
+};
 
 export default UISelectDropdown;

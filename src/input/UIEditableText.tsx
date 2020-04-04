@@ -78,7 +78,7 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
   }
 }
 
-export interface UIEditableTextProps extends React.Props<HTMLInputElement> {
+export type UIEditableTextProps = {
   value?: string;
   onSubmit?: (value: string) => void;
   className?: string;
@@ -87,10 +87,10 @@ export interface UIEditableTextProps extends React.Props<HTMLInputElement> {
   autofocus?: boolean;
   onFocus?: () => void;
   disabled?: boolean;
-}
+};
 
-export interface UIEditableTextState {
-    value?: string;
-}
+export type UIEditableTextState = {
+  value?: string;
+};
 
 export default UIEditableText;

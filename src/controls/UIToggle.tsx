@@ -24,13 +24,13 @@ export class UIToggle extends React.Component<UIToggleProps, {}> {
   }
 }
 
-export interface UIToggleProps extends React.Props<HTMLInputElement> {
+export type UIToggleProps = {
   checked: boolean;
   onChange?: (value: boolean) => void;
   className?: string;
   disabled?: boolean;
   onClick?: (event: any) => void;
   onMouseOut?: (event: any) => void;
-}
+};
 
 export default UIToggle;

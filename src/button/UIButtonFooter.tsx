@@ -8,8 +8,8 @@ export class UIButtonFooter extends React.Component<UIButtonFooterProps, {}> {
   }
 }
 
-export interface UIButtonFooterProps extends React.Props<UIButtonFooter> {
+export type UIButtonFooterProps = {
   children: React.ReactNode;
-}
+};
 
 export default UIButtonFooter;

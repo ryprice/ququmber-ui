@@ -19,11 +19,11 @@ UIDropdown.defaultProps = {
   className: ''
 };
 
-export interface UIDropdownProps {
+export type UIDropdownProps = {
   children?: React.ReactNode;
   open?: boolean;
   onClose?: () => void;
   className?: string;
-}
+};
 
 export default UIDropdown;

@@ -11,9 +11,9 @@ export class UIBadge extends React.Component<UIBadgeProps, {}> {
   }
 }
 
-export interface UIBadgeProps extends React.Props<UIBadge> {
+export type UIBadgeProps = {
   text: string;
   color: string;
-}
+};
 
 export default UIBadge;
