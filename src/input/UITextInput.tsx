@@ -74,7 +74,7 @@ export type UITextInputProps = {
   placeholder?: string;
   defaultValue?: string;
   disabled?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => boolean | void;
   style?: any;
   autofocus?: boolean;
   submitBehaviors?: number[];
