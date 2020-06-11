@@ -3,8 +3,8 @@ import {DndProvider} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import * as ReactDOM from 'react-dom';
 
+import UIBadge from 'ququmber-ui/chip/UIBadge';
 import Colors from 'ququmber-ui/Colors';
-import UIBadge from 'ququmber-ui/controls/UIBadge';
 import UICheckbox from 'ququmber-ui/controls/UICheckbox';
 import UICopyInput from 'ququmber-ui/input/UICopyInput';
 import UIEditableText from 'ququmber-ui/input/UIEditableText';
@@ -27,7 +27,7 @@ import UIDropdownButtonSample from './button/UIDropdownButtonSample';
 import UIIconButtonSample from './button/UIIconButtonSample';
 
 import UIColorSelectorSample from './controls/UIColorSelectorSample';
-import UITagSample from './controls/UITagSample';
+import UITagSample from './chip/UITagSample';
 import UIToggleSample from './controls/UIToggleSample';
 
 import FuzzyTimeSelectSample from './fuzzyTime/FuzzyTimeSelectSample';
@@ -56,16 +56,18 @@ const RootComponent = () => {
 
   /* eslint-disable react/jsx-key */
   const sections = [
-    'Controls',
-    ['ququmber-ui/controls/UIColorSelector', <UIColorSelectorSample />],
-    ['ququmber-ui/controls/UITag', <UITagSample />],
-    ['ququmber-ui/controls/UIToggle', <UIToggleSample />],
-    ['ququmber-ui/controls/UICheckbox', <UICheckbox />],
-    ['ququmber-ui/controls/UIBadge', <div>
+    'Chips',
+    ['ququmber-ui/chip/UITag', <UITagSample />],
+    ['ququmber-ui/chip/UIBadge', <div>
       <UIBadge color={Colors.GO} text="Activated" />
       &nbsp;&nbsp;
       <UIBadge color={Colors.DISABLED} text="Disabled" />
     </div>],
+
+    'Controls',
+    ['ququmber-ui/controls/UIColorSelector', <UIColorSelectorSample />],
+    ['ququmber-ui/controls/UIToggle', <UIToggleSample />],
+    ['ququmber-ui/controls/UICheckbox', <UICheckbox />],
 
     'Input',
     ['ququmber-ui/input/UICopyInput', <UICopyInput

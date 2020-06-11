@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import UITag from 'ququmber-ui/controls/UITag';
+import UITag from 'ququmber-ui/chip/UITag';
 import Editor from '../Editor';
 
 const UITagSample = () =>
