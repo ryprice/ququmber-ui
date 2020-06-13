@@ -10,7 +10,7 @@ const UILightboxModal = (props: UIModalProps) => {
       style={{background: 'transparent', boxShadow: 'none'}}
       {...props}
     />;
-  </UIOverlay>
+  </UIOverlay>;
 };
 
 export default UILightboxModal;

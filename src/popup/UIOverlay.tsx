@@ -6,12 +6,13 @@ import UIMountTransition from 'ququmber-ui/utils/UIMountTransition';
 const {useCallback, useRef} = React;
 
 const UIOverlayPortal = (props: UIOverlayProps) => {
+  const propsOnOverlayClick = props.onOverlayClick;
   const contentContainerRef = useRef<HTMLDivElement>();
   const onOverlayClick = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (contentContainerRef.current === e.target) {
-      props.onOverlayClick();
+      propsOnOverlayClick();
     }
-  }, [props.onOverlayClick]);
+  }, [propsOnOverlayClick]);
 
   return <UIMountTransition className="UIOverlayTransition" mounted={props.open}>
     <div className="UIOverlay">
@@ -21,7 +22,7 @@ const UIOverlayPortal = (props: UIOverlayProps) => {
         ref={contentContainerRef}>
         {props.children}
       </div>
-      <div className="background"/>
+      <div className="background" />
     </div>
   </UIMountTransition>;
 };
