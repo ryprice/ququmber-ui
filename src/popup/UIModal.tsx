@@ -3,7 +3,7 @@ import * as React from 'react';
 import UIMountTransition from 'ququmber-ui/utils/UIMountTransition';
 
 const UIModal = (props: UIModalProps) => {
-  const {onClose, className, children, open} = props;
+  const {onClose, className, children, open, style} = props;
 
   const closeButton = <button
     className="closeButton"
@@ -12,7 +12,7 @@ const UIModal = (props: UIModalProps) => {
   </button>;
 
   return <UIMountTransition mounted={open} className="UIModalTransition">
-    <div className={`UIModal ${className || ''}`}>
+    <div className={`UIModal ${className || ''}`} style={style} >
       {onClose ? closeButton : null}
       {children}
     </div>
@@ -24,6 +24,7 @@ export type UIModalProps = {
   className?: string;
   children?: React.ReactNode;
   open?: boolean;
+  style?: object;
 };
 
 UIModal.defaultProps = {

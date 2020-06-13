@@ -3,13 +3,25 @@ import * as ReactDOM from 'react-dom';
 
 import UIMountTransition from 'ququmber-ui/utils/UIMountTransition';
 
+const {useCallback, useRef} = React;
+
 const UIOverlayPortal = (props: UIOverlayProps) => {
+  const contentContainerRef = useRef<HTMLDivElement>();
+  const onOverlayClick = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (contentContainerRef.current === e.target) {
+      props.onOverlayClick();
+    }
+  }, [props.onOverlayClick]);
+
   return <UIMountTransition className="UIOverlayTransition" mounted={props.open}>
     <div className="UIOverlay">
-      <div className="content">
+      <div
+        className="content"
+        onClick={onOverlayClick}
+        ref={contentContainerRef}>
         {props.children}
       </div>
-      <div className="background" />
+      <div className="background"/>
     </div>
   </UIMountTransition>;
 };
@@ -50,6 +62,7 @@ export type UIOverlayProps = {
   open?: boolean;
   children: React.ReactNode;
   debugInline?: boolean;
+  onOverlayClick?: () => void;
 };
 
 export default UIOverlay;
