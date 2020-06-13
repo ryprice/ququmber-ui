@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import UILoading from 'ququmber-ui/controls/UILoading';
+import UILoading from 'ququmber-ui/progress/UILoading';
 import Stylings from 'ququmber-ui/Stylings';
 
 export class UIButton extends React.Component<UIButtonProps, {}> {
