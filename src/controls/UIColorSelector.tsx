@@ -19,14 +19,14 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
   constructor(props: UIColorSelectorProps) {
     super(props);
     this.state = {
-      custom: props.value ? props.value.toUpperCase() : null,
+      custom: props.value != null ? props.value.toUpperCase() : null,
     };
   }
 
   componentWillReceiveProps(nextProps: UIColorSelectorProps) {
     if (this.props.value !== nextProps.value) {
       this.setState({
-        custom: nextProps.value.toUpperCase(),
+        custom: nextProps.value != null ? nextProps.value.toUpperCase() : null,
       });
     }
   }
