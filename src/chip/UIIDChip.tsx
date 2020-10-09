@@ -8,7 +8,7 @@ const UIIDChip = (props: UIIDChipProps) => {
 };
 
 type UIIDChipProps = {
-  children: React.ReactChildren
+  children: React.ReactNode
 };
 
 export default UIIDChip;
