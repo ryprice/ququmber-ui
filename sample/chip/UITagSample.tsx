@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import UINestedTag from 'ququmber-ui/chip/UINestedTag';
 import UITag from 'ququmber-ui/chip/UITag';
 import Editor from '../Editor';
 
@@ -26,6 +27,22 @@ const UITagSample = () =>
   <UITag name="Work" canRemove={true} color="f4e242" outline={true} />
   <UITag name="Sideproject" canRemove={true} color="b72924" outline={true} />
   <UITag name="Untriaged" canRemove={true} color="238444" outline={true} />
+</div>`
+      }
+    />
+    <h1>UINestedTag</h1>
+    <Editor
+      scope={{UINestedTag}}
+      code={
+`<div>
+  <UINestedTag
+    canRemove={true}
+    outline={true}
+    items={[
+      {label: 'Parent', id: 1, color: "4286f4"},
+      {label: 'Child', id: 2, color: "f4e242"}
+    ]}
+  />
 </div>`
       }
     />
