@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {findDOMNode} from 'react-dom';
 
 import Colors from 'ququmber-ui/Colors';
 import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
@@ -6,7 +7,7 @@ import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 const {useRef} = React;
 
 const UINestedTag = (props: UINestedTagProps) => {
-  const {onRemoved, canRemove, outline, items, onClick} = props;
+  const {onRemoved, canRemove, outline, items} = props;
   const removeButtonRef = useRef();
 
   const removeButton = (
@@ -17,6 +18,17 @@ const UINestedTag = (props: UINestedTagProps) => {
       <span className="octicon octicon-x" />
     </button>
   );
+
+  const onClick = (event: React.MouseEvent, itemIndex: number) => {
+    const item = props.items[itemIndex];
+    const removeButtonEl = findDOMNode(removeButtonRef.current);
+    const removeButtonClicked = removeButtonEl != null && removeButtonEl.contains(event.target as Node);
+    const openLinkInNewTab = item.href && (event.ctrlKey || event.metaKey);
+    if (props.onClick != null && !removeButtonClicked && !openLinkInNewTab) {
+      props.onClick(item.id);
+      event.preventDefault();
+    }
+  };
 
   return <div className="UINestedTag">{
     items.map((item, i) => {
@@ -59,8 +71,10 @@ const UINestedTag = (props: UINestedTagProps) => {
       />;
 
       const baseStyle: React.CSSProperties  = {
-        ...(onClick ? {cursor: 'pointer'} : {}),
-        marginLeft: 0
+        ...((props.onClick || item.href) ? {cursor: 'pointer'} : {}),
+        marginLeft: 0,
+        left: `-${.125 * i}em`,
+        position: 'relative',
       };
 
       const filledStyle: React.CSSProperties  = {
@@ -81,9 +95,9 @@ const UINestedTag = (props: UINestedTagProps) => {
       };
       const style = outline === true ? outlinedStyle : filledStyle;
 
-      return <div
+      const anchorInner = <div
         key={item.id}
-        onClick={() => onClick(item.id)}
+        onClick={(e) => onClick(e, i)}
         className={className}
         style={style}>
         {item.label}
@@ -91,13 +105,26 @@ const UINestedTag = (props: UINestedTagProps) => {
         {!isLast && nestingMaskNode}
         {canRemove !== false && isLast && removeButton}
       </div>;
+
+      if (item.href != null) {
+        return <a href={item.href}>{anchorInner}</a>;
+      }
+
+      return anchorInner;
     })
   }</div>;
 };
 
+type UINestedTagPropsItem = {
+  label: string,
+  color?: string,
+  id: number,
+  href?: string
+};
+
 export type UINestedTagProps = {
   onRemoved?: () => void;
-  items: Array<{label: string, color?: string, id: number}>;
+  items: Array<UINestedTagPropsItem>;
   canRemove?: boolean;
   onClick?: (id: number) => void;
   outline?: boolean;
