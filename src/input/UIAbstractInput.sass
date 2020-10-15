@@ -1,8 +1,6 @@
 @import '../tokens'
 
 .UIAbstractInput
-  margin-top: .25em
-  margin-bottom: .25em
   display: flex
   transition: $transition-default
   border-radius: $border-radius-input
@@ -10,3 +8,18 @@
   &:focus,
   &.focus
     background: $color-control-focus
+
+  &.styling-outline
+    background: transparent
+    border: solid $color-control-border 1px
+    color: $color-basefont
+
+    &:hover
+      background: $color-control
+
+    &:active
+      background: darken($color-control, 3%)
+
+    &:disabled
+      background: lighten($color-control, 15%)
+      color: $color-quiet

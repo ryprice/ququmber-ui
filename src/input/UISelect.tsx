@@ -3,6 +3,7 @@ import * as React from 'react';
 import TetherComponent from 'react-tether';
 
 import UISelectDropdown, {UISelectDropdownOption} from 'ququmber-ui/input/UISelectDropdown';
+import Stylings from 'ququmber-ui/Stylings';
 import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
 
 const {useCallback, useMemo, useRef, useState} = React;
@@ -10,7 +11,6 @@ const {useCallback, useMemo, useRef, useState} = React;
 export const UISelect = (props: UISelectProps) => {
   const {
     selected,
-    className,
     renderItem,
     attachment,
     targetAttachment,
@@ -21,9 +21,11 @@ export const UISelect = (props: UISelectProps) => {
     freeformValue,
     allowNull,
     isSearchable,
+    styling
   } = props;
   const propsOptions = props.options;
   const propsOnSelect = props.onSelect;
+  const propsClassName = props.className;
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(undefined);
@@ -125,11 +127,16 @@ export const UISelect = (props: UISelectProps) => {
   const freeformOption = allowFreeform ? {name: freeformValue, value: 'freeform', isFreeform: true} : null;
   const selectedOption = foundOption || freeformOption || valueOnlyOption;
 
+  const className =
+    `UISelect ${propsClassName || ''} ` +
+    `${dropdownOpen ? 'focus' : ''} ` +
+    (styling ? `styling-${styling}` : '');
+
   const input = <div
     role="button"
     onClick={openDropdown}
     onKeyUp={onKeyUp}
-    className={`UISelect ${className || ''} ${dropdownOpen ? 'focus' : ''}`}>
+    className={className}>
     <span className="selectedOptions">{renderItem ? renderItem(selectedOption, true) : selectedOption.name}</span>
     <span className="octicon octicon-chevron-down down-arrow" key="down-arrow" />
   </div>;
@@ -196,6 +203,7 @@ export type UISelectProps = {
   allowFreeform?: boolean;
   allowNull?: boolean;
   isSearchable?: boolean;
+  styling?: Stylings;
 };
 
 export default UISelect;
