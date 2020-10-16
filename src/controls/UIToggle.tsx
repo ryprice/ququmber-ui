@@ -1,28 +1,35 @@
 import * as React from 'react';
 
-export class UIToggle extends React.Component<UIToggleProps, {}> {
+const {useMemo} = React;
 
-  inputEl: HTMLInputElement;
+let nextIdIndex = 0;
 
-  public static defaultProps = {
-    className: '',
-    disabled: false
-  };
+const UIToggle = (props: UIToggleProps) => {
+  const {checked, onChange, disabled, onClick, onMouseOut} = props;
 
-  render() {
-    const {checked, onChange, disabled, onClick, onMouseOut} = this.props;
-    return <span className={`UIToggle ${this.props.className}`}>
-      <input
-        type="checkbox"
-        onChange={(e: any) => onChange(e.target.checked)}
-        id="switch"
-        checked={checked}
-        disabled={disabled}
-      />
-      <label htmlFor="switch" onClick={onClick} onMouseOut={onMouseOut}>Toggle</label>
-    </span>;
-  }
+  const idIndex = useMemo(() => {
+    const result = nextIdIndex;
+    nextIdIndex++;
+    return result;
+  }, []);
+  const id = 'UIToggle-' + idIndex;
+
+  return <span className={`UIToggle ${props.className}`}>
+    <input
+      type="checkbox"
+      onChange={(e: any) => onChange(e.target.checked)}
+      id={id}
+      checked={checked}
+      disabled={disabled}
+    />
+    <label htmlFor={id} onClick={onClick} onMouseOut={onMouseOut}>Toggle</label>
+  </span>;
 }
+
+UIToggle.defaultProps = {
+  className: '',
+  disabled: false
+};
 
 export type UIToggleProps = {
   checked: boolean;
