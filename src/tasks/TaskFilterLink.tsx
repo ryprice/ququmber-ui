@@ -3,7 +3,6 @@ import * as React from 'react';
 type TaskFilterLinkProps = {
   href?: string;
   onClick?: () => void;
-  onDropTasks?: (taskIds: number[]) => void;
   children?: React.ReactNode;
 };
 

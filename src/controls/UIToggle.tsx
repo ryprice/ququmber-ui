@@ -24,7 +24,7 @@ const UIToggle = (props: UIToggleProps) => {
     />
     <label htmlFor={id} onClick={onClick} onMouseOut={onMouseOut}>Toggle</label>
   </span>;
-}
+};
 
 UIToggle.defaultProps = {
   className: '',

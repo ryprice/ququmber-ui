@@ -1,4 +1,4 @@
-@import '../tokens'
+@import tokens
 
 .UIToggle
   @extend .UIAbstractInput
@@ -13,30 +13,30 @@
   label
     cursor: pointer
     text-indent: -9999px
-    width: 44px
-    height: 22px
+    width: 2.2em
+    height: 1.1em
     background: #808080
     display: block
-    border-radius: 22px
+    border-radius: 1.1em
     position: relative
 
   label:after
     content: ''
     position: absolute
-    top: 1px
-    left: 1px
-    width: 20px
-    height: 20px
+    top: .05em
+    left: .05em
+    width: 1em
+    height: 1em
     background: $color-white
-    border-radius: 20px
+    border-radius: 1em
     transition: $transition-default
 
   input:checked + label
     background: $color-go
 
   input:checked + label:after
-    left: calc(100% - 1px)
+    left: calc(100% - .05em)
     transform: translateX(-100%)
 
   label:active:after
-    width: 24px
+    width: 1.2em
