@@ -27,7 +27,12 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
     }
   }
 
-  onKeyPress(event: React.KeyboardEvent<HTMLParamElement>) {
+  onKeyUp = () => {
+    this.props.onChange && this.props.onChange(this.inputEl.textContent);
+  };
+
+  onKeyPress = (event: React.KeyboardEvent<HTMLParagraphElement>) => {
+    this.props.onChange && this.props.onChange(this.inputEl.textContent);
     switch (event.charCode) {
       case 13: // enter
         this.onSubmit();
@@ -36,16 +41,12 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
         break;
     }
     return true;
-  }
+  };
 
   onSubmit() {
     const {onSubmit} = this.props;
     onSubmit && onSubmit(this.inputEl.textContent);
     this.setState({value: null});
-  }
-
-  onChange(value: string) {
-    this.setState({value});
   }
 
   shouldShowPlaceholder() {
@@ -61,9 +62,9 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
 
     return <p
       contentEditable={disabled ? false : true}
-      onChange={(e: any) => this.onChange(e)}
       className={renderedClassName}
-      onKeyPress={(e: any) => this.onKeyPress(e)}
+      onKeyUp={this.onKeyUp}
+      onKeyPress={this.onKeyPress}
       ref={(el) => {
         this.inputEl = el;
       }}
@@ -80,6 +81,7 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
 
 export type UIEditableTextProps = {
   value?: string;
+  onChange?: (value: string) => void;
   onSubmit?: (value: string) => void;
   className?: string;
   placeholder?: string;
