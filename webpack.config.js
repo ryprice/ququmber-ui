@@ -1,5 +1,5 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const {eslintLoaderConfig, tsLoaderConfig} = require('listlab-build/webpackConfigBuilders');
 
@@ -41,21 +41,21 @@ module.exports = {
       tsLoaderConfig(),
       eslintLoaderConfig('ququmber-ui'),
       {
-        test: /\.sass$/,
-        loader: [
-          ExtractTextPlugin.loader,
-          { loader: 'css-loader' },
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
           {
             loader: 'sass-loader',
             options: { includePaths: ['../ququmber-ui/lib'] }
-          }
+          },
         ]
       }
     ]
   },
 
   plugins: [
-    new ExtractTextPlugin('css/[name].css', {allChunks: true}),
-    new StyleLintPlugin({syntax: 'sass'})
+    new MiniCssExtractPlugin({filename: 'css/[name].css'}),
+    new StyleLintPlugin({syntax: 'sass', files: '**/*.sass'})
   ],
 };
