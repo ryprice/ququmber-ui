@@ -108,8 +108,7 @@ const RootComponent = () => {
     'listlab-api',
     ['ququmber-ui/tasks/TaskFilterLink', <TaskFilterLink
       href="http://google.com"
-      onClick={() => alert('clicked list')}
-      onDropTasks={(taskIds: number[]) => alert('tasks dropped')}>
+      onClick={() => alert('clicked list')}>
       {'List of tasks'}
     </TaskFilterLink>]
   ];
