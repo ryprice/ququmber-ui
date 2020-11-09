@@ -128,18 +128,21 @@ const RootComponent = () => {
   }, [setFilter]);
 
   const filteredSections = sections.filter(s => {
-    if (filter != null && typeof s !== 'string') {
-      const pathParts = (s[0] as string).split('/');
-      return pathParts[pathParts.length - 1]
-        .toLocaleLowerCase()
-        .includes(filter.toLocaleLowerCase());
+    if (filter == null) {
+      return true;
     }
-    return true;
+    if (typeof s === 'string') {
+      return false;
+    }
+    const pathParts = (s[0] as string).split('/');
+    return pathParts[pathParts.length - 1]
+      .toLocaleLowerCase()
+      .includes(filter.toLocaleLowerCase());
   });
 
   return <div>
     <div className="Topbar">
-      <div id="logo" />
+      <img id="logo" src="https://static.listlab.io/images/logo-white.svg" />
     </div>
     <div className="mainContent">
       <div className="sideNav">
