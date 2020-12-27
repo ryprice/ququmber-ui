@@ -6,7 +6,7 @@ type TaskFilterLinkProps = {
   children?: React.ReactNode;
 };
 
-const TaskFilterLink = (props: TaskFilterLinkProps) => {
+const TaskFilterLink = React.forwardRef<HTMLAnchorElement, TaskFilterLinkProps>((props, ref) => {
   const {children, href} = props;
 
   const onClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -17,11 +17,12 @@ const TaskFilterLink = (props: TaskFilterLinkProps) => {
   };
 
   return <a
+    ref={ref}
     className="TaskFilterLink"
     href={href}
     onClick={onClick}>
     {children ? children : ''}
   </a>;
-};
+});
 
 export default TaskFilterLink;
