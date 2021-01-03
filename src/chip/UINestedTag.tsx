@@ -107,7 +107,7 @@ const UINestedTag = (props: UINestedTagProps) => {
       </div>;
 
       if (item.href != null) {
-        return <a href={item.href}>{anchorInner}</a>;
+        return <a key={item.id} href={item.href}>{anchorInner}</a>;
       }
 
       return anchorInner;
