@@ -12,6 +12,6 @@ const UINestedOverlay = (props: UINestedOverlayProps) => {
 
 type UINestedOverlayProps = {
   children: React.ReactNode;
-}
+};
 
 export default UINestedOverlay;

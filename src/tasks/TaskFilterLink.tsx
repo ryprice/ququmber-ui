@@ -2,7 +2,7 @@ import * as React from 'react';
 
 type TaskFilterLinkProps = {
   href?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
   children?: React.ReactNode;
 };
 
@@ -11,7 +11,7 @@ const TaskFilterLink = React.forwardRef<HTMLAnchorElement, TaskFilterLinkProps>(
 
   const onClick = (event: React.MouseEvent<HTMLElement>) => {
     if (!(event.ctrlKey || event.metaKey) || !href) {
-      props.onClick();
+      props.onClick(event);
       event.preventDefault();
     }
   };
