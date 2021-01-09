@@ -19,8 +19,8 @@ class UIToggleSample extends React.Component<{}, UIToggleSampleState> {
   }
 }
 
-interface UIToggleSampleState {
+type UIToggleSampleState = {
   value: boolean;
-}
+};
 
 export default UIToggleSample;

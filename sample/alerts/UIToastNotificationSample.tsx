@@ -53,11 +53,11 @@ class UIToastNotificationSample extends React.Component<{}, UIToastNotificationS
   }
 }
 
-interface UIToastNotificationSampleState {
+type UIToastNotificationSampleState = {
   showError: boolean;
   showWarning: boolean;
   showInfo: boolean;
   showSuccess: boolean;
-}
+};
 
 export default UIToastNotificationSample;

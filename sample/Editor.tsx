@@ -30,9 +30,9 @@ const Editor = (props: EditorProps) => {
   </div>;
 };
 
-interface EditorProps {
+type EditorProps = {
   code: string;
   scope?: any;
-}
+};
 
 export default Editor;

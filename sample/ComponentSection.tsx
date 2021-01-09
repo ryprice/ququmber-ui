@@ -9,9 +9,9 @@ const ComponentSection = (props: ComponentSectionProps) => {
   </div>;
 };
 
-interface ComponentSectionProps {
+type ComponentSectionProps = {
   name: string;
   children: React.ReactNode;
-}
+};
 
 export default ComponentSection;

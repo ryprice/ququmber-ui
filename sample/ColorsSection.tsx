@@ -18,10 +18,10 @@ const ColorsSubsection = (props: ColorsSubsectionProps) =>
     </div>
   </div>;
 
-interface ColorsSubsectionProps {
+type ColorsSubsectionProps = {
   name: string;
   colors: {[key: string]: string};
-}
+};
 
 const ColorsSection = () =>
   <div className="ColorSection">

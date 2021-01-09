@@ -24,8 +24,8 @@ class UIPopupSample extends React.Component<{}, UIPopupSampleState> {
   }
 }
 
-interface UIPopupSampleState {
+type UIPopupSampleState = {
   showPopup: boolean;
-}
+};
 
 export default UIPopupSample;

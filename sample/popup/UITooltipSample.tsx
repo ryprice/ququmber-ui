@@ -22,8 +22,8 @@ class UITooltipSample extends React.Component<{}, UITooltipSampleState> {
   }
 }
 
-interface UITooltipSampleState {
+type UITooltipSampleState = {
   showTooltip: boolean;
-}
+};
 
 export default UITooltipSample;

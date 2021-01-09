@@ -30,8 +30,8 @@ class UIMessageModalSample extends React.Component<{}, UIMessageModalSampleState
   }
 }
 
-interface UIMessageModalSampleState {
+type UIMessageModalSampleState = {
   open: boolean;
-}
+};
 
 export default UIMessageModalSample;
