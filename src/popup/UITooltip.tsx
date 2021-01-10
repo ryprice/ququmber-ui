@@ -1,38 +1,44 @@
 import * as React from 'react';
 import TetherComponent from 'react-tether';
 
-export class UITooltip extends React.Component<UITooltipProps, {}> {
+import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
 
-  public static defaultProps = {
-    width: 200,
-    open: false,
-    attachment: 'top center',
-    targetAttachment: 'bottom center'
-  };
+const {useRef} = React;
 
-  public render() {
-    const {children, text, width, open, attachment, targetAttachment} = this.props;
+const UITooltip = (props: UITooltipProps) => {
+  const {children, text, width, open, attachment,targetAttachment, closeOnOutsideClick, onClose} = props;
+  const tooltipRef = useRef<HTMLDivElement>();
 
-    if (!open) {
-      return children;
-    }
+  useOnOutsideClick([tooltipRef], onClose, closeOnOutsideClick && open);
 
-    return <TetherComponent
+  if (!open) {
+    return <>{children}</>;
+  }
+
+  return (
+    <TetherComponent
       attachment={attachment}
       targetAttachment={targetAttachment}
-      className="tether-theme-arrows-dark"
-    >
+      className="tether-theme-arrows-dark">
       {children}
       <div
+        ref={tooltipRef}
         className="UITooltip tether-content"
         style={{width: `${width}px`}}>
         <div className="UITooltipInner">
           {text}
         </div>
       </div>
-    </TetherComponent>;
-  }
-}
+    </TetherComponent>
+  );
+};
+
+UITooltip.defaultProps = {
+  width: 200,
+  open: false,
+  attachment: 'top center',
+  targetAttachment: 'bottom center'
+};
 
 export type UITooltipProps = {
   text: string;
@@ -40,6 +46,9 @@ export type UITooltipProps = {
   open?: boolean;
   attachment?: string;
   targetAttachment?: string;
+  onClose?: () => void;
+  children: React.ReactNode;
+  closeOnOutsideClick?: boolean;
 };
 
 export default UITooltip;
