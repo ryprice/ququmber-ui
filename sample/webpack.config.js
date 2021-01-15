@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const {eslintLoaderConfig, tsLoaderConfig} = require('listlab-build/webpackConfigBuilders');
@@ -29,11 +30,15 @@ module.exports = {
   devServer: {
     inline: true,
     port: 3001,
+    host: 'local.listlab.io',
     historyApiFallback: {
       rewrites: [
         { from: 'index.html', to: '/sample/index.html' },
       ]
-    }
+    },
+    https: true,
+    key: fs.readFileSync('../listlab-secrets/local.listlab.io.key'),
+    cert: fs.readFileSync('../listlab-secrets/local.listlab.io.crt')
   },
 
   module: {
