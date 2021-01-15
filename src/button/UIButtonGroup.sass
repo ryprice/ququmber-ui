@@ -1,0 +1,90 @@
+@import tokens
+
+.UIButtonGroup
+  display: flex
+  flex-direction: row
+
+.UIButtonGroupButton
+  color: $color-white
+  display: inline-block
+  text-decoration: none
+  position: relative
+  outline: none
+  clear: both
+  font-size: 1em
+  padding: .3em
+  border-radius: 0
+  border-right-width: 0
+
+  &:first-child
+    border-top-left-radius: $border-radius-input
+    border-bottom-left-radius: $border-radius-input
+
+  &:last-child
+    border-top-right-radius: $border-radius-input
+    border-bottom-right-radius: $border-radius-input
+    border-right-width: 1px
+
+  &.styling-control
+    color: $color-basefont
+    text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.25)
+    background: $color-control
+    border: solid darken($color-control, 20%) 1px
+
+    &:hover
+      background: lighten($color-control, 7%)
+
+    &:active
+      background: darken($color-control, 3%)
+
+    &:focus
+      background: darken($color-control, 3%)
+
+    &:disabled
+      background: lighten($color-control, 15%)
+
+    &.selected
+      background: $color-control-selected
+
+      &:hover
+        background: lighten($color-control-selected, 7%)
+
+      &:active
+        background: darken($color-control-selected, 3%)
+
+      &:focus
+        background: darken($color-control-selected, 3%)
+
+      &:disabled
+        background: lighten($color-control-selected, 15%)
+
+  &.styling-outline
+    background: transparent
+    border: solid $color-control-border 1px
+    color: $color-basefont
+    text-shadow: transparent
+
+    &:hover
+      background: $color-control
+
+    &:active
+      background: darken($color-control, 3%)
+
+    &:disabled
+      background: lighten($color-control, 15%)
+      color: $color-quiet
+
+    &.selected
+      background: $color-control-selected
+
+      &:hover
+        background: lighten($color-control-selected, 7%)
+
+      &:active
+        background: darken($color-control-selected, 3%)
+
+      &:focus
+        background: darken($color-control-selected, 3%)
+
+      &:disabled
+        background: lighten($color-control-selected, 15%)

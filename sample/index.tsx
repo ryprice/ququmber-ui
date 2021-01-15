@@ -23,6 +23,7 @@ import UIBannerSample from './alerts/UIBannerSample';
 import UIToastNotificationSample from './alerts/UIToastNotificationSample';
 
 import UIButtonSample from './button/UIButtonSample';
+import UIButtonGroupSample from './button/UIButtonGroupSample';
 import UIDropdownButtonSample from './button/UIDropdownButtonSample';
 import UIIconButtonSample from './button/UIIconButtonSample';
 
@@ -89,6 +90,7 @@ const RootComponent = () => {
 
     'Button',
     ['ququmber-ui/button/UIButton', <UIButtonSample />],
+    ['ququmber-ui/button/UIButtonGroupSample', <UIButtonGroupSample />],
     ['ququmber-ui/button/UIDropdownButton', <UIDropdownButtonSample />],
     ['ququmber-ui/button/UIIconButton', <UIIconButtonSample />],
 
