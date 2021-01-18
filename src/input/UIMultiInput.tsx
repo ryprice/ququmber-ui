@@ -11,9 +11,13 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
   private tagsInput: HTMLInputElement;
   private readonly updateDropdownDebounced: () => void;
 
+  public static defaultProps = {
+    shouldFilterOptions: true
+  };
+
   readonly state: UIMultiInputState = {
     dropdownOpen: false,
-    hoverIndex: undefined
+    hoverIndex: undefined,
   };
 
   public constructor(props: UIMultiInputProps, context: any) {
@@ -104,16 +108,20 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
   }
 
   private readonly getFilteredUnselectedOptions = () => {
-    const {options, selected} = this.props;
+    const {options, selected, shouldFilterOptions} = this.props;
     const query = this.tagsInput ? this.tagsInput.value.toLowerCase() : '';
     return filter(options, (option) => {
       if (includes(selected, option.value)) {
         return false;
       }
-      return query.length < 1 || (
-        option.name != null &&
-        option.name.toLowerCase().indexOf(query) > -1
-      );
+      if (shouldFilterOptions) {
+        return query.length < 1 || (
+          option.name != null &&
+          option.name.toLowerCase().indexOf(query) > -1
+        );
+      } else {
+        return true;
+      }
     });
   };
 
@@ -212,6 +220,7 @@ export type UIMultiInputProps = {
   className?: string;
   placeholder?: string;
   onQueryChanged?: (query: string) => void;
+  shouldFilterOptions?: boolean;
   renderItem?: (option: UIMultiInputOption, selected: boolean) => React.ReactChild;
   attachment?: string;
   targetAttachment?: string;
