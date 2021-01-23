@@ -65,7 +65,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     this.setState({hoverTime: t});
   };
 
-  unitOnMouseOut = (t: FuzzyTime) => {
+  unitOnMouseOut = () => {
     this.setState({hoverTime: null});
   };
 
@@ -180,7 +180,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     </button>;
   }
 
-  renderQuickOption(time: FuzzyTime, name: string, icon: string) {
+  renderQuickOption(time: FuzzyTime, icon: string) {
     const {selected, selectedRange} = this.props;
     const selectedOrRangeSelected = (
       time.equals(selected) ||
@@ -196,7 +196,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       className={`quickOption ${selectedOrRangeSelected ? 'selected' : ''}`}
       onClick={() => this.onQuckOptionClick(time)}
       onMouseOver={() => this.unitOnMouseOver(time)}
-      onMouseOut={() => this.unitOnMouseOut(time)}>
+      onMouseOut={() => this.unitOnMouseOut()}>
       <i className={icon} />
     </button>;
   }
@@ -230,7 +230,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       return null;
     }
     return <div className="quickOptions">
-      {quickOptions.map(qo => this.renderQuickOption(qo.time, qo.name, qo.icon))}
+      {quickOptions.map(qo => this.renderQuickOption(qo.time, qo.icon))}
       <div style={{flexGrow: 1}} />
       <UIButton
         style={{margin: 0}}

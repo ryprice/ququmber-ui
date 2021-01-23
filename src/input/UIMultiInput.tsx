@@ -175,8 +175,8 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
         type="text"
         className="UIInput"
         placeholder={placeholder}
-        onClick={(e: any) => this.setState({dropdownOpen: true})}
-        onFocus={(e: any) => this.setState({dropdownOpen: true})}
+        onClick={() => this.setState({dropdownOpen: true})}
+        onFocus={() => this.setState({dropdownOpen: true})}
         onKeyUp={(e: any) => this.onKeyUp(e)}
         ref={(el: any) => this.receiveTagsInputEl(el)}
       />

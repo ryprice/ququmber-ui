@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "module": "amd",
-    "noImplicitAny": true,
     "removeComments": true,
+    "pretty": true,
     "preserveConstEnums": true,
     "sourceMap": false,
     "target": "es6",
@@ -14,7 +14,10 @@
       "ququmber-ui/*": ["src/*"],
       "listlab-api/*": ["node_modules/listlab-api/src/*"]
     },
-    "noUnusedLocals": true
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
   },
   "include": [
     "src/**/*.ts",
