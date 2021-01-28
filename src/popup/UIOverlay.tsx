@@ -13,18 +13,21 @@ const UIOverlayPortal = (props: UIOverlayProps) => {
       propsOnOverlayClick();
     }
   }, [propsOnOverlayClick]);
+  const classNamespace = props.classNamespace || '';
 
-  return <UIMountTransition className="UIOverlayTransition" mounted={props.open}>
-    <div className="UIOverlay">
-      <div
-        className="content"
-        onClick={onOverlayClick}
-        ref={contentContainerRef}>
-        {props.children}
+  return <span className={classNamespace}>
+    <UIMountTransition className="UIOverlayTransition" mounted={props.open}>
+      <div className="UIOverlay">
+        <div
+          className="content"
+          onClick={onOverlayClick}
+          ref={contentContainerRef}>
+          {props.children}
+        </div>
+        <div className="background" />
       </div>
-      <div className="background" />
-    </div>
-  </UIMountTransition>;
+    </UIMountTransition>
+  </span>;
 };
 
 export class UIOverlay extends React.Component<UIOverlayProps, {}> {
@@ -64,6 +67,7 @@ export type UIOverlayProps = {
   children: React.ReactNode;
   debugInline?: boolean;
   onOverlayClick?: () => void;
+  classNamespace?: string;
 };
 
 export default UIOverlay;
