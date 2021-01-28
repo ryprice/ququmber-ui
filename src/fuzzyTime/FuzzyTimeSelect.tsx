@@ -7,7 +7,7 @@ import {
   FuzzyTimeRange,
   Task
 } from 'listlab-api';
-import FuzzyTime, {buildFuzzyTime} from 'listlab-api/FuzzyTime';
+import FuzzyTime, {buildFuzzyTime} from 'listlab-api/fuzzyTime/FuzzyTime';
 
 import UIButton from 'ququmber-ui/button/UIButton';
 import FuzzyTimeMonthUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeMonthUnit';
