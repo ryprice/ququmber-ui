@@ -63,6 +63,7 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
       onBlur={() => this.onBlur()}
       disabled={props.disabled}
       onChange={props.onChange}
+      autoFocus={props.autofocus}
     />;
   }
 }
