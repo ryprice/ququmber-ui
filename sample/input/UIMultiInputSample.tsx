@@ -5,7 +5,7 @@ import Editor from '../Editor';
 
 const {useState} = React;
 
-const UIMultiInputSample = (props: {}) => {
+const UIMultiInputSample = () => {
   const [selected, setSelected] = useState(['1', '2']);
 
   return <div>

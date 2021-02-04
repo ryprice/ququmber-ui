@@ -5,7 +5,7 @@ import Editor from '../Editor';
 
 const {useState} = React;
 
-const UISelectSample = (props: {}) => {
+const UISelectSample = () => {
   const [selected, setSelected] = useState('1');
 
   return <div>

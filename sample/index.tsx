@@ -149,7 +149,7 @@ const RootComponent = () => {
     <div className="mainContent">
       <div className="sideNav">
         <UITextInput placeholder="filter" onChange={onFilterKeyPress} />
-        {filteredSections.map((s, idx) => {
+        {filteredSections.map((s) => {
           if (typeof s === 'string') {
             return <p className="header">{s}</p>;
           } else {
