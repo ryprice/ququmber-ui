@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import UINestedTag from 'ququmber-ui/chip/UINestedTag';
+import Colors from 'ququmber-ui/Colors';
 import UITag from 'ququmber-ui/chip/UITag';
 import Editor from '../Editor';
 
@@ -11,22 +12,22 @@ const UITagSample = () =>
       scope={{UITag}}
       code={
 `<div>
-  <UITag name="Shopping" canRemove={true} color="4286f4" />
-  <UITag name="Work" canRemove={true} color="f4e242" />
-  <UITag name="Sideproject" canRemove={true} color="b72924" />
-  <UITag name="Untriaged" canRemove={true} color="238444" />
+  <UITag name="Shopping" canRemove={true} color="32A150" />
+  <UITag name="Work" canRemove={true} color="0095FF" />
+  <UITag name="Sideproject" canRemove={true} color="ffdf82" />
+  <UITag name="Untriaged" canRemove={true} color="90dda1" />
 </div>`
       }
     />
     <h1>Outlined</h1>
     <Editor
-      scope={{UITag}}
+      scope={{UITag, Colors}}
       code={
 `<div>
-  <UITag name="Shopping" canRemove={true} color="4286f4" outline={true} />
-  <UITag name="Work" canRemove={true} color="f4e242" outline={true} />
-  <UITag name="Sideproject" canRemove={true} color="b72924" outline={true} />
-  <UITag name="Untriaged" canRemove={true} color="238444" outline={true} />
+  <UITag name="Shopping" canRemove={true} color="32A150" outline={true} />
+  <UITag name="Work" canRemove={true} color="0095FF" outline={true} />
+  <UITag name="Sideproject" canRemove={true} color="ffdf82" outline={true} />
+  <UITag name="Untriaged" canRemove={true} color="90dda1" outline={true} />
 </div>`
       }
     />
@@ -39,8 +40,8 @@ const UITagSample = () =>
     canRemove={true}
     outline={true}
     items={[
-      {label: 'Parent', id: 1, color: "4286f4"},
-      {label: 'Child', id: 2, color: "f4e242"}
+      {label: 'Parent', id: 1, color: "32A150"},
+      {label: 'Child', id: 2, color: "0095FF"}
     ]}
   />
 </div>`
@@ -56,13 +57,13 @@ const UITagSample = () =>
     <UITag
       name="Baking"
       canRemove={true}
-      color="4286f4"
-      outline={false}
+      color="0095FF"
+      outline={true}
     />
     <UITag
       name="Baking"
       canRemove={true}
-      color="4286f4"
+      color="0095FF"
       outline={true}
     />
   </p>
@@ -70,13 +71,13 @@ const UITagSample = () =>
     <UITag
       name="Baking"
       canRemove={true}
-      color="4286f4"
+      color="0095FF"
       outline={false}
     />
     <UITag
       name="Baking"
       canRemove={true}
-      color="4286f4"
+      color="0095FF"
       outline={true}
     />
   </p>
@@ -84,13 +85,13 @@ const UITagSample = () =>
     <UITag
       name="Baking"
       canRemove={true}
-      color="4286f4"
+      color="0095FF"
       outline={false}
     />
     <UITag
       name="Baking"
       canRemove={true}
-      color="4286f4"
+      color="0095FF"
       outline={true}
     />
   </p>
