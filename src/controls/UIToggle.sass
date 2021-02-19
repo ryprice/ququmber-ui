@@ -15,7 +15,7 @@
     text-indent: -9999px
     width: 2.2em
     height: 1.1em
-    background: #808080
+    background: $color-control-selected
     display: block
     border-radius: 1.1em
     position: relative
@@ -25,18 +25,20 @@
     position: absolute
     top: .05em
     left: .05em
-    width: 1em
-    height: 1em
-    background: $color-white
+    width: .6em
+    height: .6em
+    background: transparent
     border-radius: 1em
     transition: $transition-default
+    border: .2em solid $color-basefont
 
   input:checked + label
-    background: $color-go
+    background: $color-control-selected
 
   input:checked + label:after
     left: calc(100% - .05em)
     transform: translateX(-100%)
+    background: $color-basefont
 
   label:active:after
-    width: 1.2em
+    width: .8em
