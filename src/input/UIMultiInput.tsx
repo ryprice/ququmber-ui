@@ -31,7 +31,11 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
   }
 
   private onOptionRemoved(value: string) {
-    this.props.onOptionRemoved(value);
+    const {options} = this.props;
+    const option = find(options, (o) => o.value === value);
+    if (option.canRemove !== false) {
+      this.props.onOptionRemoved(value);
+    }
   }
 
   private onOptionAdded(value: string) {
