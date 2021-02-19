@@ -89,3 +89,34 @@
 
       &:disabled
         background: lighten($color-control-selected, 15%)
+
+  &.styling-flat
+    background: $color-control-flat
+    border-color: transparent
+    color: $color-basefont
+    text-shadow: transparent
+
+    &:hover
+      background: darken($color-control-flat, 3%)
+
+    &:active
+      background: darken($color-control-flat, 6%)
+
+    &:disabled
+      background: lighten($color-control-flat, 15%)
+      color: $color-quiet
+
+    &.selected
+      background: $color-control-selected
+
+      &:hover
+        background: darken($color-control-selected, 13%)
+
+      &:active
+        background: darken($color-control-selected, 16%)
+
+      &:focus
+        background: darken($color-control-selected, 13%)
+
+      &:disabled
+        background: lighten($color-control-selected, 15%)
