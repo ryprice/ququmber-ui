@@ -8,6 +8,7 @@ const {useRef} = React;
 
 const UITag = (props: UITagProps) => {
   const {name, onRemoved, canRemove, outline} = props;
+  const rounded = props.rounded === false ? false : true;
   const color = props.color != null ? props.color : Colors.QUQUMBER.substring(1);
   const removeButtonRef = useRef();
 
@@ -45,7 +46,7 @@ const UITag = (props: UITagProps) => {
     }
   };
 
-  const className = 'UITag ' + (canRemove ? 'canRemove ' : '');
+  const className = 'UITag ' + (rounded ? 'rounded ' : '') + (canRemove ? 'canRemove ' : '');
 
   return <div
     onClick={onClick}
@@ -63,6 +64,7 @@ export type UITagProps = {
   canRemove?: boolean;
   onClick?: () => void;
   outline?: boolean;
+  rounded?: boolean;
 };
 
 export default UITag;

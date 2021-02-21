@@ -6,8 +6,76 @@ import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 
 const {useRef} = React;
 
+const NestingMaskNode = (props: NestingMaskNodeProps) => {
+  const {color, outline, rounded} = props;
+
+  const roundedBaseStyle = {
+    borderTopLeftRadius: '.25em',
+    borderBottomLeftRadius: '.25em',
+  };
+
+
+  const nestingMaskBaseStyle: React.CSSProperties = {
+    ...(rounded ? roundedBaseStyle : {}),
+    width: '.25em',
+    height: '100%',
+    position: 'absolute',
+    right: '0px',
+    background: '#ffffff',
+  };
+
+  const nestingMaskOutlineStyle: React.CSSProperties  = {
+    ...nestingMaskBaseStyle,
+    top: '-.05em',
+    border: `.05em solid #${color}`,
+    borderRight: 0,
+  };
+
+  const nestingMaskFilledStyle: React.CSSProperties  = {
+    ...nestingMaskBaseStyle,
+    top: 0,
+    border: 0,
+  };
+
+  if (rounded) {
+    return <div
+      style={outline ? nestingMaskOutlineStyle : nestingMaskFilledStyle}
+    />;
+  } else {
+    const sharedDiagonalStyle: any = {
+      borderStyle: 'inset',
+      borderWidth: '0 0 1.2em .6em',
+      borderColor: `transparent transparent #${color} transparent`,
+      position: 'absolute',
+      bottom: 0,
+      right: 0,
+      height: 0,
+    };
+
+    return <>
+      <div style={{
+        ...sharedDiagonalStyle,
+        width: '2px',
+        borderColor: 'transparent transparent #ffffff transparent',
+      }} />
+      <div style={{
+        ...sharedDiagonalStyle,
+        width: '0',
+        right: 0,
+      }} />
+    </>;
+  }
+};
+
+type NestingMaskNodeProps = {
+  outline: boolean;
+  rounded: boolean;
+  color: string;
+};
+
 const UINestedTag = (props: UINestedTagProps) => {
   const {onRemoved, canRemove, outline, items} = props;
+  const rounded = props.rounded === true ? true : false;
   const removeButtonRef = useRef();
 
   const removeButton = (
@@ -36,45 +104,20 @@ const UINestedTag = (props: UINestedTagProps) => {
         return null;
       }
       const isLast = i === items.length - 1;
+      const nextItem = isLast ? null : items[i + 1];
 
       const className =
         (isLast ? 'UITag' : 'UINestedTagItem') + ' ' +
+        (rounded ? 'rounded ' : '') +
         ((canRemove && isLast) ? 'canRemove ' : '');
 
       const color = item.color != null ? item.color : Colors.QUQUMBER.substring(1);
 
-      const nestingMaskBaseStyle: React.CSSProperties = {
-        width: '.25em',
-        height: '100%',
-        borderTopLeftRadius: '.25em',
-        borderBottomLeftRadius: '.25em',
-        position: 'absolute',
-        right: '0px',
-        background: '#ffffff',
-      };
-
-      const nestingMaskOutlineStyle: React.CSSProperties  = {
-        ...nestingMaskBaseStyle,
-        top: '-.05em',
-        border: `.05em solid #${color}`,
-        borderRight: 0,
-      };
-
-      const nestingMaskFilledStyle: React.CSSProperties  = {
-        ...nestingMaskBaseStyle,
-        top: 0,
-        border: 0,
-      };
-
-      const nestingMaskNode =  <div
-        style={outline ? nestingMaskOutlineStyle : nestingMaskFilledStyle}
-      />;
-
       const baseStyle: React.CSSProperties  = {
         ...((props.onClick || item.href) ? {cursor: 'pointer'} : {}),
         marginLeft: 0,
-        left: `-${.125 * i}em`,
         position: 'relative',
+        ...(rounded ? {left: `-${.125 * i}em`} : {}),
       };
 
       const filledStyle: React.CSSProperties  = {
@@ -102,7 +145,7 @@ const UINestedTag = (props: UINestedTagProps) => {
         style={style}>
         {item.label}
         {!isLast ? <>&nbsp;&nbsp;&nbsp;</> : null}
-        {!isLast && nestingMaskNode}
+        {!isLast && <NestingMaskNode outline={outline} color={nextItem.color} rounded={rounded} />}
         {canRemove !== false && isLast && removeButton}
       </div>;
 
@@ -128,6 +171,7 @@ export type UINestedTagProps = {
   canRemove?: boolean;
   onClick?: (id: number) => void;
   outline?: boolean;
+  rounded?: boolean;
 };
 
 export default UINestedTag;
