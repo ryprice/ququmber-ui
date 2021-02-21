@@ -6,7 +6,7 @@ import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 
 const {useRef} = React;
 
-const NestingMaskNode = (props: NestingMaskNodeProps) => {
+const NestingMaskNodeRounded = (props: NestingMaskNodeRoundedProps) => {
   const {color, outline, rounded} = props;
 
   const roundedBaseStyle = {
@@ -37,41 +37,55 @@ const NestingMaskNode = (props: NestingMaskNodeProps) => {
     border: 0,
   };
 
-  if (rounded) {
-    return <div
-      style={outline ? nestingMaskOutlineStyle : nestingMaskFilledStyle}
-    />;
-  } else {
-    const sharedDiagonalStyle: any = {
-      borderStyle: 'inset',
-      borderWidth: '0 0 1.2em .6em',
-      borderColor: `transparent transparent #${color} transparent`,
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      height: 0,
-    };
-
-    return <>
-      <div style={{
-        ...sharedDiagonalStyle,
-        width: '2px',
-        borderColor: 'transparent transparent #ffffff transparent',
-      }} />
-      <div style={{
-        ...sharedDiagonalStyle,
-        width: '0',
-        right: 0,
-      }} />
-    </>;
-  }
+  return <div
+    style={outline ? nestingMaskOutlineStyle : nestingMaskFilledStyle}
+  />;
 };
 
-type NestingMaskNodeProps = {
+type NestingMaskNodeRoundedProps = {
   outline: boolean;
   rounded: boolean;
   color: string;
 };
+
+const NestingMaskNode = (props: NestingMaskNodeProps) => {
+  const {prevColor, nextColor} = props;
+  const sharedDiagonalStyle: any = {
+    borderStyle: 'solid',
+    position: 'absolute',
+    bottom: 0,
+    height: 0,
+    width: 0
+  };
+
+  return <div style={{
+    position: 'absolute',
+    left: '-.4em',
+    bottom: 0,
+    width: '.8em',
+    height: '1.2em',
+    background: '#ffffff',
+  }}>
+    <div style={{
+      ...sharedDiagonalStyle,
+      borderWidth: '1.2em .6em 0 0',
+      borderColor: `#${prevColor} transparent transparent transparent`,
+      left: 0,
+    }} />
+    <div style={{
+      ...sharedDiagonalStyle,
+      borderWidth: '0 0 1.2em .6em',
+      borderColor: `transparent transparent #${nextColor} transparent`,
+      width: 0,
+      right: 0,
+    }} />
+  </div>;
+}
+
+type NestingMaskNodeProps = {
+  prevColor: string;
+  nextColor: string;
+}
 
 const UINestedTag = (props: UINestedTagProps) => {
   const {onRemoved, canRemove, outline, items} = props;
@@ -98,20 +112,27 @@ const UINestedTag = (props: UINestedTagProps) => {
     }
   };
 
+  const colorOrDefault = (c: string) =>
+    c != null ? c : Colors.QUQUMBER.substring(1);
+
   return <div className="UINestedTag">{
     items.map((item, i) => {
       if (i >= items.length) {
         return null;
       }
       const isLast = i === items.length - 1;
+      const isFirst = i === 0;
       const nextItem = isLast ? null : items[i + 1];
+      const prevItem = isFirst ? null : items[i - 1];
 
       const className =
         (isLast ? 'UITag' : 'UINestedTagItem') + ' ' +
         (rounded ? 'rounded ' : '') +
         ((canRemove && isLast) ? 'canRemove ' : '');
 
-      const color = item.color != null ? item.color : Colors.QUQUMBER.substring(1);
+      const color = colorOrDefault(item.color);
+      const prevColor = prevItem ? colorOrDefault(prevItem.color) : null;
+      const nextColor = nextItem ? colorOrDefault(nextItem.color) : null;
 
       const baseStyle: React.CSSProperties  = {
         ...((props.onClick || item.href) ? {cursor: 'pointer'} : {}),
@@ -143,9 +164,12 @@ const UINestedTag = (props: UINestedTagProps) => {
         onClick={(e) => onClick(e, i)}
         className={className}
         style={style}>
-        {item.label}
-        {!isLast ? <>&nbsp;&nbsp;&nbsp;</> : null}
-        {!isLast && <NestingMaskNode outline={outline} color={nextItem.color} rounded={rounded} />}
+        {!isLast && rounded && <NestingMaskNodeRounded outline={outline} color={nextColor} rounded={rounded} />}
+        {!isFirst && !rounded && <NestingMaskNode prevColor={prevColor} nextColor={color} />}
+        <span style={{zIndex: 2, position: 'relative'}}>
+          {item.label}
+          {!isLast ? <>&nbsp;&nbsp;&nbsp;</> : null}
+        </span>
         {canRemove !== false && isLast && removeButton}
       </div>;
 
