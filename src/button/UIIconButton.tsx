@@ -8,7 +8,7 @@ import useDelayedMouseHover from 'ququmber-ui/utils/useDelayedMouseHover';
 const {useCallback, useState} = React;
 
 const UIIconButton = (props: UIIconButtonProps) => {
-  const {className, onClick, disabled, icon, tooltip, styling} = props;
+  const {className, onClick, disabled, icon, tooltip, styling, style} = props;
   const [showTooltip, setShowTooltip] = useState(false);
 
   const setShowTooltipIfEnabled = useCallback((v: boolean) => {
@@ -18,6 +18,7 @@ const UIIconButton = (props: UIIconButtonProps) => {
   const buttonWithMaybeTooltipProps = tooltip ? {onMouseOver, onMouseOut} : {};
 
   const button = <button
+    style={style}
     className={`UIIconButton styling-${styling} ${className}`}
     onClick={onClick}
     disabled={disabled}
@@ -58,6 +59,7 @@ export type UIIconButtonProps = {
   disabled?: boolean;
   tooltip?: string;
   styling?: Stylings;
+  style?: object;
 };
 
 export default class UIIconButtonClass extends React.Component<UIIconButtonProps> {
