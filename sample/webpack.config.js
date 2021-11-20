@@ -2,9 +2,11 @@ const path = require('path');
 const fs = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
-const {eslintLoaderConfig, tsLoaderConfig} = require('listlab-build/webpackConfigBuilders');
+const {eslintPluginConfig, tsLoaderConfig} = require('listlab-build/webpackConfigBuilders');
 
 module.exports = {
+  mode: 'development',
+
   entry: {
     'sample': './sample/index',
     'ququmber-ui': './src/index.sass',
@@ -44,7 +46,6 @@ module.exports = {
   module: {
     rules: [
       tsLoaderConfig(),
-      eslintLoaderConfig('ququmber-ui'),
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
@@ -52,7 +53,11 @@ module.exports = {
           'css-loader',
           {
             loader: 'sass-loader',
-            options: { includePaths: ['../ququmber-ui/lib'] }
+            options: {
+              sassOptions: {
+                includePaths: ['../ququmber-ui/lib']
+              }
+            }
           },
         ]
       }
@@ -61,6 +66,7 @@ module.exports = {
 
   plugins: [
     new MiniCssExtractPlugin({filename: 'css/[name].css'}),
-    new StyleLintPlugin({syntax: 'sass', files: '**/*.sass'})
+    new StyleLintPlugin({syntax: 'sass', files: '**/*.sass'}),
+    eslintPluginConfig('ququmber-ui'),
   ],
 };

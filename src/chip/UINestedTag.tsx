@@ -80,12 +80,12 @@ const NestingMaskNode = (props: NestingMaskNodeProps) => {
       right: 0,
     }} />
   </div>;
-}
+};
 
 type NestingMaskNodeProps = {
   prevColor: string;
   nextColor: string;
-}
+};
 
 const UINestedTag = (props: UINestedTagProps) => {
   const {onRemoved, canRemove, outline, items} = props;
