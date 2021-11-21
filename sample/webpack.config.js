@@ -5,8 +5,6 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const {eslintPluginConfig, tsLoaderConfig} = require('listlab-build/webpackConfigBuilders');
 
 module.exports = {
-  mode: 'development',
-
   entry: {
     'sample': './sample/index',
     'ququmber-ui': './src/index.sass',
@@ -69,4 +67,6 @@ module.exports = {
     new StyleLintPlugin({syntax: 'sass', files: '**/*.sass'}),
     eslintPluginConfig('ququmber-ui'),
   ],
+
+  mode: target === 'local' ? 'development' : 'production',
 };
