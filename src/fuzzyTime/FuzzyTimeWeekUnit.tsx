@@ -41,8 +41,9 @@ class FuzzyTimeWeekUnit extends React.Component<FuzzyTimeWeekUnitProps, {}> {
       month.getTime().getUTCMonth(),
       month.getTime().getUTCFullYear()
     );
+    const isFirstWeekInMonth = !week.withGranularity(FuzzyGranularity.MONTH).equals(month);
 
-    if (!week.withGranularity(FuzzyGranularity.MONTH).equals(month)) {
+    if (isFirstWeekInMonth) {
       // Place spots before first of the month
       curDay = month.withGranularity(FuzzyGranularity.DAY);
       placeholderDaysCount = curDay.getTime().getUTCDay();

@@ -10,3 +10,9 @@ export const weeksInMonth = (month: number, year: number): number => {
 
 export const daysInMonth = (month: number, year: number): number =>
   new Date(year, month + 1, 0).getDate();
+
+export const monthStartDay = (month: number, year: number): number => {
+  const firstOfMonth = new Date();
+  firstOfMonth.setFullYear(year, month, 1);
+  return firstOfMonth.getDay();
+};
