@@ -40,6 +40,8 @@ import UIMessageModalSample from './popup/UIMessageModalSample';
 import UIPopupSample from './popup/UIPopupSample';
 import UITooltipSample from './popup/UITooltipSample';
 
+import ShimmerSample from './progress/ShimmerSample';
+
 const {useCallback, useEffect, useState} = React;
 
 const RootComponent = () => {
@@ -101,6 +103,9 @@ const RootComponent = () => {
     'Alerts',
     ['ququmber-ui/alerts/UIBanner', <UIBannerSample />],
     ['ququmber-ui/alerts/UIToastNotification', <UIToastNotificationSample />],
+
+    'Progress',
+    ['ququmber-ui/progress/UIShimmerRect', <ShimmerSample />],
 
     'Styles',
     ['ququmber-ui/Colors', <ColorsSection />],

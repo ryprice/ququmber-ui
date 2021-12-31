@@ -45,7 +45,7 @@ export class UILoading extends React.Component<UILoadingProps, {}> {
 
     return (
       <div className="UILoading">
-        <div style={{marginLeft: '-.5em', marginTop: '-.5em'}}>
+        <div style={{marginLeft: `-${size/2}px`, marginTop: `-${size/2}px`,}}>
           {spinner}
         </div>
       </div>

@@ -1,0 +1,27 @@
+.UIShimmerRect
+  background: #ffffff
+
+  .outer
+    width: 0
+    animation: fullView 0.5s forwards linear
+    width: 100%
+    height: 100%
+
+  @keyframes fullView
+    100%
+      width: 100%
+
+  .inner
+    animation: shimmer 3s
+    animation-iteration-count: infinite
+    background: linear-gradient(to right, #e8e8e8 5%, #d8d8d8 25%, #e8e8e8 35%)
+    background-size: 1000px 100%
+    width: 100%
+    height: 100%
+
+  @keyframes shimmer
+    from
+      background-position: -1000px 0
+
+    to
+      background-position: 1000px 0
