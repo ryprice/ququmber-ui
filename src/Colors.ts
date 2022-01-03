@@ -18,11 +18,16 @@ enum Colors {
   GO = '#32A150',
   NOTIFY = '#0095FF',
   NOTIFY_HOVER = '#0077CC',
-  DEEPRED = '#AA0000',
-  RED = '#DE1D1D',
-  LIGHTRED = '#ff7777',
+
   LIGHTYELLOW = '#ffdf82',
+  YELLOW = '#FFBF02',
+
+  LIGHTRED = '#ff7777',
+  RED = '#DE1D1D',
+  DEEPRED = '#AA0000',
+
   LIGHTBLUE = '#b8d0ef',
+
   LIGHTGREEN = '#90dda1',
 
   GOOGLE = '#E53935',
