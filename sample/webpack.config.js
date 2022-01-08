@@ -50,7 +50,7 @@ module.exports = (env) => {
 
     module: {
       rules: [
-        tsLoaderConfig(),
+        tsLoaderConfig(target),
         {
           test: /\.(sa|sc|c)ss$/,
           use: [

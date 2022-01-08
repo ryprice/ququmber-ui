@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "amd",
+    "module": "es6",
     "removeComments": true,
     "pretty": true,
     "preserveConstEnums": true,
