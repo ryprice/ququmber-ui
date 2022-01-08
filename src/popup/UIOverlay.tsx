@@ -9,7 +9,7 @@ const UIOverlayPortal = (props: UIOverlayProps) => {
   const propsOnOverlayClick = props.onOverlayClick;
   const contentContainerRef = useRef<HTMLDivElement>();
   const onOverlayClick = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (contentContainerRef.current === e.target) {
+    if (propsOnOverlayClick != null && contentContainerRef.current === e.target) {
       propsOnOverlayClick();
     }
   }, [propsOnOverlayClick]);
