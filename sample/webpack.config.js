@@ -5,7 +5,8 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const {
   eslintPluginConfig,
   tsLoaderConfig,
-  parseCommandLineArgs
+  parseCommandLineArgs,
+  stylelintPluginConfig
 } = require('listlab-build/webpackConfigBuilders');
 
 module.exports = (env) => {
@@ -71,7 +72,7 @@ module.exports = (env) => {
 
     plugins: [
       new MiniCssExtractPlugin({filename: 'css/[name].css'}),
-      new StyleLintPlugin({syntax: 'sass', files: '**/*.sass'}),
+      stylelintPluginConfig(),
       eslintPluginConfig('ququmber-ui'),
     ],
 
