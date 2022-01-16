@@ -174,7 +174,7 @@ export type FuzzyTimeSelectUnitProps = {
   onClick: (time: FuzzyTime) => void;
   onMouseOver: (time: FuzzyTime) => void;
   onMouseOut: (time: FuzzyTime) => void;
-  onTasksDropped: (tasks: Task[], time: FuzzyTime) => void;
+  onTasksDrop: (tasks: Task[], time: FuzzyTime) => void;
 };
 
 export default FuzzyTimeSelectUnit;

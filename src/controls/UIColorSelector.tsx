@@ -31,10 +31,10 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
     }
   }
 
-  private onColorChanged(value: string) {
-    const {onColorChanged, onClose} = this.props;
+  private onColorChange(value: string) {
+    const {onColorChange, onClose} = this.props;
     onClose();
-    onColorChanged(value);
+    onColorChange(value);
   }
 
   onCustomColorChanged = () => {
@@ -57,7 +57,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
   private renderOption(color: string) {
     return (
       <li
-        onClick={() => this.onColorChanged(color)}
+        onClick={() => this.onColorChange(color)}
         className={color === this.props.value ? 'selected' : ''}
         key={color}
       >
@@ -100,7 +100,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
           </UIButton>
           <UIButton
             styling={Stylings.GO}
-            onClick={() => this.onColorChanged(this.inputRef.value)}>
+            onClick={() => this.onColorChange(this.inputRef.value)}>
             Done
           </UIButton>
         </div>
@@ -112,7 +112,7 @@ export class UIColorSelector extends React.Component<UIColorSelectorProps, UICol
 export type UIColorSelectorProps = {
   value?: string;
   open: boolean;
-  onColorChanged: (value?: string) => void;
+  onColorChange: (value?: string) => void;
   children: React.ReactNode;
   onClose: () => void;
 };

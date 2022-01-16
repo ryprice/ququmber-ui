@@ -31,7 +31,7 @@ const UIMultiInputSample = () => {
 
   ]}
   selected={selected}
-  onOptionAdded={key => setSelected([...selected, key])}
+  onOptionAdd={key => setSelected([...selected, key])}
   onOptionRemoved={removedKey => {
     setSelected(selected.filter(key => key !== removedKey));
   }}

@@ -34,16 +34,16 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
     const {options} = this.props;
     const option = find(options, (o) => o.value === value);
     if (option.canRemove !== false) {
-      this.props.onOptionRemoved(value);
+      this.props.onOptionRemove(value);
     }
   }
 
-  private onOptionAdded(value: string) {
-    const {options, onOptionAdded} = this.props;
+  private onOptionAdd(value: string) {
+    const {options, onOptionAdd} = this.props;
     this.tagsInput.value = '';
     const option = find(options, {value});
     if (option) {
-      onOptionAdded(value);
+      onOptionAdd(value);
     }
     this.setState({dropdownOpen: false, hoverIndex: undefined});
   }
@@ -64,7 +64,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
         break;
 
       case 13:
-        this.onOptionAdded(this.getFilteredUnselectedOptions()[hoverIndex].value);
+        this.onOptionAdd(this.getFilteredUnselectedOptions()[hoverIndex].value);
         break;
 
       case 38:
@@ -200,7 +200,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
             name: renderItem ? renderItem(option, false) : option.name
           }))}
           hoverIndex={hoverIndex}
-          onSelect={(value) => this.onOptionAdded(value)}
+          onSelect={(value) => this.onOptionAdd(value)}
           open={this.state.dropdownOpen}
           renderDropdownContents={renderDropdownContents}
         />
@@ -219,8 +219,8 @@ export type UIMultiInputOption = {
 export type UIMultiInputProps = {
   options: UIMultiInputOption[];
   selected: string[];
-  onOptionAdded: (value: string) => any;
-  onOptionRemoved: (value: string) => any;
+  onOptionAdd: (value: string) => any;
+  onOptionRemove: (value: string) => any;
   className?: string;
   placeholder?: string;
   onQueryChanged?: (query: string) => void;

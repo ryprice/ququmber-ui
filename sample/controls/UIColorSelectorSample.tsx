@@ -18,7 +18,7 @@ const UIColorSelectorSample = () => {
     }} />
     <UIColorSelector
       open={open}
-      onColorChanged={setColor}
+      onColorChange={setColor}
       onClose={() => setOpen(false)}
       value={null}>
       <UIButton

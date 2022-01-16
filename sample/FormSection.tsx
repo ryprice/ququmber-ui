@@ -19,8 +19,8 @@ const FormSection = () => {
       {name: 'Option two', value: '2'}
     ]}
     selected={['1']}
-    onOptionAdded={() => {}}
-    onOptionRemoved={() => {}}
+    onOptionAdd={() => {}}
+    onOptionRemove={() => {}}
   />
 </div>`
       }
