@@ -20,19 +20,26 @@ export class UILoading extends React.Component<UILoadingProps, {}> {
     </div>;
     /* eslint-disable max-len */
 
+    const marginStyles = {
+      marginLeft: size ? `-${size/2}px` : '-.5em',
+      marginTop: size ? `-${size/2}px` : '-.5em',
+    };
+
     if (text) {
-      const width = Math.max(size * 2.5, 110);
+      const width = size ? Math.max(size * 2.5, 110) : '10em';
       return  (
         <div className="UILoading">
           <div style={{
-            marginLeft: `-${width/2}px`,
-            marginTop: `-${size/2}px`,
+            ...marginStyles,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             textAlign: 'center'
           }}>
-            <div style={{width: `${size}px`, height: `${size}px`}}>
+            <div style={{
+              width: size ? `${size}px` : '1em',
+              height: size ? `${size}px` : '1em'
+            }}>
               {spinner}
             </div>
             <div style={{width: `${width}px`, marginTop: '.6em', color: Colors.QUIET}}>
@@ -45,7 +52,7 @@ export class UILoading extends React.Component<UILoadingProps, {}> {
 
     return (
       <div className="UILoading">
-        <div style={{marginLeft: `-${size/2}px`, marginTop: `-${size/2}px`,}}>
+        <div style={marginStyles}>
           {spinner}
         </div>
       </div>
