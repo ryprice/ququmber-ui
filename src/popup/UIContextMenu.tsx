@@ -40,4 +40,9 @@ export type UIContextMenuProps = {
   className?: string;
 };
 
-export default UIContextMenu;
+
+export default class UIContextMenuClass extends React.Component<UIContextMenuProps> {
+  render() {
+    return <UIContextMenu {...this.props} />;
+  }
+}
