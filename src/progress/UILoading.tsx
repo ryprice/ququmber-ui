@@ -27,10 +27,12 @@ export class UILoading extends React.Component<UILoadingProps, {}> {
 
     if (text) {
       const width = size ? Math.max(size * 2.5, 110) : '10em';
+      const negHalfWidth = size ? `-${Math.max(size * 2.5, 110)/2}px` : '-.5em';
       return  (
         <div className="UILoading">
           <div style={{
             ...marginStyles,
+            marginLeft: negHalfWidth,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',

@@ -14,7 +14,7 @@ export const Level = {
 
 const UIMessageModal = (props: UIMessageModalProps) => {
   const {
-    title, message, onConfirm, onCancel,
+    title, message, onConfirm, onCancel, confirmText,
     className,confirmStyling, open, debugInline
   } = props;
 
@@ -25,7 +25,7 @@ const UIMessageModal = (props: UIMessageModalProps) => {
         <p className="message">{message}</p>
         <UIButtonFooter>
           <UIButton onClick={onConfirm} styling={confirmStyling || Stylings.GO}>
-            Confirm
+            {confirmText ?? 'Confirm'}
           </UIButton>
           <UIButton onClick={onCancel}>Cancel</UIButton>
         </UIButtonFooter>
@@ -44,6 +44,7 @@ export type UIMessageModalProps = {
   confirmStyling?: Stylings;
   open?: boolean;
   debugInline?: boolean;
+  confirmText?: string;
 };
 
 export default UIMessageModal;
