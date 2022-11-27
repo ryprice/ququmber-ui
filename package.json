@@ -32,7 +32,7 @@
   "scripts": {
     "build": "tsc -d --declarationDir lib --outDir lib && node-sass --include-path src src/index.sass dist/ququmber-ui.css && npm run lint && stylelint src/**/*.sass --syntax sass && cp src/tokens.sass lib/tokens.sass",
     "sample": "webpack serve --config sample/webpack.config.js",
-    "lint": "eslint src/**/*.ts src/**/*.tsx sample/**/*.tsx"
+    "lint": "eslint src/**/*.ts src/**/*.tsx sample/**/*.tsx --fix"
   },
   "repository": {
     "type": "git",

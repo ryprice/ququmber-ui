@@ -191,7 +191,7 @@ type UINestedTagPropsItem = {
 
 export type UINestedTagProps = {
   onRemoved?: () => void;
-  items: Array<UINestedTagPropsItem>;
+  items: UINestedTagPropsItem[];
   canRemove?: boolean;
   onClick?: (id: number) => void;
   outline?: boolean;

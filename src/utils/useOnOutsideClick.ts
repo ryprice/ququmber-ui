@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 const {useCallback, useEffect, useRef} = React;
 
 const useOnOutsideClick = (
-  refs: React.MutableRefObject<any>[],
+  refs: Array<React.MutableRefObject<any>>,
   onOutsideClick: () => void,
   enabled: boolean = true,
 ) => {

@@ -114,7 +114,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
 
   renderRow = (info: {index: number, isScrolling: boolean, style: Object, key: string}): React.ReactNode => {
     let time = this.state.focalPoint;
-    switch(this.state.viewMode) {
+    switch (this.state.viewMode) {
       case ViewMode.DAILY:
         time = time.getParent(FuzzyGranularity.MONTH);
         break;
@@ -130,7 +130,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     const {index, key, style} = info;
     time = time.offset(index - 100);
 
-    switch(this.state.viewMode) {
+    switch (this.state.viewMode) {
       case ViewMode.DAILY:
         return <FuzzyTimeMonthUnit
           {...this.getUnitProps()}
@@ -152,7 +152,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
 
   getRowHeight = (info: {index: number}) => {
     const {index} = info;
-    switch(this.state.viewMode) {
+    switch (this.state.viewMode) {
       case ViewMode.DAILY: {
         const month = this.state.focalPoint
           .withGranularity(FuzzyGranularity.MONTH)
@@ -291,7 +291,7 @@ export type FuzzyTimeSelectProps = {
   selectedRange?: FuzzyTimeRange;
   multiselect?: boolean;
   onRangeSelected?: (range: FuzzyTimeRange) => void;
-  quickOptions?: {time: FuzzyTime, name: string, icon: string}[];
+  quickOptions?: Array<{time: FuzzyTime, name: string, icon: string}>;
 };
 
 type FuzzyTimeSelectState = {

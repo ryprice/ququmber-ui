@@ -95,7 +95,7 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
     if (this.props.className) {
       className += ' ' + this.props.className;
     } else {
-      switch(granularity) {
+      switch (granularity) {
         case FuzzyGranularity.YEAR:
           className += ' year';
           break;
@@ -111,7 +111,7 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
     }
 
     let name;
-    switch(granularity) {
+    switch (granularity) {
       case FuzzyGranularity.YEAR:
         name = time.getTime().getUTCFullYear().toString();
         break;

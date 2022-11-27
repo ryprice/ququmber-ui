@@ -6,7 +6,7 @@ export const Levels = {
 };
 
 const levelToColor = (level: string) => {
-  switch(level) {
+  switch (level) {
     case Levels.ERROR: return '#ff7777';
     case Levels.WARNING: return '#ffdf82';
     case Levels.INFO: return '#b8d0ef';

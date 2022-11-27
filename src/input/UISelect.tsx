@@ -98,7 +98,7 @@ export const UISelect = (props: UISelectProps) => {
       return;
     }
 
-    switch(event.keyCode) {
+    switch (event.keyCode) {
       case 13:
         onSelect(options[hoverIndex].value);
         break;

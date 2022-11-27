@@ -53,7 +53,7 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
   private onKeyUp(event: any) {
     const {hoverIndex} = this.state;
     const {onQueryChanged} = this.props;
-    switch(event.keyCode) {
+    switch (event.keyCode) {
       case 8:
         if (this.lastValue.length < 1) {
           const selected = this.props.selected;
