@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import UIShimmerRect from 'ququmber-ui/progress/UIShimmerRect';
 import Editor from '../Editor';
 

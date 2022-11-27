@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import UINestedTag from 'ququmber-ui/chip/UINestedTag';
 import Colors from 'ququmber-ui/Colors';
 import UITag from 'ququmber-ui/chip/UITag';

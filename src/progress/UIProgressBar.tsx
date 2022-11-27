@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import Colors from 'ququmber-ui/Colors';
 
 

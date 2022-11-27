@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 const SampleParagraph = () =>
   <p>
     To the extent that this software may be used to reproduce, modify, publish or distribute materials,

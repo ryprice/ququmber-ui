@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import UIButtonGroup, {UIButtonGroupButton} from 'ququmber-ui/button/UIButtonGroup';
 import Editor from '../Editor';
 

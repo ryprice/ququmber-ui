@@ -1,5 +1,4 @@
 import {map, pick} from 'lodash';
-import * as React from 'react';
 
 import Colors from 'ququmber-ui/Colors';
 import {isDarkColor} from 'ququmber-ui/utils/colorUtils';

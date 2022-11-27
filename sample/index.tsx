@@ -156,11 +156,11 @@ const RootComponent = () => {
         <UITextInput placeholder="filter" onChange={onFilterKeyPress} />
         {filteredSections.map((s) => {
           if (typeof s === 'string') {
-            return <p className="header">{s}</p>;
+            return <p className="header" key={s}>{s}</p>;
           } else {
             const pathParts = (s[0] as string).split('/');
 
-            return <p><a href={`#${s[0]}`}>
+            return <p key={pathParts[pathParts.length - 1]}><a href={`#${s[0]}`}>
               {pathParts[pathParts.length - 1]}
             </a></p>;
           }

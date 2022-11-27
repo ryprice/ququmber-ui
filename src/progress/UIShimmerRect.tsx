@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 type UIShimmerRectProps = {
   className?: string;
   style?: Object

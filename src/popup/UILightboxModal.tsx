@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import UIModal, {UIModalProps} from 'ququmber-ui/popup/UIModal';
 import UIOverlay from 'ququmber-ui/popup/UIOverlay';
 

@@ -11,21 +11,23 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "ququmber-ui/*": ["src/*"],
-      "listlab-api/*": ["node_modules/listlab-api/src/*"]
+      "ququmber-ui/*": ["../src/*"],
+      "listlab-api/*": ["../node_modules/listlab-api/src/*"],
+      "*": ["../node_modules/*"]
     },
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
     "jsxImportSource": "@emotion/react",
   },
   "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx"
+    "./**/*.ts",
+    "./**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "../node_modules"
   ]
 }
