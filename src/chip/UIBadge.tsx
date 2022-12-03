@@ -1,10 +1,28 @@
+import {css} from '@emotion/react';
 import * as React from 'react';
+
+import Colors from 'ququmber-ui/Colors';
+
+const styles = {
+  root: css`
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: ${Colors.WHITE};
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+  `,
+};
 
 export class UIBadge extends React.Component<UIBadgeProps, {}> {
   render() {
     const {color, text} = this.props;
     return <span
-      className="UIBadge"
+      css={styles.root}
       style={{backgroundColor: color}}>
       {text}
     </span>;

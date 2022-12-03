@@ -1,3 +1,4 @@
+import {SerializedStyles} from '@emotion/react';
 import * as React from 'react';
 
 export class UIEditableText extends React.Component<UIEditableTextProps, UIEditableTextState> {
@@ -23,7 +24,9 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
 
   public componentWillReceiveProps(nextProps: UIEditableTextProps) {
     if (this.props.value !== nextProps.value) {
-      this.setState({value: nextProps.value ? nextProps.value : null});
+      if (this.inputEl.textContent !== nextProps.value) {
+        this.setState({value: nextProps.value ? nextProps.value : null});
+      }
     }
   }
 
@@ -54,7 +57,7 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
   }
 
   render() {
-    const {placeholder, value, onClick, onFocus, className, disabled} = this.props;
+    const {placeholder, value, onClick, onFocus, className, disabled, css} = this.props;
     const renderedClassName = (
       `UIEditableText ${className} ` +
       (this.shouldShowPlaceholder() ? 'placeholder' : '')
@@ -63,6 +66,7 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
     return <p
       contentEditable={disabled ? false : true}
       className={renderedClassName}
+      css={css}
       onKeyUp={this.onKeyUp}
       onKeyPress={this.onKeyPress}
       ref={el => {
@@ -89,6 +93,7 @@ export type UIEditableTextProps = {
   autofocus?: boolean;
   onFocus?: (e: React.FocusEvent<HTMLParagraphElement>) => void;
   disabled?: boolean;
+  css?: SerializedStyles;
 };
 
 export type UIEditableTextState = {

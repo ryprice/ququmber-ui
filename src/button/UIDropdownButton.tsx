@@ -22,7 +22,7 @@ const UIDropdownButton = (props: UIDropdownButtonProps) => {
       onClick={() => setOpen(true)}>
       <span style={style}>
         {name}
-        <i className="dropdownArrow fa fa-caret-down" style={{float: 'right'}} />
+        <i className="fa fa-caret-down" style={{float: 'right', paddingLeft: '.4em'}} />
       </span>
     </UIButton>
     <UIContextMenu open={open} options={options} onClose={onClose} />

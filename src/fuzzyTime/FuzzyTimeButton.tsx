@@ -1,12 +1,8 @@
 import * as React from 'react';
 import TetherComponent from 'react-tether';
 
-import {
-  formatRelativeRangeShortName,
-  formatRelativeShortName,
-  FuzzyTime,
-  FuzzyTimeRange,
-} from 'listlab-api';
+import {FuzzyTime, FuzzyTimeRange} from 'listlab-api';
+import {formatRelativeRangeShortName, formatRelativeShortName} from 'listlab-api/fuzzyTime/FuzzyTimeFormatters';
 
 import FuzzyTimeSelect from 'ququmber-ui/fuzzyTime/FuzzyTimeSelect';
 import UIDropdown from 'ququmber-ui/popup/UIDropdown';

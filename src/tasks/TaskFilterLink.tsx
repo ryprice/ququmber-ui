@@ -1,4 +1,23 @@
+import {css} from '@emotion/react';
 import * as React from 'react';
+import Colors from 'ququmber-ui/Colors';
+
+const styles = {
+  root: css`
+    color: ${Colors.BASEFONT};
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:visited {
+      color: ${Colors.BASEFONT};
+    }
+
+    &:hover,
+    &:visited:hover {
+      color: ${Colors.BLACK};
+    }
+  `
+};
 
 type TaskFilterLinkProps = {
   href?: string;
@@ -18,7 +37,7 @@ const TaskFilterLink = React.forwardRef<HTMLAnchorElement, TaskFilterLinkProps>(
 
   return <a
     ref={ref}
-    className="TaskFilterLink"
+    css={styles.root}
     href={href}
     onClick={onClick}>
     {children ? children : ''}

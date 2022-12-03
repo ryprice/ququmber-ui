@@ -1,3 +1,20 @@
+import {css} from '@emotion/react';
+import UINotification from 'ququmber-ui/alerts/UINotification';
+
+import Colors from 'ququmber-ui/Colors';
+
+const styles = {
+  root: css`
+    width: 20rem;
+    z-index: 10;
+    pointer-events: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
+    left: 0;
+    margin-top: 10px;
+    background: ${Colors.WHITE};
+  `,
+};
+
 export const Levels = {
   ERROR: 'ERROR',
   WARNING: 'WARNING',
@@ -5,24 +22,9 @@ export const Levels = {
   SUCCESS: 'SUCCESS'
 };
 
-const levelToColor = (level: string) => {
-  switch (level) {
-    case Levels.ERROR: return '#ff7777';
-    case Levels.WARNING: return '#ffdf82';
-    case Levels.INFO: return '#b8d0ef';
-    case Levels.SUCCESS: return '#90dda1';
-  }
-};
-
 const UIToastNotification = (props: UIToastNotificationProps) => {
-  const {level, title, message} = props;
-
-  return <div
-    className="UIToastNotification"
-    style={{borderTopColor: levelToColor(level)}}
-  >
-    { title ? <p className="title">{String(title)}</p> : null }
-    { message ? <p className="message">{String(message)}</p> : null }
+  return <div css={styles.root}>
+    <UINotification {...props} hideBorder={true} />
   </div>;
 };
 
@@ -30,7 +32,6 @@ export type UIToastNotificationProps = {
   level: string;
   title?: string;
   message?: string;
-  key?: string;
 };
 
 export default UIToastNotification;
