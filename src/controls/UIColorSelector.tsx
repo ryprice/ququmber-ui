@@ -99,7 +99,7 @@ const UIColorSelector = (props: UIColorSelectorProps) => {
   const inputRef = useRef<HTMLInputElement>();
   const [custom, setCustom] = useState<string>(value != null ? props.value.toUpperCase() : null);
   // Allow a custom color above 6 characters for making edits
-  const customTrimmed = custom.slice(0, 6);
+  const customTrimmed = custom != null ? custom.slice(0, 6) : null;
 
   useEffect(() => {
     setCustom(value != null ? value.toUpperCase() : null);
@@ -154,12 +154,12 @@ const UIColorSelector = (props: UIColorSelectorProps) => {
       <div css={styles.customArea}>
         <div
           css={styles.colorSwatch}
-          style={{background: `#${customTrimmed}`}}
+          style={customTrimmed != null ? {background: `#${customTrimmed}`} : {}}
         />
         <input
           css={styles.customInput}
           type="text"
-          value={'#' + custom}
+          value={custom != null ? '#' + custom : null}
           ref={inputRef}
           onChange={onCustomColorChanged}
           placeholder="#FFFFFF"
