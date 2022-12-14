@@ -1,4 +1,5 @@
 enum Colors {
+  BR = '#F0F0F0',
   CONTROL = '#F2F2F2',
   CONTROL_FLAT = '#E8E8E8',
   CONTROL_HOVER = '#E0E0E0',

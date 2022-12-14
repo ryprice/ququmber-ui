@@ -5,6 +5,8 @@ import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
 
 const {useRef} = React;
 
+export const PADDING_POPUP = '10';
+
 const UIPopup = (props: UIPopupProps) => {
   const {open, children, onClose, className, targetAttachment, attachment} = props;
   const contentRef = useRef();

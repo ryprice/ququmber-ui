@@ -1,4 +1,19 @@
+import { css } from '@emotion/react';
+import Colors from 'ququmber-ui/Colors';
 import * as React from 'react';
+
+const styles = {
+  root: css`
+    background: ${Colors.NOTIFY};
+    box-shadow:${Colors.NOTIFY} 0 0 6px;
+    height: 3px;
+    transition: all 200ms ease 0s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  `
+};
 
 class UINanoProgress extends React.Component<UINanoProgressProps, UINanoProgressState> {
 
@@ -77,7 +92,7 @@ class UINanoProgress extends React.Component<UINanoProgressProps, UINanoProgress
   render() {
     const {value} = this.state;
     return (value != null) && <div
-      className="UINanoProgress"
+      css={styles.root}
       style={{width: `${value}%`}}
     />;
   }

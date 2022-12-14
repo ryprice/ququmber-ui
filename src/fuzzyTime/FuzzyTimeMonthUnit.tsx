@@ -1,14 +1,50 @@
+import {css} from '@emotion/react';
 import {times} from 'lodash';
 import * as React from 'react';
 
 import {FuzzyGranularity, FuzzyTime} from 'listlab-api';
 
+import Colors from 'ququmber-ui/Colors';
 import FuzzyTimeSelectUnit, {
   FuzzyTimeSelectUnitProps,
   shouldUnitComponentUpdate
 } from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
 import FuzzyTimeWeekUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeWeekUnit';
 import {weeksInMonth} from 'ququmber-ui/utils/dateUtils';
+
+const styles = {
+  root: css`
+    float: none;
+    clear: both;
+    overflow: hidden;
+  `,
+  monthTitle: css`
+    clear: both;
+    padding: 4px 0 4px 9%;
+    margin-top: 30px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: normal;
+    color: ${Colors.BASEFONT};
+    cursor: pointer;
+    border-bottom: ${Colors.BR} 1px solid;
+    border-top: ${Colors.QUIET} 1px solid;
+
+    &.hover {
+      font-weight: bold;
+    }
+
+    &.selected {
+      color: ${Colors.NOTIFY};
+      font-weight: bold;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1em
+    }
+  `,
+};
 
 class FuzzyTimeMonthUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
 
@@ -18,7 +54,7 @@ class FuzzyTimeMonthUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
 
   render() {
     const month = this.props.time;
-    const {style, hoverTime} = this.props;
+    const {style} = this.props;
 
     const weeksCount: number = weeksInMonth(
       month.getTime().getUTCMonth(),
@@ -31,13 +67,11 @@ class FuzzyTimeMonthUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
       curWeek = curWeek.getNext();
     });
 
-    return <div
-      className={`FuzzyTimeMonthUnit ${(hoverTime && hoverTime.equals(month)) ? 'FuzzyTimeMonthUnitHover' : ''}`}
-      style={style}>
+    return <div css={styles.root} style={style}>
       <FuzzyTimeSelectUnit
         {...this.props}
         time={month}
-        className="monthTitle"
+        css={styles.monthTitle}
         key="title">
         {month.getTime().toLocaleString('en-us', {month: 'long', timeZone: 'UTC'})}
       </FuzzyTimeSelectUnit>

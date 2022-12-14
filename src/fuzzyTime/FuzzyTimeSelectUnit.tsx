@@ -1,3 +1,4 @@
+import {SerializedStyles} from '@emotion/react';
 import {size} from 'lodash';
 import * as React from 'react';
 
@@ -88,7 +89,7 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
   }
 
   render() {
-    const {time, children, granularity, multiselect, hoverTime, nextRangeStart} = this.props;
+    const {time, children, granularity, multiselect, hoverTime, nextRangeStart, css} = this.props;
 
     let className = 'FuzzyTimeSelectUnit';
     className += unitClassName(this.props);
@@ -143,6 +144,7 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
 
     return (
       <div
+        css={css}
         className={className}
         onClick={this.onClick}
         onMouseOver={this.onMouseOver}
@@ -170,6 +172,7 @@ export type FuzzyTimeSelectUnitProps = {
   style?: Object;
   children?: React.ReactNode;
   className?: string;
+  css?: SerializedStyles;
 
   onClick: (time: FuzzyTime) => void;
   onMouseOver: (time: FuzzyTime) => void;

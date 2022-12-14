@@ -1,5 +1,4 @@
 import {css} from '@emotion/react';
-import * as React from 'react';
 
 import Colors from 'ququmber-ui/Colors';
 
@@ -18,16 +17,14 @@ const styles = {
   `,
 };
 
-export class UIBadge extends React.Component<UIBadgeProps, {}> {
-  render() {
-    const {color, text} = this.props;
-    return <span
-      css={styles.root}
-      style={{backgroundColor: color}}>
-      {text}
-    </span>;
-  }
-}
+const UIBadge = (props: UIBadgeProps) => {
+  const {color, text} = props;
+  return <span
+    css={styles.root}
+    style={{backgroundColor: color}}>
+    {text}
+  </span>;
+};
 
 export type UIBadgeProps = {
   text: string;
