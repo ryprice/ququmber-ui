@@ -36,7 +36,14 @@ const UITagSample = () =>
 `<div>
   <UINestedTag
     canRemove={true}
-    outline={true}
+    items={[
+      {label: 'Parent', id: 1, color: "32A150"},
+      {label: 'Child', id: 2, color: "0095FF"}
+    ]}
+  />
+  <UINestedTag
+    canRemove={true}
+    rounded={true}
     items={[
       {label: 'Parent', id: 1, color: "32A150"},
       {label: 'Child', id: 2, color: "0095FF"}

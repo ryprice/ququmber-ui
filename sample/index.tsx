@@ -41,6 +41,7 @@ import UIPopupSample from './popup/UIPopupSample';
 import UITooltipSample from './popup/UITooltipSample';
 
 import ShimmerSample from './progress/ShimmerSample';
+import UIProgressBarSample from './progress/UIProgressBarSample';
 
 const {useCallback, useEffect, useState} = React;
 
@@ -105,6 +106,7 @@ const RootComponent = () => {
     ['ququmber-ui/alerts/UIToastNotification', <UIToastNotificationSample />],
 
     'Progress',
+    ['ququmber-ui/progress/UIProgressBar', <UIProgressBarSample />],
     ['ququmber-ui/progress/UIShimmerRect', <ShimmerSample />],
 
     'Styles',
