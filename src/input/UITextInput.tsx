@@ -1,6 +1,8 @@
 import {includes} from 'lodash';
 import * as React from 'react';
 
+import Stylings from 'ququmber-ui/Stylings';
+
 export const SubmitBehaviors = {
   BLUR: 1,
   ENTER: 2
@@ -55,7 +57,7 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
     const {props} = this;
     return <input
       style={props.style}
-      className={`UITextInput ${props.className}`}
+      className={`UITextInput styling-${props.styling} ${props.className}`}
       onKeyPress={(e) => this.onKeyPress(e)}
       ref={(el) => this.inputEl = el}
       defaultValue={props.value}
@@ -79,6 +81,7 @@ export type UITextInputProps = {
   style?: any;
   autofocus?: boolean;
   submitBehaviors?: number[];
+  styling?: Stylings;
 };
 
 export default UITextInput;
