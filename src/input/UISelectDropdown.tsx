@@ -17,12 +17,12 @@ const styles = {
 
     &.selected {
       background: ${Colors.OPTION_SELECTED};
-    }
 
       &:hover,
       &.hover {
         background: ${Colors.OPTION_SELECTEDHOVER};
       }
+    }
 
     &:hover,
     &.hover {

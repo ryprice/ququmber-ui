@@ -1,7 +1,20 @@
+import {css} from '@emotion/react';
 import {includes} from 'lodash';
 import * as React from 'react';
 
+import UILoading from 'ququmber-ui/progress/UILoading';
 import Stylings from 'ququmber-ui/Stylings';
+
+const styles = {
+  inputContainer: css`
+    position: relative;
+  `,
+  loading: css`
+    position: absolute;
+    right: 10px;
+    top: 12px;
+  `
+};
 
 export const SubmitBehaviors = {
   BLUR: 1,
@@ -55,7 +68,7 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
 
   render() {
     const {props} = this;
-    return <input
+    const inputNode = <input
       style={props.style}
       className={`UITextInput styling-${props.styling} ${props.className}`}
       onKeyPress={(e) => this.onKeyPress(e)}
@@ -65,8 +78,16 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
       onBlur={() => this.onBlur()}
       disabled={props.disabled}
       onChange={props.onChange}
-      autoFocus={props.autofocus}
-    />;
+      autoFocus={props.autofocus} />;
+
+    if (props.loading == null) {
+      return inputNode;
+    } else {
+      return <div css={styles.inputContainer}>
+        {inputNode}
+        {props.loading && <div css={styles.loading}><UILoading size={18} color="#888888" /></div>}
+      </div>;
+    }
   }
 }
 
@@ -82,6 +103,7 @@ export type UITextInputProps = {
   autofocus?: boolean;
   submitBehaviors?: number[];
   styling?: Stylings;
+  loading?: boolean;
 };
 
 export default UITextInput;

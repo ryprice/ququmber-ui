@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import Colors from 'ququmber-ui/Colors';
+import {css} from '@emotion/react';
 import * as React from 'react';
+import Colors from 'ququmber-ui/Colors';
 
 const styles = {
   root: css`
