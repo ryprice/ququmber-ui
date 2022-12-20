@@ -59,7 +59,7 @@ const UILoading = (props: UILoadingProps) => {
   }
 
   return (
-    <div className="UILoading">
+    <div css={styles.root}>
       <div style={marginStyles}>
         {spinner}
       </div>
