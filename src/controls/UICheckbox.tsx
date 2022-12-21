@@ -1,9 +1,10 @@
+import {SerializedStyles} from '@emotion/react';
 import * as React from 'react';
 
 const {useCallback} = React;
 
 const UICheckbox = (props: UICheckboxProps) => {
-  const {className, disabled, checked} = props;
+  const {className, disabled, checked, css} = props;
   const propsOnChange = props.onChange;
 
   const onChange = useCallback((evt: any) => {
@@ -11,6 +12,7 @@ const UICheckbox = (props: UICheckboxProps) => {
   }, [propsOnChange]);
 
   return <input
+    css={css}
     className={`UICheckbox ${className || ''}`}
     type="checkbox"
     onChange={onChange}
@@ -24,6 +26,7 @@ type UICheckboxProps = {
   className?: string;
   disabled?: boolean;
   checked?: boolean;
+  css?: SerializedStyles
 };
 
 UICheckbox.defaultProps = {
