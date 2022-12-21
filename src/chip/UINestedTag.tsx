@@ -88,7 +88,7 @@ type NestingMaskNodeProps = {
 };
 
 const UINestedTag = (props: UINestedTagProps) => {
-  const {onRemoved, canRemove, outline, items} = props;
+  const {onRemoved, canRemove, outline, items, strikethrough} = props;
   const rounded = props.rounded === true ? true : false;
   const removeButtonRef = useRef();
 
@@ -139,6 +139,7 @@ const UINestedTag = (props: UINestedTagProps) => {
         marginLeft: 0,
         position: 'relative',
         ...(rounded ? {left: `-${.125 * i}em`} : {}),
+        ...(strikethrough ? {textDecoration:  'line-through'} : {}),
       };
 
       const filledStyle: React.CSSProperties  = {
@@ -196,6 +197,7 @@ export type UINestedTagProps = {
   onClick?: (id: number) => void;
   outline?: boolean;
   rounded?: boolean;
+  strikethrough?: boolean;
 };
 
 export default UINestedTag;

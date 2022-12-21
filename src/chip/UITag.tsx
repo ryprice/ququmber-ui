@@ -7,13 +7,14 @@ import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 const {useRef} = React;
 
 const UITag = (props: UITagProps) => {
-  const {name, onRemoved, canRemove, outline} = props;
+  const {name, onRemoved, canRemove, outline, strikethrough} = props;
   const rounded = props.rounded === false ? false : true;
   const color = props.color != null ? props.color : Colors.QUQUMBER.substring(1);
   const removeButtonRef = useRef();
 
   const baseStyle = {
-    ...(props.onClick ? {cursor: 'pointer'} : {})
+    ...(props.onClick ? {cursor: 'pointer'} : {}),
+    ...(strikethrough ? {textDecoration:  'line-through'} : {}),
   };
 
   const filledStyle = {
@@ -65,6 +66,7 @@ export type UITagProps = {
   onClick?: () => void;
   outline?: boolean;
   rounded?: boolean;
+  strikethrough?: boolean;
 };
 
 export default UITag;
