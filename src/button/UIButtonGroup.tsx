@@ -1,11 +1,13 @@
 import * as React from 'react';
+import {SerializedStyles} from '@emotion/react';
 
 import Stylings from 'ququmber-ui/Stylings';
 
 export const UIButtonGroupButton = (props: UIButtonGroupButtonProps) => {
-  const {children, style, className, styling, onClick, selected} = props;
+  const {children, style, className, styling, onClick, selected, css} = props;
   return (
     <button
+      css={css}
       onClick={onClick}
       className={
         `UIButtonGroupButton styling-${styling} ${selected ? 'selected' : ''} ${className != null ? className : ''}`
@@ -30,16 +32,11 @@ export type UIButtonGroupButtonProps = {
   id?: string;
   loading?: boolean;
   selected?: boolean;
+  css?: SerializedStyles;
 };
 
-const UIButtonGroup =(props: UIButtonGroupProps) => {
+const UIButtonGroup = (props: UIButtonGroupProps) => {
   const {children, className, style} = props;
-
-  React.Children.toArray(children).forEach(child => {
-    if ((child as any).type !== UIButtonGroupButton) {
-      throw new Error('Child must be type UIButtonGroupButton');
-    }
-  });
 
   return (
     <div
