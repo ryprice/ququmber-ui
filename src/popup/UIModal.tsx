@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import UIMountTransition from 'ququmber-ui/utils/UIMountTransition';
 
+export const PADDING_MODAL = '30';
+
 const UIModal = (props: UIModalProps) => {
   const {onClose, className, children, open, style} = props;
 
