@@ -1,6 +1,7 @@
 enum Stylings {
   GO = 'go',
   CONTROL = 'control',
+  CONTROL_DARK = 'control-dark',
   RED = 'red',
   GOOGLE = 'google',
   FACEBOOK = 'facebook',

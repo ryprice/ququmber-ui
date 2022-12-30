@@ -1,5 +1,5 @@
-import * as React from 'react';
 import {SerializedStyles} from '@emotion/react';
+import * as React from 'react';
 
 import Stylings from 'ququmber-ui/Stylings';
 
