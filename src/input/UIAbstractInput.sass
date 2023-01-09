@@ -24,7 +24,7 @@
       background: lighten($color-control, 15%)
       color: $color-quiet
 
-  &.styling-flat
+  &.styling-matte
     background: $color-control-flat
     border: solid $color-control-flat 1px
     color: $color-basefont
@@ -34,6 +34,21 @@
 
     &:active
       background: darken($color-control, 12%)
+
+    &:disabled
+      background: lighten($color-control, 15%)
+      color: $color-quiet
+
+  &.styling-flat
+    background: transparent
+    border: transparent
+    color: $color-basefont
+
+    &:hover
+      background: $color-control
+
+    &:active
+      background: darken($color-control, 3%)
 
     &:disabled
       background: lighten($color-control, 15%)

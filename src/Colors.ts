@@ -14,7 +14,9 @@ enum Colors {
   QUIET = '#AAAAAA',
   OFFWHITE = '#F8F8F8',
   QUQUMBER = '#444444',
+  QUQUMBER_HOVER = '#333333',
   BASEFONT = '#333333',
+  BASEFONT_DARK = '#DDDDDD',
   BLACK = '#000000',
 
   GO = '#32A150',

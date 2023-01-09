@@ -10,6 +10,7 @@ const styles = {
     overflow: auto;
     position: relative;
     border-top-style: solid;
+    flex-grow: 1;
   `,
 
   title: css`

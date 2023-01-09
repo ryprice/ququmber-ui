@@ -152,3 +152,17 @@
     &:disabled
       background: lighten($color-notify, 15%)
       color: rgba(255, 255, 255, 0.75)
+
+  &.styling-flat
+    background: transparent
+    border: 0 transparent
+    color: $color-basefont
+    text-shadow: 0 0 0 transparent
+
+    &:hover,
+    &:active
+      background: $color-control
+
+    &:disabled
+      color: $color-quiet
+

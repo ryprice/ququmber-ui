@@ -9,6 +9,7 @@ enum Stylings {
   LINK = 'link',
   NOTIFY = 'notify',
   FLAT = 'flat',
+  MATTE = 'matte',
 }
 
 export default Stylings;

@@ -91,10 +91,41 @@
         background: lighten($color-control-selected, 15%)
 
   &.styling-flat
-    background: $color-control-flat
+    background: transparent
     border-color: transparent
     color: $color-basefont
     text-shadow: transparent
+
+    &:hover
+      background: $color-control
+
+    &:active
+      background: transparent
+
+    &:disabled
+      background: transparent
+      color: $color-quiet
+
+    &.selected
+      background: $color-control
+
+      &:hover
+        background: darken($color-control, 13%)
+
+      &:active
+        background: darken($color-control, 16%)
+
+      &:focus
+        background: darken($color-control, 13%)
+
+      &:disabled
+        background: lighten($color-control, 15%)
+
+  &.styling-matte
+    background: $color-control-flat
+    color: $color-basefont
+    text-shadow: transparent
+    border: transparent;
 
     &:hover
       background: darken($color-control-flat, 3%)
