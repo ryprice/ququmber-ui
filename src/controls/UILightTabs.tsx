@@ -6,15 +6,21 @@ const {useState} = React;
 
 const UILightTabs = (props: UILightTabsProps) => {
   const {tabs, defaultSelected} = props;
-  const [selectedTab, setSelectedTab] = useState(defaultSelected);
-  const selectedTabConfig = tabs.find(tab => tab.id === selectedTab);
+  const [stateSelected, setStateSelected] = useState(defaultSelected);
+  const selected = props.selected || stateSelected;
+  const selectedTabConfig = tabs.find(tab => tab.id === selected);
   return <div className="UILightTabs">
     <div className="tabs">
       {tabs.map(tab => <UILightTab
-        selected={tab.id === selectedTab}
+        selected={tab.id === selected}
         id={tab.id}
         key={tab.id}
-        onClick={setSelectedTab}
+        onClick={t => {
+          setStateSelected(t);
+          if (props.setSelected) {
+            props.setSelected(t);
+          }
+        }}
         name={tab.name}
       />)}
     </div>
@@ -31,6 +37,8 @@ type UILightTabTabConfig = {
 type UILightTabsProps = {
   tabs: UILightTabTabConfig[];
   defaultSelected: string;
+  selected?: string;
+  setSelected?: (id: string) => void;
 };
 
 export default UILightTabs;
