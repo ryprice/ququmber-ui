@@ -46,6 +46,10 @@ const UISelectDropdown =(props: UISelectDropdownProps) => {
       onClick={onSelect != null ? () => onSelect(option.value) : null}
       css={styles.item}
       className={itemClassName}>
+      {option.icon != null && <>
+        <i className={option.icon} />
+        &nbsp;&nbsp;
+      </>}
       {option.name}
     </div>;
   });
@@ -64,6 +68,7 @@ const UISelectDropdown =(props: UISelectDropdownProps) => {
 };
 
 export type UISelectDropdownOption = {
+  icon?: string;
   name: React.ReactChild | string;
   value?: string;
   color?: string;

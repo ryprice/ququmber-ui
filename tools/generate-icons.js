@@ -9,7 +9,7 @@ const readdir = promisify(fs.readdir);
 
 const iconPath = '../src/icons';
 const distPath = '../dist';
-const destPath = '../../ququmber-www/fonts/ququmber-icons/';
+const destPath = '../../listlab-www/fonts/ququmber-icons/';
 const iconMatch = /^.*\.(svg)$/;
 
 const getIconFiles = async () => {
