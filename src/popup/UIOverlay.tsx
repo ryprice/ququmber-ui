@@ -1,9 +1,39 @@
+import {css} from '@emotion/react';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+import Colors from 'ququmber-ui/Colors';
 import UIMountTransition from 'ququmber-ui/utils/UIMountTransition';
 
 const {useCallback, useRef} = React;
+
+const styles = {
+  root: css`
+position: fixed;
+width: 100%;
+height: 100%;
+z-index: 1000;
+top: 0;
+left: 0;
+  `,
+  background: css`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: ${Colors.BLACK};
+  opacity: 0.4;
+  z-index: 0;
+  `,
+  content: css`
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  `,
+};
 
 const UIOverlayPortal = (props: UIOverlayProps) => {
   const propsOnOverlayClick = props.onOverlayClick;
@@ -17,14 +47,14 @@ const UIOverlayPortal = (props: UIOverlayProps) => {
 
   return <span className={classNamespace}>
     <UIMountTransition className="UIOverlayTransition" mounted={props.open}>
-      <div className="UIOverlay">
+      <div css={styles.root}>
         <div
-          className="content"
+          css={styles.content}
           onClick={onOverlayClick}
           ref={contentContainerRef}>
           {props.children}
         </div>
-        <div className="background" />
+        <div css={styles.background} />
       </div>
     </UIMountTransition>
   </span>;

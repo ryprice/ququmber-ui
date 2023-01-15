@@ -67,6 +67,9 @@ const styles = {
     border: 1px solid $color-white;
     box-sizing: border-box;
     margin-left: 10px;
+  `,
+  dropdown: css`
+    box-sizing: content-box;
   `
 };
 
@@ -131,11 +134,11 @@ const UIColorSelector = (props: UIColorSelectorProps) => {
   };
 
   return <TetherComponent
-    className="UIColorSelector"
     attachment="top left"
     targetAttachment="bottom left">
     {children}
     <UIDropdown
+      css={styles.dropdown}
       open={open}
       onClose={onClose}>
       <div style={{display: 'flex', flexDirection: 'row', gap: '2px', margin: '10px'}}>

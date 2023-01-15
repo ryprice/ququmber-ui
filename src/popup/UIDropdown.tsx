@@ -1,9 +1,20 @@
-import {SerializedStyles} from '@emotion/react';
+import {css, SerializedStyles} from '@emotion/react';
 import * as React from 'react';
 
+import Colors from 'ququmber-ui/Colors';
+import {SHADOW_DROPDOWN} from 'ququmber-ui/Constants';
 import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
 
 const {useRef} = React;
+
+const styles = {
+  root: css`
+    background: ${Colors.WHITE};
+    box-shadow: ${SHADOW_DROPDOWN};
+    border: 1px solid ${Colors.CONTROL};
+    border-radius: 3px;
+  `
+};
 
 const UIDropdown = (props: UIDropdownProps) => {
   const {children, open, className, onClose, css} = props;
@@ -11,7 +22,7 @@ const UIDropdown = (props: UIDropdownProps) => {
   useOnOutsideClick([rootRef], onClose);
 
   return <div ref={rootRef}>
-    {open ? <div css={css} className={`UIDropdown ${className}`}>{children}</div> : null}
+    {open ? <div css={[styles.root, css]} className={className}>{children}</div> : null}
   </div>;
 };
 

@@ -1,9 +1,20 @@
+import {css} from '@emotion/react';
 import * as React from 'react';
 import TetherComponent from 'react-tether';
 
+import Colors from 'ququmber-ui/Colors';
 import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
 
 const {useRef} = React;
+
+const styles = {
+  root: css`
+    color: ${Colors.QUIET};
+  `,
+  inner: css`
+    padding: .3em .6em;
+  `,
+};
 
 const UITooltip = (props: UITooltipProps) => {
   const {children, text, width, open, attachment,targetAttachment, closeOnOutsideClick, onClose} = props;
@@ -23,9 +34,10 @@ const UITooltip = (props: UITooltipProps) => {
       {children}
       <div
         ref={tooltipRef}
-        className="UITooltip tether-content"
+        css={styles.root}
+        className="tether-content"
         style={{width: `${width}px`}}>
-        <div className="UITooltipInner">
+        <div css={styles.inner}>
           {text}
         </div>
       </div>

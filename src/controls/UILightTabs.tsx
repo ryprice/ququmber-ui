@@ -1,16 +1,26 @@
+import {css} from '@emotion/react';
 import * as React from 'react';
 
+import Colors from 'ququmber-ui/Colors';
 import UILightTab from 'ququmber-ui/controls/UILightTab';
 
 const {useState} = React;
+
+const styles = {
+  root: css`
+    border-bottom: 1px ${Colors.QUIET} solid;
+    margin-bottom: 10px;
+    text-align: left;
+  `,
+};
 
 const UILightTabs = (props: UILightTabsProps) => {
   const {tabs, defaultSelected} = props;
   const [stateSelected, setStateSelected] = useState(defaultSelected);
   const selected = props.selected || stateSelected;
   const selectedTabConfig = tabs.find(tab => tab.id === selected);
-  return <div className="UILightTabs">
-    <div className="tabs">
+  return <div>
+    <div css={styles.root}>
       {tabs.map(tab => <UILightTab
         selected={tab.id === selected}
         id={tab.id}

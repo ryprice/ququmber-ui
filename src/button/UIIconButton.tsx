@@ -31,7 +31,7 @@ const UIIconButton = (props: UIIconButtonProps) => {
     {showTooltip && <TetherComponent
       attachment="top center"
       targetAttachment="bottom center">
-      <div style={{height: 0}}></div>
+      <div style={{height: 0}} />
       <div style={{
         backgroundColor: 'rgb(40,40,40,.8)',
         color: '#ffffff',
