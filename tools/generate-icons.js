@@ -7,9 +7,9 @@ const {promisify} = require('util');
 const copyFile = promisify(fs.copyFile);
 const readdir = promisify(fs.readdir);
 
-const iconPath = '../src/icons';
-const distPath = '../dist';
-const destPath = '../../listlab-www/fonts/ququmber-icons/';
+const iconPath = 'src/icons';
+const distPath = 'dist';
+const destPath = '../listlab-www/fonts/ququmber-icons/';
 const iconMatch = /^.*\.(svg)$/;
 
 const getIconFiles = async () => {

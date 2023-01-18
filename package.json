@@ -35,6 +35,7 @@
   },
   "scripts": {
     "build": "tsc -d --declarationDir lib --outDir lib && node-sass --include-path src src/index.sass dist/ququmber-ui.css && npm run lint && cp src/tokens.sass lib/tokens.sass",
+    "build-icons": "node ./tools/generate-icons.js",
     "sample": "webpack serve --config sample/webpack.config.js",
     "lint": "eslint src/**/*.ts src/**/*.tsx sample/**/*.tsx --fix && stylelint src/**/*.{sass,tsx,ts}"
   },
