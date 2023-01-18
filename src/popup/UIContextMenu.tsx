@@ -25,6 +25,9 @@ const styles = {
     &:active {
       background: ${Colors.OPTION_SELECTED};
     }
+  `,
+  break: css`
+    border-bottom: 1px solid ${Colors.SILENT};
   `
 };
 
@@ -34,7 +37,9 @@ const UIContextMenu = (props: UIContextMenuProps) => {
   const onClickOptionAndClose = useCallback((index: number) => {
     onClose();
     const option = options[index];
-    option.onClick && option.onClick();
+    if (option !== MENU_BREAK) {
+      option.onClick && option.onClick();
+    }
   }, [options, onClose]);
 
   return <UIDropdown
@@ -42,13 +47,16 @@ const UIContextMenu = (props: UIContextMenuProps) => {
     onClose={onClose}
     css={styles.root}
     className={className}>
-    {options.map((option: UIContextMenuOption, index: number) => (
-      <button key={index} css={styles.option} onClick={() => onClickOptionAndClose(index)}>
+    {options.map((option, index: number) => {
+      if (option === MENU_BREAK) {
+        return <div key={index} css={styles.break} />;
+      }
+      return <button key={index} css={styles.option} onClick={() => onClickOptionAndClose(index)}>
         <i className={option.icon} />
         &nbsp;&nbsp;
         {option.name}
-      </button>
-    ))}
+      </button>;
+    })}
   </UIDropdown>;
 };
 
@@ -58,8 +66,10 @@ export type UIContextMenuOption = {
   onClick: () => void;
 };
 
+export const MENU_BREAK = 'MENU_BREAK';
+
 export type UIContextMenuProps = {
-  options: UIContextMenuOption[];
+  options: Array<UIContextMenuOption | typeof MENU_BREAK>;
   onClose: () => void;
   open: boolean;
   className?: string;
