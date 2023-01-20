@@ -1,3 +1,4 @@
+import {SerializedStyles} from '@emotion/react';
 import * as React from 'react';
 
 import UIButton from 'ququmber-ui/button/UIButton';
@@ -5,7 +6,7 @@ import UIButton from 'ququmber-ui/button/UIButton';
 const {useCallback, useRef} = React;
 
 const UICopyInput = (props: UICopyInputProps) => {
-  const {value, className, onCopy} = props;
+  const {value, className, onCopy, css} = props;
   const inputRef = useRef<HTMLInputElement>();
 
   const onCopyClick = useCallback(() => {
@@ -20,7 +21,7 @@ const UICopyInput = (props: UICopyInputProps) => {
     }
   }, [value, onCopy]);
 
-  return <div className={`UICopyInput ${className || ''}`}>
+  return <div css={css} className={`UICopyInput ${className || ''}`}>
     <input
       defaultValue={value}
       onClick={onCopyClick}
@@ -40,6 +41,7 @@ export type UICopyInputProps = {
   value?: string;
   className?: string;
   onCopy?: () => void;
+  css?: SerializedStyles;
 };
 
 export default React.memo(UICopyInput);
