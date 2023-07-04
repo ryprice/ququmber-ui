@@ -1,6 +1,7 @@
 import {css} from '@emotion/react';
 import * as React from 'react';
 import Colors from 'ququmber-ui/Colors';
+import {eventHasControlKey} from 'listlab-api/utils/EventUtils';
 
 const styles = {
   root: css`
@@ -25,12 +26,18 @@ const styles = {
 };
 
 const UILightTab = (props: UILightTabProps) => {
-  const {id, selected, onClick, name, className} = props;
+  const {id, selected, onClick, name, className, href} = props;
   return <button
     css={[styles.root, selected ? styles.selected : null]}
     className={className}
     key={id}
-    onClick={() => onClick(id)}>
+    onClick={(e) => {
+      if (eventHasControlKey(e) && href) {
+        window.open(href, '_blank');
+      } else {
+        onClick(id);
+      }
+    }}>
     {name}
   </button>;
 };
@@ -41,6 +48,7 @@ type UILightTabProps = {
   onClick: (key: string) => void;
   selected: boolean;
   className?: string;
+  href?: string;
 };
 
 export default UILightTab;
