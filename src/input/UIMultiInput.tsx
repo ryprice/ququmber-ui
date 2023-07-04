@@ -5,6 +5,7 @@ import TetherComponent from 'react-tether';
 
 import UITag from 'ququmber-ui/chip/UITag';
 import UISelectDropdown from 'ququmber-ui/input/UISelectDropdown';
+import { SerializedStyles } from '@emotion/react';
 
 export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInputState> {
 
@@ -148,7 +149,8 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       targetAttachment,
       renderDropdownContents,
       disabled,
-      asInline
+      asInline,
+      transparentBackground
     } = this.props;
     const {hoverIndex, dropdownOpen} = this.state;
 
@@ -168,9 +170,15 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       .sort(sortByCanRemoveComparator);
     const filteredUnselectedOptions = this.getFilteredUnselectedOptions();
 
-    const input = <div className={
-      `UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''} ${asInline ? 'asInline' : 'asControl'}`
-    }>
+    const input = <div
+      className={
+        `UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''} ${asInline ? 'asInline' : 'asControl'}`
+      }
+      style={transparentBackground ? {
+        background: 'transparent',
+        marginRight: '3px',
+        marginLeft: '-3px'
+      } : null}>
       {map(selectedOptions, (option: UIMultiInputOption) =>
         renderItem ? renderItem(option, true) : this.defaultRenderItem(option))
       }
@@ -231,6 +239,8 @@ export type UIMultiInputProps = {
   renderDropdownContents?: (children: React.ReactChild[]) => React.ReactChild;
   disabled?: boolean;
   asInline?: boolean;
+  css?: SerializedStyles;
+  transparentBackground?: boolean;
 };
 
 export type UIMultiInputState = {
