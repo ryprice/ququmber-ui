@@ -1,9 +1,7 @@
-import * as React from 'react';
+import {useState} from 'react';
 
 import UISelect from 'ququmber-ui/input/UISelect';
 import Editor from '../Editor';
-
-const {useState} = React;
 
 const UISelectSample = () => {
   const [selected, setSelected] = useState('1');

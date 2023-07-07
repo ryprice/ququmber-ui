@@ -1,11 +1,9 @@
-import * as React from 'react';
+import {MutableRefObject, useCallback, useState} from 'react';
 import TetherComponent from 'react-tether';
 
 import UIButton from 'ququmber-ui/button/UIButton';
 import UIContextMenu, {UIContextMenuOption} from 'ququmber-ui/popup/UIContextMenu';
 import Stylings from 'ququmber-ui/Stylings';
-
-const {useCallback, useState} = React;
 
 const UIDropdownButton = (props: UIDropdownButtonProps) => {
   const {name, options, styling, style, className} = props;
@@ -13,10 +11,9 @@ const UIDropdownButton = (props: UIDropdownButtonProps) => {
 
   const onClose = useCallback(() => setOpen(false), []);
 
-  return <TetherComponent
-    attachment="top right"
-    targetAttachment="bottom right">
+  const renderButton = (tetherRef: MutableRefObject<HTMLButtonElement>) => (
     <UIButton
+      ref={tetherRef}
       className={`${className} UIDropdownButton`}
       styling={styling}
       onClick={() => setOpen(true)}>
@@ -25,8 +22,23 @@ const UIDropdownButton = (props: UIDropdownButtonProps) => {
         <i className="fa fa-caret-down" style={{float: 'right', paddingLeft: '.4em'}} />
       </span>
     </UIButton>
-    <UIContextMenu open={open} options={options} onClose={onClose} />
-  </TetherComponent>;
+  );
+
+  const renderDropdown = (tetherRef: MutableRefObject<UIContextMenu>) => (
+    <UIContextMenu
+      open={open}
+      options={options}
+      onClose={onClose}
+      ref={tetherRef}
+    />
+  );
+
+  return <TetherComponent
+    attachment="top right"
+    targetAttachment="bottom right"
+    renderTarget={renderButton}
+    renderElement={renderDropdown}
+  />;
 };
 
 type UIDropdownButtonOption = UIContextMenuOption;

@@ -1,13 +1,11 @@
 import {SerializedStyles} from '@emotion/react';
-import * as React from 'react';
+import {MutableRefObject, useCallback, useState, forwardRef} from 'react';
 import TetherComponent from 'react-tether';
 
 import Stylings from 'ququmber-ui/Stylings';
 import useDelayedMouseHover from 'ququmber-ui/utils/useDelayedMouseHover';
 
-const {useCallback, useState} = React;
-
-const UIIconButton = (props: UIIconButtonProps) => {
+const UIIconButton = forwardRef<HTMLSpanElement, UIIconButtonProps>((props: UIIconButtonProps, ref) => {
   const {className, onClick, disabled, icon, styling, style, css, tooltip} = props;
   const [showTooltip ,setShowTooltip] = useState(false);
 
@@ -26,22 +24,31 @@ const UIIconButton = (props: UIIconButtonProps) => {
     <i className={icon} />
   </button>;
 
-  return <span>
-    {button}
-    {showTooltip && <TetherComponent
-      attachment="top center"
-      targetAttachment="bottom center">
-      <div style={{height: 0}} />
-      <div style={{
+  const renderTooltip = (tetherRef: MutableRefObject<HTMLDivElement>) => (
+    <div
+      ref={tetherRef}
+      style={{
         backgroundColor: 'rgb(40,40,40,.8)',
         color: '#ffffff',
         padding: '3px',
         borderRadius: '3px'
-      }}>{tooltip}</div>
-    </TetherComponent>}
-  </span>;
-};
+      }}>
+      {tooltip}
+    </div>
+  );
 
+  return <span ref={ref}>
+    {button}
+    {showTooltip && <TetherComponent
+      attachment="top center"
+      targetAttachment="bottom center"
+      renderTarget={(tetherRef: MutableRefObject<HTMLDivElement>) => (
+        <div ref={tetherRef} style={{height: 0}} />
+      )}
+      renderElement={renderTooltip}
+    />}
+  </span>;
+});
 
 UIIconButton.defaultProps = {
   className: '',
@@ -60,8 +67,4 @@ export type UIIconButtonProps = {
   css?: SerializedStyles;
 };
 
-export default class UIIconButtonClass extends React.Component<UIIconButtonProps> {
-  render() {
-    return <UIIconButton {...this.props} />;
-  }
-}
+export default UIIconButton;

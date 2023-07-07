@@ -1,10 +1,8 @@
-import * as React from 'react';
+import {useState} from 'react';
 
 import {FuzzyTime, FuzzyTimeRange} from 'listlab-api';
 
 import FuzzyTimeSelect from 'ququmber-ui/fuzzyTime/FuzzyTimeSelect';
-
-const {useState} = React;
 
 const FuzzyTimeSelectSample = () => {
   const [time1, setTime1] = useState<FuzzyTime>();

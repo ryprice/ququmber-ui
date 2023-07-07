@@ -1,10 +1,8 @@
 import {css} from '@emotion/react';
-import * as React from 'react';
+import {useState} from 'react';
 
 import Colors from 'ququmber-ui/Colors';
 import UILightTab from 'ququmber-ui/controls/UILightTab';
-
-const {useState} = React;
 
 const styles = {
   root: css`

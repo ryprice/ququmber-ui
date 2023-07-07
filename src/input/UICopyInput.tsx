@@ -1,9 +1,8 @@
 import {SerializedStyles} from '@emotion/react';
 import * as React from 'react';
+import {useRef, useCallback} from 'react';
 
 import UIButton from 'ququmber-ui/button/UIButton';
-
-const {useCallback, useRef} = React;
 
 const UICopyInput = (props: UICopyInputProps) => {
   const {value, className, onCopy, css} = props;

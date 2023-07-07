@@ -1,12 +1,11 @@
 import {find} from 'lodash';
-import * as React from 'react';
+import {useCallback, useMemo, useRef, useState, MutableRefObject} from 'react';
+import {mergeRefs} from 'react-merge-refs';
 import TetherComponent from 'react-tether';
 
 import UISelectDropdown, {UISelectDropdownOption} from 'ququmber-ui/input/UISelectDropdown';
 import Stylings from 'ququmber-ui/Stylings';
 import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
-
-const {useCallback, useMemo, useRef, useState} = React;
 
 export const UISelect = (props: UISelectProps) => {
   const {
@@ -163,19 +162,23 @@ export const UISelect = (props: UISelectProps) => {
     {input}
     {dropdownOpen && <TetherComponent
       attachment={attachment || 'top left'}
-      targetAttachment={targetAttachment || 'bottom left'}>
-      <div />
-      <div ref={dropdownRef}>
-        <UISelectDropdown
-          className="UISelectDropdown"
-          options={optionsWithRenderedName}
-          hoverIndex={hoverIndex}
-          onSelect={onSelect}
-          open={dropdownOpen}
-          renderDropdownContents={renderDropdownContents}
-        />
-      </div>
-    </TetherComponent>}
+      targetAttachment={targetAttachment || 'bottom left'}
+      renderTarget={(tetherRef: MutableRefObject<HTMLDivElement>) => (
+        <div ref={tetherRef} />
+      )}
+      renderElement={(tetherRef: MutableRefObject<HTMLDivElement>) => (
+        <div ref={mergeRefs([dropdownRef, tetherRef])}>
+          <UISelectDropdown
+            className="UISelectDropdown"
+            options={optionsWithRenderedName}
+            hoverIndex={hoverIndex}
+            onSelect={onSelect}
+            open={dropdownOpen}
+            renderDropdownContents={renderDropdownContents}
+          />
+        </div>
+      )}
+    />}
   </div>;
 };
 

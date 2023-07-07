@@ -1,11 +1,10 @@
 import {css} from '@emotion/react';
 import * as React from 'react';
+import {useCallback, useRef} from 'react';
 import * as ReactDOM from 'react-dom';
 
 import Colors from 'ququmber-ui/Colors';
 import UIMountTransition from 'ququmber-ui/utils/UIMountTransition';
-
-const {useCallback, useRef} = React;
 
 const styles = {
   root: css`

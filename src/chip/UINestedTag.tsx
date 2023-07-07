@@ -1,10 +1,9 @@
 import * as React from 'react';
+import {useRef} from 'react';
 import {findDOMNode} from 'react-dom';
 
 import Colors from 'ququmber-ui/Colors';
 import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
-
-const {useRef} = React;
 
 const NestingMaskNodeRounded = (props: NestingMaskNodeRoundedProps) => {
   const {color, outline, rounded} = props;

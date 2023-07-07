@@ -1,9 +1,7 @@
-import * as React from 'react';
+import {useState} from 'react';
 
 import UIMultiInput from 'ququmber-ui/input/UIMultiInput';
 import Editor from '../Editor';
-
-const {useState} = React;
 
 const UIMultiInputSample = () => {
   const [selected, setSelected] = useState(['1', '2']);

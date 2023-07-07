@@ -1,5 +1,4 @@
 import {css} from '@emotion/react';
-import * as React from 'react';
 
 import Colors from 'ququmber-ui/Colors';
 

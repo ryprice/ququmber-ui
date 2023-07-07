@@ -1,15 +1,13 @@
-import * as React from 'react';
+import {MutableRefObject, useCallback, useEffect, useRef} from 'react';
 import * as ReactDOM from 'react-dom';
-
-const {useCallback, useEffect, useRef} = React;
 
 // https://stackoverflow.com/questions/29321742/react-getting-a-component-from-a-dom-element-for-debugging
 
 function getFiberNodeFromEl(el: Element) {
   const key = Object.keys(el).find(key=>{
     return (
-      key.startsWith("__reactFiber$") || // react 17+
-      key.startsWith("__reactInternalInstance$") // react <17d
+      key.startsWith('__reactFiber$') || // react 17+
+      key.startsWith('__reactInternalInstance$') // react <17d
     );
   });
   // @ts-ignore
@@ -25,7 +23,7 @@ function getFiberNodeFromEl(el: Element) {
 function elContainsUsingFiber(el: Element, maybeChildEl: Element) {
   const parentFiberNode = getFiberNodeFromEl(el);
   const maybeChildFiberNode = getFiberNodeFromEl(maybeChildEl);
-  
+
   if (!parentFiberNode || !maybeChildFiberNode) {
     return false;
   }
@@ -42,7 +40,7 @@ function elContainsUsingFiber(el: Element, maybeChildEl: Element) {
 }
 
 const useOnOutsideClick = (
-  refs: Array<React.MutableRefObject<any>>,
+  refs: Array<MutableRefObject<any>>,
   onOutsideClick: () => void,
   enabled: boolean = true,
 ) => {

@@ -1,11 +1,10 @@
 import {css} from '@emotion/react';
-import * as React from 'react';
+import {MutableRefObject, useRef} from 'react';
+import {mergeRefs} from 'react-merge-refs';
 import TetherComponent from 'react-tether';
 
 import Colors from 'ququmber-ui/Colors';
 import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
-
-const {useRef} = React;
 
 const styles = {
   root: css`
@@ -30,18 +29,20 @@ const UITooltip = (props: UITooltipProps) => {
     <TetherComponent
       attachment={attachment}
       targetAttachment={targetAttachment}
-      className="tether-theme-arrows-dark">
-      {children}
-      <div
-        ref={tooltipRef}
+      className="tether-theme-arrows-dark"
+      renderTarget={(tetherRef: MutableRefObject<HTMLDivElement>) => (
+        <div ref={tetherRef}>{children}</div>
+      )}
+      renderElement={(tetherRef: MutableRefObject<HTMLDivElement>) => <div
+        ref={mergeRefs([tooltipRef, tetherRef])}
         css={styles.root}
         className="tether-content"
         style={{width: `${width}px`}}>
         <div css={styles.inner}>
           {text}
         </div>
-      </div>
-    </TetherComponent>
+      </div>}
+    />
   );
 };
 

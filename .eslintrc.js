@@ -9,7 +9,7 @@ module.exports = {
     "project": ["./tsconfig.eslint.json"]
   },
   "rules": {
-    "import/order": importOrderConfig('ququmber-ui'),
+    "import/order": importOrderConfig('ququmber-ui')
   },
   "overrides": [
     {

@@ -1,5 +1,5 @@
 import {css} from '@emotion/react';
-import * as React from 'react';
+import {useState, useCallback, MutableRefObject} from 'react';
 import TetherComponent from 'react-tether';
 
 import {FuzzyTime, FuzzyTimeRange} from 'listlab-api';
@@ -7,8 +7,6 @@ import {formatRelativeRangeShortName, formatRelativeShortName} from 'listlab-api
 
 import FuzzyTimeSelect from 'ququmber-ui/fuzzyTime/FuzzyTimeSelect';
 import UIDropdown from 'ququmber-ui/popup/UIDropdown';
-
-const  {useState, useCallback} = React;
 
 const styles = {
   root: css`
@@ -88,7 +86,7 @@ export const FuzzyTimeButton = (props: FuzzyTimeButtonProps) => {
   }, [onRangeChange]);
 
 
-  let name;
+  let name: string;
   if (multiselect && range) {
     name = formatRelativeRangeShortName(range);
   } else if (value) {
@@ -99,36 +97,42 @@ export const FuzzyTimeButton = (props: FuzzyTimeButtonProps) => {
 
   return <TetherComponent
     attachment={attachment || 'top left'}
-    targetAttachment={targetAttachment || 'bottom left'}>
-    <button
-      type="button"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="true"
-      disabled={disabled}
-      css={styles.root}
-      className={computedClassName}
-      onClick={dropdownToggleClick}
-      style={style}>
-      <span css={styles.calendarIcon} className="octicon octicon-calendar" />
-      <span css={styles.name}>
-        <span css={styles.nameClamp}>{name || 'None'}</span>
-      </span>
-      <span css={styles.downArrow} className="octicon octicon-chevron-down" />
-    </button>
-    <UIDropdown
-      open={open}
-      onClose={closeDropdown}
-      css={styles.dropdown}>
-      <FuzzyTimeSelect
-        selected={value}
-        onTimeSelected={onTimeSelected}
-        multiselect={multiselect}
-        onRangeSelected={onRangeSelected}
-        selectedRange={range}
-      />
-    </UIDropdown>
-  </TetherComponent>;
+    targetAttachment={targetAttachment || 'bottom left'}
+    renderTarget={(tetherRef: MutableRefObject<HTMLButtonElement>) => (
+      <button
+        ref={tetherRef}
+        type="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="true"
+        disabled={disabled}
+        css={styles.root}
+        className={computedClassName}
+        onClick={dropdownToggleClick}
+        style={style}>
+        <span css={styles.calendarIcon} className="octicon octicon-calendar" />
+        <span css={styles.name}>
+          <span css={styles.nameClamp}>{name || 'None'}</span>
+        </span>
+        <span css={styles.downArrow} className="octicon octicon-chevron-down" />
+      </button>
+    )}
+    renderElement={(tetherRef: MutableRefObject<HTMLDivElement>) => (
+      <UIDropdown
+        ref={tetherRef}
+        open={open}
+        onClose={closeDropdown}
+        css={styles.dropdown}>
+        <FuzzyTimeSelect
+          selected={value}
+          onTimeSelected={onTimeSelected}
+          multiselect={multiselect}
+          onRangeSelected={onRangeSelected}
+          selectedRange={range}
+        />
+      </UIDropdown>
+    )}
+  />;
 };
 
 export type FuzzyTimeButtonProps = {

@@ -1,10 +1,9 @@
 import {css} from '@emotion/react';
 import * as React from 'react';
+import {useCallback} from 'react';
 
 import Colors from 'ququmber-ui/Colors';
 import UIDropdown from 'ququmber-ui/popup/UIDropdown';
-
-const {useCallback} = React;
 
 const styles = {
   root: css`

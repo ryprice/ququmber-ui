@@ -1,7 +1,8 @@
 import {css} from '@emotion/react';
-import * as React from 'react';
-import Colors from 'ququmber-ui/Colors';
+
 import {eventHasControlKey} from 'listlab-api/utils/EventUtils';
+
+import Colors from 'ququmber-ui/Colors';
 
 const styles = {
   root: css`

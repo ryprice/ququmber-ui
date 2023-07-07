@@ -1,7 +1,5 @@
-import * as React from 'react';
+import {useEffect, useState, ReactNode} from 'react';
 import {CSSTransition} from 'react-transition-group';
-
-const {useEffect, useState} = React;
 
 const UIMountTransition = (props: UIMountTransitionProps) => {
   const {children, className} = props;
@@ -22,7 +20,7 @@ const UIMountTransition = (props: UIMountTransitionProps) => {
 export type UIMountTransitionProps = {
   mounted: boolean;
   className: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 export default UIMountTransition;

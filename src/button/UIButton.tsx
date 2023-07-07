@@ -1,4 +1,5 @@
-import * as React from 'react';
+import {useCallback, useState, MutableRefObject, forwardRef} from 'react';
+import {mergeRefs} from 'react-merge-refs';
 import TetherComponent from 'react-tether';
 
 import UILoading from 'ququmber-ui/progress/UILoading';
@@ -6,9 +7,7 @@ import Stylings from 'ququmber-ui/Stylings';
 import UIMountTransition from 'ququmber-ui/utils/UIMountTransition';
 import useDelayedMouseHover from 'ququmber-ui/utils/useDelayedMouseHover';
 
-const {useCallback, useState} = React;
-
-const UIButton = React.forwardRef<HTMLButtonElement, UIButtonProps>((props, ref) => {
+const UIButton = forwardRef<HTMLButtonElement, UIButtonProps>((props, ref) => {
   const {className, onClick, children, style, styling, disabled, id, loading, tooltip} = props;
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -18,9 +17,9 @@ const UIButton = React.forwardRef<HTMLButtonElement, UIButtonProps>((props, ref)
   const [onMouseOver, onMouseOut] = useDelayedMouseHover(setShowTooltipIfEnabled, 300, 0);
   const buttonWithMaybeTooltipProps = tooltip ? {onMouseOver, onMouseOut} : {};
 
-  const button = (
+  const renderButton = (tetherRef: MutableRefObject<HTMLButtonElement>) => (
     <button
-      ref={ref}
+      ref={mergeRefs([ref, tetherRef])}
       className={`UIButton ${className != null ? className : ''} styling-${styling || Stylings.CONTROL}`}
       onClick={onClick}
       style={style}
@@ -38,22 +37,26 @@ const UIButton = React.forwardRef<HTMLButtonElement, UIButtonProps>((props, ref)
   );
 
   if (!showTooltip) {
-    return button;
+    return renderButton(null);
   }
 
-  return <TetherComponent
-    attachment="top center"
-    targetAttachment="bottom center">
-    {button}
+  const renderTooltip = (tetherRef: MutableRefObject<HTMLDivElement>) => (
     <UIMountTransition mounted={true} className="UIIconButtonTransition">
-      <div style={{
+      <div ref={tetherRef} style={{
         backgroundColor: 'rgb(40,40,40,.8)',
         color: '#ffffff',
         padding: '3px',
         borderRadius: '3px'
       }}>{tooltip}</div>
     </UIMountTransition>
-  </TetherComponent>;
+  );
+
+  return <TetherComponent
+    attachment="top center"
+    targetAttachment="bottom center"
+    renderTarget={renderButton}
+    renderElement={renderTooltip}
+  />;
 });
 
 export type UIButtonProps = {

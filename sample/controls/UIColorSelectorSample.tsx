@@ -1,9 +1,7 @@
-import * as React from 'react';
+import {useState} from 'react';
 
 import UIButton from 'ququmber-ui/button/UIButton';
 import UIColorSelector from 'ququmber-ui/controls/UIColorSelector';
-
-const {useState} = React;
 
 const UIColorSelectorSample = () => {
   const [open, setOpen] = useState(false);

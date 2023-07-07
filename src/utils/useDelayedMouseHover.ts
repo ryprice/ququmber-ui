@@ -1,7 +1,5 @@
 import {delay} from 'lodash';
-import * as React from 'react';
-
-const {useCallback, useRef} = React;
+import {useCallback, useRef} from 'react';
 
 const useDelayedMouseHover = (callback: (val: boolean) => any, delayInMs: number, delayOutMs: number) => {
   const overTimerRef = useRef<number>();

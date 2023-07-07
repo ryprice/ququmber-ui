@@ -1,15 +1,13 @@
 import {css} from '@emotion/react';
 import * as Color from 'color';
 import {includes, times} from 'lodash';
-import * as React from 'react';
+import {useRef, useState, useEffect, MutableRefObject} from 'react';
 import TetherComponent from 'react-tether';
 
 import UIButton from 'ququmber-ui/button/UIButton';
 import Colors from 'ququmber-ui/Colors';
 import UIDropdown from 'ququmber-ui/popup/UIDropdown';
 import Stylings from 'ququmber-ui/Stylings';
-
-const {useRef, useState, useEffect} = React;
 
 const baseColors = [
   'e44a5c',
@@ -135,9 +133,12 @@ const UIColorSelector = (props: UIColorSelectorProps) => {
 
   return <TetherComponent
     attachment="top left"
-    targetAttachment="bottom left">
-    {children}
-    <UIDropdown
+    targetAttachment="bottom left"
+    renderTarget={(tetherRef: MutableRefObject<HTMLDivElement>) => (
+      <div ref={tetherRef}>{children}</div>
+    )}
+    renderElement={(tetherRef: MutableRefObject<HTMLDivElement>) => <UIDropdown
+      ref={tetherRef}
       css={styles.dropdown}
       open={open}
       onClose={onClose}>
@@ -182,8 +183,8 @@ const UIColorSelector = (props: UIColorSelectorProps) => {
           Change
         </UIButton>
       </div>
-    </UIDropdown>
-  </TetherComponent>;
+    </UIDropdown>}
+  />;
 };
 
 export type UIColorSelectorProps = {

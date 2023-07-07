@@ -1,9 +1,8 @@
-import * as React from 'react';
+import {MutableRefObject, useRef} from 'react';
+import {mergeRefs} from 'react-merge-refs';
 import TetherComponent from 'react-tether';
 
 import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
-
-const {useRef} = React;
 
 export const PADDING_POPUP = '10';
 
@@ -15,14 +14,16 @@ const UIPopup = (props: UIPopupProps) => {
     ? <TetherComponent
       attachment={attachment}
       targetAttachment={targetAttachment}
-      className="tether-theme-arrows">
-      {children[0]}
-      <div
-        ref={contentRef}
+      className="tether-theme-arrows"
+      renderTarget={(tetherRef: MutableRefObject<HTMLDivElement>) => (
+        <div ref={tetherRef}>{children[0]}</div>
+      )}
+      renderElement={(tetherRef: MutableRefObject<HTMLDivElement>) => <div
+        ref={mergeRefs([contentRef, tetherRef])}
         className={`${className} tether-content`}>
         {children[1]}
-      </div>
-    </TetherComponent>
+      </div>}
+    />
     : children[0];
 };
 

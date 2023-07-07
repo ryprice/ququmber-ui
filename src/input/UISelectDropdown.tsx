@@ -1,6 +1,6 @@
 import {css} from '@emotion/react';
 import {map} from 'lodash';
-import * as React from 'react';
+import {forwardRef, ReactChild} from 'react';
 
 import Colors from 'ququmber-ui/Colors';
 import UIDropdown from 'ququmber-ui/popup/UIDropdown';
@@ -31,7 +31,10 @@ const styles = {
   `
 };
 
-const UISelectDropdown =(props: UISelectDropdownProps) => {
+const UISelectDropdown = forwardRef<HTMLDivElement, UISelectDropdownProps>((
+  props: UISelectDropdownProps,
+  ref
+) => {
   const {
     open, className, options, onSelect,
     hoverIndex, onClose, selected, renderDropdownContents
@@ -55,21 +58,21 @@ const UISelectDropdown =(props: UISelectDropdownProps) => {
   });
 
   if (renderDropdownContents) {
-    return <UIDropdown open={open} onClose={onClose}>
+    return <UIDropdown open={open} onClose={onClose} ref={ref}>
       {renderDropdownContents(optionsNodes)}
     </UIDropdown>;
   }
 
-  return <UIDropdown open={open} onClose={onClose}>
+  return <UIDropdown open={open} onClose={onClose} ref={ref}>
     <div css={styles.root} className={className}>
       {optionsNodes}
     </div>
   </UIDropdown>;
-};
+});
 
 export type UISelectDropdownOption = {
   icon?: string;
-  name: React.ReactChild | string;
+  name: ReactChild | string;
   value?: string;
   color?: string;
 };
@@ -82,7 +85,7 @@ export type UISelectDropdownProps = {
   hoverIndex?: number;
   onClose?: () => void;
   selected?: string;
-  renderDropdownContents?: (children: React.ReactChild[]) => React.ReactChild;
+  renderDropdownContents?: (children: ReactChild[]) => ReactChild;
 };
 
 export default UISelectDropdown;

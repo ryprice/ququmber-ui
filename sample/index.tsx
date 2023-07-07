@@ -1,7 +1,7 @@
-import * as React from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
-import * as ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 
 import UIBadge from 'ququmber-ui/chip/UIBadge';
 import Colors from 'ququmber-ui/Colors';
@@ -42,8 +42,6 @@ import UITooltipSample from './popup/UITooltipSample';
 
 import ShimmerSample from './progress/ShimmerSample';
 import UIProgressBarSample from './progress/UIProgressBarSample';
-
-const {useCallback, useEffect, useState} = React;
 
 const RootComponent = () => {
   const [curNav, setCurNav] = useState<string>();
@@ -181,9 +179,9 @@ const RootComponent = () => {
 
 const el = document.createElement('div');
 document.querySelector('body').appendChild(el);
-ReactDOM.render(
+const reactRoot = createRoot(el);
+reactRoot.render(
   <DndProvider backend={HTML5Backend}>
     <RootComponent />
-  </DndProvider>,
-  el
+  </DndProvider>
 );

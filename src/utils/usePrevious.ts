@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-const {useEffect, useRef} = React;
+import {useEffect, useRef} from 'react';
 
 const usePrevious = (value: any) => {
   const ref = useRef();

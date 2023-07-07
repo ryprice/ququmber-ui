@@ -1,13 +1,13 @@
+import {SerializedStyles} from '@emotion/react';
 import {debounce, filter, find, includes, map} from 'lodash';
-import * as React from 'react';
+import {MutableRefObject, Component} from 'react';
 import * as ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
 
 import UITag from 'ququmber-ui/chip/UITag';
 import UISelectDropdown from 'ququmber-ui/input/UISelectDropdown';
-import { SerializedStyles } from '@emotion/react';
 
-export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInputState> {
+export class UIMultiInput extends Component<UIMultiInputProps, UIMultiInputState> {
 
   private tagsInput: HTMLInputElement;
   private readonly updateDropdownDebounced: () => void;
@@ -199,20 +199,25 @@ export class UIMultiInput extends React.Component<UIMultiInputProps, UIMultiInpu
       {input}
       {dropdownOpen && <TetherComponent
         attachment={attachment || 'top left'}
-        targetAttachment={targetAttachment || 'bottom left'}>
-        <div />
-        <UISelectDropdown
-          className="UIMultiInputDropdown"
-          options={filteredUnselectedOptions.slice(0, 10).map(option => ({
-            ...option,
-            name: renderItem ? renderItem(option, false) : option.name
-          }))}
-          hoverIndex={hoverIndex}
-          onSelect={(value) => this.onOptionAdd(value)}
-          open={this.state.dropdownOpen}
-          renderDropdownContents={renderDropdownContents}
-        />
-      </TetherComponent>}
+        targetAttachment={targetAttachment || 'bottom left'}
+        renderTarget={(tetherRef: MutableRefObject<HTMLDivElement>) => (
+          <div ref={tetherRef} />
+        )}
+        renderElement={(tetherRef: MutableRefObject<HTMLDivElement>) => (
+          <UISelectDropdown
+            ref={tetherRef}
+            className="UIMultiInputDropdown"
+            options={filteredUnselectedOptions.slice(0, 10).map(option => ({
+              ...option,
+              name: renderItem ? renderItem(option, false) : option.name
+            }))}
+            hoverIndex={hoverIndex}
+            onSelect={(value) => this.onOptionAdd(value)}
+            open={this.state.dropdownOpen}
+            renderDropdownContents={renderDropdownContents}
+          />
+        )}
+      />}
     </div>;
   }
 }

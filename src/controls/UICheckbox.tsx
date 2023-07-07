@@ -1,9 +1,7 @@
 import {css, SerializedStyles} from '@emotion/react';
-import * as React from 'react';
+import {useCallback} from 'react';
 import Colors from 'ququmber-ui/Colors';
 import {BORDER_RADIUS_INPUT} from 'ququmber-ui/Constants';
-
-const {useCallback} = React;
 
 const styles = {
   root: css`

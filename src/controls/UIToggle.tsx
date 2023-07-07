@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-const {useMemo} = React;
+import {useMemo} from 'react';
 
 let nextIdIndex = 0;
 

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 const ComponentSection = (props: ComponentSectionProps) => {
   return <div className="componentSection">
     <h1 className="componentTitle">{props.name}</h1>
