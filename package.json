@@ -37,7 +37,7 @@
     "build": "tsc -d --declarationDir lib --outDir lib && node-sass --include-path src src/index.sass dist/ququmber-ui.css && npm run lint && cp src/tokens.sass lib/tokens.sass",
     "build-icons": "node ./tools/generate-icons.js",
     "sample": "webpack serve --config sample/webpack.config.js",
-    "lint": "eslint src/**/*.ts src/**/*.tsx sample/**/*.tsx --fix && stylelint src/**/*.{sass,tsx,ts}"
+    "lint": "eslint src/*.{ts,tsx} src/**/*.{ts,tsx} sample/*.{ts,tsx} sample/**/*.{ts,tsx} --fix --no-error-on-unmatched-pattern && stylelint src/*.{sass,tsx,ts} src/**/*.{sass,tsx,ts}"
   },
   "repository": {
     "type": "git",
@@ -49,7 +49,6 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@types/immutable": "^3.8.7",
     "@types/lodash": "^4.14.123",
     "@types/prop-types": "^15.7.1",
     "@types/react": "^18.2.0",
@@ -57,7 +56,7 @@
     "@types/react-transition-group": "^4.4.6",
     "@types/react-virtualized": "^9.21.22",
     "color": "^4.2.3",
-    "immutable": "^3.8.1",
+    "immutable": "^4.3.0",
     "listlab-api": "file:../listlab-api-js",
     "lodash": "^4.17.20",
     "react": "^18.2.0",
