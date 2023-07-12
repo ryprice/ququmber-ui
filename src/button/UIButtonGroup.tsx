@@ -2,6 +2,7 @@ import {SerializedStyles} from '@emotion/react';
 import * as React from 'react';
 
 import Stylings from 'ququmber-ui/Stylings';
+import { MutableRefObject, forwardRef } from 'react';
 
 export const UIButtonGroupButton = (props: UIButtonGroupButtonProps) => {
   const {children, style, className, styling, onClick, selected, css} = props;
@@ -35,17 +36,18 @@ export type UIButtonGroupButtonProps = {
   css?: SerializedStyles;
 };
 
-const UIButtonGroup = (props: UIButtonGroupProps) => {
+const UIButtonGroup = forwardRef((props: UIButtonGroupProps, ref: MutableRefObject<HTMLDivElement>) => {
   const {children, className, style} = props;
 
   return (
     <div
+      ref={ref}
       className={`UIButtonGroup ${className != null ? className : ''}`}
       style={style}>
       {children}
     </div>
   );
-};
+});
 
 export type UIButtonGroupProps = {
   className?: string;

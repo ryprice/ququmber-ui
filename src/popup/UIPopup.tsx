@@ -7,7 +7,7 @@ import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
 export const PADDING_POPUP = '10';
 
 const UIPopup = (props: UIPopupProps) => {
-  const {open, children, onClose, className, targetAttachment, attachment} = props;
+  const {open, renderTarget, contentNode, onClose, className, targetAttachment, attachment} = props;
   const contentRef = useRef();
   useOnOutsideClick([contentRef], onClose, open);
   return open
@@ -15,26 +15,27 @@ const UIPopup = (props: UIPopupProps) => {
       attachment={attachment}
       targetAttachment={targetAttachment}
       className="tether-theme-arrows"
-      renderTarget={(tetherRef: MutableRefObject<HTMLDivElement>) => (
-        <div ref={tetherRef}>{children[0]}</div>
+      renderTarget={(tetherRef: MutableRefObject<Element>) => (
+        renderTarget(tetherRef)
       )}
       renderElement={(tetherRef: MutableRefObject<HTMLDivElement>) => <div
         ref={mergeRefs([contentRef, tetherRef])}
         className={`${className} tether-content`}>
-        {children[1]}
+        {contentNode}
       </div>}
     />
-    : children[0];
+    : renderTarget(null);
 };
 
 type UIPopupProps = {
   open: boolean;
-  children: JSX.Element[];
   onClose: () => void;
   className?: string;
   targetAttachment?: string;
   attachment?: string;
   closeOnOutsideClick: boolean;
+  renderTarget: (tetherRef: MutableRefObject<Element>) => JSX.Element;
+  contentNode: JSX.Element;
 };
 
 UIPopup.defaultProps = {
