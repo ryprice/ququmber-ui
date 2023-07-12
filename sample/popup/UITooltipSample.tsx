@@ -13,12 +13,15 @@ class UITooltipSample extends React.Component<{}, UITooltipSampleState> {
     return <UITooltip
       text="Click here for a surprise!"
       open={this.state.showTooltip}
-      targetAttachment="bottom center">
-      <UIButton
-        onClick={() => this.setState({showTooltip: !this.state.showTooltip})}>
-        Show tooltip
-      </UIButton>
-    </UITooltip>;
+      targetAttachment="bottom center"
+      renderTarget={(targetRef: React.MutableRefObject<HTMLButtonElement>) => (
+        <UIButton
+          ref={targetRef}
+          onClick={() => this.setState({showTooltip: !this.state.showTooltip})}>
+          Show tooltip
+        </UIButton>
+      )}
+    />;
   }
 }
 

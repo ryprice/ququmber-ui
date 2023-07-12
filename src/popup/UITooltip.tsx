@@ -16,13 +16,13 @@ const styles = {
 };
 
 const UITooltip = (props: UITooltipProps) => {
-  const {children, text, width, open, attachment,targetAttachment, closeOnOutsideClick, onClose} = props;
+  const {renderTarget, text, width, open, attachment,targetAttachment, closeOnOutsideClick, onClose} = props;
   const tooltipRef = useRef<HTMLDivElement>();
 
   useOnOutsideClick([tooltipRef], onClose, closeOnOutsideClick && open);
 
   if (!open) {
-    return <>{children}</>;
+    return <>{renderTarget(null)}</>;
   }
 
   return (
@@ -30,9 +30,7 @@ const UITooltip = (props: UITooltipProps) => {
       attachment={attachment}
       targetAttachment={targetAttachment}
       className="tether-theme-arrows-dark"
-      renderTarget={(tetherRef: MutableRefObject<HTMLDivElement>) => (
-        <div ref={tetherRef}>{children}</div>
-      )}
+      renderTarget={renderTarget}
       renderElement={(tetherRef: MutableRefObject<HTMLDivElement>) => <div
         ref={mergeRefs([tooltipRef, tetherRef])}
         css={styles.root}
@@ -60,7 +58,7 @@ export type UITooltipProps = {
   attachment?: string;
   targetAttachment?: string;
   onClose?: () => void;
-  children: React.ReactNode;
+  renderTarget: (targetRef: MutableRefObject<Element>) => JSX.Element;
   closeOnOutsideClick?: boolean;
 };
 
