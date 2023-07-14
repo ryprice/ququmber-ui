@@ -9,3 +9,6 @@ export const FONT_STACK = 'Arial, sans-serif';
 export const FONT_STACK_HEADERS = 'sans-serif';
 
 export const TRANSITION_DEFAULT = '0.3s';
+
+export const MQ_NORMAL = '@media only screen and (min-width: 650px)';
+export const MQ_PHONE = '@media only screen and (max-width: 651px)';
