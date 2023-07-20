@@ -191,7 +191,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   };
 
   public getUnitProps(): FuzzyTimeSelectUnitProps {
-    const {selectedRange, selected, multiselect, onTasksDrop} = this.props;
+    const {selectedRange, selected, multiselect} = this.props;
     const {focalPoint, nextRangeStart, hoverTime} = this.state;
     return {
       time: null,
@@ -202,7 +202,6 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       multiselect,
       nextRangeStart,
       focalPoint,
-      onTasksDrop,
       granularity: focalPoint.getGranularity(),
       onMouseOver: this.unitOnMouseOver,
       onMouseOut: this.unitOnMouseOut,

@@ -54,7 +54,7 @@ class FuzzyTimeMonthUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
 
   render() {
     const month = this.props.time;
-    const {style} = this.props;
+    const {style, focalPoint} = this.props;
 
     const weeksCount: number = weeksInMonth(
       month.getTime().getUTCMonth(),
@@ -74,6 +74,10 @@ class FuzzyTimeMonthUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
         css={styles.monthTitle}
         key="title">
         {month.getTime().toLocaleString('en-us', {month: 'long', timeZone: 'UTC'})}
+        {month.getTime().getUTCFullYear() !== focalPoint.getTime().getUTCFullYear()
+          ? ` (${month.getTime().getUTCFullYear()})`
+          : ''
+        }
       </FuzzyTimeSelectUnit>
       {weeks.map(week =>
         <FuzzyTimeWeekUnit

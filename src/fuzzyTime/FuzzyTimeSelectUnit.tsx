@@ -2,7 +2,7 @@ import {SerializedStyles, css} from '@emotion/react';
 import {size} from 'lodash';
 import * as React from 'react';
 
-import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange, Task} from 'listlab-api';
+import {FuzzyGranularity, FuzzyTime, FuzzyTimeRange} from 'listlab-api';
 
 import {shallowDifference} from 'ququmber-ui/utils/reactUtils';
 
@@ -175,7 +175,6 @@ export type FuzzyTimeSelectUnitProps = {
   onClick: (time: FuzzyTime) => void;
   onMouseOver: (time: FuzzyTime) => void;
   onMouseOut: (time: FuzzyTime) => void;
-  onTasksDrop: (tasks: Task[], time: FuzzyTime) => void;
 };
 
 export default FuzzyTimeSelectUnit;
