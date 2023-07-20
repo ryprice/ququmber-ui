@@ -22,6 +22,7 @@ import TypographySection from './TypographySection';
 import UIBannerSample from './alerts/UIBannerSample';
 import UIToastNotificationSample from './alerts/UIToastNotificationSample';
 
+import UIBigButtonSample from './button/UIBigButtonSample';
 import UIButtonSample from './button/UIButtonSample';
 import UIButtonGroupSample from './button/UIButtonGroupSample';
 import UIDropdownButtonSample from './button/UIDropdownButtonSample';
@@ -91,9 +92,10 @@ const RootComponent = () => {
 
     'Button',
     ['ququmber-ui/button/UIButton', <UIButtonSample />],
-    ['ququmber-ui/button/UIButtonGroupSample', <UIButtonGroupSample />],
-    ['ququmber-ui/button/UIDropdownButton', <UIDropdownButtonSample />],
     ['ququmber-ui/button/UIIconButton', <UIIconButtonSample />],
+    ['ququmber-ui/button/UIBigButton', <UIBigButtonSample />],
+    ['ququmber-ui/button/UIButtonGroup', <UIButtonGroupSample />],
+    ['ququmber-ui/button/UIDropdownButton', <UIDropdownButtonSample />],
 
     'FuzzyTime',
     ['ququmber-ui/fuzzyTime/FuzzyTimeButton', <FuzzyTimeButton />],
