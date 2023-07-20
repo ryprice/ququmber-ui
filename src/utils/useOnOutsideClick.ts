@@ -30,7 +30,11 @@ function elContainsUsingFiber(el: Element, maybeChildEl: Element) {
 
   let curFiberNode = maybeChildFiberNode.return;
   while (curFiberNode) {
-    if (curFiberNode === parentFiberNode) {
+    console.log(curFiberNode);
+    // Walk up the react tree and compare to the dom element of the parent
+    // stateNode is the dom element
+    // This seems to work, but comparing the fiber nodes directly does not
+    if (curFiberNode.stateNode === el) {
       return true;
     }
     curFiberNode = curFiberNode.return;
