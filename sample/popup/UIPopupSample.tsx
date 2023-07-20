@@ -22,9 +22,7 @@ class UIPopupSample extends Component<{}, UIPopupSampleState> {
           Show popup
         </UIButton>
       )}
-      renderContent={() => (
-        <div style={{width: '300px', height: '500px'}} />
-      )}
+      contentNode={<div style={{width: '300px', height: '500px'}} />}
     />;
   }
 }

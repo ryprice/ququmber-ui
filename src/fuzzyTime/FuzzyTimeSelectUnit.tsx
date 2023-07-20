@@ -1,4 +1,4 @@
-import {SerializedStyles} from '@emotion/react';
+import {SerializedStyles, css} from '@emotion/react';
 import {size} from 'lodash';
 import * as React from 'react';
 
@@ -67,6 +67,14 @@ export const shouldUnitComponentUpdate = (
   return true;
 };
 
+const styles = {
+  root: css`
+    &:hover:not(.placeholder) {
+      cursor: pointer
+    }
+  `,
+};
+
 class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> {
 
   onClick = () => {
@@ -89,26 +97,14 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
   }
 
   render() {
-    const {time, children, granularity, multiselect, hoverTime, nextRangeStart, css} = this.props;
+    const {
+      time, children, granularity, multiselect, hoverTime,
+      nextRangeStart, css, cssHoverRangeEnd, cssHoverRangeStart
+    } = this.props;
 
-    let className = 'FuzzyTimeSelectUnit';
-    className += unitClassName(this.props);
+    let className = unitClassName(this.props);
     if (this.props.className) {
       className += ' ' + this.props.className;
-    } else {
-      switch (granularity) {
-        case FuzzyGranularity.YEAR:
-          className += ' year';
-          break;
-
-        case FuzzyGranularity.MONTH:
-          className += ' month';
-          break;
-
-        case FuzzyGranularity.DAY:
-          className += ' day';
-          break;
-      }
     }
 
     let name;
@@ -144,14 +140,14 @@ class FuzzyTimeSelectUnit extends React.Component<FuzzyTimeSelectUnitProps, {}> 
 
     return (
       <div
-        css={css}
+        css={Array.isArray(css) ? [styles.root, ...css] : [styles.root, css]}
         className={className}
         onClick={this.onClick}
         onMouseOver={this.onMouseOver}
         onMouseOut={this.onMouseOut}
       >
-        {isHoverRangeStart ? <div className="hoverRangeStart" /> : null}
-        {isHoverRangeEnd ? <div className="hoverRangeEnd" /> : null}
+        {isHoverRangeStart ? <div css={cssHoverRangeStart} /> : null}
+        {isHoverRangeEnd ? <div css={cssHoverRangeEnd} /> : null}
         {children || name}
       </div>
     );
@@ -172,7 +168,9 @@ export type FuzzyTimeSelectUnitProps = {
   style?: Object;
   children?: React.ReactNode;
   className?: string;
-  css?: SerializedStyles;
+  css?: SerializedStyles | SerializedStyles[];
+  cssHoverRangeStart?: SerializedStyles | SerializedStyles[];
+  cssHoverRangeEnd?: SerializedStyles | SerializedStyles[];
 
   onClick: (time: FuzzyTime) => void;
   onMouseOver: (time: FuzzyTime) => void;

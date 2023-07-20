@@ -1,3 +1,5 @@
+import {css} from '@emotion/react';
+import * as Color from 'color';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as ReactVirtualized from 'react-virtualized';
@@ -10,11 +12,107 @@ import {
 import FuzzyTime, {buildFuzzyTime} from 'listlab-api/fuzzyTime/FuzzyTime';
 
 import UIButton from 'ququmber-ui/button/UIButton';
+import Colors from 'ququmber-ui/Colors';
 import FuzzyTimeMonthUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeMonthUnit';
 import {FuzzyTimeSelectUnitProps} from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
 import FuzzyTimeYearUnit from 'ququmber-ui/fuzzyTime/FuzzyTimeYearUnit';
 import Stylings from 'ququmber-ui/Stylings';
 import {weeksInMonth} from 'ququmber-ui/utils/dateUtils';
+
+const styles = {
+  root: css`
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    width: 100%;
+  `,
+  scrollContainer: css`
+    overflow: hidden;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  `,
+  spacer: css`
+    height: 56px;
+  `,
+  viewModeSelector: css`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 20px 12px rgba(255, 255, 255, 1);
+  `,
+  viewModeButton: css`
+    padding: 6px;
+    outline: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: auto;
+    text-align: center;
+    background: none;
+    border-bottom: 1px solid ${Colors.QUIET};
+    border-top: transparent 1px;
+    box-shadow: 0 0 12px rgba(100, 100, 100, .5);
+    flex-basis: 1px;
+
+    &:first-child {
+      border-right: 1px solid ${Colors.QUIET};
+    }
+
+    i {
+      padding-right: 8px;
+    }
+
+    &:active,
+    &:hover {
+      background: ${Colors.OFFWHITE};
+    }
+  `,
+  viewModeButtonSelected: css`
+      border-top: 1px solid ${Colors.QUIET};
+      border-bottom: transparent;
+      box-shadow: none;
+    `,
+  quickOptions: css`
+    display: flex;
+    flex-direction: row;
+    padding: 15px 10px;
+    z-index: 10;
+    position: relative;
+    background: ${Colors.WHITE};
+  `,
+  quickOption: css`
+    padding: 2px 10px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background: transparent;
+    font-size: 1.3em;
+    width: 35px;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: ${Colors.CONTROL_FOCUS};
+    }
+  `,
+  quickOptionSelected: css`
+    background-color: ${Colors.NOTIFY};
+    color: ${Colors.WHITE};
+    border: 1px solid ${Color(Colors.NOTIFY).darken(.1).hex()};
+
+    &:active,
+    &:hover,
+    &:focus {
+      background-color: ${Color(Colors.NOTIFY).darken(.1).hex()};
+    }
+  `,
+};
 
 export enum ViewMode {
   YEARLY,
@@ -172,7 +270,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
   renderViewModeButton(viewMode: ViewMode, text: string, icon: string) {
     return <button
       key={viewMode}
-      className={this.state.viewMode === viewMode ? 'selected' : ''}
+      css={[styles.viewModeButton, this.state.viewMode === viewMode ? styles.viewModeButtonSelected : null]}
       onClick={() => this.setState({viewMode})}
     >
       <i className={icon} />
@@ -193,7 +291,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
 
     return <button
       key={`${time.toString()}-quickoption`}
-      className={`quickOption ${selectedOrRangeSelected ? 'selected' : ''}`}
+      css={[styles.quickOption, selectedOrRangeSelected ? styles.quickOptionSelected : null]}
       onClick={() => this.onQuckOptionClick(time)}
       onMouseOver={() => this.unitOnMouseOver(time)}
       onMouseOut={() => this.unitOnMouseOut()}>
@@ -229,7 +327,7 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
     if (quickOptions.length === 0) {
       return null;
     }
-    return <div className="quickOptions">
+    return <div css={styles.quickOptions}>
       {quickOptions.map(qo => this.renderQuickOption(qo.time, qo.icon))}
       <div style={{flexGrow: 1}} />
       <UIButton
@@ -251,15 +349,15 @@ export class FuzzyTimeSelect extends React.Component<FuzzyTimeSelectProps, Fuzzy
       hoverTime
     };
 
-    return <div className="FuzzyTimeSelect" ref={(ref) => this.rootRef = ref}>
+    return <div css={styles.root} ref={(ref) => this.rootRef = ref}>
       {this.renderQuickOptions()}
-      <div className="viewModeSelector">
+      <div css={styles.viewModeSelector}>
         {this.renderViewModeButton(ViewMode.DAILY, 'calendar', 'qqico qqico-cal-day')}
         {this.renderViewModeButton(ViewMode.YEARLY, 'years', 'qqico qqico-cal-year')}
       </div>
       <ReactVirtualized.List
         key={'virtualScroll' + viewMode}
-        className="scrollContainer"
+        css={styles.scrollContainer}
         width={width}
         height={height}
         rowHeight={this.getRowHeight}

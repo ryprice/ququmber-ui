@@ -1,14 +1,107 @@
+import {css} from '@emotion/react';
+import * as Color from 'color';
 import {times} from 'lodash';
 import * as React from 'react';
 
 import {FuzzyGranularity, FuzzyTime} from 'listlab-api';
 
 import UIIconButton from 'ququmber-ui/button/UIIconButton';
+import Colors from 'ququmber-ui/Colors';
 import FuzzyTimeSelectUnit, {
   FuzzyTimeSelectUnitProps,
   shouldUnitComponentUpdate
 } from 'ququmber-ui/fuzzyTime/FuzzyTimeSelectUnit';
 import {daysInMonth} from 'ququmber-ui/utils/dateUtils';
+
+const hoverRangeArrowSize = '13px';
+
+const styles = {
+  root: css`
+    overflow: auto;
+  `,
+  dayish: css`
+    height: 32px;
+    border: 1px ${Colors.WHITE} solid;
+    border-right: 0;
+    border-bottom: 0;
+    padding-top: 0;
+    box-sizing: border-box;
+    float: left;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-align: center;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &:hover:not(.placeholder),
+    &.hover {
+      background-color: ${Colors.OPTION_HOVER};
+    }
+
+    &.selected {
+      background-color: ${Colors.NOTIFY};
+      color: ${Colors.WHITE};
+
+      &.hover,
+      &:hover {
+        background-color: ${Color(Colors.NOTIFY).lighten(.2).hex()};
+      }
+    }
+  `,
+  hoverRangeStart: css`
+    background: ${Colors.NOTIFY};
+    border: transparent solid ${hoverRangeArrowSize};
+    border-right: ${Colors.NOTIFY} solid ${hoverRangeArrowSize};
+    transform: rotate(45deg);
+    position: absolute;
+    top: -${hoverRangeArrowSize};
+    left: -${hoverRangeArrowSize};
+  `,
+  hoverRangeEnd: css`
+    background: ${Colors.NOTIFY};
+    border: transparent solid ${hoverRangeArrowSize};
+    border-left: ${Colors.NOTIFY} solid ${hoverRangeArrowSize};
+    transform: rotate(45deg);
+    position: absolute;
+    right: -${hoverRangeArrowSize};
+    bottom: -${hoverRangeArrowSize};
+  `,
+  fullWeekButton: css`
+    width: 9%;
+    height: 32px;
+    padding-top: 0;
+    color: ${Colors.QUIET};
+  `,
+  day: css`
+    width: 13%;
+    font-size: 13px;
+
+    p {
+      top: 6px;
+    }
+
+    &:last-child {
+      border-right: 0;
+    }
+
+    &.notChild {
+      visibility: hidden;
+    }
+
+    &.now {
+      color: ${Colors.NOTIFY};
+      font-weight: bold;
+
+      &.selected {
+        color: ${Colors.WHITE};
+      }
+    }
+  `
+};
+
 
 class FuzzyTimeWeekUnit extends React.Component<FuzzyTimeWeekUnitProps, {}> {
 
@@ -60,10 +153,10 @@ class FuzzyTimeWeekUnit extends React.Component<FuzzyTimeWeekUnitProps, {}> {
       return prevDay;
     });
 
-    return <div className="FuzzyTimeWeekUnit">
+    return <div css={styles.root}>
       <div
+        css={[styles.dayish, styles.fullWeekButton]}
         className={
-          'FuzzyTimeSelectUnit fullWeekButton ' +
           ((hoverTime && hoverTime.equals(week)) ? 'hover ' : '') +
           ((selected && week.equals(selected)) ? 'selected ' : '')
         }
@@ -76,11 +169,18 @@ class FuzzyTimeWeekUnit extends React.Component<FuzzyTimeWeekUnitProps, {}> {
         />
       </div>
       {times(placeholderDaysCount, (idx: number) =>
-        <div className="FuzzyTimeSelectUnit placeholder day" key={`${idx}-day-placeholder`} />
+        <div
+          css={[styles.dayish, styles.day]}
+          className="placeholder"
+          key={`${idx}-day-placeholder`}
+        />
       )}
       {days.map(day =>
         <FuzzyTimeSelectUnit
           {...this.props}
+          css={[styles.dayish, styles.day]}
+          cssHoverRangeStart={styles.hoverRangeStart}
+          cssHoverRangeEnd={styles.hoverRangeEnd}
           time={day}
           key={day.getTime().toString()}
           granularity={FuzzyGranularity.DAY}
