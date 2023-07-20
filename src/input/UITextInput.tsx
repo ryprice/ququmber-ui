@@ -2,6 +2,7 @@ import {css} from '@emotion/react';
 import {includes} from 'lodash';
 import * as React from 'react';
 
+import {findDOMNode} from 'react-dom';
 import UILoading from 'ququmber-ui/progress/UILoading';
 import Stylings from 'ququmber-ui/Stylings';
 
@@ -39,7 +40,9 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
   };
 
   componentDidMount() {
-    this.inputEl.focus();
+    if (this.props.autofocus) {
+      setTimeout(() => this.inputEl.focus(), 10);
+    }
   }
 
   onKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -66,6 +69,15 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
     }
   }
 
+  focusAndSelectAll() {
+    this.inputEl.focus();
+    this.inputEl.select();
+  }
+
+  clear() {
+    (findDOMNode(this.inputEl) as HTMLInputElement).value = '';
+  }
+
   render() {
     const {props} = this;
     const inputNode = <input
@@ -78,7 +90,7 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
       onBlur={() => this.onBlur()}
       disabled={props.disabled}
       onChange={props.onChange}
-      autoFocus={props.autofocus} />;
+    />;
 
     if (props.loading == null) {
       return inputNode;

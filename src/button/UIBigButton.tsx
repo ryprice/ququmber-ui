@@ -18,6 +18,10 @@ const styles = {
   `,
   selected: css`
     border-color: ${Colors.NOTIFY};
+
+    &:hover {
+      border-color: ${Colors.NOTIFY_HOVER};
+    }
   `,
 };
 
