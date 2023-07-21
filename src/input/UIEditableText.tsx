@@ -39,6 +39,8 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
     switch (event.charCode) {
       case 13: // enter
         this.onSubmit();
+        this.inputEl.blur();
+        return false;
         break;
       default:
         break;
@@ -51,6 +53,12 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
     onSubmit && onSubmit(this.inputEl.textContent);
     this.setState({value: null});
   }
+
+  onBlur = (e: React.FocusEvent<HTMLParagraphElement>) => {
+    const {onBlur} = this.props;
+    onBlur && onBlur(e);
+    this.onSubmit();
+  };
 
   shouldShowPlaceholder() {
     return this.state.value == null && !this.props.value;
@@ -72,7 +80,7 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
       ref={el => {
         this.inputEl = el;
       }}
-      onBlur={() => this.onSubmit()}
+      onBlur={this.onBlur}
       suppressContentEditableWarning={true}
       onFocus={e => {
         this.setState({value: value ? value : ''});
@@ -92,6 +100,7 @@ export type UIEditableTextProps = {
   onClick?: (e: React.MouseEvent<HTMLParagraphElement>) => void;
   autofocus?: boolean;
   onFocus?: (e: React.FocusEvent<HTMLParagraphElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLParagraphElement>) => void;
   disabled?: boolean;
   css?: SerializedStyles;
 };
