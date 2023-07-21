@@ -7,7 +7,7 @@ import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 const UITag = (props: UITagProps) => {
   const {name, onRemoved, canRemove, outline, strikethrough} = props;
   const rounded = props.rounded === false ? false : true;
-  const color = props.color != null ? props.color : Colors.QUQUMBER.substring(1);
+  const color = props.color != null ? props.color : Colors.QUQUMBER;
   const removeButtonRef = useRef();
 
   const baseStyle = {
@@ -17,15 +17,15 @@ const UITag = (props: UITagProps) => {
 
   const filledStyle = {
     ...baseStyle,
-    background: `#${color}`,
+    background: color,
     border: '0',
     color: isDarkColor(color) ? Colors.WHITE : Colors.BASEFONT,
   };
   const outlinedStyle = {
     ...baseStyle,
     background: 'transparent',
-    border: `1px solid #${color}`,
-    color: `#${color}`,
+    border: `1px solid ${color}`,
+    color,
   };
   const style = outline === true ? outlinedStyle : filledStyle;
 

@@ -26,7 +26,7 @@ const NestingMaskNodeRounded = (props: NestingMaskNodeRoundedProps) => {
   const nestingMaskOutlineStyle: React.CSSProperties  = {
     ...nestingMaskBaseStyle,
     top: '-.05em',
-    border: `.05em solid #${color}`,
+    border: `.05em solid ${color}`,
     borderRight: 0,
   };
 
@@ -68,13 +68,13 @@ const NestingMaskNode = (props: NestingMaskNodeProps) => {
     <div style={{
       ...sharedDiagonalStyle,
       borderWidth: '1.2em .6em 0 0',
-      borderColor: `#${prevColor} transparent transparent transparent`,
+      borderColor: `${prevColor} transparent transparent transparent`,
       left: 0,
     }} />
     <div style={{
       ...sharedDiagonalStyle,
       borderWidth: '0 0 1.2em .6em',
-      borderColor: `transparent transparent #${nextColor} transparent`,
+      borderColor: `transparent transparent ${nextColor} transparent`,
       width: 0,
       right: 0,
     }} />
@@ -112,7 +112,7 @@ const UINestedTag = (props: UINestedTagProps) => {
   };
 
   const colorOrDefault = (c: string) =>
-    c != null ? c : Colors.QUQUMBER.substring(1);
+    c != null ? c : Colors.QUQUMBER;
 
   return <div className="UINestedTag">{
     items.map((item, i) => {
@@ -143,19 +143,19 @@ const UINestedTag = (props: UINestedTagProps) => {
 
       const filledStyle: React.CSSProperties  = {
         ...baseStyle,
-        background: `#${color}`,
+        background: `${color}`,
         border: '1px',
         color: isDarkColor(color) ? Colors.WHITE : Colors.BASEFONT,
       };
       const outlinedStyle: React.CSSProperties  = {
         ...baseStyle,
         background: 'transparent',
-        borderLeft: `1px solid #${color}`,
-        borderTop: `1px solid #${color}`,
-        borderBottom: `1px solid #${color}`,
-        borderRight: isLast ? `1px solid #${color}` : '',
+        borderLeft: `1px solid ${color}`,
+        borderTop: `1px solid ${color}`,
+        borderBottom: `1px solid ${color}`,
+        borderRight: isLast ? `1px solid ${color}` : '',
         marginLeft: isLast ? '0' : '',
-        color: `#${color}`
+        color,
       };
       const style = outline === true ? outlinedStyle : filledStyle;
 
