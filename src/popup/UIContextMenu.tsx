@@ -50,7 +50,10 @@ const UIContextMenu = (props: UIContextMenuProps) => {
       if (option === MENU_BREAK) {
         return <div key={index} css={styles.break} />;
       }
-      return <button key={index} css={styles.option} onClick={() => onClickOptionAndClose(index)}>
+      return <button
+        disabled={option.disabled}
+        key={index} css={styles.option}
+        onClick={() => !option.disabled && onClickOptionAndClose(index)}>
         <i className={option.icon} />
         &nbsp;&nbsp;
         {option.name}
@@ -63,6 +66,7 @@ export type UIContextMenuOption = {
   name: string;
   icon: string;
   onClick: () => void;
+  disabled?: boolean;
 };
 
 export const MENU_BREAK = 'MENU_BREAK';
