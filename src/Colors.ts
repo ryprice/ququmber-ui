@@ -25,6 +25,7 @@ enum Colors {
   GO = '#32A150',
   NOTIFY = '#0095FF',
   NOTIFY_HOVER = '#0077CC',
+  OVERDUE = '#7E00FE',
 
   LIGHTYELLOW = '#ffdf82',
   YELLOW = '#FFBF02',
