@@ -102,7 +102,7 @@ export type UIEditableTextProps = {
   onFocus?: (e: React.FocusEvent<HTMLParagraphElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLParagraphElement>) => void;
   disabled?: boolean;
-  css?: SerializedStyles;
+  css?: SerializedStyles | SerializedStyles[];
 };
 
 export type UIEditableTextState = {

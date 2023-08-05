@@ -1,12 +1,9 @@
 import {css} from '@emotion/react';
 
-import Colors from 'ququmber-ui/Colors';
-
 const styles = {
   root: css`
-    background: ${Colors.CONTROL};
-    padding: .1em .4em;
-    border-bottom: 1px #888888 solid;
+    padding: .1em .1em;
+    font-weight: bold;
   `
 };
 

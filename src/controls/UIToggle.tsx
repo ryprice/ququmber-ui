@@ -1,5 +1,6 @@
 import {css} from '@emotion/react';
 import {useMemo} from 'react';
+
 import Colors from 'ququmber-ui/Colors';
 import {TRANSITION_DEFAULT} from 'ququmber-ui/Constants';
 import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
@@ -38,7 +39,7 @@ const styles = {
     visibility: hidden;
     margin: 0;
     display: none;
-    
+
     &:checked + label {
       background: ${Colors.CONTROL_SELECTED};
     }
@@ -70,7 +71,7 @@ const UIToggle = (props: UIToggleProps) => {
   }, []);
   const id = 'UIToggle-' + idIndex;
 
-  return <span css={styles.root}>
+  return <span>
     <input
       css={styles.input}
       type="checkbox"

@@ -20,7 +20,7 @@ function getFiberNodeFromEl(el: Element) {
 
 // Determines whether el contains maybeChildEl using React Fiber, rather than the DOM API.
 // This is necessary because the DOM API doesn't work for React portals.
-function elContainsUsingFiber(el: Element, maybeChildEl: Element) {
+export function elContainsUsingFiber(el: Element, maybeChildEl: Element) {
   const parentFiberNode = getFiberNodeFromEl(el);
   const maybeChildFiberNode = getFiberNodeFromEl(maybeChildEl);
 

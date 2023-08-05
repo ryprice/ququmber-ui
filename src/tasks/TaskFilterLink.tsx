@@ -23,10 +23,11 @@ type TaskFilterLinkProps = {
   href?: string;
   onClick?: (e: React.MouseEvent) => void;
   children?: React.ReactNode;
+  target?: '_blank' | '_self' | '_parent' | '_top';
 };
 
 const TaskFilterLink = React.forwardRef<HTMLAnchorElement, TaskFilterLinkProps>((props, ref) => {
-  const {children, href} = props;
+  const {children, href, target} = props;
 
   const onClick = (event: React.MouseEvent<HTMLElement>) => {
     if (!(event.ctrlKey || event.metaKey) || !href) {
@@ -39,6 +40,7 @@ const TaskFilterLink = React.forwardRef<HTMLAnchorElement, TaskFilterLinkProps>(
     ref={ref}
     css={styles.root}
     href={href}
+    target={target}
     onClick={onClick}>
     {children ? children : ''}
   </a>;
