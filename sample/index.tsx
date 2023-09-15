@@ -1,5 +1,6 @@
 import {useCallback, useEffect, useState} from 'react';
 import {DndProvider} from 'react-dnd';
+import {css} from '@emotion/react';
 import {HTML5Backend} from 'react-dnd-html5-backend';
 import {createRoot} from 'react-dom/client';
 
@@ -44,6 +45,45 @@ import UITooltipSample from './popup/UITooltipSample';
 import ShimmerSample from './progress/ShimmerSample';
 import UIProgressBarSample from './progress/UIProgressBarSample';
 
+import SideNav, {SideNavSectionConfig} from './SideNav';
+
+const styles = {
+  mainContent: css`
+    display: flex;
+    flex-direction: row;
+    top: 40px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+  `,
+  topbar: css`
+    background: ${Colors.QUQUMBER};
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    z-index: 1001;
+    top: 0;
+    left: 0;
+    color: ${Colors.BASEFONT_DARK};
+    display: flex;
+
+    #logo {
+      height: 24px;
+      float: left;
+      flex-shrink: 0;
+      margin-top: 8px;
+      margin-left: 18px;
+      margin-right: 0;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  `,
+};
+
 const RootComponent = () => {
   const [curNav, setCurNav] = useState<string>();
 
@@ -58,7 +98,7 @@ const RootComponent = () => {
   }, []);
 
   /* eslint-disable react/jsx-key */
-  const sections = [
+  const sections: SideNavSectionConfig = [
     'Chips',
     ['ququmber-ui/chip/UITag', <UITagSample />],
     ['ququmber-ui/chip/UIBadge', <div>
@@ -126,8 +166,7 @@ const RootComponent = () => {
   const curSection = sections.find(s => s[0] === curNav);
 
   const [filter, setFilter] = useState<string>(null);
-  const onFilterKeyPress = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const nextFilter = event.target.value;
+  const onFilterKeyPress = useCallback((nextFilter: string) => {
     if (nextFilter != null && nextFilter.length > 0) {
       setFilter(nextFilter);
     } else {
@@ -150,25 +189,11 @@ const RootComponent = () => {
   });
 
   return <div>
-    <div className="Topbar">
+    <div css={styles.topbar}>
       <img id="logo" src="https://static.listlab.io/images/logo-white.svg" />
     </div>
-    <div className="mainContent">
-      <div className="sideNav">
-        <UITextInput placeholder="filter" onChange={onFilterKeyPress} />
-        {filteredSections.map((s) => {
-          if (typeof s === 'string') {
-            return <p className="header" key={s}>{s}</p>;
-          } else {
-            const pathParts = (s[0] as string).split('/');
-
-            return <p key={pathParts[pathParts.length - 1]}><a href={`#${s[0]}`}>
-              {pathParts[pathParts.length - 1]}
-            </a></p>;
-          }
-        })}
-      </div>
-
+    <div css={styles.mainContent}>
+      <SideNav sections={filteredSections} onFilterKeyPress={onFilterKeyPress} />
       <div style={{flexGrow: 1}}>
         {curSection ? <ComponentSection
           name={curSection[0] as string}>

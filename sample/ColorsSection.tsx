@@ -1,17 +1,60 @@
+import {css} from '@emotion/react';
 import {map, pick} from 'lodash';
 
 import Colors from 'ququmber-ui/Colors';
 import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
 
+const styles = {
+  header: css`
+    font-size: 20px;
+  `,
+  swatch: css`
+    width: 200px;
+    height: 200px;
+    position: relative;
+    float: left;
+    border: 1px #eeeeee solid;
+    margin: 0 40px 40px 0;
+  `,
+  name: css`
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    color: ${Colors.WHITE};
+    font-size: 14px;
+    opacity: .8;
+
+    &.light {
+      color: ${Colors.BLACK};
+    }
+  `,
+  hex: css`
+    position: absolute;
+    left: 20px;
+    bottom: 40px;
+    color: ${Colors.WHITE};
+    font-size: 20px;
+
+    &.light {
+      color: ${Colors.BLACK};
+    }
+  `,
+  colorsSubsection: css`
+    clear: both;
+    overflow: auto;
+    margin-top: 60px;
+  `,
+};
+
 const ColorsSubsection = (props: ColorsSubsectionProps) =>
-  <div className="ColorSubsection">
-    <p className="header">{props.name}</p>
-    <div className="swatches">
+  <div css={styles.colorsSubsection}>
+    <p css={styles.header}>{props.name}</p>
+    <div>
       {map(props.colors, (hex, name) => {
         const isDark = isDarkColor(hex.substring(1, hex.length));
-        return <div className="swatch" style={{background: hex}}>
-          <p className={`name ${isDark ? '' : 'light'}`}>{name}</p>
-          <p className={`hex ${isDark ? '' : 'light'}`}>{hex}</p>
+        return <div css={styles.swatch} style={{background: hex}}>
+          <p css={styles.name} className={`${isDark ? '' : 'light'}`}>{name}</p>
+          <p css={styles.hex} className={`${isDark ? '' : 'light'}`}>{hex}</p>
         </div>;
       })}
     </div>
@@ -23,7 +66,7 @@ type ColorsSubsectionProps = {
 };
 
 const ColorsSection = () =>
-  <div className="ColorSection">
+  <div>
     <ColorsSubsection name="Controls" colors={pick(Colors, [
       'CONTROL',
       'CONTROL_HOVER',
