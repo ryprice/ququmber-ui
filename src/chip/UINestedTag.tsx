@@ -1,9 +1,31 @@
+import {css} from '@emotion/react';
 import * as React from 'react';
 import {useRef} from 'react';
 import {findDOMNode} from 'react-dom';
 
+import {styles as UITagStyles} from 'ququmber-ui/chip/UITag';
 import Colors from 'ququmber-ui/Colors';
 import {isDarkColor} from 'ququmber-ui/utils/colorUtils';
+
+const styles = {
+  lastItem: css`
+    margin: .1em 0;
+  `,
+  item: css`
+    margin: .1em 0;
+    padding: .1em 0 .1em .7em;
+    display: inline-block;
+    line-height: 1em;
+    position: relative;
+    padding-left: .7em;
+  `,
+  rounded: css`
+    border-radius: .25em;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  `,
+  canRemove: UITagStyles.canRemove,
+};
 
 const NestingMaskNodeRounded = (props: NestingMaskNodeRoundedProps) => {
   const {color, outline, rounded} = props;
@@ -94,7 +116,8 @@ const UINestedTag = (props: UINestedTagProps) => {
   const removeButton = (
     <button
       ref={removeButtonRef}
-      className="remove"
+      css={UITagStyles.removeButton}
+      className="removeButton"
       onClick={onRemoved ? onRemoved : () => {}}>
       <span className="octicon octicon-x" />
     </button>
@@ -124,10 +147,11 @@ const UINestedTag = (props: UINestedTagProps) => {
       const nextItem = isLast ? null : items[i + 1];
       const prevItem = isFirst ? null : items[i - 1];
 
-      const className =
-        (isLast ? 'UITag' : 'UINestedTagItem') + ' ' +
-        (rounded ? 'rounded ' : '') +
-        ((canRemove && isLast) ? 'canRemove ' : '');
+      const css = [
+        ...(isLast ? [styles.lastItem, UITagStyles.root] : [styles.item]),
+        rounded ? styles.rounded : null,
+        (canRemove && isLast) ? styles.canRemove : null,
+      ];
 
       const color = colorOrDefault(item.color);
       const prevColor = prevItem ? colorOrDefault(prevItem.color) : null;
@@ -155,14 +179,14 @@ const UINestedTag = (props: UINestedTagProps) => {
         borderBottom: `1px solid ${color}`,
         borderRight: isLast ? `1px solid ${color}` : '',
         marginLeft: isLast ? '0' : '',
-        color,
+        color
       };
       const style = outline === true ? outlinedStyle : filledStyle;
 
       const anchorInner = <div
         key={item.id}
         onClick={(e) => onClick(e, i)}
-        className={className}
+        css={css}
         style={style}>
         {!isLast && rounded && <NestingMaskNodeRounded outline={outline} color={nextColor} rounded={rounded} />}
         {!isFirst && !rounded && <NestingMaskNode prevColor={prevColor} nextColor={color} />}
