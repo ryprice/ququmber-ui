@@ -1,4 +1,4 @@
-import {css} from '@emotion/react';
+import {Global, css} from '@emotion/react';
 import * as React from 'react';
 import {useCallback, useRef} from 'react';
 import * as ReactDOM from 'react-dom';
@@ -8,29 +8,29 @@ import UIMountTransition from 'ququmber-ui/utils/UIMountTransition';
 
 const styles = {
   root: css`
-position: fixed;
-width: 100%;
-height: 100%;
-z-index: 1000;
-top: 0;
-left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    top: 0;
+    left: 0;
   `,
   background: css`
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: ${Colors.BLACK};
-  opacity: 0.4;
-  z-index: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: ${Colors.BLACK};
+    opacity: 0.4;
+    z-index: 0;
   `,
   content: css`
-  z-index: 1;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `,
 };
 
@@ -45,6 +45,34 @@ const UIOverlayPortal = (props: UIOverlayProps) => {
   const classNamespace = props.classNamespace || '';
 
   return <span className={classNamespace}>
+    <Global styles={css`
+      .UIOverlayTransition-appear {
+        opacity: 0;
+      }
+
+      .UIOverlayTransition-appear.UIOverlayTransition-appear-active {
+        opacity: 1;
+        transition: .2s;
+      }
+
+      .UIOverlayTransition-enter {
+        opacity: 0;
+      }
+
+      .UIOverlayTransition-enter.UIOverlayTransition-enter-active {
+        opacity: 1;
+        transition: .2s;
+      }
+
+      .UIOverlayTransition-leave {
+        opacity: 1;
+      }
+
+      .UIOverlayTransition-leave.UIOverlayTransition-leave-active {
+        opacity: 0;
+        transition: .2s;
+      }
+    `} />
     <UIMountTransition className="UIOverlayTransition" mounted={props.open}>
       <div css={styles.root}>
         <div
