@@ -85,7 +85,7 @@ const UITag = (props: UITagProps) => {
     }
   };
 
-  const className = 'UITag ' + (rounded ? 'rounded ' : '') + (canRemove ? 'canRemove ' : '');
+  const className = 'UITag ' + (rounded ? 'rounded ' : '') + (canRemove ? 'canRemove ' : '') + (props.className || '');
 
   return <div
     css={[styles.root, rounded ? styles.rounded : null, canRemove ? styles.canRemove : null]}
@@ -106,6 +106,7 @@ export type UITagProps = {
   outline?: boolean;
   rounded?: boolean;
   strikethrough?: boolean;
+  className?: string;
 };
 
 export default UITag;

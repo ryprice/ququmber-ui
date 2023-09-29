@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import {css} from '@emotion/react';
 import Colors from 'ququmber-ui/Colors';
 
 const styles = {
@@ -27,7 +27,7 @@ const styles = {
     height: 2px;
     width: 130px;
   `
-}
+};
 
 const UIStepProgressIndicator = (props: UIStepProgressIndicatorProps) => {
   const {current, steps, onSelectStep} = props;

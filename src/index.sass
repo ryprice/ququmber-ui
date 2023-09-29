@@ -1,53 +1,8 @@
 @import './tokens'
 
-@import './text'
-
 @import './button/UIButton'
 @import './button/UIButtonGroup'
 @import './button/UIIconButton'
-
-@import './input/UIAbstractInput'
-@import './input/UICopyInput'
-@import './input/UIEditableText'
-@import './input/UIMultiInput'
-@import './input/UISelect'
-@import './input/UITextInput'
-
-
-body
-  background-color: $color-offwhite
-  font-family: $font-stack
-  font-size: 14px
-  font-weight: normal
-  line-height: 1.2em
-
-button
-  border: 0
-  background: $color-control
-  padding: .35em
-  cursor: pointer
-  outline: none
-  transition: $transition-default
-  font-size: 14px
-
-  &:disabled
-    cursor: default
-
-  &:focus
-    background: $color-control-focus
-
-input,
-textarea
-  border: 0
-  background: $color-control
-  outline: none
-  font-size: 14px
-  border-radius: $border-radius-input
-  transition: $transition-default
-
-  &:focus
-    background: $color-control-focus
-
 
 .tether-element
   position: absolute

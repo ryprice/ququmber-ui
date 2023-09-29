@@ -3,10 +3,15 @@ import {includes} from 'lodash';
 import * as React from 'react';
 
 import {findDOMNode} from 'react-dom';
+import {UIAbstractInputStyle} from 'ququmber-ui/input/UIAbstractInput';
 import UILoading from 'ququmber-ui/progress/UILoading';
 import Stylings from 'ququmber-ui/Stylings';
 
 const styles = {
+  root: css`
+    padding: .3em;
+    box-sizing: border-box;
+  `,
   inputContainer: css`
     position: relative;
   `,
@@ -82,7 +87,8 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
     const {props} = this;
     const inputNode = <input
       style={props.style}
-      className={`UITextInput styling-${props.styling} ${props.className}`}
+      css={[UIAbstractInputStyle, styles.root]}
+      className={`styling-${props.styling} ${props.className}`}
       onKeyPress={(e) => this.onKeyPress(e)}
       ref={(el) => this.inputEl = el}
       defaultValue={props.value}

@@ -1,5 +1,31 @@
-import {SerializedStyles} from '@emotion/react';
+import {css} from '@emotion/react';
 import * as React from 'react';
+import Colors from 'ququmber-ui/Colors';
+import {UIAbstractInputStyle} from 'ququmber-ui/input/UIAbstractInput';
+
+const styles = {
+  root: css`
+    border: 0;
+    outline: 0;
+    flex-grow: 1;
+    padding: .4em 0;
+    background: transparent;
+    overflow: hidden;
+
+    &:hover {
+      background: ${Colors.CONTROL};
+    }
+
+    &:focus {
+      background: ${Colors.CONTROL_FOCUS};
+    }
+
+    &.placeholder {
+      color: ${Colors.QUIET};
+      font-style: italic;
+    }
+  `
+};
 
 export class UIEditableText extends React.Component<UIEditableTextProps, UIEditableTextState> {
 
@@ -65,16 +91,13 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
   }
 
   render() {
-    const {placeholder, value, onClick, onFocus, className, disabled, css} = this.props;
-    const renderedClassName = (
-      `UIEditableText ${className} ` +
-      (this.shouldShowPlaceholder() ? 'placeholder' : '')
-    );
+    const {placeholder, value, onClick, onFocus, className, disabled} = this.props;
+    const renderedClassName = `${className} ` + (this.shouldShowPlaceholder() ? 'placeholder' : '');
 
     return <p
+      css={[UIAbstractInputStyle, styles.root]}
       contentEditable={disabled ? false : true}
       className={renderedClassName}
-      css={css}
       onKeyUp={this.onKeyUp}
       onKeyPress={this.onKeyPress}
       ref={el => {
@@ -102,7 +125,6 @@ export type UIEditableTextProps = {
   onFocus?: (e: React.FocusEvent<HTMLParagraphElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLParagraphElement>) => void;
   disabled?: boolean;
-  css?: SerializedStyles | SerializedStyles[];
 };
 
 export type UIEditableTextState = {

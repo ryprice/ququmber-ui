@@ -1,11 +1,65 @@
-import {SerializedStyles} from '@emotion/react';
+import {SerializedStyles, css} from '@emotion/react';
 import {debounce, filter, find, includes, map} from 'lodash';
 import {MutableRefObject, Component} from 'react';
 import * as ReactDOM from 'react-dom';
 import TetherComponent from 'react-tether';
 
 import UITag from 'ququmber-ui/chip/UITag';
+import Colors from 'ququmber-ui/Colors';
+import {UIAbstractInputStyle} from 'ququmber-ui/input/UIAbstractInput';
 import UISelectDropdown from 'ququmber-ui/input/UISelectDropdown';
+
+const styles = {
+  root: css`
+    position: relative;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: .3em;
+  `,
+  tag: css`
+    flex-shrink: 0;
+    flex-grow: 0;
+    float: none;
+  `,
+  input: css`
+    border: 0;
+    padding: .1em;
+    background: transparent;
+    outline: 0;
+    flex-grow: 1;
+    width: 60px;
+    display: flex;
+    flex-shrink: 1;
+    cursor: pointer;
+
+    &:focus {
+      cursor: text;
+    }
+
+    &::placeholder {
+      color: ${Colors.QUIET};
+    }
+  `,
+  downArrow: css`
+    align-self: center;
+  `,
+  asControl: css`
+    background: ${Colors.CONTROL};
+  `,
+  asInline: css`
+    background: ${Colors.CONTROL};
+
+    .downArrow {
+      display: none;
+    }
+  `,
+  dropdown: css`
+    min-width: 300px;
+    display: block;
+  `,
+};
 
 export class UIMultiInput extends Component<UIMultiInputProps, UIMultiInputState> {
 
@@ -132,6 +186,7 @@ export class UIMultiInput extends Component<UIMultiInputProps, UIMultiInputState
 
   private readonly defaultRenderItem = (option: UIMultiInputOption) => {
     return <UITag
+      css={styles.tag}
       name={option.name}
       onRemoved={() => this.onOptionRemoved(option.value)}
       canRemove={option.canRemove}
@@ -171,9 +226,12 @@ export class UIMultiInput extends Component<UIMultiInputProps, UIMultiInputState
     const filteredUnselectedOptions = this.getFilteredUnselectedOptions();
 
     const input = <div
-      className={
-        `UIMultiInput ${className || ''} ${dropdownOpen ? 'focus' : ''} ${asInline ? 'asInline' : 'asControl'}`
-      }
+      css={[
+        UIAbstractInputStyle,
+        styles.root,
+        asInline ? styles.asInline : styles.asControl,
+      ]}
+      className={className}
       style={transparentBackground ? {
         background: 'transparent',
         marginRight: '3px',
@@ -183,16 +241,17 @@ export class UIMultiInput extends Component<UIMultiInputProps, UIMultiInputState
         renderItem ? renderItem(option, true) : this.defaultRenderItem(option))
       }
       <input
+        css={styles.input}
         disabled={disabled}
+        style={transparentBackground ? {background: 'transparent'} : {}}
         type="text"
-        className="UIInput"
         placeholder={placeholder}
         onClick={() => this.setState({dropdownOpen: true})}
         onFocus={() => this.setState({dropdownOpen: true})}
         onKeyUp={(e: any) => this.onKeyUp(e)}
         ref={(el: any) => this.receiveTagsInputEl(el)}
       />
-      <span className="octicon octicon-chevron-down down-arrow" key="down-arrow" />
+      <span className="octicon octicon-chevron-down downArrow" css={styles.downArrow} key="down-arrow" />
     </div>;
 
     return <div>
@@ -206,7 +265,7 @@ export class UIMultiInput extends Component<UIMultiInputProps, UIMultiInputState
         renderElement={(tetherRef: MutableRefObject<HTMLDivElement>) => (
           <UISelectDropdown
             ref={tetherRef}
-            className="UIMultiInputDropdown"
+            css={styles.dropdown}
             options={filteredUnselectedOptions.slice(0, 10).map(option => ({
               ...option,
               name: renderItem ? renderItem(option, false) : option.name

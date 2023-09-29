@@ -1,11 +1,50 @@
+import {css} from '@emotion/react';
 import {find} from 'lodash';
 import {useCallback, useMemo, useRef, useState, MutableRefObject} from 'react';
 import {mergeRefs} from 'react-merge-refs';
 import TetherComponent from 'react-tether';
 
+import Colors from 'ququmber-ui/Colors';
+import {UIAbstractInputStyle} from 'ququmber-ui/input/UIAbstractInput';
 import UISelectDropdown, {UISelectDropdownOption} from 'ququmber-ui/input/UISelectDropdown';
 import Stylings from 'ququmber-ui/Stylings';
 import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
+
+const styles = {
+  root: css`
+    position: relative;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    padding: .3em;
+    cursor: pointer;
+    align-items: center;
+  `,
+  selectedOptions: css`
+    flex-grow: 1;
+  `,
+  downArrow: css`
+    height: 100%;
+    vertical-align: middle;
+    padding-left: 10px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    float: right;
+    display: flex;
+  `,
+  dropdown: css`
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+  `,
+  searchInput: css`
+    margin: 10px;
+    padding: 5px;
+  `,
+  just: css`
+    color: ${Colors.QUIET};
+  `,
+};
 
 export const UISelect = (props: UISelectProps) => {
   const {
@@ -53,9 +92,9 @@ export const UISelect = (props: UISelectProps) => {
 
   const renderDefaultFreeformItem = useCallback(() => (
     <span>
-      <span className="just">Just '</span>
+      <span css={styles.just}>Just '</span>
       {currentQuery || freeformValue}
-      <span className="just">'</span>
+      <span css={styles.just}>'</span>
     </span>
   ), [freeformValue, currentQuery]);
 
@@ -127,28 +166,29 @@ export const UISelect = (props: UISelectProps) => {
   const selectedOption = foundOption || freeformOption || valueOnlyOption;
 
   const className =
-    `UISelect ${propsClassName || ''} ` +
+    `${propsClassName || ''} ` +
     `${dropdownOpen ? 'focus' : ''} ` +
     (styling ? `styling-${styling}` : '');
 
   const input = <div
+    css={[UIAbstractInputStyle, styles.root]}
     role="button"
     onClick={openDropdown}
     onKeyUp={onKeyUp}
     className={className}>
-    <span className="selectedOptions">{renderItem ? renderItem(selectedOption, true) : selectedOption.name}</span>
-    <span className="octicon octicon-chevron-down down-arrow" key="down-arrow" />
+    <span css={styles.selectedOptions}>{renderItem ? renderItem(selectedOption, true) : selectedOption.name}</span>
+    <span className="octicon octicon-chevron-down" css={styles.downArrow} key="down-arrow" />
   </div>;
 
   const searchInput = <input
-    className="searchInput"
+    css={styles.searchInput}
     onKeyUp={onKeyUp}
     ref={searchInputRef}
     placeholder="Search"
   />;
 
   const renderDropdownContents = (children: React.ReactChild[]) => {
-    const content = <div className="UISelectDropdown">
+    const content = <div css={styles.dropdown}>
       {isSearchable ? searchInput : null}
       {children}
     </div>;
@@ -169,7 +209,7 @@ export const UISelect = (props: UISelectProps) => {
       renderElement={(tetherRef: MutableRefObject<HTMLDivElement>) => (
         <div ref={mergeRefs([dropdownRef, tetherRef])}>
           <UISelectDropdown
-            className="UISelectDropdown"
+            css={styles.dropdown}
             options={optionsWithRenderedName}
             hoverIndex={hoverIndex}
             onSelect={onSelect}
