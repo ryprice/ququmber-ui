@@ -10,6 +10,7 @@ import UICheckbox from 'ququmber-ui/controls/UICheckbox';
 import UICopyInput from 'ququmber-ui/input/UICopyInput';
 import UIEditableText from 'ququmber-ui/input/UIEditableText';
 import UITextInput from 'ququmber-ui/input/UITextInput';
+import QuqumberUIGlobalStyles from 'ququmber-ui/QuqumberUIGlobalStyles';
 
 import FuzzyTimeButton from 'ququmber-ui/fuzzyTime/FuzzyTimeButton';
 
@@ -189,6 +190,7 @@ const RootComponent = () => {
   });
 
   return <div>
+    <QuqumberUIGlobalStyles />
     <div css={styles.topbar}>
       <img id="logo" src="https://static.listlab.io/images/logo-white.svg" />
     </div>

@@ -1,9 +1,21 @@
 import {Global, css} from '@emotion/react';
 import Colors from 'ququmber-ui/Colors';
-import {BORDER_RADIUS_INPUT, TRANSITION_DEFAULT} from 'ququmber-ui/Constants';
+import {BORDER_RADIUS_INPUT, FONT_STACK, TRANSITION_DEFAULT} from 'ququmber-ui/Constants';
 
 const QuqumberUIGlobalStyles = () => {
   return <Global styles={css`
+    body {
+      background-color: ${Colors.OFFWHITE};
+      font-family: ${FONT_STACK};
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.2em;
+    }
+
+    .qqico {
+      font-size: 1.2em;
+    }
+
     button {
       border: 0;
       background: ${Colors.CONTROL};
@@ -74,6 +86,12 @@ const QuqumberUIGlobalStyles = () => {
       &:visited {
         color: ${Colors.NOTIFY};
       }
+    }
+
+    .tether-element {
+      position: absolute;
+      z-index: 10000;
+      display: block;
     }
   `} />;
 };

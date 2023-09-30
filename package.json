@@ -34,10 +34,10 @@
     "webpack-dev-server": "^3.7.2"
   },
   "scripts": {
-    "build": "tsc -d --declarationDir lib --outDir lib && node-sass --include-path src src/index.sass dist/ququmber-ui.css && npm run lint && cp src/tokens.sass lib/tokens.sass",
+    "build": "tsc -d --declarationDir lib --outDir lib && npm run lint",
     "build-icons": "node ./tools/generate-icons.js",
     "sample": "webpack serve --config sample/webpack.config.js",
-    "lint": "eslint src/*.{ts,tsx} src/**/*.{ts,tsx} sample/*.{ts,tsx} sample/**/*.{ts,tsx} --fix --no-error-on-unmatched-pattern && stylelint src/*.{sass,tsx,ts} src/**/*.{sass,tsx,ts}"
+    "lint": "eslint src/*.{ts,tsx} src/**/*.{ts,tsx} sample/*.{ts,tsx} sample/**/*.{ts,tsx} --fix --no-error-on-unmatched-pattern && stylelint src/*.{tsx,ts} src/**/*.{tsx,ts}"
   },
   "repository": {
     "type": "git",

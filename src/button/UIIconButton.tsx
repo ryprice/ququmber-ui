@@ -1,12 +1,118 @@
-import {SerializedStyles} from '@emotion/react';
+import {css} from '@emotion/react';
+import * as Color from 'color';
 import {MutableRefObject, useCallback, useState, forwardRef} from 'react';
 import TetherComponent from 'react-tether';
 
+import Colors from 'ququmber-ui/Colors';
 import Stylings from 'ququmber-ui/Stylings';
 import useDelayedMouseHover from 'ququmber-ui/utils/useDelayedMouseHover';
 
+
+const styles = {
+  root: css`
+    background: transparent;
+    border: 0;
+    font-size: 1em;
+
+    i {
+      margin: 0;
+      display: flex;
+    }
+
+    &:hover,
+    &:hover>i {
+      background: transparent;
+    }
+
+    &:active,
+    &:active>i {
+      background: transparent;
+    }
+    
+    &:focus,
+    &:focus>i {
+      background: transparent;
+    }
+
+    &.styling-control {
+      color: ${Colors.QUQUMBER};
+      &:hover,
+      &:hover>i {
+        color: ${Color(Colors.QUQUMBER).lighten(.2).hex()};
+      }
+
+      &:active,
+      &:active>i {
+        color: ${Colors.QUQUMBER};
+      }
+
+      &:focus,
+      &:focus>i {
+        color: ${Color(Colors.QUQUMBER).lighten(.2).hex()};
+      }
+    }
+
+    &.styling-notify {
+      color: ${Colors.NOTIFY};
+
+      &:hover,
+      &:hover>i {
+        color: ${Color(Colors.NOTIFY).lighten(.2).hex()};
+      }
+
+      &:active,
+      &:active>i {
+        color: ${Colors.NOTIFY};
+      }
+
+      &:focus,
+      &:focus>i {
+        color: ${Color(Colors.NOTIFY).lighten(.2).hex()};
+      }
+    }
+
+    &.styling-red {
+      color: ${Colors.RED};
+
+      &:hover,
+      &:hover>i {
+        color: ${Color(Colors.RED).lighten(.2).hex()};
+      }
+
+      &:active,
+      &:active>i {
+        color: ${Colors.RED};
+      }
+
+      &:focus,
+      &:focus>i {
+        color: ${Color(Colors.RED).lighten(.2).hex()};
+      }
+    }
+
+    &.styling-control-dark {
+      color: ${Colors.BASEFONT_DARK};
+
+      &:hover,
+      &:hover>i {
+        color: ${Color(Colors.BASEFONT_DARK).lighten(.2).hex()};
+      }
+
+      &:active,
+      &:active>i {
+        color: ${Colors.BASEFONT_DARK};
+      }
+
+      &:focus,
+      &:focus>i {
+        color: ${Color(Colors.BASEFONT_DARK).lighten(.2).hex()};
+      }
+    }
+  `,
+};
+
 const UIIconButton = forwardRef<HTMLSpanElement, UIIconButtonProps>((props: UIIconButtonProps, ref) => {
-  const {className, onClick, disabled, icon, styling, style, css, tooltip} = props;
+  const {className, onClick, disabled, icon, styling, style, tooltip} = props;
   const [showTooltip ,setShowTooltip] = useState(false);
 
   const setShowTooltipIfEnabled = useCallback((v: boolean) => {
@@ -14,15 +120,6 @@ const UIIconButton = forwardRef<HTMLSpanElement, UIIconButtonProps>((props: UIIc
   }, [tooltip]);
   const [onMouseOver, onMouseOut] = useDelayedMouseHover(setShowTooltipIfEnabled, 300, 0);
   const buttonWithMaybeTooltipProps = tooltip ? {onMouseOver, onMouseOut} : {};
-  const button = <button
-    style={style}
-    css={css}
-    className={`UIIconButton styling-${styling} ${className}`}
-    onClick={onClick}
-    disabled={disabled}
-    {...buttonWithMaybeTooltipProps}>
-    <i className={icon} />
-  </button>;
 
   const renderTooltip = (tetherRef: MutableRefObject<HTMLDivElement>) => (
     <div
@@ -37,17 +134,27 @@ const UIIconButton = forwardRef<HTMLSpanElement, UIIconButtonProps>((props: UIIc
     </div>
   );
 
-  return <span ref={ref}>
-    {button}
-    {showTooltip && <TetherComponent
-      attachment="top center"
-      targetAttachment="bottom center"
-      renderTarget={(tetherRef: MutableRefObject<HTMLDivElement>) => (
-        <div ref={tetherRef} style={{height: 0}} />
-      )}
-      renderElement={renderTooltip}
-    />}
-  </span>;
+  return (
+    <span ref={ref}>
+      <button
+        style={style}
+        css={styles.root}
+        className={`styling-${styling} ${className || ''}`}
+        onClick={onClick}
+        disabled={disabled}
+        {...buttonWithMaybeTooltipProps}>
+        <i className={icon} />
+      </button>
+      {showTooltip && <TetherComponent
+        attachment="top center"
+        targetAttachment="bottom center"
+        renderTarget={(tetherRef: MutableRefObject<HTMLDivElement>) => (
+          <div ref={tetherRef} style={{height: 0}} />
+        )}
+        renderElement={renderTooltip}
+      />}
+    </span>
+  );
 });
 
 UIIconButton.defaultProps = {
@@ -64,7 +171,6 @@ export type UIIconButtonProps = {
   tooltip?: string;
   styling?: Stylings;
   style?: object;
-  css?: SerializedStyles;
 };
 
 export default UIIconButton;

@@ -62,7 +62,7 @@ const styles = {
     padding: 0 .5em;
     letter-spacing: .1em;
     font-size: 18px;
-    border: 1px solid $color-white;
+    border: 1px solid ${Colors.WHITE};
     box-sizing: border-box;
     margin-left: 10px;
   `,

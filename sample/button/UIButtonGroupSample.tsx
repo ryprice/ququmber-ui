@@ -1,4 +1,5 @@
-import UIButtonGroup, {UIButtonGroupButton} from 'ququmber-ui/button/UIButtonGroup';
+import UIButtonGroup from 'ququmber-ui/button/UIButtonGroup';
+import UIButtonGroupButton from 'ququmber-ui/button/UIButtonGroupButton';
 import Editor from '../Editor';
 
 const UIButtonGroupSample = () =>
