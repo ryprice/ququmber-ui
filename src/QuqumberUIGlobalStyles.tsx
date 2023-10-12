@@ -14,6 +14,10 @@ const QuqumberUIGlobalStyles = () => {
 
     .qqico {
       font-size: 1.2em;
+
+      :before {
+        vertical-align: middle;
+      }
     }
 
     button {

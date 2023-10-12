@@ -139,7 +139,7 @@ const styles = {
 
     &.styling-outline {
       background: transparent;
-      border: solid ${Colors.CONTROL} 1px;
+      border: solid ${Colors.CONTROL_BORDER} 1px;
       color: ${Colors.BASEFONT};
       text-shadow: transparent;
 

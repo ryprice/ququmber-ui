@@ -152,6 +152,8 @@ export class UIMultiInput extends Component<UIMultiInputProps, UIMultiInputState
     const child = e.target as Element;
     if (!(el !== child && el.contains(child))) {
       this.setState({dropdownOpen: false});
+      this.tagsInput.value = '';
+      this.props.onQueryChanged && this.props.onQueryChanged('');
     }
   }
 
