@@ -20,6 +20,7 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "jsxImportSource": "@emotion/react",
+    "allowSyntheticDefaultImports": true,
   },
   "include": [
     "./src/**/*.ts",
