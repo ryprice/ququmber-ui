@@ -2,8 +2,14 @@ import {Global, css} from '@emotion/react';
 import Colors from 'ququmber-ui/Colors';
 import {BORDER_RADIUS_INPUT, FONT_STACK, TRANSITION_DEFAULT} from 'ququmber-ui/Constants';
 
-const QuqumberUIGlobalStyles = () => {
+type QuqumberUIGlobalStylesProps = {
+  classNamespace?: string;
+};
+
+const QuqumberUIGlobalStyles = (props: QuqumberUIGlobalStylesProps) => {
+  const {classNamespace} = props;
   return <Global styles={css`
+    ${classNamespace != null ? `.${classNamespace} {` : ''}
     body {
       background-color: ${Colors.OFFWHITE};
       font-family: ${FONT_STACK};
@@ -97,6 +103,7 @@ const QuqumberUIGlobalStyles = () => {
       z-index: 10000;
       display: block;
     }
+    ${classNamespace != null ? `}` : ''}
   `} />;
 };
 
