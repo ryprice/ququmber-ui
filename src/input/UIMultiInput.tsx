@@ -188,6 +188,7 @@ export class UIMultiInput extends Component<UIMultiInputProps, UIMultiInputState
 
   private readonly defaultRenderItem = (option: UIMultiInputOption) => {
     return <UITag
+      key="UIMultiInput-defaultRenderItem"
       css={styles.tag}
       name={option.name}
       onRemoved={() => this.onOptionRemoved(option.value)}

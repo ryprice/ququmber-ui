@@ -27,6 +27,9 @@ export const formatShortDateTime = (time: Date) => (
 );
 
 export const formatRelativeTime = (date: Date): string => {
+  if (!date) {
+    return '';
+  }
   const currentDate = new Date();
   const timeDifference = currentDate.getTime() - date.getTime();
 
