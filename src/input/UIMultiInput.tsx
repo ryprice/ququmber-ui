@@ -161,6 +161,9 @@ export class UIMultiInput extends Component<UIMultiInputProps, UIMultiInputState
 
   public componentDidMount() {
     window.addEventListener('click', this.boundWindowClickHandler, false);
+    if (this.props.autofocus) {
+      this.setState({dropdownOpen: true});
+    }
   }
 
 
@@ -208,7 +211,8 @@ export class UIMultiInput extends Component<UIMultiInputProps, UIMultiInputState
       renderDropdownContents,
       disabled,
       asInline,
-      transparentBackground
+      transparentBackground,
+      autofocus
     } = this.props;
     const {hoverIndex, dropdownOpen} = this.state;
 
@@ -253,6 +257,7 @@ export class UIMultiInput extends Component<UIMultiInputProps, UIMultiInputState
         onFocus={() => this.setState({dropdownOpen: true})}
         onKeyUp={(e: any) => this.onKeyUp(e)}
         ref={(el: any) => this.receiveTagsInputEl(el)}
+        autoFocus={autofocus}
       />
       <span className="octicon octicon-chevron-down downArrow" css={styles.downArrow} key="down-arrow" />
     </div>;
@@ -308,6 +313,7 @@ export type UIMultiInputProps = {
   asInline?: boolean;
   css?: SerializedStyles;
   transparentBackground?: boolean;
+  autofocus?: boolean;
 };
 
 export type UIMultiInputState = {
