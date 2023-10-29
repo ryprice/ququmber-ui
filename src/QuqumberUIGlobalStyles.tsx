@@ -103,7 +103,7 @@ const QuqumberUIGlobalStyles = (props: QuqumberUIGlobalStylesProps) => {
       z-index: 10000;
       display: block;
     }
-    ${classNamespace != null ? `}` : ''}
+    ${classNamespace != null ? '}' : ''}
   `} />;
 };
 
