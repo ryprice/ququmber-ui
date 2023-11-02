@@ -12,7 +12,7 @@ const styles = {
     max-width: 700px;
     margin: 0 auto;
     opacity: .9;
-    padding: 0 .3em;
+    padding: 0 .8em;
   `,
 
   children: css`

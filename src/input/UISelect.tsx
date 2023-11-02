@@ -9,6 +9,7 @@ import {UIAbstractInputStyle} from 'ququmber-ui/input/UIAbstractInput';
 import UISelectDropdown, {UISelectDropdownOption} from 'ququmber-ui/input/UISelectDropdown';
 import Stylings from 'ququmber-ui/Stylings';
 import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
+import useMobileLayout from 'ququmber-ui/utils/useMobileLayout';
 
 const styles = {
   root: css`
@@ -44,6 +45,14 @@ const styles = {
   just: css`
     color: ${Colors.QUIET};
   `,
+  hiddenSelect: css`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  `,
 };
 
 export const UISelect = (props: UISelectProps) => {
@@ -71,6 +80,8 @@ export const UISelect = (props: UISelectProps) => {
   const dropdownRef = useRef<HTMLDivElement>();
   const searchInputRef = useRef<HTMLInputElement>();
   const currentQuery = searchInputRef.current ?  searchInputRef.current.value : '';
+  const isMobileLayout = useMobileLayout();
+  const selectHtmlId = useMemo(() => Math.random().toString(36).substring(2, 15), []);
 
   const options: UISelectOption[] = useMemo(() => {
     const freeformOption = {
@@ -170,12 +181,22 @@ export const UISelect = (props: UISelectProps) => {
     `${dropdownOpen ? 'focus' : ''} ` +
     (styling ? `styling-${styling}` : '');
 
+  const hiddenSelect = <select
+    id={selectHtmlId}
+    css={styles.hiddenSelect}
+    value={selected}
+    onChange={(e: any) => onSelect(e.target.value)}
+    disabled={disabled}>
+    {options.map(option => <option key={option.value} value={option.value}>{option.name}</option>)}
+  </select>;
+
   const input = <div
     css={[UIAbstractInputStyle, styles.root]}
     role="button"
     onClick={openDropdown}
     onKeyUp={onKeyUp}
     className={className}>
+    {isMobileLayout && hiddenSelect}
     <span css={styles.selectedOptions}>{renderItem ? renderItem(selectedOption, true) : selectedOption.name}</span>
     <span className="octicon octicon-chevron-down" css={styles.downArrow} key="down-arrow" />
   </div>;
@@ -200,7 +221,7 @@ export const UISelect = (props: UISelectProps) => {
 
   return <div ref={rootRef} tabIndex={0}>
     {input}
-    {dropdownOpen && <TetherComponent
+    {dropdownOpen && !isMobileLayout && <TetherComponent
       attachment={attachment || 'top left'}
       targetAttachment={targetAttachment || 'bottom left'}
       renderTarget={(tetherRef: MutableRefObject<HTMLDivElement>) => (
