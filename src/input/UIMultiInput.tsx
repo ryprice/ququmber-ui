@@ -175,6 +175,9 @@ export class UIMultiInput extends Component<UIMultiInputProps, UIMultiInputState
     const {options, selected, shouldFilterOptions} = this.props;
     const query = this.tagsInput ? this.tagsInput.value.toLowerCase() : '';
     return filter(options, (option) => {
+      if (option.hiddenFromDropdown === true) {
+        return false;
+      }
       if (includes(selected, option.value)) {
         return false;
       }
@@ -294,6 +297,7 @@ export type UIMultiInputOption = {
   value: string;
   color?: string;
   canRemove?: boolean;
+  hiddenFromDropdown?: boolean;
 };
 
 export type UIMultiInputProps = {
