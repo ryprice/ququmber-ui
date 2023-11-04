@@ -12,6 +12,12 @@ const styles = {
     background: transparent;
     overflow: hidden;
 
+    &.placeholder {
+      color: ${Colors.QUIET};
+      font-style: italic;
+    }
+  `,
+  rootEnabled: css`
     &:hover {
       background: ${Colors.CONTROL};
     }
@@ -19,12 +25,7 @@ const styles = {
     &:focus {
       background: ${Colors.CONTROL_FOCUS};
     }
-
-    &.placeholder {
-      color: ${Colors.QUIET};
-      font-style: italic;
-    }
-  `
+  `,
 };
 
 export class UIEditableText extends React.Component<UIEditableTextProps, UIEditableTextState> {
@@ -95,7 +96,7 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
     const renderedClassName = `${className} ` + (this.shouldShowPlaceholder() ? 'placeholder' : '');
 
     return <p
-      css={[UIAbstractInputStyle, styles.root]}
+      css={[UIAbstractInputStyle, styles.root, disabled ? null : styles.rootEnabled]}
       contentEditable={disabled ? false : true}
       className={renderedClassName}
       onKeyUp={this.onKeyUp}
