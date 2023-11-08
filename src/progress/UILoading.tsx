@@ -10,7 +10,8 @@ const styles = {
 };
 
 const UILoading = (props: UILoadingProps) => {
-  const {size, text} = props;
+  const {text} = props;
+  const size = props.size || 40;
   const color = props.color || '#eeeeee';
 
   /* eslint-disable max-len */
