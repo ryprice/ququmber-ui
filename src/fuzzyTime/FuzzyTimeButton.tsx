@@ -60,7 +60,7 @@ export const FuzzyTimeButton = (props: FuzzyTimeButtonProps) => {
     style,
     value,
     attachment,
-    targetAttachment
+    targetAttachment,
   } = props;
 
   const [open, setOpen] = useState(false);

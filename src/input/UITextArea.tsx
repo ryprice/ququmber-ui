@@ -3,8 +3,8 @@ import {useRef, useState, CSSProperties} from 'react';
 
 import UIButton from 'ququmber-ui/button/UIButton';
 import Colors from 'ququmber-ui/Colors';
-import Stylings from 'ququmber-ui/Stylings';
 import UITooltip from 'ququmber-ui/popup/UITooltip';
+import Stylings from 'ququmber-ui/Stylings';
 
 const styles = {
   textarea: css`
@@ -52,7 +52,8 @@ type UITextAreaProps = {
 
 const UITextArea = (props: UITextAreaProps) => {
   const {
-    readonly, onPersistValue, placeholder, submitText, value, className, style, validateValue, autofocus, supportsMarkdown
+    readonly, onPersistValue, placeholder, submitText, value,
+    className, style, validateValue, autofocus, supportsMarkdown
   } = props;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [showSubmit, setShowSubmit] = useState(true);
@@ -85,7 +86,7 @@ const UITextArea = (props: UITextAreaProps) => {
       return;
     }
     if (e.charCode === 13 && !e.shiftKey) {
-      onSubmit();
+      onSubmit().catch(console.error);
       e.preventDefault();
       e.stopPropagation();
       return false;

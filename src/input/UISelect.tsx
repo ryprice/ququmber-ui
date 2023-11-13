@@ -8,8 +8,8 @@ import Colors from 'ququmber-ui/Colors';
 import {UIAbstractInputStyle} from 'ququmber-ui/input/UIAbstractInput';
 import UISelectDropdown, {UISelectDropdownOption} from 'ququmber-ui/input/UISelectDropdown';
 import Stylings from 'ququmber-ui/Stylings';
-import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
 import useMobileLayout from 'ququmber-ui/utils/useMobileLayout';
+import useOnOutsideClick from 'ququmber-ui/utils/useOnOutsideClick';
 
 const styles = {
   root: css`
