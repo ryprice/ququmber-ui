@@ -1,6 +1,6 @@
 import {css} from '@emotion/react';
 import * as Color from 'color';
-import {MutableRefObject, useCallback, useState, forwardRef} from 'react';
+import {MutableRefObject, useCallback, useState, forwardRef, CSSProperties} from 'react';
 import TetherComponent from 'react-tether';
 
 import Colors from 'ququmber-ui/Colors';
@@ -165,12 +165,12 @@ UIIconButton.defaultProps = {
 
 export type UIIconButtonProps = {
   icon: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   disabled?: boolean;
   tooltip?: string;
   styling?: Stylings;
-  style?: object;
+  style?: CSSProperties;
 };
 
 export default UIIconButton;

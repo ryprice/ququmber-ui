@@ -281,7 +281,7 @@ const UIButton = forwardRef<HTMLButtonElement, UIButtonProps>((props, ref) => {
 });
 
 export type UIButtonProps = {
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   children?: React.ReactNode;
   style?: object;
