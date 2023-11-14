@@ -11,7 +11,8 @@ const styles = {
 
 const UILoading = (props: UILoadingProps) => {
   const {text} = props;
-  const size = props.size || 40;
+  // use ems if possible, but we need a default size for centering when text is provided
+  const size = text != null && props.size == null ? 40 : props.size;
   const color = props.color || '#eeeeee';
 
   /* eslint-disable max-len */
