@@ -77,7 +77,9 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
 
   onSubmit() {
     const {onSubmit} = this.props;
-    onSubmit && onSubmit(this.inputEl.textContent);
+    if (this.inputEl.textContent !== this.props.value) {
+      onSubmit && onSubmit(this.inputEl.textContent);
+    }
     this.setState({value: null});
   }
 
