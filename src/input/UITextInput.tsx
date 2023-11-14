@@ -83,6 +83,10 @@ export class UITextInput extends React.Component<UITextInputProps, {}> {
     (findDOMNode(this.inputEl) as HTMLInputElement).value = '';
   }
 
+  value() {
+    return this.inputEl.value;
+  }
+
   render() {
     const {props} = this;
     const inputNode = <input
