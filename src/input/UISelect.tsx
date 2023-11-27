@@ -96,7 +96,9 @@ export const UISelect = (props: UISelectProps) => {
     };
     const showFreeform = (allowFreeform && currentQuery.length > 0 || freeformValue);
 
-    return propsOptions.slice(0, 10)
+    const maybeLimitedResults = !isSearchable ? propsOptions : propsOptions.slice(0, 10);
+
+    return maybeLimitedResults
       .concat(showFreeform ? [freeformOption] : [])
       .concat(allowNull ? [nullOption] : []);
   }, [propsOptions, allowFreeform, currentQuery, freeformValue, allowNull]);
@@ -258,7 +260,7 @@ export type UISelectProps = {
   onQueryChanged?: (query: string) => void;
   className?: string;
   placeholder?: string;
-  renderItem?: (option: UISelectOption, selected: boolean) => React.ReactChild;
+  renderItem?: (option: UISelectOption, renderForButton: boolean) => React.ReactChild;
   renderDropdownContents?: (children: React.ReactChild[]) => React.ReactChild;
   attachment?: string;
   targetAttachment?: string;
