@@ -72,7 +72,7 @@ const UIModal = (props: UIModalProps) => {
         {onClose ? closeButton : null}
         {children}
       </div>
-    </UIMountTransition>;
+    </UIMountTransition>
   </>;
 };
 

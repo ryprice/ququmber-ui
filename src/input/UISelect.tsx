@@ -101,7 +101,7 @@ export const UISelect = (props: UISelectProps) => {
     return maybeLimitedResults
       .concat(showFreeform ? [freeformOption] : [])
       .concat(allowNull ? [nullOption] : []);
-  }, [propsOptions, allowFreeform, currentQuery, freeformValue, allowNull]);
+  }, [propsOptions, allowFreeform, currentQuery, freeformValue, allowNull, isSearchable]);
 
   const renderDefaultFreeformItem = useCallback(() => (
     <span>

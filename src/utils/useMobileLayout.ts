@@ -3,11 +3,15 @@ import {useState, useEffect} from 'react';
 const maybeWindow = typeof window !== 'undefined' ? window : null;
 const maybeDocument = typeof document !== 'undefined' ? document : null;
 
+export const isMobileLayout = () => {
+  return maybeDocument && maybeDocument.documentElement.clientWidth < 768;
+};
+
 const useMobileLayout = () => {
-  const [isMobile, setMobile] = useState(maybeDocument && maybeDocument.documentElement.clientWidth < 768);
+  const [isMobile, setMobile] = useState(isMobileLayout());
 
   const updateMedia = () => {
-    setMobile(maybeDocument && maybeDocument.documentElement.clientWidth < 768);
+    setMobile(isMobileLayout());
   };
 
   useEffect(() => {
