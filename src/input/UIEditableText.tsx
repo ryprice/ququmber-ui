@@ -1,7 +1,9 @@
 import {css} from '@emotion/react';
 import * as React from 'react';
+
 import Colors from 'ququmber-ui/Colors';
 import {UIAbstractInputStyle} from 'ququmber-ui/input/UIAbstractInput';
+import {SubmitBehaviors} from 'ququmber-ui/input/UITextInput';
 
 const styles = {
   root: css`
@@ -65,9 +67,11 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
     this.props.onChange && this.props.onChange(this.inputEl.textContent);
     switch (event.charCode) {
       case 13: // enter
-        this.onSubmit();
-        this.inputEl.blur();
-        return false;
+        if (this.props.submitBehaviors == null || this.props.submitBehaviors.includes(SubmitBehaviors.ENTER)) {
+          this.onSubmit();
+          this.inputEl.blur();
+          return false;
+        }
         break;
       default:
         break;
@@ -86,7 +90,9 @@ export class UIEditableText extends React.Component<UIEditableTextProps, UIEdita
   onBlur = (e: React.FocusEvent<HTMLParagraphElement>) => {
     const {onBlur} = this.props;
     onBlur && onBlur(e);
-    this.onSubmit();
+    if (this.props.submitBehaviors == null || this.props.submitBehaviors.includes(SubmitBehaviors.BLUR)) {
+      this.onSubmit();
+    }
   };
 
   shouldShowPlaceholder() {
@@ -128,6 +134,7 @@ export type UIEditableTextProps = {
   onFocus?: (e: React.FocusEvent<HTMLParagraphElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLParagraphElement>) => void;
   disabled?: boolean;
+  submitBehaviors?: number[];
 };
 
 export type UIEditableTextState = {
